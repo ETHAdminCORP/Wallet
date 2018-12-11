@@ -1,0 +1,12 @@
+FROM golang:alpine as builder
+COPY . $GOPATH/src/ethadmin/app/
+WORKDIR $GOPATH/src/ethadmin/app/
+RUN apk add --no-cache git
+RUN go get -d -v
+RUN go build main.go
+
+FROM alpine:latest
+RUN apk add ca-certificates && rm -rf /var/cache/apk/*
+WORKDIR /root/
+COPY --from=builder /go/src/ethadmin/app/ .
+CMD ["./main"]

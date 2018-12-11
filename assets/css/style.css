@@ -1,0 +1,335 @@
+.navigation .container,
+.navigation .row {
+    height: 100%;
+    margin-bottom: 0;
+}
+
+.navigation .logo {
+    height: 100%;
+}
+
+.navigation .network-select {
+    height: 100%;
+}
+
+.navigation .network-select .select-wrapper {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+
+.navigation .lang-select,
+.navigation .lang-select #langDiv {
+    height: 100%;
+}
+
+
+
+
+.navigation .lang-select .select-wrapper {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.select-wrapper input.select-dropdown {
+    height: 2.5rem;
+    margin: 0 0 15px 0;
+    background-color:rgba(2, 201, 188, 0.5);
+    z-index: 0;
+}
+
+.select-wrapper .caret {
+    bottom: 10px;
+}
+
+.navigation .lang-select .select-dropdown li img {
+    width: 33px;
+    margin-right: 14px;
+    margin-left: 13px;
+}
+
+#transactionsLis {
+    margin: 0 50px;
+}
+
+#txtable {
+    margin: 0 !important;
+}
+
+/* Wallet Block */
+
+#wallet {
+    padding: 0 50px;
+}
+
+.wallet-cart-content {
+    display: flex;
+    padding: 15px 25px;
+    padding-bottom: 0;
+}
+
+.wallet-cart-content-inner {
+    padding-left: 95px;
+}
+
+.wallet-cart-content-inner .card-action {
+    padding-left: 0 !important;
+    border-top: 0 !important;
+    padding-bottom: 0;
+}
+
+.wallet-cart-content-inner .card-action button {
+    /* margin-bottom: 4px; */
+}
+
+.wallet-cart-content-inner .key-field {
+    display: block;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.7;
+    margin-bottom: 6px;
+    word-break: break-all;
+}
+
+.balance-flex {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    -ms-align-items: center;
+    align-items: center;
+}
+
+#addressBalance {
+    font-size: 45px;
+    font-weight: bold;
+    padding-right: 10px;
+}
+
+.balance-values {
+    display: flex;
+    flex-direction: column;
+    font-weight: 500;
+}
+
+.balance-values .usd {
+    position: absolute;
+    top: 23px;
+    font-size: 14px;
+}
+
+.balance-values .eth {
+    position: absolute;
+    top: 44px;
+    font-size: 20px;
+}
+
+.card::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    transition: box-shadow 0.5s;
+    z-index: -10;
+}
+
+.card:hover::before {
+    box-shadow: 0.4em 0.4em 10px rgba(122, 122, 122, 0.5);
+}
+
+
+/* Cards */
+
+#wallet .row.balance {
+    margin-bottom: 0;
+}
+
+#wallet .row .row-container {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    min-height: 250px;
+}
+
+#wallet .row .row-container:first-child {
+    margin-bottom: 16px;
+}
+
+#wallet .row-container .col.s12.m6.xl6 {
+    flex-shrink: 0;
+    align-content: stretch;
+}
+
+#wallet .row-container:nth-child(2) .col.s12.m6.xl6:last-child .wallet-card {
+    padding: 0 25px;
+}
+
+#wallet .row-container iframe {
+    height: 29vw;
+}
+
+.wallet-card {
+    margin: 0;
+    padding: 25px;
+    height: 100%;
+}
+
+.contact-card {
+    padding: 15px 25px;
+}
+
+/* Tokens Inputs */
+
+.input-wrap {
+    display: flex;
+    align-items: center;
+    margin: 0 -5px;
+}
+
+.input-wrap .form-group {
+    padding: 5px;
+    flex-wrap: wrap;
+}
+
+.flex-center {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    -ms-align-items: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.transferTokenDiv {
+    width: 100%;
+    padding: 25px 0;
+}
+
+/* Transaction table */
+
+#txtable td,
+#txtable th {
+    min-width: 120px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+#txtable > tr:hover,
+#txtableTab > tr:hover {
+    background-color: rgb(250, 250, 250);
+}
+
+#txtable tr td:first-child {
+    padding-left: 60px;
+}
+
+#txtable tr th:first-child {
+    padding-left: 60px;
+}
+
+#txtable tr td:last-child {
+    padding-right: 60px;
+}
+
+#txtable tr th:last-child {
+    padding-right: 60px;
+}
+
+/* Send ETH */
+
+input#sendEthAmount,
+input#cardSendEthAmount {
+    width: 93%;
+}
+
+#sendEthGasPriceGWEI {
+    margin-left: calc(50% - 28px);
+}
+
+#tokenTableCard td {
+    padding: 5px;
+}
+
+#modal1 {
+    top: 5%!important;
+    max-height: 85%;
+}
+
+#modal1 #sendEthButtonOk {
+    position: absolute;
+    margin-left: calc(100% - 360px);
+}
+
+#cardSendEthButtonSend {
+    float: left;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: calc(50% - 100px);
+}
+
+#cardSendEthButtonOk {
+    float: left;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: calc(50%);
+}
+
+#contractAbiDiv textarea {
+    width: 80%;
+    height: 10rem;
+}
+
+.address-to {
+    display: flex;
+    height: 54px;
+    align-items: center;
+    justify-content: center;
+}
+
+a.tx-more-link {
+    float: right;
+    margin: 15px 0 25px 0;
+}
+
+@media screen and (min-width: 1600px) {
+    .trans-amount {
+        display: flex;
+        align-items: baseline;
+        margin-left: -0.75rem;
+        margin-right: -0.75rem;
+    }
+    .trans-amount .s6 {
+        margin-left: 0!important;
+    }
+    .address-to {
+        justify-content: flex-end;
+    }
+    .trans-amount span {
+        margin-left: 5px;
+    }
+    .amount-label {
+        width: 25%;
+        padding-right: 0.8rem;
+        text-align: right;
+    }
+    .wallet-address-container {
+        margin-bottom: 5px;
+    }
+    #sendEthAddParamsLink2 {
+        margin-left: 40%;
+    }
+    .fake-s9 {
+        width: 50%!important;
+    }
+    input#cardSendEthAmount {
+        width: 100%;
+    }
+}

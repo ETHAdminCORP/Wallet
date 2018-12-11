@@ -1,0 +1,375 @@
+[
+  {
+    "id": "WalletHeaderName",
+    "translation": "ETH Admin"
+  },
+  {
+    "id": "NetworkTypeMainnet",
+    "translation": "Network: MainNet"
+  },
+  {
+    "id": "NetworkTypeRopsten",
+    "translation": "Network: Ropsten (Testnet)"
+  },
+  {
+    "id": "NetworkTypeRinkeby",
+    "translation": "Network: Rinkeby (Testnet)"
+  },
+  {
+    "id": "NetworkTypeKovan",
+    "translation": "Network: Kovan (Testnet)"
+  },
+  {
+    "id": "QuestionHaveWallet",
+    "translation": "Do you already have wallet?"
+  },
+  {
+    "id": "ChooseType",
+    "translation": "Choose type"
+  },
+  {
+    "id": "EnterTypeKeystore",
+    "translation": "Keystore file (UTC)"
+  },
+  {
+    "id": "EnterButton",
+    "translation": "Enter"
+  },
+  {
+    "id": "EnterTypePrivateKeyUnencrypt",
+    "translation": "Private Key (unencrypted)"
+  },
+  {
+    "id": "EnterTypeSeedPhrase",
+    "translation": "Seed phrase"
+  },
+  {
+    "id": "NewWalletCreateHeader",
+    "translation": "Create new wallet"
+  },
+  {
+    "id": "CreateWalletDesc",
+    "translation": "Enter password for encrypting keyfile"
+  },
+  {
+    "id": "CreateButton",
+    "translation": "Create"
+  },
+  {
+    "id": "CreateWalletWarning",
+    "translation": "The password must contain at least 6 characters"
+  },
+  {
+    "id": "TabName1",
+    "translation": "Info"
+  },
+  {
+    "id": "TabName2",
+    "translation": "Smart contract"
+  },
+  {
+    "id": "TabName3",
+    "translation": "Tokens"
+  },
+  {
+    "id": "TabName4",
+    "translation": "Transactions"
+  },
+  {
+    "id": "FirstCardTitle",
+    "translation": "Information and functions"
+  },
+  {
+    "id": "AddressTitle",
+    "translation": "Address"
+  },
+  {
+    "id": "BalanceTitile",
+    "translation": "Balance"
+  },
+  {
+    "id": "RUR",
+    "translation": "RUR"
+  },
+  {
+    "id": "BuyButton",
+    "translation": "Buy"
+  },
+  {
+    "id": "SendButton",
+    "translation": "Send"
+  },
+  {
+    "id": "PayForServicesButton",
+    "translation": "Paid services"
+  },
+  {
+    "id": "SellButton",
+    "translation": "Sell"
+  },
+  {
+    "id": "DownloadKeyFile",
+    "translation": "Download Keysote file"
+  },
+  {
+    "id": "NewWalletCongratulation",
+    "translation": "New wallet created!"
+  },
+  {
+    "id": "NewWalletCongratulation2",
+    "translation": "Keyfile has encrypted by password, which you entered in previous step, and was saved on your computer"
+  },
+  {
+    "id": "SendEthModalTitile",
+    "translation": "Send ETH"
+  },
+  {
+    "id": "SendEthModalTitile2",
+    "translation": "Send ETH to another address"
+  },
+  {
+    "id": "SendEthTo",
+    "translation": "Address"
+  },
+  {
+    "id": "SendEthAmount",
+    "translation": "Amount"
+  },
+  {
+    "id": "SendALLEth",
+    "translation": "Send all eth"
+  },
+  {
+    "id": "SendEthAdditionalOptions",
+    "translation": "Additional options"
+  },
+  {
+    "id": "SendEthCommission",
+    "translation": "Commission"
+  },
+  {
+    "id": "SendEthCommissionWarning",
+    "translation": "Affects the transation speed"
+  },
+  {
+    "id": "SendEthSlow",
+    "translation": "Slow"
+  },
+  {
+    "id": "SendEthFast",
+    "translation": "Fast"
+  },
+  {
+    "id": "SendEthAccept",
+    "translation": "Confirm "
+  },
+  {
+    "id": "SendEthSendButton",
+    "translation": "Send"
+  },
+  {
+    "id": "SendEthCloseModal",
+    "translation": "Close"
+  },
+  {
+    "id": "SCAddress",
+    "translation": "To interact with a smart contract, enter its address"
+  },
+  {
+    "id": "SCAddressTransaction",
+    "translation": "To get all transactions by address, enter here"
+  },
+  {
+    "id": "SCReloadPublicData",
+    "translation": "Reload information"
+  },
+  {
+    "id": "SCReloadTransaction",
+    "translation": "Get transactions"
+  },
+  {
+    "id": "FilePassword",
+    "translation": "Password for file"
+  },
+  {
+    "id": "langId",
+    "translation": "en-US"
+  },
+  {
+    "id": "keystoreDecryptError",
+    "translation": "Wrong password"
+  },
+  {
+    "id": "metamaskBlockWarning",
+    "translation": "You should login (enter password) in Metamask plugin and grant permission to access to ETH Admin"
+  },
+  {
+    "id": "buttonShowPrivateKey",
+    "translation": "Show private key"
+  },
+  {
+    "id": "PrivateKeyTitle",
+    "translation": "Private key"
+  },
+  {
+    "id": "buttonShowPrivateKeyHide",
+    "translation": "Hide private key"
+  },
+  {
+    "id": "contractAddressPlaceholder",
+    "translation": "Contract address"
+  },
+  {
+    "id": "ABIEnterPlaceholder",
+    "translation": "Enter contract's abi"
+  },
+  {
+    "id": "AddressCopyIcon",
+    "translation": "Copy address"
+  },
+  {
+    "id": "PrivateKeyCopyIcon",
+    "translation": "Copy private key"
+  },
+  {
+    "id": "ConctractBalanceLine",
+    "translation": "Contract balance"
+  },
+  {
+    "id": "CallSmartContractFunc",
+    "translation": "Exec function"
+  },
+  {
+    "id": "ReadFunctionTitile",
+    "translation": "Readable functions (free)"
+  },
+  {
+    "id": "WriteFUnctionTitle",
+    "translation": "Writable functions"
+  },
+  {
+    "id": "SendEthLabelGasAmount",
+    "translation": "Gas amount"
+  },
+  { "id": "GasLimitExceedText",
+   "translation": "The function will not be executed. Error: gas limit exceed."
+  },
+  { "id": "resultCallFunctionTitle",
+   "translation": "Result:"
+  },
+  { "id": "smartContractEthAmountErrorText",
+   "translation": "Not enought ETH"
+  },
+  { "id": "smartContractEmptyArrayText",
+   "translation": "Empty array!"
+  },
+  { "id": "tokensTableTokenNameText",
+   "translation": "Name"
+  },
+  { "id": "tokensTableBalanceText",
+   "translation": "Balance"
+  },
+  { "id": "tokensTablePriceText",
+   "translation": "Price"
+  },
+  { "id": "tokensTableSumText",
+   "translation": "Total"
+  },
+  { "id": "tokensTableButtonTransferText",
+   "translation": "Transfer"
+  },
+  { "id": "tokensTableButtonExchangeText",
+   "translation": "Exchange"
+  },
+  { "id": "tokensTableTransferToText",
+   "translation": "Address"
+  },
+  { "id": "tokensTableTransferAmountText",
+   "translation": "Amount"
+  },
+  { "id": "tokensTableTransferConfirmButtonText",
+   "translation": "Confirm transfer"
+  },
+  { "id": "tokensTableTransferErrorText",
+    "translation": "Incorrect address of the recipient or amount of tokens"
+  },
+  { "id": "tokensTableNotLoadText",
+  "translation": "Token list avaliable only in MainNet"
+  },
+  { "id": "transactionsErrorText",
+  "translation": "We can't load list of transactions :("
+  },
+  { "id": "transactionsLoading",
+  "translation": "Loading list of transactions"
+  },
+ { "id": "txCallFunc",
+  "translation": "Smart contract function call"
+ },
+ { "id": "txCreateContract",
+  "translation": "Creating the contract"
+ },
+ { "id": "ContractsFooter",
+  "translation": "Contact us"
+ },
+ { "id": "txListEmpty",
+  "translation": "This address doesn't have any transactions."
+ },
+ { "id": "privateKeyLabel",
+  "translation": "Private key"
+ },
+ { "id": "txListCardLabel",
+  "translation": "Transactions"
+ },
+ { "id": "txListCardLabelDate",
+  "translation": "Date"
+ },
+ { "id": "txListCardLabelFrom",
+  "translation": "From"
+ },
+ { "id": "txListCardLabelTo",
+  "translation": "To"
+ },
+ { "id": "txListCardLabelAmount",
+  "translation": "Amount"
+ },
+ { "id": "txListCardLabelMore",
+  "translation": "More.."
+ },
+ { "id": "tokensListCardLabel",
+  "translation": "Tokens"
+ },
+ { "id": "noTokensWarningCard",
+  "translation": "You don't have any tokens"
+ },
+ { "id": "tokenListCardLabelMore",
+  "translation": "More.."
+},
+{ "id": "sendEthLabelMainTab",
+ "translation": "Send eth to another address"
+},
+{ "id": "CreateWalletPlaceholder",
+ "translation": "At least 6 characters"
+},
+{ "id": "txListHours",
+ "translation": "hrs ago"
+},
+{ "id": "txListMins",
+ "translation": "mins ago"
+},
+{ "id": "txListSec",
+ "translation": "secs ago"
+},
+{ "id": "txListHours2",
+ "translation": "hrs"
+},
+{ "id": "txSendOk",
+ "translation": "Transaction sent"
+},
+{ "id": "metamaskInstallText",
+ "translation": "You have to install Metamask extension"
+}
+
+
+
+
+]

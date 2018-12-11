@@ -1,0 +1,26 @@
+version: '2'
+services:
+    backend:
+        ports:
+          - '9123:9123'
+        build:
+            context: .
+            dockerfile: Dockerfile-go
+        restart: on-failure
+        depends_on:
+          - db
+
+
+
+    db:
+        restart: on-failure
+        ports:
+          - '8002:3306'
+        volumes:
+          - ~/db:/var/lib/mysql
+        image:
+          mysql:8.0.13
+        environment:
+            - MYSQL_ROOT_PASSWORD=1234
+            - MYSQL_USER=1234
+            - MYSQL_PASSWORD=1234

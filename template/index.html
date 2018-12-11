@@ -1,0 +1,712 @@
+{{define "main"}} {{ template "header" . }}
+
+
+
+<body>
+
+
+    <nav class="navigation">
+        <div class="container">
+            <!-- Центрирует по странице-->
+            <div class="nav-wrapper">
+
+
+
+
+                <div class="row">
+
+                    <div class="logo col xl3">
+                        <a href="/" class="brand-logo"><img src="/assets/img/LogoETHAdmin.png" width=200px height=30px style="margin-top:20px"></a>
+                    </div>
+
+                    <div class="network-select col xl5" style="margin-top:10px">
+                        <select id="networkName" name="networkName">
+                      <option value="mainnet" >{{T "NetworkTypeMainnet"}}</option>
+                      <option value="ropsten">{{T "NetworkTypeRopsten"}}</option>
+                      <option value="rinkeby">{{T "NetworkTypeRinkeby"}}</option>
+                      <option value="kovan">{{T "NetworkTypeKovan"}}</option>
+                    </select>
+                    </div>
+
+
+                    <div class="lang-select col push-xl1 xl3" style="margin-top:10px">
+                        <div id="langDiv">
+                            <select id="walletLanguage" name="walletLanguage" class="icons">
+                              <option value="ru-RU"  data-icon="/assets/img/ru.svg"> RU</option>
+                              <option value="en-US"  data-icon="/assets/img/en.svg"> EN </option>
+                        </select>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+                <!--                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>-->
+
+            </div>
+        </div>
+    </nav>
+    <main>
+
+
+
+        <div id="start" class="container" style="margin-top:5%">
+            <div style="margin-top:50px" class="row">
+                <div class="col l6 m12 s12 center-align">
+                    <h4>{{T "QuestionHaveWallet"}}</h4>
+                    <p>{{T "ChooseType"}}</p>
+                    <ul id="openWalletType" class="collection openWalletType">
+                        <li class="settoast collection-item" id="walletTypeMetamask">Metamask<br>
+                            <span id="metamaskBlockWarning">{{ T "metamaskBlockWarning"}}</span>
+                            <span id="metamaskInstall">{{ T "metamaskInstallText"}}</span>
+                        </li>
+
+
+
+
+                        <li id="walletTypePrivateKeyUTC" class="collection-item"><span id="walletTypePrivateKeyUTCHeader">{{T "EnterTypeKeystore"}}</span>
+                            <input id="walletTypePrivateKeyUTCFile" type='file' hidden/>
+                            <div id="walletTypePrivateKeyUTCdiv">
+                                <form id="keystoreFileForm" action="" onsubmit="$('#ButtonPrivateKeyUTCEnter').click(); return false">
+                                    <form><input type=password id="privateKeyUTCPassword" autocomplete="off" placeholder='{{ T "FilePassword"}}'></form>
+                                    <span id="keystoreDecryptError">{{ T "keystoreDecryptError"}}</span><br>
+                                    <button type=button id="ButtonPrivateKeyUTCEnter">{{T "EnterButton"}}</button>
+                                </form>
+                            </div>
+                        </li>
+
+                        <li id="walletTypePrivateKey" class="collection-item">{{T "EnterTypePrivateKeyUnencrypt"}}
+                            <div id="unencryptPrivateKey">
+                                <form><input type=password autocomplete="off" id="unencryptPrivateKeyRaw" placeholder="0x...">
+                                    <!-- <button type=button id="ButtonUnencryptPrivateKeyEnter">{{T "EnterButton"}}</button> -->
+                                </form>
+                            </div>
+                        </li>
+
+
+                        <!--
+            <li id="walletTypeSeed" class="collection-item">{{T "EnterTypeSeedPhrase"}}
+                <div id="seedRow">
+                    <input type="text" id="seedRaw">
+                    <button type=button id="ButtonSeedEnter">{{T "EnterButton"}}</button>
+                  </div>
+            </li>
+   -->
+                    </ul>
+
+                    <div id="modalParity" class="modal">
+                        <div class="modal-content">
+                            <h4>Private Signer</h4>
+                            <p>Откройте кошелек с помощью qr-кода из приложения</p>
+                            <div class="container">
+
+                                <div class="app">
+
+                                    <a href="#" id="start-camera" class="visible btn">Touch here to start the app.</a>
+                                    <video id="camera-stream"></video>
+                                    <img id="snap">
+
+                                    <p id="error-message"></p>
+
+                                    <div class="controls">
+                                        <a href="#" id="delete-photo" title="Delete Photo" class="disabled"><i class="material-icons">delete</i></a>
+                                        <a href="#" id="take-photo" title="Take Photo"><i class="material-icons">camera_alt</i></a>
+                                        <a href="#" id="download-photo" download="selfie.png" title="Save Photo" class="disabled"><i class="material-icons">file_download</i></a>
+                                    </div>
+
+                                    <!-- Hidden canvas element. Used for taking snapshot of video. -->
+                                    <canvas></canvas>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="container">
+                                <a href="#!">Скачать приложение Parity Signer</a>
+                            </div>
+                            <a href="#!" class="modal-close effect green btn">Agree</a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col l1 m12 s12 center-align"></div>
+                <div class="col l5 m12 s12 center-align">
+                    <h4>{{T "NewWalletCreateHeader"}}</h4>
+                    <div id="newAddressStep1">
+                        {{T "CreateWalletDesc"}}<br>
+                        <form onSubmit="$('#buttonNewAdddressGoStep2').click(); return false"><input style="text-align: center;" type=text id="passwordForNewUTC" placeholder="{{ T "CreateWalletPlaceholder"}}"><button type=button id="buttonNewAdddressGoStep2" class="btn effect waves-light">{{T "CreateButton"}}</button><br>
+                            <span id="newAddressErr">{{T "CreateWalletWarning"}}</span>
+                          </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="aboutAddress" class="row">
+            <div class="row">
+                <ul class="tabs">
+                    <li class="tab col s3"><a class="active" href="#wallet">{{T "TabName1"}}</a></li>
+                    <li class="tab col s3"><a href="#contract">{{T "TabName2"}}</a></li>
+                    <li class="tab col s3"><a id="tokensTabLink" href="#tokens">{{T "TabName3"}}</a></li>
+                    <li class="tab col s3" id="transactionsTab"><a id="txTabLink" href="#transactions">{{T "TabName4"}}</a></li>
+                </ul>
+            </div>
+
+            <div id="wallet" class="col s12">
+                <!-- Wallet Block -->
+                <div class="row balance">
+                    <div class="col s12 m12">
+
+                        <div class="wallet-cart-content card horizontal">
+
+                            <div class="balance">
+                                <div class="balance-flex">
+                                    <span id="addressBalance"></span>
+
+                                    <div class="balance-values">
+                                        <div class="usd"> <span id="balanceFiatUSD"></span> <span id=USDLabel>USD</span></div>
+                                         <div class="eth" >ETH</div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="wallet-cart-content-inner">
+
+                              <div class=row style="margin-bottom:0px;">
+                                 <div class="col s12">
+                                    <span class="key-field " id="address" style="float:left" ></span>
+                                    <img style="margin-left:10px" id="copyToClipboardImg" onmousedown="copyToClipboard('#address')" src="/assets/img/clipboard.png" title={{T "AddressCopyIcon"}}>
+                                </div>
+
+
+
+                               </div>
+
+
+                                    <div id="privateKeyLine">
+                                        <div class=row style="margin-bottom:0px;">
+
+                                          <div class="col s12"><span style="float:left;margin-right:10px" class=key-field>{{ T "privateKeyLabel" }}: </span>
+                                         <span class="key-field" style="float:left" id="privateKeyRAW"></span>
+                                       <img style="margin-left:10px" id="copyToClipboardImg" onmousedown="copyToClipboard('#privateKeyRAW')" src="/assets/img/clipboard.png" title={{T "PrivateKeyCopyIcon"}}>
+                                     </div>
+                                     </div>
+                                   </div>
+
+
+                                <!--  </div>
+                                </div> -->
+
+                                <div class="card-action" style="margin-top:-10px">
+                                    <button id="buttonSendEth" type="button" class="btn effect waves-light">{{T "SendButton"}}</button>
+                                    <button id="buttonPayByEth" type="button" class="btn effect waves-light" data-toggle="modal" data-target="#myModal2">{{T "PayForServicesButton"}}</button>
+                                    <button id="buttonSellEth" type="button" class="btn effect waves-light">{{ T "SellButton" }}</button>
+                                    <button id="buttonDownloadUTC" type="button" class="btn effect waves-light">{{T "DownloadKeyFile"}}</button>
+                                    <button id="buttonShowPrivateKey" type="button" class="btn effect waves-light">{{T "buttonShowPrivateKey"}}</button>
+                                    <button id="buttonHidePrivateKey" type="button" class="btn effect waves-light">{{T "buttonShowPrivateKeyHide"}}</button>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+                <!-- Cards -->
+                <div class="row">
+                    <div class="row-container">
+                        <div class="col s12 m6 xl6 ">
+                            <div class="card wallet-card">
+                            <span style=color:#01c3b6;font-size:20px;font-weight:500;>{{ T "sendEthLabelMainTab" }}:</span><br>
+
+                                <div class="row wallet-address-container">
+                                <div class="col s3 address-to">
+                                {{ T "SendEthTo"}}
+                                </div>
+                                <div class="col s9 fake-s9">
+                                <!-- sendEthAddress  -->
+                                <input id="cardSendEthAddress" autocomplete="autocompletefalse" placeholder="0x..." type="text" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="trans-amount">
+                            <p class="amount-label">{{ T "SendEthAmount"}}</p>
+                            <div class="col s6">
+                                 <input id="cardSendEthAmount" type="number" class="form-control">
+                                </div>
+                                 <span>ETH</span>
+                                 </div>
+                                <a id="sendEthAddParamsLink2" href="#">{{ T "SendEthAdditionalOptions"}} </a><br>
+                                <button id="cardSendEthButtonSend" type="button" class="btn btn-primary">{{ T "SendEthSendButton"}}</button>
+                                <button id="cardSendEthButtonOk" class="btn btn-success">{{ T "SendEthAccept"}}</button>
+
+
+
+
+                            </div>
+                        </div>
+                        <div class="col s12 m6 xl6 ">
+                            <div class="card wallet-card" id=cardTokenList>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-container">
+                        <div class="col s12 m6 xl6 ">
+
+                            <div class="card wallet-card" id=cardTxList>
+
+                            </div>
+                        </div>
+                        <div class="col s12 m6 xl6 ">
+                            <div class="card wallet-card">
+                                <iframe style="border:0" width=100% src="/chart.html"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+
+            <!-- Modal Structure -->
+            <div id="modal1" class="modal">
+                <div class="modal-content">
+                    <h4>{{ T "SendEthModalTitile"}}</h4>
+
+                    <div id="sendEthForm" class="form-inline">
+                        <label>{{ T "SendEthTo"}}</label>
+                        <input id="sendEthAddress" autocomplete="autocompletefalse" placeholder="0x..." type="text" class="form-control" />
+                    </div>
+
+                    <div class="form-inline">
+                        <label>{{ T "SendEthAmount"}} <span id="sendEthAmountFiat"></span></label>
+                        <input id="sendEthAmount" type="tel" pattern="[0-9]+([\.][0-9]+)?" class="form-control"> ETH
+                    </div>
+
+                    <div id="sendEthMaxAmount">
+                        <a href="#" id="sendEthMaxAmountLink">{{ T "SendALLEth"}} (<span id="sendEthBalance"></span> ETH)</a>
+                    </div>
+
+                    <br>
+                    <a id="sendEthAddParamsLink" href="#">{{ T "SendEthAdditionalOptions"}} <img id="sendEthImgParams" src="/assets/img/linedown.png"></a>
+
+                    <div id="sendEthAddParams">
+                        Nonce <input type="number" id="sendEthNonceInput">
+                        <label class="active">{{ T "SendEthLabelGasAmount"}}</label>
+                        <input type=text value=21000 placeholder="gas amount" id="sendEthGasAmount" /> {{ T "SendEthCommission"}} ( +<span id="sendEthCommission"></span> ETH )
+                        <br><i>
+            <span style="font-size:13px">{{ T "SendEthCommissionWarning"}}</i></span>
+                        <input id="sendEthGasPriceRange" type=range min=1 max=100 step=1 oninput="sendEthGasPriceGWEI.value = sendEthGasPriceRange.value + ' GWEI'" />
+                        <output id="sendEthGasPriceGWEI"></output>
+                        <div class="row">
+                            <div class="col l6 s6 m6 xl6 left-align">{{ T "SendEthSlow"}}</div>
+                            <div class="col l6 s6 m6 xl6 right-align">{{ T "SendEthFast"}}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button id="sendEthButtonOk" class="btn btn-success modal-close">{{ T "SendEthAccept"}}</button>
+                    <button id="sendEthButtonSend" type="button" class="btn btn-primary" disabled>{{ T "SendEthSendButton"}}</button>
+                    <a id="sendEthModalClose" href="#!" class="modal-close effect green btn-flat">{{ T "SendEthCloseModal"}}</a>
+                </div>
+            </div>
+
+   <!--
+            <div class="modal" id="myModal2">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+
+                        <div class="modal-header">
+                            <h4 class="modal-title">Modal Heading</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+
+                        <div class="modal-body">
+                            <iframe style="border:none;"></iframe>
+                        </div>
+
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+-->
+
+
+            <div id="contract">
+
+                <div class="row">
+
+                    <div class="col s4 m5 ">
+                        <form class="contact-card card">
+                            <div class="row">
+                                <div class="input-field col s8">
+                                    <input id="contractAddress" type="text">
+                                    <label for="contractAddress">{{ T "contractAddressPlaceholder"}}</label>
+                                    <span class="helper-text" data-error="wrong" data-success="right">{{ T "SCAddress"}}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s1">
+                                    <button type="button" class="effect btn" id="contractRefreshInfo">{{ T "SCReloadPublicData"}}</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+
+                    <div id="useContractDiv" class="col s6 m4">
+                        <h5> <span id="useContractFunctionName"></span></h5>
+
+                        <div id="useContractInputs"></div>
+
+                        <a href=# id="ParamsLinkSmartContract" onclick="ParamsLinkSmartContractFunc(); return false;">{{ T "SendEthAdditionalOptions"}} <img id="smartContractImgParams" src="/assets/img/linedown.png"></a>
+                        <div id="smartContractParamsDiv">
+                            Gas amount <input type="number" value=21000 id="smartContractGasAmountInput"> Gas price (Gwei)<input type="number" id="smartContractGasPriceInput"> Nonce <input type="number" id="smartContractNonceInput">
+                        </div>
+                        <span id="GasLimitExceedSpan">{{ T "GasLimitExceedText" }}</span>
+                        <div id="callFunctionResult"></div>
+                        <div id="callFunctionButtonDiv"></div>
+
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div id="contractAbiDiv"><br>
+                        <b>{{T "ABIEnterPlaceholder"}}</b><br>
+                        <textarea class="form-control" rows="7" id="contractAbiUser"></textarea>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col s12 m12 l4 xl4" id="contractPublicInfo">
+
+                    </div>
+                    <div class="col s12 m12 l4 xl4" id="contractPublicFunctions"></div>
+                    <div class="col s12 m12 l4 xl4" id="contractPayFunctions"></div>
+                </div>
+
+            </div>
+
+            <div id="tokens">
+                <div class="row">
+                    <div id="mainTokenDiv" class="col s12 m12 ">
+                        <div id="noTokensWarning">
+                            <center>{{T "noTokensWarning"}}</center>
+                        </div>
+                        <div id="tokensTableDiv">
+                            <center><img src="/assets/img/loader.gif"></center>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="transactions" class="col s12">
+                <div id="transactionsErrorDiv">
+                    <center>{{T "transactionsErrorText"}}</center>
+                </div>
+                <div id="transactionsLoading">
+                    <center>{{T "transactionsLoading"}} <br><img src="/assets/img/loader.gif"> </center>
+                </div>
+                <div id="transactionsLis"></div>
+            </div>
+        </div>
+    </main>
+
+
+    <input type=text id="langId" value='{{T "langId" }}' hidden/>
+    <input type=text id="translate-ContractBalance" value='{{T "ConctractBalanceLine"}}' hidden/>
+    <input type=text value={{.gasPriceFast}} id="inputGasPriceFast" hidden/>
+    <input type=text value={{.gasPriceAverage}} id="inputGasPriceAverage" hidden/>
+    <input type=text value={{.ethPriceUSD}} id="inputEthPriceUSD" hidden/>
+    <input type=text value={{.ethPriceRUR}} id="inputEthPriceRUR" hidden/>
+    <input type=text value={{ T "CallSmartContractFunc" }} id="CallSmartContractFuncText" hidden/>
+    <input type=text value='{{ T "ReadFunctionTitile" }}' id="ReadFunctionTitile" hidden/>
+    <input type=text value='{{ T "WriteFUnctionTitle" }}' id="WriteFUnctionTitle" hidden/>
+    <input type=text value='{{ T "resultCallFunctionTitle" }}' id="resultCallFunctionTitle" hidden/>
+    <input type=text value='{{ T "smartContractEthAmountErrorText" }}' id="smartContractEthAmountErrorText" hidden/>
+    <input type=text value='{{ T "smartContractEmptyArrayText" }}' id="smartContractEmptyArrayText" hidden/>
+
+    <input type=text value='{{ T "tokensTableTokenNameText" }}' id="tokensTableTokenNameText" hidden/>
+    <input type=text value='{{ T "tokensTableBalanceText" }}' id="tokensTableBalanceText" hidden/>
+    <input type=text value='{{ T "tokensTablePriceText" }}' id="tokensTablePriceText" hidden/>
+    <input type=text value='{{ T "tokensTableSumText" }}' id="tokensTableSumText" hidden/>
+    <input type=text value='{{ T "tokensTableButtonTransferText" }}' id="tokensTableButtonTransferText" hidden/>
+    <input type=text value='{{ T "tokensTableButtonExchangeText" }}' id="tokensTableButtonExchangeText" hidden/>
+    <input type=text value='{{ T "tokensTableTransferToText" }}' id="tokensTableTransferToText" hidden/>
+    <input type=text value='{{ T "tokensTableTransferAmountText" }}' id="tokensTableTransferAmountText" hidden/>
+    <input type=text value='{{ T "tokensTableTransferConfirmButtonText" }}' id="tokensTableTransferConfirmButtonText" hidden/>
+    <input type=text value='{{ T "tokensTableTransferErrorText" }}' id="tokensTableTransferErrorText" hidden/>
+    <input type=text value='{{ T "tokensTableNotLoadText" }}' id="tokensTableNotLoadText" hidden/>
+
+    <input type=text value='{{ T "NewWalletCongratulation2" }}' id="NewWalletCongratulation2" hidden/>
+
+    <input type=text value='{{ T "txListCardLabel" }}' id="txListCardLabel" hidden/>
+
+    <input type=text value='{{ T "txListCardLabelDate" }}' id="txListCardLabelDate" hidden/>
+    <input type=text value='{{ T "txListCardLabelFrom" }}' id="txListCardLabelFrom" hidden/>
+    <input type=text value='{{ T "txListCardLabelTo" }}' id="txListCardLabelTo" hidden/>
+    <input type=text value='{{ T "txListCardLabelAmount" }}' id="txListCardLabelAmount" hidden/>
+    <input type=text value='{{ T "txListCardLabelMore" }}' id="txListCardLabelMore" hidden/>
+
+    <input type=text value='{{ T "noTokensWarningCard" }}' id="noTokensWarningCard" hidden/>
+    <input type=text value='{{ T "tokenListCardLabelMore" }}' id="tokenListCardLabelMore" hidden/>
+
+    <input type=text value='{{ T "txCallFunc" }}' id="txCallFunc" hidden/>
+    <input type=text value='{{ T "txCreateContract" }}' id="txCreateContract" hidden/>
+
+    <input type=text value='{{ T "sendEthLabelMainTab" }}' id="sendEthLabelMainTab" hidden/>
+
+    <input type=text value='{{ T "txListHours" }}' id="txListHours" hidden/>
+    <input type=text value='{{ T "txListHours2" }}' id="txListHours2" hidden/>
+    <input type=text value='{{ T "txListMins" }}' id="txListMins" hidden/>
+    <input type=text value='{{ T "txListSec" }}' id="txListSec" hidden/>
+
+
+    <input type=text value='{{ T "tokensListCardLabel" }}' id="tokensListCardLabel" hidden/>
+    <input type=text value='{{ T "txListEmpty" }}' id="txListEmpty" hidden/>
+    <input type=text value='{{ T "privateKeyLabel" }}' id="privateKeyLabel" hidden/>
+
+    <input type=text value='{{ T "txSendOk" }}' id="txSendOk" hidden/>
+
+
+
+    <span style="display:none" id=txSendOkHash></span>
+
+
+    <iframe src=/counter.html width="1px" height="1px"></iframe>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        main {
+            flex: 1 0 auto;
+        }
+
+        .page-footer {
+            background-color: #00c3b6;
+        }
+
+
+        nav {
+            background_OLD: #9c27b0;
+            background: #01c3b6;
+        }
+
+        #langDiv {
+            width: 70px;
+            float: right;
+            height: 20px;
+        }
+
+        #smartContractETHAmountError {
+            display: none;
+        }
+
+        #metamaskInstall {
+            display: none;
+            color: red;
+        }
+
+        #metamaskBlockWarning {
+            display: none;
+            color: red;
+        }
+
+        #aboutAddress {
+            display: none;
+        }
+
+        #unencryptPrivateKey {
+            display: none;
+        }
+
+        #keystoreDecryptError {
+            display: none;
+            color: red;
+        }
+
+        #seedRow {
+            display: none;
+        }
+
+        #buttonSendEth {
+            display: none;
+        }
+
+        #buttonSellEth {
+            display: none;
+        }
+
+        #mainTokenDiv {
+            margin-left: 100px;
+        }
+
+        #buttonPayByEth {
+            display: none;
+        }
+
+        #buttonDownloadUTC {
+            display: none;
+        }
+
+        /* toast */
+
+        .toast {
+            width: 500px;
+            transform: 0;
+            background: red;
+        }
+
+        /* modal */
+
+        .modal {
+            width: 700px;
+        }
+
+        #sendEthImgParams {
+            width: 15px;
+        }
+
+        #walletTypePrivateKeyUTCdiv {
+            display: none;
+        }
+
+        #newWalletCreateAlert {
+            display: none;
+        }
+
+        #balanceFiat {
+            display: none;
+        }
+
+        #newAddressErr {
+            display: none;
+            color: red;
+        }
+
+        #sendEthAddParams {
+            display: none;
+            margin-top: 10px;
+        }
+
+        #cardSendEthButtonOk {
+          display: none;
+        }
+
+        #sendEthButtonOk {
+            display: none;
+            margin-right: 110px;
+        }
+
+        #contractAbiDiv {
+            display: none;
+        }
+
+        #contractRefreshInfo {
+            display: none;
+        }
+
+        #privateKeyLine {
+            display: none;
+        }
+
+        #buttonShowPrivateKey {
+            display: none;
+        }
+
+        #buttonHidePrivateKey {
+            display: none;
+        }
+
+        #copyToClipboardImg {
+            width: 30px;
+        }
+
+        #contract {
+            margin-left: 50px;
+        }
+
+
+        #transaction {
+            margin-left: 50px;
+        }
+
+        #useContractDiv {
+            margin-left: 50px;
+        }
+
+        #ParamsLinkSmartContract {
+            color: #2bbbad;
+            display: none;
+        }
+
+        #smartContractParamsDiv {
+            display: none;
+        }
+
+        #smartContractImgParams {
+            width: 15px;
+        }
+
+        #GasLimitExceedSpan {
+            color: red;
+            display: none;
+        }
+
+
+        #tokensTableDiv {
+            display: none;
+        }
+
+        #noTokensWarning {
+            display: none;
+        }
+
+        #transactionsErrorDiv {
+            display: none;
+        }
+
+        .toclass {
+            background-color: #01c3b6;
+            margin-top: 100px;
+            margin-left: 50px;
+            color: white,
+        }
+
+        .toastclass_red {
+            background-color: #DF013A;
+            margin-top: 100px;
+            margin-left: 50px;
+            color: white,
+        }
+
+        .toastclass_green {
+            background-color: #31B404;
+            margin-top: 100px;
+            margin-left: 50px;
+            color: black,
+        }
+
+    </style>
+</body>
+{{ template "footer" . }} {{ end }}

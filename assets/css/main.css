@@ -1,0 +1,344 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+.page-footer {
+    background-color: #00c3b6;
+}
+
+
+nav {
+    background_OLD: #9c27b0;
+    background: #01c3b6;
+}
+
+#langDiv {
+    width: 70px;
+    float: right;
+    height: 20px;
+}
+
+#smartContractETHAmountError {
+    display: none;
+}
+
+#metamaskBlockWarning {
+    display: none;
+    color: red;
+}
+
+#aboutAddress {
+    display: none;
+}
+
+#unencryptPrivateKey {
+    display: none;
+}
+
+#keystoreDecryptError {
+    display: none;
+    color: red;
+}
+
+#seedRow {
+    display: none;
+}
+
+#buttonSendEth {
+    display: none;
+}
+
+#buttonSellEth {
+    display: none;
+}
+
+#buttonPayByEth {
+    display: none;
+}
+
+#buttonDownloadUTC {
+    display: none;
+}
+
+/* toast */
+
+.toast {
+    width: 500px;
+    transform: 0;
+    background: red;
+}
+
+/* modal */
+
+.modal {
+    width: 700px;
+}
+
+#sendEthImgParams {
+    width: 15px;
+}
+
+#walletTypePrivateKeyUTCdiv {
+    display: none;
+}
+
+#newWalletCreateAlert {
+    display: none;
+}
+
+#balanceFiat {
+    display: none;
+}
+
+#newAddressErr {
+    display: none;
+    color: red;
+}
+
+#sendEthAddParams {
+    display: none;
+    margin-top: 10px;
+}
+
+#sendEthButtonOk {
+    display: none;
+    margin-right: 110px;
+}
+
+#contractAbiDiv {
+    display: none;
+}
+
+#contractRefreshInfo {
+    display: none;
+}
+
+#privateKeyLine {
+    display: none;
+}
+
+#buttonShowPrivateKey {
+    display: none;
+}
+
+#buttonHidePrivateKey {
+    display: none;
+}
+
+#copyToClipboardImg {
+    width: 30px;
+}
+
+#contract {
+    margin-left: 50px;
+}
+
+
+#transaction {
+    margin-left: 50px;
+}
+
+#useContractDiv {
+    margin-left: 50px;
+}
+
+#ParamsLinkSmartContract {
+    color: #2bbbad;
+    display: none;
+}
+
+#smartContractParamsDiv {
+    display: none;
+}
+
+#smartContractImgParams {
+    width: 15px;
+}
+
+#GasLimitExceedSpan {
+    color: red;
+    display: none;
+}
+
+
+#tokensTableDiv {
+    display: none;
+}
+
+#noTokensWarning {
+    display: none;
+}
+
+#transactionsErrorDiv {
+    display: none;
+}
+
+.toclass {
+    background-color: #01c3b6;
+    margin-top: 100px;
+    margin-left: 50px;
+    color: white,
+}
+
+
+
+/*
+
+.modal-open .modal.modal-center {
+    display: flex!important;
+    align-items: center!important;
+    .modal-dialog {
+        flex-grow: 1;
+    }
+}
+
+#modalSendEth {
+  width: 900px;
+}
+
+#sendEthAddress {
+  width: 70%;
+  margin-left: 10px;
+}
+
+#sendEthAmount {
+  margin-left: 19px;
+  margin-right: 10px;
+}
+
+#sendEthMaxAmount {
+  margin-left:150px;
+}
+
+#sliderGasPrice {
+  width:55%;
+  margin-left: 10px;
+}
+
+
+
+
+
+
+#sendEthGasPriceRange {
+  -webkit-appearance: none;
+  width: 65%;
+  margin-right: 10px;
+
+
+}
+#sendEthGasPriceRange:focus {
+  outline: none;
+}
+#sendEthGasPriceRange::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 1.7px;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  background: rgba(211, 211, 211, 0.78);
+  border-radius: 2px;
+  border: 0.4px solid #010101;
+}
+#sendEthGasPriceRange::-webkit-slider-thumb {
+  box-shadow: 1px 1px 1px #000031, 0px 0px 1px #00004b;
+  border: 0px solid #00001e;
+  height: 18px;
+  width: 11px;
+  border-radius: 1px;
+  background: #00bfff;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -8.55px;
+}
+#sendEthGasPriceRange:focus::-webkit-slider-runnable-track {
+  background: rgba(255, 255, 255, 0.78);
+}
+#sendEthGasPriceRange::-moz-range-track {
+  width: 100%;
+  height: 1.7px;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  background: rgba(211, 211, 211, 0.78);
+  border-radius: 2px;
+  border: 0.4px solid #010101;
+}
+#sendEthGasPriceRange::-moz-range-thumb {
+  box-shadow: 1px 1px 1px #000031, 0px 0px 1px #00004b;
+  border: 0px solid #00001e;
+  height: 18px;
+  width: 11px;
+  border-radius: 1px;
+  background: #00bfff;
+  cursor: pointer;
+}
+#sendEthGasPriceRange::-ms-track {
+  width: 100%;
+  height: 1.7px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+#sendEthGasPriceRange::-ms-fill-lower {
+  background: rgba(124, 124, 124, 0.78);
+  border: 0.4px solid #010101;
+  border-radius: 4px;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+#sendEthGasPriceRange::-ms-fill-upper {
+  background: rgba(211, 211, 211, 0.78);
+  border: 0.4px solid #010101;
+  border-radius: 4px;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+#sendEthGasPriceRange::-ms-thumb {
+  box-shadow: 1px 1px 1px #000031, 0px 0px 1px #00004b;
+  border: 0px solid #00001e;
+  height: 18px;
+  width: 11px;
+  border-radius: 1px;
+  background: #00bfff;
+  cursor: pointer;
+  height: 1.7px;
+}
+#sendEthGasPriceRange:focus::-ms-fill-lower {
+  background: rgba(211, 211, 211, 0.78);
+}
+#sendEthGasPriceRange:focus::-ms-fill-upper {
+  background: rgba(255, 255, 255, 0.78);
+}
+
+
+
+
+
+#unencryptPrivateKeyRaw {
+  margin-left: 5px;
+  width: 350px;
+}
+
+#seedRaw {
+  margin-left: 5px;
+  width: 350px;
+  display: none;
+}
+
+#ButtonSeedEnter {
+	display:none;
+}
+
+
+
+
+
+
+
+
+
+*/

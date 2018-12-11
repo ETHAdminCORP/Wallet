@@ -1,0 +1,383 @@
+[
+  {
+    "id": "WalletHeaderName",
+    "translation": "ETH Admin"
+  },
+  {
+    "id": "NetworkTypeMainnet",
+    "translation": "MainNet"
+  },
+  {
+    "id": "NetworkTypeRopsten",
+    "translation": "Ropsten (Тестовая)"
+  },
+  {
+    "id": "NetworkTypeRinkeby",
+    "translation": "Rinkeby (Тестовая)"
+  },
+  {
+    "id": "NetworkTypeKovan",
+    "translation": "Kovan (Тестовая)"
+  },
+  {
+    "id": "QuestionHaveWallet",
+    "translation": "Есть кошелек?"
+  },
+  {
+    "id": "ChooseType",
+    "translation": "Выберете нужный тип"
+  },
+  {
+    "id": "EnterTypeKeystore",
+    "translation": "Keystore файл (UTC)"
+  },
+  {
+    "id": "EnterButton",
+    "translation": "Войти"
+  },
+  {
+    "id": "EnterTypePrivateKeyUnencrypt",
+    "translation": "Приватный ключ (незашифрованный)"
+  },
+  {
+    "id": "EnterTypeSeedPhrase",
+    "translation": "Кодовая фраза"
+  },
+  {
+    "id": "NewWalletCreateHeader",
+    "translation": "Создать новый кошелек"
+  },
+  {
+    "id": "CreateWalletDesc",
+    "translation": "Введите пароль, которым будет зашифрован файл с приватным ключом"
+  },
+  {
+    "id": "CreateButton",
+    "translation": "Создать"
+  },
+  {
+    "id": "CreateWalletWarning",
+    "translation": "Пароль должен содержать не менее 6 символов"
+  },
+  {
+    "id": "TabName1",
+    "translation": "Кошелек"
+  },
+  {
+    "id": "TabName2",
+    "translation": "Контракт"
+  },
+  {
+    "id": "TabName3",
+    "translation": "Токены"
+  },
+  {
+    "id": "TabName4",
+    "translation": "Транзакции"
+  },
+  {
+    "id": "FirstCardTitle",
+    "translation": "Информация и действие"
+  },
+  {
+    "id": "AddressTitle",
+    "translation": "Адрес"
+  },
+  {
+    "id": "BalanceTitile",
+    "translation": "Баланс"
+  },
+  {
+    "id": "RUR",
+    "translation": "руб"
+  },
+  {
+    "id": "BuyButton",
+    "translation": "Пополнить"
+  },
+  {
+    "id": "SendButton",
+    "translation": "Перевести"
+  },
+  {
+    "id": "PayForServicesButton",
+    "translation": "Оплатить услуги"
+  },
+  {
+    "id": "SellButton",
+    "translation": "Продать"
+  },
+  {
+    "id": "DownloadKeyFile",
+    "translation": "Скачать Keysote файл"
+  },
+  {
+    "id": "ChooseType",
+    "translation": "Выберете нужный тип"
+  },
+  {
+    "id": "ChooseType",
+    "translation": "Выберете нужный тип"
+  },
+  {
+    "id": "NewWalletCongratulation",
+    "translation": "Новый кошелек создан!"
+  },
+  {
+    "id": "NewWalletCongratulation2",
+    "translation": "Файл кошелька сохранен на ваш компьютер и зашифрован паролем, заданным на предыдущем шаге"
+  },
+  {
+    "id": "SendEthModalTitile",
+    "translation": "Перевести ETH"
+  },
+  {
+    "id": "SendEthModalTitile2",
+    "translation": "Перевод ETH на другой адрес"
+  },
+  {
+    "id": "SendEthTo",
+    "translation": "Адрес получателя"
+  },
+  {
+    "id": "SendEthAmount",
+    "translation": "Cумма перевода"
+  },
+  {
+    "id": "SendALLEth",
+    "translation": "Перевести всю сумму"
+  },
+  {
+    "id": "SendEthAdditionalOptions",
+    "translation": "Дополнительные параметры"
+  },
+  {
+    "id": "SendEthCommission",
+    "translation": "Комиссия"
+  },
+  {
+    "id": "SendEthCommissionWarning",
+    "translation": "Влияет на скорость перевода"
+  },
+  {
+    "id": "SendEthSlow",
+    "translation": "Медленно"
+  },
+  {
+    "id": "SendEthFast",
+    "translation": "Быстро"
+  },
+  {
+    "id": "SendEthAccept",
+    "translation": "Подтвердить"
+  },
+  {
+    "id": "SendEthSendButton",
+    "translation": "Отправить"
+  },
+  {
+    "id": "SendEthCloseModal",
+    "translation": "Закрыть"
+  },
+  {
+    "id": "SCAddress",
+    "translation": "Для взаимодействия со смарт контрактом, введите его адрес"
+  },
+  {
+    "id": "SCAddressTransaction",
+    "translation": "Для получения транзакций введите адрес кошелька"
+  },
+  {
+    "id": "SCReloadPublicData",
+    "translation": "Обновить информацию"
+  },
+  {
+    "id": "SCReloadTransaction",
+    "translation": "Показать транзакции"
+  },
+  {
+    "id": "FilePassword",
+    "translation": "Пароль для файла"
+  },
+  {
+    "id": "langId",
+    "translation": "ru-RU"
+  },
+  {
+    "id": "keystoreDecryptError",
+    "translation": "Неверный пароль"
+  },
+  {
+    "id": "metamaskBlockWarning",
+    "translation": "Вам необходимо авторизоваться (ввести пароль) в Metamask и разрешить доступ к ETH Admin"
+  },
+  {
+    "id": "buttonShowPrivateKey",
+    "translation": "Показать приватный ключ"
+  },
+  {
+    "id": "PrivateKeyTitle",
+    "translation": "Приватный ключ"
+  },
+  {
+    "id": "buttonShowPrivateKeyHide",
+    "translation": "Скрыть приватный ключ"
+  },
+  {
+    "id": "contractAddressPlaceholder",
+    "translation": "Адрес контракта"
+  },
+  {
+    "id": "ABIEnterPlaceholder",
+    "translation": "Введите abi контракта"
+  },
+  {
+    "id": "AddressCopyIcon",
+    "translation": "Копировать адрес"
+  },
+  {
+    "id": "PrivateKeyCopyIcon",
+    "translation": "Копировать приватный ключ"
+  },
+  {
+    "id": "ConctractBalanceLine",
+    "translation": "Баланс контракта"
+  },
+  {
+    "id": "CallSmartContractFunc",
+    "translation": "Вызвать функцию"
+  },
+  {
+    "id": "ReadFunctionTitile",
+    "translation": "Функции чтения (бесплатно)"
+  },
+  {
+    "id": "WriteFUnctionTitle",
+    "translation": "Функции записи"
+  },
+  { "id": "SendEthLabelGasAmount",
+   "translation": "Gas amount"
+ },
+ { "id": "GasLimitExceedText",
+  "translation": "Функция не будет выполнена. Превышен лимит газа."
+ },
+ { "id": "resultCallFunctionTitle",
+  "translation": "Результат:"
+ },
+ { "id": "smartContractEthAmountErrorText",
+  "translation": "Недостаточно средств на балансе"
+ },
+ { "id": "smartContractEmptyArrayText",
+  "translation": "Массив не содержит данных!"
+ },
+ { "id": "tokensTableTokenNameText",
+  "translation": "Имя"
+ },
+ { "id": "tokensTableBalanceText",
+  "translation": "Баланс"
+ },
+ { "id": "tokensTablePriceText",
+  "translation": "Цена"
+ },
+ { "id": "tokensTableSumText",
+  "translation": "Сумма"
+ },
+ { "id": "tokensTableButtonTransferText",
+  "translation": "Переслать"
+ },
+ { "id": "tokensTableButtonExchangeText",
+  "translation": "Торговать"
+ },
+ { "id": "tokensTableTransferToText",
+  "translation": "Адрес"
+ },
+ { "id": "tokensTableTransferAmountText",
+  "translation": "Сколько"
+ },
+ { "id": "tokensTableTransferConfirmButtonText",
+  "translation": "Подтвердить перевод"
+ },
+ { "id": "tokensTableTransferErrorText",
+  "translation": "Неверно введен адрес получателя или количество токенов"
+ },
+ { "id": "tokensTableNotLoadText",
+  "translation": "Просмотр списка токенов возможен только в сети MainNet"
+ },
+ { "id": "transactionsErrorText",
+  "translation": "Не удалось загрузить список транзакций :("
+ },
+ { "id": "transactionsLoading",
+  "translation": "Загружаем список транзакций"
+ },
+ { "id": "txCallFunc",
+  "translation": "Вызов функции смарт-контракта"
+ },
+ { "id": "txCreateContract",
+  "translation": "Создание контракта"
+ },
+ { "id": "ContractsFooter",
+  "translation": "Связаться с нами"
+ },
+ { "id": "txListEmpty",
+  "translation": "На этом адресе еще не было транзакций."
+ },
+ { "id": "privateKeyLabel",
+  "translation": "Приватный ключ"
+ },
+ { "id": "txListCardLabel",
+  "translation": "Транзакции"
+ },
+ { "id": "txListCardLabelDate",
+  "translation": "Дата"
+ },
+ { "id": "txListCardLabelFrom",
+  "translation": "От"
+ },
+ { "id": "txListCardLabelTo",
+  "translation": "Кому"
+ },
+ { "id": "txListCardLabelAmount",
+  "translation": "Сумма"
+ },
+ { "id": "txListCardLabelMore",
+  "translation": "Подробнее.."
+ },
+ { "id": "tokensListCardLabel",
+  "translation": "Токены"
+ },
+ { "id": "noTokensWarningCard",
+  "translation": "У вас еще нет токенов"
+ },
+ { "id": "tokenListCardLabelMore",
+  "translation": "Подробнее.."
+},
+{ "id": "sendEthLabelMainTab",
+ "translation": "Перевод ETH на другой адрес"
+},
+{ "id": "CreateWalletPlaceholder",
+ "translation": "Не менее 6 символов"
+},
+{ "id": "txListHours",
+ "translation": "часов"
+},
+{ "id": "txListMins",
+ "translation": "мин. назад"
+},
+{ "id": "txListSec",
+ "translation": "сек. назад"
+},
+{ "id": "txListHours2",
+ "translation": "часов"
+},
+{ "id": "txSendOk",
+ "translation": "Транзакция отправлена"
+},
+{ "id": "metamaskInstallText",
+ "translation": "Вам необходимо установить Metamask"
+}
+
+
+
+
+
+]
