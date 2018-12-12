@@ -158,43 +158,35 @@
                 <!-- Wallet Block -->
                 <div class="row balance">
                     <div class="col s12 m12">
-
                         <div class="wallet-cart-content card horizontal">
 
                             <div class="balance">
                                 <div class="balance-flex">
                                     <span id="addressBalance"></span>
-
-                                    <div class="balance-values">
-                                        <div class="usd"> <span id="balanceFiatUSD"></span> <span id=USDLabel>USD</span></div>
-                                         <div class="eth" >ETH</div>
-
-                                    </div>
                                 </div>
                             </div>
 
-                            <div class="wallet-cart-content-inner">
+                            <div class="balance-values">
+                                <div class="usd"> <span id="balanceFiatUSD"></span> <span id=USDLabel>USD</span></div>
+                                <div class="eth" >ETH</div>
+                            </div>
 
-                              <div class=row style="margin-bottom:0px;">
-                                 <div class="col s12">
-                                    <span class="key-field " id="address" style="float:left" ></span>
-                                    <img style="margin-left:10px" id="copyToClipboardImg" onmousedown="copyToClipboard('#address')" src="/assets/img/clipboard.png" title={{T "AddressCopyIcon"}}>
+                            <div class="wallet-cart-content-inner">
+                                <div class=row style="margin-bottom:0px;">
+                                    <div class="col s12">
+                                        <span class="key-field " id="address" style="float:left" ></span>
+                                        <img style="margin-left:10px" id="copyToClipboardImg" onmousedown="copyToClipboard('#address')" src="/assets/img/clipboard.png" title={{T "AddressCopyIcon"}}>
+                                    </div>
                                 </div>
 
-
-
-                               </div>
-
-
-                                    <div id="privateKeyLine">
-                                        <div class=row style="margin-bottom:0px;">
-
-                                          <div class="col s12"><span style="float:left;margin-right:10px" class=key-field>{{ T "privateKeyLabel" }}: </span>
-                                         <span class="key-field" style="float:left" id="privateKeyRAW"></span>
-                                       <img style="margin-left:10px" id="copyToClipboardImg" onmousedown="copyToClipboard('#privateKeyRAW')" src="/assets/img/clipboard.png" title={{T "PrivateKeyCopyIcon"}}>
-                                     </div>
-                                     </div>
-                                   </div>
+                                <div id="privateKeyLine">
+                                    <div class=row style="margin-bottom:0px;">
+                                        <div class="col s12"><span style="float:left;margin-right:10px" class=key-field>{{ T "privateKeyLabel" }}: </span>
+                                            <span class="key-field" style="float:left" id="privateKeyRAW"></span>
+                                            <img style="margin-left:10px" id="copyToClipboardImg" onmousedown="copyToClipboard('#privateKeyRAW')" src="/assets/img/clipboard.png" title={{T "PrivateKeyCopyIcon"}}>
+                                        </div>
+                                    </div>
+                                </div>
 
 
                                 <!--  </div>
