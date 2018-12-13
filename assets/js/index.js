@@ -1816,7 +1816,7 @@ $('#cardSendEthButtonOk').click(function(){
     /////////////////////
 
     $('#buttonDownloadUTC').mousedown(function () {
-        var passwordForDownloadUTC = prompt("Введите пароль, которым будет зишифрован файл", '');
+        var passwordForDownloadUTC = prompt($('#CreateWalletDesc').val(), '');
         const accounts = new Accounts();
         const accountObject = accounts.new();
         var j = w3.eth.accounts.encrypt(window.privateKey, passwordForDownloadUTC);
