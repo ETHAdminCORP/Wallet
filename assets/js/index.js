@@ -1733,7 +1733,7 @@ $('#cardSendEthButtonOk').click(function(){
                 balanceFiatValue();
             }
             else {
-                $('#USDLabel').hide();
+                $('#USDLabel').css('visibility', 'hidden');
             }
             $("#sendEthBalance").text($('#addressBalance').text() - $('#sendEthCommission').text());
 
