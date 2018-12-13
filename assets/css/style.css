@@ -54,6 +54,19 @@
     margin: 0 50px;
 }
 
+.tabs .tab a.active{
+    box-shadow: 4px 5px 8px 0 rgba(0, 0, 0, 0.2);
+    background-color: rgba(246, 178, 181, 0.2);;
+}
+
+.tabs .tab a{
+    box-shadow: 4px 5px 8px 0 rgba(0, 0, 0, 0.1);
+}
+
+.tabs .tab a:hover{
+    box-shadow: 4px 5px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
 #txtable {
     margin: 0 !important;
 }
