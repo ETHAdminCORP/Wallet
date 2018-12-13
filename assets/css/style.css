@@ -68,7 +68,7 @@
 }
 
 .wallet-cart-content-inner {
-    padding-left: 35px;
+    padding-left: 37px;
 }
 
 .wallet-cart-content-inner .card-action {
@@ -110,12 +110,12 @@
     display: flex;
     flex-direction: column;
     font-weight: 500;
+    padding-bottom: 5px;
+    min-width: 58px;
 }
 
 .balance-values .usd {
-    /*position: absolute;*/
-    /*top: 23px;*/
-    margin-top: 12px;
+    margin-top: 5px;
     font-size: 14px;
 }
 

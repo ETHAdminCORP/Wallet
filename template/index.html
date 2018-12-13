@@ -164,12 +164,11 @@
                             <div class="balance">
                                 <div class="balance-flex">
                                     <span id="addressBalance"></span>
+                                    <div class="balance-values">
+                                        <div class="usd"> <span id="balanceFiatUSD"></span> <span id=USDLabel>USD</span></div>
+                                        <div class="eth" >ETH</div>
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div class="balance-values">
-                                <div class="usd"> <span id="balanceFiatUSD"></span> <span id=USDLabel>USD</span></div>
-                                <div class="eth" >ETH</div>
                             </div>
 
                             <div class="wallet-cart-content-inner">
@@ -477,6 +476,7 @@
     <input type=text value='{{ T "privateKeyLabel" }}' id="privateKeyLabel" hidden/>
 
     <input type=text value='{{ T "txSendOk" }}' id="txSendOk" hidden/>
+    <input type=text value='{{ T "CreateWalletDesc" }}' id="CreateWalletDesc" hidden/>
 
 
 
