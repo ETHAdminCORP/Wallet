@@ -137,7 +137,9 @@
                     <h4>{{T "NewWalletCreateHeader"}}</h4>
                     <div id="newAddressStep1">
                         {{T "CreateWalletDesc"}}<br>
-                        <form onSubmit="$('#buttonNewAdddressGoStep2').click(); return false"><input style="text-align: center;" type=text id="passwordForNewUTC" placeholder="{{ T "CreateWalletPlaceholder"}}"><button type=button id="buttonNewAdddressGoStep2" class="btn effect waves-light">{{T "CreateButton"}}</button><br>
+                        <form onSubmit="$('#buttonNewAdddressGoStep2').click(); return false" id="formCreateWallet">
+                            <input style="text-align: center;" type=text id="passwordForNewUTC" placeholder="{{ T "CreateWalletPlaceholder"}}">
+                            <button type=button id="buttonNewAdddressGoStep2" class="btn effect waves-light">{{T "CreateButton"}}</button><br>
                             <span id="newAddressErr">{{T "CreateWalletWarning"}}</span>
                           </form>
                     </div>

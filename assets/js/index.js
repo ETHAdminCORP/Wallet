@@ -399,7 +399,14 @@ window.addEventListener("load", async () => {
         } else {
             $('#newAddressErr').show();
         }
-    })
+    });
+
+    $("#passwordForNewUTC").keydown(function (e) {
+        if(e.keyCode == 13){
+            $('#buttonNewAdddressGoStep2').mousedown();
+        }
+    });
+
 
     $("#walletTypePrivateKey").mousedown(function () {
         $('#unencryptPrivateKey').show();
