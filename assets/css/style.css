@@ -70,6 +70,11 @@
 .tabs .tab a:hover{
     box-shadow: 4px 5px 8px 0 rgba(0, 0, 0, 0.2);
     font-weight: 500;
+    color: rgba(35, 134, 126, 1);
+}
+
+.tabs .tab a:focus, .tabs .tab a:focus.active {
+    background-color: rgba(54, 197, 171, 0.2);
 }
 
 #txtable {
