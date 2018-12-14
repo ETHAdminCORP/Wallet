@@ -1585,7 +1585,7 @@ $('#cardSendEthButtonOk').click(function(){
         $('#contractAbiUser').hide();
         $('#contractAbiUser').val('');
         if (w3.utils.isAddress($('#contractAddress').val().replace(/\s/g, '')) == true) {
-          $.get( "/stat/", { key: "contractLoad", value: '' , value2: '',  address: MD5(window.address)} );
+
             if ($('#networkName').val() != 'mainnet') {
                 apiNetworkName = '-' + $('#networkName').val();
             } else {
@@ -1596,7 +1596,7 @@ $('#cardSendEthButtonOk').click(function(){
             $.getJSON('http://api' + apiNetworkName + '.etherscan.io/api?module=contract&action=getabi&address=' + $('#contractAddress').val().replace(/\s/g, '') + '&format=raw')
                 .done(function (data) {
                     try {
-
+                        $.get( "/stat/", { key: "contractLoad", value: '1' , value2: '',  address: MD5(window.address)} );
                         $('#contractAbiUser').val(data)
                         loadContractInterface(data);
                     } catch (err) {
@@ -1605,6 +1605,7 @@ $('#cardSendEthButtonOk').click(function(){
                     }
                 })
                 .fail(function (jqxhr, textStatus, error) {
+                  $.get( "/stat/", { key: "contractLoad", value: '2' , value2: '',  address: MD5(window.address)} );
                     $('#contractAbiDiv').show();
                     $('#contractAbiUser').show();
                     $('#contractAbiUser').val('');
