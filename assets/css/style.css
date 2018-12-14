@@ -317,6 +317,15 @@ input#cardSendEthAmount {
     height: 10rem;
 }
 
+#contractPublicFunctions .btn,
+#contractPayFunctions .btn {
+    margin-bottom: 5px;
+}
+
+button[id|="transferTokenButton"] {
+    margin-right: 5px;
+}
+
 .address-to {
     display: flex;
     height: 54px;
