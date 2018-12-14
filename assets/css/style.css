@@ -76,6 +76,24 @@
     margin: 0 !important;
 }
 
+/* Create wallet */
+
+#passEye {
+    position: absolute;
+    top: 58px;
+    right: 7px;
+    cursor: pointer;
+    pointer-events: all;
+}
+
+#passEye:hover {
+    opacity: 0.5;
+}
+
+#newAddressStep1 {
+    position: relative;
+}
+
 /* Wallet Block */
 
 #wallet {
