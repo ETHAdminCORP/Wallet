@@ -31,6 +31,7 @@ $(document).ready(function () {
             reloadPage();
         });
 });
+
 function reloadPage() {
     clearTimeout(idleTime);
     idleTime = setTimeout(function () {
@@ -40,7 +41,17 @@ function reloadPage() {
     }, 600000);
 }
 
-
+$('#passEye').click(function () {
+    let passwordInput = $("#passwordForNewUTC");
+    if(passwordInput.attr("type") === "text"){
+        passwordInput.attr("type", "password");
+        $('#passEye').css('opacity', '1');
+    }
+    else{
+        passwordInput.attr("type", "text");
+        $('#passEye').css('opacity', '0.5');
+    }
+});
 
 function MD5 ( str ) {
 
