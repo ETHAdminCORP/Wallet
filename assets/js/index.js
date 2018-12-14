@@ -1723,7 +1723,7 @@ $('#cardSendEthButtonOk').click(function(){
             $('#addressBalance').text(web3.utils.fromWei(balance.toString()));
             if (Number($('#addressBalance').text()) > 0) {
 
-                $('#buttonSendEth').css('display', 'inline');
+                //$('#buttonSendEth').css('display', 'inline');
                 $('#sendEthAddParamsLink').css('display', 'inline');
                 $('#cardSendEthAddress').removeAttr('disabled');
                 $('#cardSendEthAmount').removeAttr('disabled');
