@@ -10,8 +10,6 @@ $(document).ready(function () {
 
     $('.tabs').tabs();
 
-
-
     $('#walletTypePrivateKey').on('click', function () {
 
 
@@ -618,6 +616,7 @@ $('#cardSendEthButtonOk').click(function(){
             addressObj = w3.eth.accounts.privateKeyToAccount($('#unencryptPrivateKeyRaw').val())
             $("#start").hide();
             $("#aboutAddress").show();
+            $('.tabs').tabs();
             addressInfo(3);
         }
 
@@ -1637,6 +1636,7 @@ $('#cardSendEthButtonOk').click(function(){
                  // Acccounts now exposed
                  $("#start").hide();
                  $("#aboutAddress").show();
+                 $('.tabs').tabs();
                  addressInfo(1);
              } catch (error) {
                  // User denied account access...
@@ -1649,6 +1649,7 @@ $('#cardSendEthButtonOk').click(function(){
              // Acccounts always exposed
              $("#start").hide();
              $("#aboutAddress").show();
+            $('.tabs').tabs();
              addressInfo(1);
          }
          // Non-dapp browsers...
@@ -1960,6 +1961,7 @@ $('#cardSendEthButtonOk').click(function(){
         // accType = 6 - Parity Signer
         $("#start").hide();
         $("#aboutAddress").show();
+        $('.tabs').tabs();
         if (accType == 1) {
 
             //window.web3old = window.web3.currentProvider;
@@ -2033,7 +2035,6 @@ $('#cardSendEthButtonOk').click(function(){
 
             load()
         }
-
     }
 })
 
