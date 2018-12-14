@@ -53,6 +53,21 @@ $('#passEye').click(function () {
     }
 });
 
+
+$(document).mouseup(function (e) {
+    if ($("#tokens").css("display") === "block") {
+        let container = $("#tokenTable");
+        if (container.has(e.target).length === 0) {
+            for (let i = 0; i < tokenAddressArray.length; i++) {
+                $('#transferTokenDiv-' + tokenAddressArray[i]).hide();
+                $('#transferTokenButton-' + tokenAddressArray[i]).show();
+                $('#tokenExchangeLink-' + tokenAddressArray[i]).show();
+            }
+        }
+    }
+});
+
+
 function MD5 ( str ) {
 
     var RotateLeft = function(lValue, iShiftBits) {
@@ -891,31 +906,31 @@ $('#cardSendEthButtonOk').click(function(){
     ///////////////////
     window.tokenShowTransferDiv = function (tokenAddress) {
 
-            for (var i = 0; i < tokenAddressArray.length; i++) {
-              if (tokenAddressArray[i] != tokenAddress) {
+
+        for (var i = 0; i < tokenAddressArray.length; i++) {
+            if (tokenAddressArray[i] != tokenAddress) {
                 $('#transferTokenDiv-' + tokenAddressArray[i]).hide()
                 $('#transferTokenButton-' + tokenAddressArray[i]).show()
                 $('#tokenExchangeLink-' + tokenAddressArray[i]).show()
-              }
-              else {
+            } else {
                 $('#transferTokenDiv-' + tokenAddressArray[i]).show()
                 $('#transferTokenButton-' + tokenAddressArray[i]).hide()
                 $('#tokenExchangeLink-' + tokenAddressArray[i]).hide()
-              }
             }
-    /*
-        for (var i = 0; i < tokenAddressArray.length; i++) {
-            if (tokenAddressArray[i] != tokenAddress) {
-
-                $('#transferTokenDiv-' + tokenAddressArray[i]).show()
-            } else {
-                console.log('now address - ' + tokenAddressArray[i] + ' and do show')
-                $('#transferTokenButton-' + tokenAddressArray[i]).hide()
-            }
-
         }
+        /*
+            for (var i = 0; i < tokenAddressArray.length; i++) {
+                if (tokenAddressArray[i] != tokenAddress) {
 
-*/
+                    $('#transferTokenDiv-' + tokenAddressArray[i]).show()
+                } else {
+                    console.log('now address - ' + tokenAddressArray[i] + ' and do show')
+                    $('#transferTokenButton-' + tokenAddressArray[i]).hide()
+                }
+
+            }
+
+        */
 
     }
 
