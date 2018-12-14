@@ -397,7 +397,14 @@ window.addEventListener("load", async () => {
         } else {
             $('#newAddressErr').show();
         }
-    })
+    });
+
+    $("#passwordForNewUTC").keydown(function (e) {
+        if(e.keyCode == 13){
+            $('#buttonNewAdddressGoStep2').mousedown();
+        }
+    });
+
 
     $("#walletTypePrivateKey").mousedown(function () {
         $('#unencryptPrivateKey').show();
@@ -1717,7 +1724,7 @@ $('#cardSendEthButtonOk').click(function(){
             $('#addressBalance').text(web3.utils.fromWei(balance.toString()));
             if (Number($('#addressBalance').text()) > 0) {
 
-                $('#buttonSendEth').css('display', 'inline');
+                //$('#buttonSendEth').css('display', 'inline');
                 $('#sendEthAddParamsLink').css('display', 'inline');
                 $('#cardSendEthAddress').removeAttr('disabled');
                 $('#cardSendEthAmount').removeAttr('disabled');
@@ -1817,7 +1824,7 @@ $('#cardSendEthButtonOk').click(function(){
     /////////////////////
 
     $('#buttonDownloadUTC').mousedown(function () {
-        var passwordForDownloadUTC = prompt("Введите пароль, которым будет зишифрован файл", '');
+        var passwordForDownloadUTC = prompt($('#CreateWalletDesc').val(), '');
         const accounts = new Accounts();
         const accountObject = accounts.new();
         var j = w3.eth.accounts.encrypt(window.privateKey, passwordForDownloadUTC);

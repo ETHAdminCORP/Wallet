@@ -341,6 +341,9 @@
  { "id": "noTokensWarningCard",
   "translation": "You don't have any tokens"
  },
+ { "id": "noTokensWarning",
+  "translation": "You don't have any tokens"
+ },
  { "id": "tokenListCardLabelMore",
   "translation": "More.."
 },
