@@ -232,6 +232,10 @@
     padding: 25px 0;
 }
 
+#cardTokenList center {
+    line-height: 150px;
+}
+
 /* Transaction table */
 
 #txtable td,
@@ -260,6 +264,10 @@
 
 #txtable tr th:last-child {
     padding-right: 60px;
+}
+
+#cardTxList center {
+    line-height: 310px;
 }
 
 /* Send ETH */
