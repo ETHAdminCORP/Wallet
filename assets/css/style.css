@@ -56,11 +56,18 @@
 
 .tabs .tab a.active{
     box-shadow: 4px 5px 8px 0 rgba(0, 0, 0, 0.2);
-    background-color: rgba(246, 178, 181, 0.2);;
+    background-color: rgba(54, 197, 171, 0.2);
+    color: black;
 }
 
 .tabs .tab a{
     box-shadow: 4px 5px 8px 0 rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+    color: rgba(35, 134, 126, 1);
+}
+
+.tabs .indicator{
+    background-color: rgba(35, 134, 126, 1);
 }
 
 .tabs .tab a:hover{
