@@ -392,9 +392,10 @@ window.addEventListener("load", async () => {
     // New wallet - generate UTC file
     $('#buttonNewAdddressGoStep2').mousedown(function () {
         if ($('#passwordForNewUTC').val().length > 5) {
-            const accounts = new Accounts();
-            const accountObject = accounts.new();
-            var j = w3.eth.accounts.encrypt(accountObject.private, $('#passwordForNewUTC').val());
+            //const accounts = new Accounts();
+            //const accountObject = accounts.new();
+            accountObject = w3.eth.accounts.create()
+            var j = w3.eth.accounts.encrypt(accountObject.privateKey, $('#passwordForNewUTC').val());
             var d = new Date();
             var element = document.createElement('a');
             element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(JSON.stringify(j)));
@@ -404,7 +405,7 @@ window.addEventListener("load", async () => {
             element.click();
             document.body.removeChild(element);
             $('#newAddressStep1').hide();
-            addressInfo(4, accountObject.private);
+            addressInfo(4, accountObject.privateKey);
         } else {
             $('#newAddressErr').show();
         }
@@ -2013,7 +2014,7 @@ $('#cardSendEthButtonOk').click(function(){
             window.address = accAddress
             window.privateKey = privKeyRAW
             window.web3 = new Web3(new Web3.providers.WebsocketProvider("wss://" + $("#networkName").val() + ".infura.io/ws/v3/96a551661d68428395068307f67dae53"))
-          
+
           //  window.web3 = new Web3(new Web3.providers.HttpProvider("https://" + $("#networkName").val() + ".infura.io/v3/96a551661d68428395068307f67dae53"));
             load()
         } else if (accType == 3 || accType == 4) {
@@ -2035,8 +2036,9 @@ $('#cardSendEthButtonOk').click(function(){
 
                 setTimeout(showToastNewWallet, 1500);
                 //window.web3 =  new Web3(new Web3.providers.HttpProvider("https://" + $("#networkName").val() + ".infura.io/twtEF07b8chHoox55pdy"));
-                addressObj = web3.eth.accounts.privateKeyToAccount('0x' + privKeyRAW)
-                window.privateKey = '0x' + privKeyRAW;
+                //addressObj = web3.eth.accounts.privateKeyToAccount('0x' + privKeyRAW)
+                addressObj = web3.eth.accounts.privateKeyToAccount(privKeyRAW)
+                window.privateKey = privKeyRAW;
                 window.address = addressObj.address
                 window.connectType = 4;
                 $('#newWalletCreateAlert').show();
