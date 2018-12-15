@@ -1825,7 +1825,7 @@ $('#cardSendEthButtonOk').click(function(){
         }
         $('#address').text(address);
         if (connectType != 1) {
-            window.web3 = new Web3(new Web3.providers.HttpProvider("https://" + $("#networkName").val() + ".infura.io/v3/96a551661d68428395068307f67dae53"));
+          //  window.web3 = new Web3(new Web3.providers.HttpProvider("https://" + $("#networkName").val() + ".infura.io/v3/96a551661d68428395068307f67dae53"));
         }
         getBalancePeriod()
         //getGasPricaData()
@@ -2012,11 +2012,13 @@ $('#cardSendEthButtonOk').click(function(){
             window.connectType = 2
             window.address = accAddress
             window.privateKey = privKeyRAW
-            window.web3 = new Web3(new Web3.providers.HttpProvider("https://" + $("#networkName").val() + ".infura.io/v3/96a551661d68428395068307f67dae53"));
+            window.web3 = new Web3(new Web3.providers.WebsocketProvider("wss://" + $("#networkName").val() + ".infura.io/ws/v3/96a551661d68428395068307f67dae53"))
+          
+          //  window.web3 = new Web3(new Web3.providers.HttpProvider("https://" + $("#networkName").val() + ".infura.io/v3/96a551661d68428395068307f67dae53"));
             load()
         } else if (accType == 3 || accType == 4) {
-
-            window.web3 = new Web3(new Web3.providers.HttpProvider("https://" + $("#networkName").val() + ".infura.io/v3/96a551661d68428395068307f67dae53"));
+          window.web3 = new Web3(new Web3.providers.WebsocketProvider("wss://" + $("#networkName").val() + ".infura.io/ws/v3/96a551661d68428395068307f67dae53"))
+            //window.web3 = new Web3(new Web3.providers.HttpProvider("https://" + $("#networkName").val() + ".infura.io/v3/96a551661d68428395068307f67dae53"));
             if (accType == 3) {
                 if ($('#unencryptPrivateKeyRaw').val().indexOf('0x') != 0) {
                     addressObj = web3.eth.accounts.privateKeyToAccount('0x' + $('#unencryptPrivateKeyRaw').val())
