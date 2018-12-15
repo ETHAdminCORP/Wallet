@@ -1808,6 +1808,7 @@ $('#cardSendEthButtonOk').click(function(){
         loopGetTransactions();
         getGasPricaData();
         getTokenList();
+        getNoncePeriod();
         //getTransactionsByAccount()
         if (connectType != 1) {
             $('#buttonShowPrivateKey').css('display', 'inline');
