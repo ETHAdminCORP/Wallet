@@ -390,3 +390,38 @@ a.tx-more-link {
         width: 100%;
     }
 }
+
+/* Footer */
+
+.page-footer ul {
+    margin: 0;
+}
+
+.page-footer .white-text {
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.page-footer .grey-text.text-lighten-4 {
+    margin: 0;
+}
+
+.page-footer .donate {
+    margin: 0;
+    margin-top: 20px;
+}
+
+.page-footer .donate p {
+    display: inline-block;
+
+    margin: 0;
+}
+
+.page-footer .footer-icon {
+    display: inline-block;
+}
+
+.page-footer .footer-icon:not(:last-child) {
+    margin-right: 15px;
+}
+
