@@ -81,6 +81,24 @@
     margin: 0 !important;
 }
 
+/* Create wallet */
+
+#passEye {
+    position: absolute;
+    top: 58px;
+    right: 7px;
+    cursor: pointer;
+    pointer-events: all;
+}
+
+#passEye:hover {
+    opacity: 0.5;
+}
+
+#newAddressStep1 {
+    position: relative;
+}
+
 /* Wallet Block */
 
 #wallet {
@@ -315,6 +333,15 @@ input#cardSendEthAmount {
 #contractAbiDiv textarea {
     width: 80%;
     height: 10rem;
+}
+
+#contractPublicFunctions .btn,
+#contractPayFunctions .btn {
+    margin-bottom: 5px;
+}
+
+button[id|="transferTokenButton"] {
+    margin-right: 5px;
 }
 
 .address-to {

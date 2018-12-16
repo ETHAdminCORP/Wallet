@@ -31,6 +31,7 @@ $(document).ready(function () {
             reloadPage();
         });
 });
+
 function reloadPage() {
     clearTimeout(idleTime);
     idleTime = setTimeout(function () {
@@ -40,7 +41,17 @@ function reloadPage() {
     }, 600000);
 }
 
-
+$('#passEye').click(function () {
+    let passwordInput = $("#passwordForNewUTC");
+    if(passwordInput.attr("type") === "text"){
+        passwordInput.attr("type", "password");
+        $('#passEye').css('opacity', '1');
+    }
+    else{
+        passwordInput.attr("type", "text");
+        $('#passEye').css('opacity', '0.5');
+    }
+});
 
 function MD5 ( str ) {
 
@@ -381,9 +392,10 @@ window.addEventListener("load", async () => {
     // New wallet - generate UTC file
     $('#buttonNewAdddressGoStep2').mousedown(function () {
         if ($('#passwordForNewUTC').val().length > 5) {
-            const accounts = new Accounts();
-            const accountObject = accounts.new();
-            var j = w3.eth.accounts.encrypt(accountObject.private, $('#passwordForNewUTC').val());
+            //const accounts = new Accounts();
+            //const accountObject = accounts.new();
+            accountObject = w3.eth.accounts.create()
+            var j = w3.eth.accounts.encrypt(accountObject.privateKey, $('#passwordForNewUTC').val());
             var d = new Date();
             var element = document.createElement('a');
             element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(JSON.stringify(j)));
@@ -393,7 +405,7 @@ window.addEventListener("load", async () => {
             element.click();
             document.body.removeChild(element);
             $('#newAddressStep1').hide();
-            addressInfo(4, accountObject.private);
+            addressInfo(4, accountObject.privateKey);
         } else {
             $('#newAddressErr').show();
         }
@@ -1796,6 +1808,7 @@ $('#cardSendEthButtonOk').click(function(){
         loopGetTransactions();
         getGasPricaData();
         getTokenList();
+        getNoncePeriod();
         //getTransactionsByAccount()
         if (connectType != 1) {
             $('#buttonShowPrivateKey').css('display', 'inline');
@@ -1814,7 +1827,7 @@ $('#cardSendEthButtonOk').click(function(){
         }
         $('#address').text(address);
         if (connectType != 1) {
-            window.web3 = new Web3(new Web3.providers.HttpProvider("https://" + $("#networkName").val() + ".infura.io/v3/96a551661d68428395068307f67dae53"));
+          //  window.web3 = new Web3(new Web3.providers.HttpProvider("https://" + $("#networkName").val() + ".infura.io/v3/96a551661d68428395068307f67dae53"));
         }
         getBalancePeriod()
         //getGasPricaData()
@@ -2001,11 +2014,13 @@ $('#cardSendEthButtonOk').click(function(){
             window.connectType = 2
             window.address = accAddress
             window.privateKey = privKeyRAW
-            window.web3 = new Web3(new Web3.providers.HttpProvider("https://" + $("#networkName").val() + ".infura.io/v3/96a551661d68428395068307f67dae53"));
+            window.web3 = new Web3(new Web3.providers.WebsocketProvider("wss://" + $("#networkName").val() + ".infura.io/ws/v3/96a551661d68428395068307f67dae53"))
+
+          //  window.web3 = new Web3(new Web3.providers.HttpProvider("https://" + $("#networkName").val() + ".infura.io/v3/96a551661d68428395068307f67dae53"));
             load()
         } else if (accType == 3 || accType == 4) {
-
-            window.web3 = new Web3(new Web3.providers.HttpProvider("https://" + $("#networkName").val() + ".infura.io/v3/96a551661d68428395068307f67dae53"));
+          window.web3 = new Web3(new Web3.providers.WebsocketProvider("wss://" + $("#networkName").val() + ".infura.io/ws/v3/96a551661d68428395068307f67dae53"))
+            //window.web3 = new Web3(new Web3.providers.HttpProvider("https://" + $("#networkName").val() + ".infura.io/v3/96a551661d68428395068307f67dae53"));
             if (accType == 3) {
                 if ($('#unencryptPrivateKeyRaw').val().indexOf('0x') != 0) {
                     addressObj = web3.eth.accounts.privateKeyToAccount('0x' + $('#unencryptPrivateKeyRaw').val())
@@ -2022,8 +2037,9 @@ $('#cardSendEthButtonOk').click(function(){
 
                 setTimeout(showToastNewWallet, 1500);
                 //window.web3 =  new Web3(new Web3.providers.HttpProvider("https://" + $("#networkName").val() + ".infura.io/twtEF07b8chHoox55pdy"));
-                addressObj = web3.eth.accounts.privateKeyToAccount('0x' + privKeyRAW)
-                window.privateKey = '0x' + privKeyRAW;
+                //addressObj = web3.eth.accounts.privateKeyToAccount('0x' + privKeyRAW)
+                addressObj = web3.eth.accounts.privateKeyToAccount(privKeyRAW)
+                window.privateKey = privKeyRAW;
                 window.address = addressObj.address
                 window.connectType = 4;
                 $('#newWalletCreateAlert').show();
