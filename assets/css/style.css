@@ -85,11 +85,19 @@
 
 #passEye {
     position: absolute;
-    top: 58px;
     right: 7px;
     cursor: pointer;
     pointer-events: all;
 }
+
+body.ru-RU #passEye {
+    top: 58px;
+}
+
+body.en-US #passEye {
+    top: 36px;
+}
+
 
 #passEye:hover {
     opacity: 0.5;

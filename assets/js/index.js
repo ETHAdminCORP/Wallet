@@ -2,6 +2,8 @@ $(document).ready(function () {
     $('.sidenav').sidenav();
     $('select').formSelect();
 
+    $('body').addClass($('#langId').val());
+
     $('.modal').modal({
         dismissible: false,
         opacity: 0.5,
@@ -332,7 +334,6 @@ window.addEventListener("load", async () => {
     $('#walletLanguage').val($('#langId').val());
     $('#walletLanguage').formSelect();
 
-    var instance = M.FormSelect.getInstance($('#walletLanguage'));
     $('#walletLanguage').on('change', function () {
         $.cookie('lang', this.value, {
             expires: 365
