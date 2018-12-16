@@ -388,6 +388,15 @@ a.tx-more-link {
     .wallet-address-container {
         margin-bottom: 5px;
     }
+
+    .wallet-address-container .col.s9 {
+        min-width: 400px;
+    }
+
+    .trans-amount .col.s6 {
+        min-width: 400px;
+    }
+
     #sendEthAddParamsLink2 {
         margin-left: 40%;
     }
