@@ -234,6 +234,13 @@ body.en-US #passEye {
 
 /* Tokens Inputs */
 
+
+.transferTokenChild {
+    float: left;
+    width: 33.3%;
+    box-sizing: border-box;
+}
+
 .input-wrap {
     display: flex;
     align-items: center;
