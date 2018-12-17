@@ -1742,6 +1742,7 @@ $('#cardSendEthButtonOk').click(function(){
                 $('#sendEthAddParamsLink').css('display', 'inline');
                 $('#cardSendEthAddress').removeAttr('disabled');
                 $('#cardSendEthAmount').removeAttr('disabled');
+                $('#cardSendEthButtonSend').removeAttr('disabled');
                 //  $('#buttonPayByEth').css('display', 'inline');
                 //  $('#buttonSellEth').css('display', 'inline');
             }
