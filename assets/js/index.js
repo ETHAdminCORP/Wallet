@@ -5,7 +5,6 @@ $(document).ready(function () {
     $('body').addClass($('#langId').val());
 
     $('.modal').modal({
-        dismissible: false,
         opacity: 0.5,
         inDuration: 350
     });
