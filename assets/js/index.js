@@ -940,7 +940,6 @@ $('#cardSendEthButtonOk').click(function(){
         if ($("#networkName").val() == 'mainnet') {
             $.getJSON('https://api.ethplorer.io/getAddressInfo/' + window.address + '?apiKey=freekey')
 
-
                 .done(function (tokensJson) {
                     //$('#cardTokenList').html('')
                     //$('#cardTokenList').append('<a href=# style="text-decoration:none"><span style=color:#01c3b6><span style=font-size:20px;font-weight:500;>' + $('#tokensListCardLabel').val() +':</span></a>')
@@ -953,8 +952,6 @@ $('#cardSendEthButtonOk').click(function(){
                         var allsumtoken = 0
                         window.tokenShowStep = 0
                         for (let tokenData of tokensJson.tokens) {
-
-
                             tokenAddressArray.push(tokenData.tokenInfo.address)
                             var tokenContract = new web3.eth.Contract(tokenAbi, tokenData.tokenInfo.address)
 
@@ -965,7 +962,13 @@ $('#cardSendEthButtonOk').click(function(){
                                   $('#cardTokenList').append('<table id=tokenTableCard class="highlight"><thead><tr><th>' + $('#tokensTableTokenNameText').val() + '</th><th>' + $('#tokensTableBalanceText').val() + '</th><th>' + $('#tokensTablePriceText').val() + ' (USD)</th><th>' + $('#tokensTableSumText').val() + ' (USD)</th></tr></thead><tbody></table><br><a href="javascript:moreTokens()" style="text-decoration:none"><span style=color:#01c3b6>' + $('#tokenListCardLabelMore').val() + '</span></a>')
                                 }
 
-                                var tokenBalance = parseInt(result) / parseInt('1' + '0'.repeat(parseInt(tokenData.tokenInfo.decimals)))
+                                var tokenBalance = parseFloat(result) / parseInt('1' + '0'.repeat(parseInt(tokenData.tokenInfo.decimals)));
+
+                                if (err || isNaN(tokenBalance)){
+                                    tokenBalance = parseFloat(tokenData.balance)
+                                        / parseInt('1' + '0'.repeat(parseInt(tokenData.tokenInfo.decimals)));
+                                }
+
                                 if (typeof (tokenData.tokenInfo.price) == 'object') {
                                     tokenPrice = parseFloat(tokenData.tokenInfo.price.rate).toFixed(2)
                                     totaltokenPrice = (tokenPrice * parseFloat(tokenBalance)).toFixed(2)
@@ -974,7 +977,6 @@ $('#cardSendEthButtonOk').click(function(){
                                     tokenPrice = ' - '
                                     totaltokenPrice = ' - '
                                 }
-
 
                                 //var tokenBalance = parseInt(result) / parseInt('1' + '0'.repeat(parseInt(tokenData.tokenInfo.decimals)))
                                 $('#tokenTable').append('<tr><td>' + tokenData.tokenInfo.name + '</td><td>' + tokenBalance + '</td><td>' + tokenPrice + '</td><td>' + totaltokenPrice + '</td><td><div id="transferTokenDiv-' +
@@ -998,6 +1000,7 @@ $('#cardSendEthButtonOk').click(function(){
                                   $('#tokenTableCard').append('<tr><td>' + tokenData.tokenInfo.name + '</td><td>' + tokenBalance + '</td><td>' + tokenPrice + '</td><td>' + totaltokenPrice + '</td></tr>')
 
                                 }
+
                                 window.tokenShowStep++;
                                 //if(tokenData.tokenInfo.address == tokenAddressArray[2] )
                                 //console.log(tokenData.tokenInfo.name + ', balance - ' + result)
