@@ -372,7 +372,18 @@
 
                         <a href=# id="ParamsLinkSmartContract" onclick="ParamsLinkSmartContractFunc(); return false;">{{ T "SendEthAdditionalOptions"}} <img id="smartContractImgParams" src="/assets/img/linedown.png"></a>
                         <div id="smartContractParamsDiv">
-                            Gas amount <input type="number" value=21000 id="smartContractGasAmountInput"> Gas price (Gwei)<input type="number" id="smartContractGasPriceInput"> Nonce <input type="number" id="smartContractNonceInput">
+                            <div class="contractAdditionalsChild">
+                                Gas amount<br>
+                                <input style="width: 80px;" type="number" value=21000 id="smartContractGasAmountInput">
+                            </div>
+                            <div class="contractAdditionalsChild">
+                                Gas price (Gwei)<br>
+                                <input style="width: 105px;" type="number" id="smartContractGasPriceInput">
+                            </div>
+                            <div class="contractAdditionalsChild">
+                                Nonce<br>
+                                <input style="width: 45px;" type="number" id="smartContractNonceInput">
+                            </div>
                         </div>
                         <span id="GasLimitExceedSpan">{{ T "GasLimitExceedText" }}</span>
                         <div id="callFunctionResult"></div>
