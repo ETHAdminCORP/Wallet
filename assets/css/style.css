@@ -234,6 +234,28 @@ body.en-US #passEye {
 
 /* Tokens Inputs */
 
+
+.transferTokenChild {
+    float: left;
+    margin-right: 114px;
+    box-sizing: border-box;
+}
+
+.contractAdditionalsChild {
+    float: left;
+    width: 23.7%;
+    box-sizing: border-box;
+}
+
+.contractAdditionalsChild:last-child {
+    width: 18%;
+    margin-left: 27px;
+}
+
+#ParamsLinkSmartContract {
+    margin-bottom: 10px;
+}
+
 .input-wrap {
     display: flex;
     align-items: center;

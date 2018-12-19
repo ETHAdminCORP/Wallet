@@ -984,9 +984,26 @@ $('#cardSendEthButtonOk').click(function(){
 
                                                         tokenData.tokenInfo.address + '" style=display:none>' + ' <div class="input-wrap"> <div class="form-group">'+$('#tokensTableTransferToText').val() +
 
-                                                        '<input type=text id=tokenTransferInputTo-' + tokenData.tokenInfo.address + '></div><div class=" form-group">' + $('#tokensTableTransferAmountText').val() +
-                                                        ' <input type=text id=tokenTransferInputAmount-' + tokenData.tokenInfo.address + '></div>  <div class="form-group flex-center">  <br><span style="display:none;color:red;" id=transferTokenErrorSpan-' + tokenData.tokenInfo.address + '>' + $('#tokensTableTransferErrorText').val() + '</span><img onclick=showTokenTransferParams("' + tokenData.tokenInfo.address + '") style="width:30px; margin-right:10px;" src=/assets/img/settingsImg.png><div class="transferTokenDiv" id=tokenTransferParamsDiv-' + tokenData.tokenInfo.address + ' style="display:none" > Gas Amount <input id=tokenTransferGasAmount-' + tokenData.tokenInfo.address + ' type=number value=36641>Gas Price (Gwei) <input value=' + $('#inputGasPriceAverage').val() + ' id=tokenTransferGasPrice-' + tokenData.tokenInfo.address + '  type=number> Nonce <input id=tokenTransferNonce-' + tokenData.tokenInfo.address + '  value=' + window.nonce + ' type=number></div><button onclick=tokenTransferConfirmFunc("' + tokenData.tokenInfo.address + '") id=transferTokenConfirm-' + tokenData.tokenInfo.address + ' type="button" class="btn waves-effect waves-light">' + $('#tokensTableTransferConfirmButtonText').val() + '</button></div> </div>      </div>  <button onclick=tokenShowTransferDiv("' + tokenData.tokenInfo.address + '") id=transferTokenButton-' + tokenData.tokenInfo.address + ' type="button" class="btn waves-effect waves-light">' + $('#tokensTableButtonTransferText').val() + '</button><a id=tokenExchangeLink-' + tokenData.tokenInfo.address + ' target=_blank href="https://etherdelta.com/#' + tokenData.tokenInfo.symbol + '-ETH"><button type="button" class="btn waves-effect waves-purple">' + $('#tokensTableButtonExchangeText').val() + '</button></a>' + '</td></tr>')
+                                    '<input type=text id=tokenTransferInputTo-' + tokenData.tokenInfo.address + '></div><div class=" form-group">' + $('#tokensTableTransferAmountText').val() +
+                                    ' <input type=text id=tokenTransferInputAmount-' + tokenData.tokenInfo.address + '>' +
+                                    '</div>  <div class="form-group flex-center">  <br><span style="display:none;color:red;" id=transferTokenErrorSpan-'
+                                    + tokenData.tokenInfo.address + '>' + $('#tokensTableTransferErrorText').val() + '</span>' +
+                                    '<img onclick=showTokenTransferParams("' + tokenData.tokenInfo.address + '") style="width:30px; margin-right:10px;" ' +
+                                    'src=/assets/img/settingsImg.png><button onclick=tokenTransferConfirmFunc("' + tokenData.tokenInfo.address + '") ' +
+                                    'id=transferTokenConfirm-' + tokenData.tokenInfo.address + ' type="button" class="btn waves-effect waves-light">'
+                                    + $('#tokensTableTransferConfirmButtonText').val() + '</button></div> </div>      </div>  <button onclick=tokenShowTransferDiv("'
+                                    + tokenData.tokenInfo.address + '") id=transferTokenButton-' + tokenData.tokenInfo.address + ' type="button" ' +
+                                    'class="btn waves-effect waves-light">' + $('#tokensTableButtonTransferText').val() + '</button>' +
+                                    '<a id=tokenExchangeLink-' + tokenData.tokenInfo.address + ' target=_blank href="https://etherdelta.com/#' + tokenData.tokenInfo.symbol
+                                    + '-ETH"><button type="button" class="btn waves-effect waves-purple">' + $('#tokensTableButtonExchangeText').val() + '</button></a>'
+                                    + '</td></tr>');
 
+
+                                $('#transferTokenDiv-' + tokenData.tokenInfo.address).after('<div class="transferTokenDiv" id=tokenTransferParamsDiv-' + tokenData.tokenInfo.address + ' ' +
+                                    'style="display:none" > <div class="transferTokenChild"> Gas Amount <br><input style="width: 86px;" id=tokenTransferGasAmount-' + tokenData.tokenInfo.address + ' ' +
+                                    'type=number value=36641></div> <div class="transferTokenChild">Gas Price (Gwei)<br><input style="width: 110px;" value=' + $('#inputGasPriceAverage').val() + ' id=tokenTransferGasPrice-'
+                                    + tokenData.tokenInfo.address + ' type=number></div> <div class="transferTokenChild">Nonce<br><input style="width: 50px;" id=tokenTransferNonce-' + tokenData.tokenInfo.address + '  ' +
+                                    'value=' + window.nonce + ' type=number></div></div>');
 
                                 if(window.tokenShowStep == 0) {
                                   $('#tokenTableCard').append('<tr><td>' + tokenData.tokenInfo.name + '</td><td>' + tokenBalance + '</td><td>' + tokenPrice + '</td><td>' + totaltokenPrice + '</td></tr>')
