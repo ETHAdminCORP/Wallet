@@ -237,7 +237,7 @@ body.en-US #passEye {
 
 .transferTokenChild {
     float: left;
-    width: 23%;
+    margin-right: 114px;
     box-sizing: border-box;
 }
 
