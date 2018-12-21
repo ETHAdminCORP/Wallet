@@ -60,6 +60,14 @@
     "translation": "The password must contain at least 6 characters"
   },
   {
+    "id": "TransactionListTab",
+    "translation": "Transactions list"
+  },
+  {
+    "id": "FrameEthtective",
+    "translation": "Integration service"
+  },
+  {
     "id": "TabName1",
     "translation": "Info"
   },

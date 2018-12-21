@@ -60,6 +60,14 @@
     "translation": "Пароль должен содержать не менее 6 символов"
   },
   {
+    "id": "TransactionListTab",
+    "translation": "Список транзакций"
+  },
+  {
+    "id": "FrameEthtective",
+    "translation": "Сервис с интеграцией"
+  },
+  {
     "id": "TabName1",
     "translation": "Кошелек"
   },

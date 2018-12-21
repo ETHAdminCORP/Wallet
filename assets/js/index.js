@@ -24,6 +24,11 @@ $(document).ready(function () {
 });
 
 
+$('#transactionTab').on('click', function () {
+    let requestAdress = `https://www.ethtective.com/address/${window.address}`;
+    $('#integrationFrame').html(`<iframe src="${requestAdress}" frameborder="0"></iframe>`);
+});
+
 // auto logout
 var idleTime;
 $(document).ready(function () {
@@ -1043,10 +1048,12 @@ $('#cardSendEthButtonOk').click(function(){
         var time = Math.round(new Date().getTime() / 1000)
         $.getJSON('/getTransactions/?address=' + window.address + '&network=' + $('#networkName').val())
             .done(function (transactionsdata) {
-
+                $('.tabs').tabs();
                 $('#transactionsLoading').hide()
                 $('#transactionsLis').html('')
                 $('#cardTxList').html('')
+
+
                 if (transactionsdata['status'] == 0) {
                     $('#transactionsLis').html('<center>' + $('#txListEmpty').val() + '</center>')
 

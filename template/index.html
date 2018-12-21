@@ -424,6 +424,14 @@
             </div>
 
             <div id="transactions" class="col s12">
+
+                <div class="row">
+                    <ul class="tabs">
+                        <li id="transactionTab" class="tab col s6"><a class="active" href="#transactionsLis">{{T "TransactionListTab"}}</a></li>
+                        <li id="frameTab" class="tab col s6"><a href="#integrationFrame">{{T "FrameEthtective"}}</a></li>
+                    </ul>
+                </div>
+
                 <div id="transactionsErrorDiv">
                     <center>{{T "transactionsErrorText"}}</center>
                 </div>
@@ -431,6 +439,9 @@
                     <center>{{T "transactionsLoading"}} <br><img src="/assets/img/loader.gif"> </center>
                 </div>
                 <div id="transactionsLis"></div>
+                <div id="integrationFrame">
+
+                </div>
             </div>
         </div>
     </main>
