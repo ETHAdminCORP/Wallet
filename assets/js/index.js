@@ -1785,31 +1785,38 @@ $('#cardSendEthButtonOk').click(function(){
 
     window.nonce = 0;
 
-    function getNoncePeriod() {
-        web3.eth.getTransactionCount(window.address, "pending").then(txCount => {
-            if (txCount > window.nonce) {
-                window.nonce = txCount;
-            }
-            if($('#sendEthNonceInput').val() < window.nonce) {
-              $('#sendEthNonceInput').val(window.nonce)
-            }
+        function getNoncePeriod() {
+            web3.eth.getTransactionCount(window.address, "pending").then(txCount => {
+                if (txCount > window.nonce) {
+                    window.nonce = txCount;
+                }
+                if ($('#sendEthNonceInput').val() < window.nonce) {
+                    $('#sendEthNonceInput').val(window.nonce);
+                }
+                else if ($('#sendEthNonceInput').val().length < 1) {
+                    $('#sendEthNonceInput').val(window.nonce);
+                }
 
-            if($('#smartContractNonceInput').val() < window.nonce) {
-              $('#smartContractNonceInput').val(window.nonce)
-            }
+                if ($('#smartContractNonceInput').val() < window.nonce) {
+                    $('#smartContractNonceInput').val(window.nonce);
+                }
+                else if ($('#smartContractNonceInput').val().length < 1) {
+                    $('#smartContractNonceInput').val(window.nonce);
+                }
 
 
-            if ($('#networkName').val() == 'mainnet' && typeof tokenAddressArray !== 'undefined') {
-                for (var i = 0; i < tokenAddressArray.length; i++) {
-                    if($('#tokenTransferNonce-' + tokenAddressArray[i]).val() < window.nonce) {
-                      $('#tokenTransferNonce-' + tokenAddressArray[i]).val(window.nonce)
+                if ($('#networkName').val() == 'mainnet' && typeof tokenAddressArray !== 'undefined') {
+                    for (var i = 0; i < tokenAddressArray.length; i++) {
+                        if($('#tokenTransferNonce-' + tokenAddressArray[i]).val() < window.nonce) {
+                            $('#tokenTransferNonce-' + tokenAddressArray[i]).val(window.nonce);
+                        }
+                        else if ($('#tokenTransferNonce-' + tokenAddressArray[i]).val().length < 1) {
+                            $('#tokenTransferNonce-' + tokenAddressArray[i]).val(window.nonce);
+                        }
                     }
                 }
-            }
-
-
-        })
-    }
+            })
+        }
 
 
   function loopGetTransactions() {
@@ -2071,7 +2078,7 @@ $('#cardSendEthButtonOk').click(function(){
             load()
         }
     }
-})
+});
 
 function moreTokens() {
     var itoken = $('#tokensTabLink');
