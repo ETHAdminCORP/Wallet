@@ -81,9 +81,17 @@
     height: 25px;
 }
 
+#transactionTab {
+    text-align: right;
+}
+
 #innerTabs .tab {
     height: 25px;
     line-height: 25px;
+}
+
+#frameTab {
+    text-align: left;
 }
 
 #integrationFrame {
