@@ -51,6 +51,14 @@ $(document).ready(function () {
 });
 
 
+function contractMore(address) {
+    let contact = $('#contractTabLink');
+    contact[0].click();
+    $('#contractAddress').val(address);
+    $('#contractAddress').trigger('input');
+    $('#contractAddress').focus();
+}
+
 
 
 // auto logout
@@ -1112,11 +1120,20 @@ $('#cardSendEthButtonOk').click(function(){
                             txBgcolor = '#ffffff'
                         }
                         if (transaction['contractAddress'] ) {
-                            var transactionTo = $('#txCreateContract').val() + ' - ' + transaction['contractAddress']
-                            var transactionToInfoTab = $('#txCreateContract').val() + ' - ' + transaction['contractAddress'].substr(0,17) + '...'
+                            let contractAddress = transaction["contractAddress"];
+                            var transactionTo = $('#txCreateContract').val() + ' - <a href="#" onclick="contractMore(\'' + contractAddress + '\')">'
+                                + transaction['contractAddress'] + '</a>';
+                            var transactionToInfoTab = $('#txCreateContract').val() +
+                                ' - <a href="#" onclick="contractMore(\'' + contractAddress + '\')">' + transaction['contractAddress'].substr(0,17) + '...'
+                            + '</a>';
                         } else if (transaction['input'] != '0x' && transaction['input'] != '0x00') {
-                            var transactionTo = $('#txCallFunc').val() + ' ' + transaction['to']
-                            var transactionToInfoTab = $('#txCallFunc').val() + ' ' + transaction['to'].substr(0,17) + '...'
+                            let contractAddress = transaction['to'];
+                            var transactionTo = $('#txCallFunc').val()
+                                + ' <a href="#" onclick="contractMore(\'' + contractAddress + '\')">' + contractAddress
+                                + '</a>';
+                            var transactionToInfoTab = $('#txCallFunc').val()
+                                + ' <a href="#" onclick="contractMore(\'' + contractAddress + '\')">' + contractAddress.substr(0,17) + '...'
+                                + '</a>';
                         } else {
                             var transactionTo = transaction['to']
                             var transactionToInfoTab = transaction['to'].substr(0,17) + '...'
@@ -2107,6 +2124,8 @@ $('#cardSendEthButtonOk').click(function(){
     }
 
 })
+
+
 
 function moreTokens() {
     var itoken = $('#tokensTabLink');
