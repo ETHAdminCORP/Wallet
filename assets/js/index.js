@@ -10,30 +10,35 @@ $(document).ready(function () {
     });
 
     let changeTab = () => {
-        if ($('#transactions').css('display') === 'block')  {
-            $('.tabs').tabs('updateTabIndicator');
-            if ($("#networkName").val() === 'mainnet') {
-                setTimeout(function () {
-                    let integrationFrame = $('#integrationFrame');
-                    if (integrationFrame.css('display') === 'block') {
-                        let requestAddress = `https://www.ethtective.com/address/${window.address}`;
-                        integrationFrame.append(`<iframe id="ethtectiveFrame" src="${requestAddress}" frameborder="0"></iframe>`);
-                    }
-                    else {
-                        $('#ethtectiveFrame').remove();
-                    }
-                }, 100);
-            }
-            else {
-                $('#frameTab').addClass('disabled');
-                if ($.cookie('lang') === 'en-US') {
-                    $('#frameTab a').html('Visualization - only available in mainnet');
+        setTimeout(function () {
+            if ($('#transactions').css('display') === 'block')  {
+                $('.tabs').tabs('updateTabIndicator');
+                if ($("#networkName").val() === 'mainnet') {
+                    setTimeout(function () {
+                        let integrationFrame = $('#integrationFrame');
+                        if (integrationFrame.css('display') === 'block') {
+                            let requestAddress = `https://www.ethtective.com/address/${window.address}`;
+                            integrationFrame.append(`<iframe id="ethtectiveFrame" src="${requestAddress}" frameborder="0"></iframe>`);
+                        }
+                        else {
+                            $('#ethtectiveFrame').remove();
+                        }
+                    }, 100);
                 }
                 else {
-                    $('#frameTab a').html('Визуализация - доступно только в mainnet');
+                    $('#frameTab').addClass('disabled');
+                    if ($.cookie('lang') === 'en-US') {
+                        $('#frameTab a').html('Visualization - only available in mainnet');
+                    }
+                    else {
+                        $('#frameTab a').html('Визуализация - доступно только в mainnet');
+                    }
                 }
             }
-        }
+            else {
+                $('#ethtectiveFrame').remove();
+            }
+        }, 100);
     };
 
     $('.tabs').tabs({ onShow: changeTab });
