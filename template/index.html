@@ -426,7 +426,7 @@
             <div id="transactions" class="col s12">
 
                 <div class="row">
-                    <ul class="tabs">
+                    <ul id="innerTabs" class="tabs">
                         <li id="transactionTab" class="tab col s6"><a class="active" href="#transactionsLis">{{T "TransactionListTab"}}</a></li>
                         <li id="frameTab" class="tab col s6"><a href="#integrationFrame">{{T "FrameEthtective"}}</a></li>
                     </ul>
@@ -440,7 +440,9 @@
                 </div>
                 <div id="transactionsLis"></div>
                 <div id="integrationFrame">
-
+                    <div class="row">
+                        <p id="ethtectiveLabel" class="col s6 offset-s3" style="text-align: center">{{T "DataProvided"}} <a href="https://www.ethtective.com/" target="_blank">ethtective.com</a> </p>
+                    </div>
                 </div>
             </div>
         </div>

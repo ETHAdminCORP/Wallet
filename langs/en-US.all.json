@@ -65,7 +65,11 @@
   },
   {
     "id": "FrameEthtective",
-    "translation": "Integration service"
+    "translation": "Visualization"
+  },
+  {
+    "id": "DataProvided",
+    "translation": "Data provided by the service"
   },
   {
     "id": "TabName1",

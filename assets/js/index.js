@@ -10,7 +10,34 @@ $(document).ready(function () {
         inDuration: 350
     });
 
-    $('.tabs').tabs();
+    let changeTab = () => {
+        if ($('#transactions').css('display') === 'block')  {
+            $('.tabs').tabs('updateTabIndicator');
+            if ($("#networkName").val() === 'mainnet') {
+                setTimeout(function () {
+                    let integrationFrame = $('#integrationFrame');
+                    if (integrationFrame.css('display') === 'block') {
+                        let requestAddress = `https://www.ethtective.com/address/${window.address}`;
+                        integrationFrame.append(`<iframe id="ethtectiveFrame" src="${requestAddress}" frameborder="0"></iframe>`);
+                    }
+                    else {
+                        $('#ethtectiveFrame').remove();
+                    }
+                }, 100);
+            }
+            else {
+                $('#frameTab').addClass('disabled');
+                if ($.cookie('lang') === 'en-US') {
+                    $('#frameTab a').html('Visualization - only available in mainnet');
+                }
+                else {
+                    $('#frameTab a').html('Визуализация - доступно только в mainnet');
+                }
+            }
+        }
+    };
+
+    $('.tabs').tabs({ onShow: changeTab });
 
     $('#walletTypePrivateKey').on('click', function () {
 
@@ -24,10 +51,7 @@ $(document).ready(function () {
 });
 
 
-$('#transactionTab').on('click', function () {
-    let requestAdress = `https://www.ethtective.com/address/${window.address}`;
-    $('#integrationFrame').html(`<iframe src="${requestAdress}" frameborder="0"></iframe>`);
-});
+
 
 // auto logout
 var idleTime;
@@ -634,7 +658,7 @@ $('#cardSendEthButtonOk').click(function(){
             addressObj = w3.eth.accounts.privateKeyToAccount($('#unencryptPrivateKeyRaw').val())
             $("#start").hide();
             $("#aboutAddress").show();
-            $('.tabs').tabs();
+            $('.tabs').tabs('updateTabIndicator');
             addressInfo(3);
         }
 
@@ -1048,10 +1072,10 @@ $('#cardSendEthButtonOk').click(function(){
         var time = Math.round(new Date().getTime() / 1000)
         $.getJSON('/getTransactions/?address=' + window.address + '&network=' + $('#networkName').val())
             .done(function (transactionsdata) {
-                $('.tabs').tabs();
                 $('#transactionsLoading').hide()
                 $('#transactionsLis').html('')
                 $('#cardTxList').html('')
+
 
 
                 if (transactionsdata['status'] == 0) {
@@ -1150,6 +1174,7 @@ $('#cardSendEthButtonOk').click(function(){
                 $('#transactionsErrorDiv').show()
             })
     }
+
 
     ////////////////
 
@@ -1673,7 +1698,8 @@ $('#cardSendEthButtonOk').click(function(){
                  // Acccounts now exposed
                  $("#start").hide();
                  $("#aboutAddress").show();
-                 $('.tabs').tabs();
+
+                 $('.tabs').tabs('updateTabIndicator');
                  addressInfo(1);
              } catch (error) {
                  // User denied account access...
@@ -1686,7 +1712,7 @@ $('#cardSendEthButtonOk').click(function(){
              // Acccounts always exposed
              $("#start").hide();
              $("#aboutAddress").show();
-            $('.tabs').tabs();
+            $('.tabs').tabs('updateTabIndicator');
              addressInfo(1);
          }
          // Non-dapp browsers...
@@ -2000,7 +2026,7 @@ $('#cardSendEthButtonOk').click(function(){
         // accType = 6 - Parity Signer
         $("#start").hide();
         $("#aboutAddress").show();
-        $('.tabs').tabs();
+        $('.tabs').tabs('updateTabIndicator');
         if (accType == 1) {
 
             //window.web3old = window.web3.currentProvider;
@@ -2057,7 +2083,7 @@ $('#cardSendEthButtonOk').click(function(){
                 }
 
                 window.connectType = 3;
-                window.address = addressObj.address
+                window.address = addressObj.address;
                 $('#buttonDownloadUTC').css('display', 'inline');
             } else if (accType == 4) {
 
@@ -2066,7 +2092,7 @@ $('#cardSendEthButtonOk').click(function(){
                 //addressObj = web3.eth.accounts.privateKeyToAccount('0x' + privKeyRAW)
                 addressObj = web3.eth.accounts.privateKeyToAccount(privKeyRAW)
                 window.privateKey = privKeyRAW;
-                window.address = addressObj.address
+                window.address = addressObj.address;
                 window.connectType = 4;
                 $('#newWalletCreateAlert').show();
             }
@@ -2075,9 +2101,11 @@ $('#cardSendEthButtonOk').click(function(){
 
 
 
+
             load()
         }
     }
+
 })
 
 function moreTokens() {

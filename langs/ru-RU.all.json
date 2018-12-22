@@ -65,7 +65,11 @@
   },
   {
     "id": "FrameEthtective",
-    "translation": "Сервис с интеграцией"
+    "translation": "Визуализация"
+  },
+  {
+    "id": "DataProvided",
+    "translation": "Данные предоставлены сервисом"
   },
   {
     "id": "TabName1",

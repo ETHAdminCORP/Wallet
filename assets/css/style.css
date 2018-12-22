@@ -77,13 +77,29 @@
     background-color: rgba(54, 197, 171, 0.2);
 }
 
+#innerTabs {
+    height: 25px;
+}
+
+#innerTabs .tab {
+    height: 25px;
+    line-height: 25px;
+}
+
 #integrationFrame {
-    height: 1000px;
+    margin: 0 50px;
+    height: 800px;
+    overflow: hidden;
+}
+
+#ethtectiveLabel {
+    position: absolute;
 }
 
 #integrationFrame iframe {
+    height: 135%;
     width: 100%;
-    height: 100%;
+    margin-top: -20%;
 }
 
 #txtable {
