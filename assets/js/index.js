@@ -2150,6 +2150,10 @@ $('#cardSendEthButtonOk').click(function(){
 
             load()
         }
+
+        setTimeout(function () {
+                $('#chartEth').attr('src', '/chart.html');
+                }, 1000);
     }
 
 });

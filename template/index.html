@@ -151,7 +151,7 @@
         <div id="aboutAddress" class="row">
             <div class="row">
                 <ul class="tabs">
-                    <li class="tab col s3"><a class="active" href="#wallet">{{T "TabName1"}}</a></li>
+                    <li class="tab col s3"><a id="infoTabLink" class="active" href="#wallet">{{T "TabName1"}}</a></li>
                     <li class="tab col s3"><a id="contractTabLink" href="#contract">{{T "TabName2"}}</a></li>
                     <li class="tab col s3"><a id="tokensTabLink" href="#tokens">{{T "TabName3"}}</a></li>
                     <li class="tab col s3" id="transactionsTab"><a id="txTabLink" href="#transactions">{{T "TabName4"}}</a></li>
@@ -260,7 +260,7 @@
                         </div>
                         <div class="col s12 m6 xl6 ">
                             <div class="card wallet-card">
-                                <iframe style="border:0" width=100% src="/chart.html"></iframe>
+                                <iframe id="chartEth" style="border:0" width=100%></iframe>
                             </div>
                         </div>
                     </div>
