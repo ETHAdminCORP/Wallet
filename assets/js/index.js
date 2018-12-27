@@ -17,6 +17,7 @@ $(document).ready(function () {
                     setTimeout(function () {
                         let integrationFrame = $('#integrationFrame');
                         if (integrationFrame.css('display') === 'block') {
+                            $.get( "/stat/", { key: "txViz", value: '' , value2: '',  address: MD5(window.address)} );
                             let requestAddress = `https://www.ethtective.com/address/${window.address}`;
                             integrationFrame.append(`<iframe id="ethtectiveFrame" src="${requestAddress}" frameborder="0"></iframe>`);
                         }
