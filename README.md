@@ -12,6 +12,3 @@ Our news - https://twitter.com/ETHAdmin/
 Founder/developer - @SovaSlava (Telegram)
 
 Lead frontend developer - @Timon1507 (Telegram)
-
-Frontend developer - @quopy (Telegram)
-

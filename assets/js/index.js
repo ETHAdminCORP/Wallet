@@ -783,16 +783,7 @@ $('#cardSendEthButtonOk').click(function(){
                         } else {
                             outputName = abiObj.outputs[i].name
                         }
-                        /*
-                        var outputValue;
-                        if(abiObj.outputs[i].type.match(/bytes\d\d/)  || abiObj.outputs[i].type.match(/bytes\d/)) {
-                          outputValue = web3.eth.abi.decodeParameter(abiObj.outputs[i].type, result[i])
-                        }
-                        else {
-                          outputValue = result[i]
-                        }
-                        $('#callFunctionResult').append(outputName + '<input type=text value=' + outputValue + '><br>')
-                        */
+
                         if (!result) {
                             var result = [];
                             $('#smartContractEmptyArraySpan').html('<br><font color=red>' + $('#smartContractEmptyArrayText').val() + '</font>');
@@ -854,7 +845,7 @@ $('#cardSendEthButtonOk').click(function(){
     var tokenAbi = JSON.parse('[{"constant":true,"inputs":[{"name":"_owner","type":"address"}],"name":"balanceOf","outputs":[{"name":"balance","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function","signature":"0x70a08231"}]')
 
 
-    ///////////////////
+
 
 
     window.showTokenTransferParams = function (tokenContractAddress) {
@@ -886,7 +877,7 @@ $('#cardSendEthButtonOk').click(function(){
                 data: sendData
             }
         }
-        ////////////////
+
         $.get( "/stat/", { key: "tokenTransfer", value: '' , value2: '',  address: MD5(window.address)} );
         if (connectType == 1) {
             let loaded = false;
@@ -938,7 +929,6 @@ $('#cardSendEthButtonOk').click(function(){
 
 
     }
-    //	}
 
 
 
@@ -946,7 +936,8 @@ $('#cardSendEthButtonOk').click(function(){
 
 
 
-    ///////////////////
+
+
     window.tokenShowTransferDiv = function (tokenAddress) {
 
 
@@ -961,19 +952,7 @@ $('#cardSendEthButtonOk').click(function(){
                 $('#tokenExchangeLink-' + tokenAddressArray[i]).hide()
             }
         }
-        /*
-            for (var i = 0; i < tokenAddressArray.length; i++) {
-                if (tokenAddressArray[i] != tokenAddress) {
 
-                    $('#transferTokenDiv-' + tokenAddressArray[i]).show()
-                } else {
-                    console.log('now address - ' + tokenAddressArray[i] + ' and do show')
-                    $('#transferTokenButton-' + tokenAddressArray[i]).hide()
-                }
-
-            }
-
-        */
 
     }
 
@@ -984,11 +963,8 @@ $('#cardSendEthButtonOk').click(function(){
             $.getJSON('https://api.ethplorer.io/getAddressInfo/' + window.address + '?apiKey=freekey')
 
                 .done(function (tokensJson) {
-                    //$('#cardTokenList').html('')
-                    //$('#cardTokenList').append('<a href=# style="text-decoration:none"><span style=color:#01c3b6><span style=font-size:20px;font-weight:500;>' + $('#tokensListCardLabel').val() +':</span></a>')
-                    if ('tokens' in tokensJson) {
+                        if ('tokens' in tokensJson) {
                         $('#tokensTableDiv').show()
-                        //  var tokenAbi = JSON.parse('[{"constant":true,"inputs":[{"name":"_owner","type":"address"}],"name":"balanceOf","outputs":[{"name":"balance","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function","signature":"0x70a08231"}]')
                         var tokensValue = []
                         window.tokenAddressArray = []
                         $('#mainTokenDiv').html('<table id=tokenTable class="highlight"><thead><tr><th>' + $('#tokensTableTokenNameText').val() + '</th><th>' + $('#tokensTableBalanceText').val() + '</th><th>' + $('#tokensTablePriceText').val() + ' (USD)</th><th>' + $('#tokensTableSumText').val() + ' (USD)</th><th> </th></tr></thead><tbody>')
@@ -1021,7 +997,6 @@ $('#cardSendEthButtonOk').click(function(){
                                     totaltokenPrice = ' - '
                                 }
 
-                                //var tokenBalance = parseInt(result) / parseInt('1' + '0'.repeat(parseInt(tokenData.tokenInfo.decimals)))
                                 $('#tokenTable').append('<tr><td>' + tokenData.tokenInfo.name + '</td><td>' + tokenBalance + '</td><td>' + tokenPrice + '</td><td>' + totaltokenPrice + '</td><td><div id="transferTokenDiv-' +
 
                                                         tokenData.tokenInfo.address + '" style=display:none>' + ' <div class="input-wrap"> <div class="form-group">'+$('#tokensTableTransferToText').val() +
@@ -1062,16 +1037,10 @@ $('#cardSendEthButtonOk').click(function(){
                                 }
 
                                 window.tokenShowStep++;
-                                //if(tokenData.tokenInfo.address == tokenAddressArray[2] )
-                                //console.log(tokenData.tokenInfo.name + ', balance - ' + result)
+
                             })
 
                         }
-                        //$('#cardTokenList').append('<a href=# style="text-decoration:none"><span style=color:#01c3b6>' + $('#tokenListCardLabelMore').val() + '</span></a>')
-
-
-
-
 
                         $('#mainTokenDiv').append('</tbody></table>')
                     } else {
@@ -1079,7 +1048,7 @@ $('#cardSendEthButtonOk').click(function(){
                         $('#cardTokenList').append('<br><center>' + $('#noTokensWarningCard').val() + '</center>')
                     }
 
-                    //$('#mainTokenDiv').html(data.countTxs);
+
 
                 })
         } else {
@@ -1092,12 +1061,11 @@ $('#cardSendEthButtonOk').click(function(){
     }
 
 
-    ////////////////
 
 
 
     window.getTransactionsByAccount = function () {
-        // myaccount = window.address
+
 
         var time = Math.round(new Date().getTime() / 1000)
         $.getJSON('/getTransactions/?address=' + window.address + '&network=' + $('#networkName').val())
@@ -1215,7 +1183,7 @@ $('#cardSendEthButtonOk').click(function(){
     }
 
 
-    ////////////////
+
 
     window.useContractCallFunction = function (abiObj) {
 
@@ -1236,25 +1204,9 @@ $('#cardSendEthButtonOk').click(function(){
         }
 
 
-        /*
-  if(abiObj.stateMutability == "nonpayable" || abiObj.stateMutability == "payable") {
-    // not view
-    if(abiObj.payable == true) {
-      var isPayable = "need pay eth"
-    }
-    else {
-      var isPayable = "no pay"
-    }
-    var isView = false
-  }
-  else {
-    var isView = true
-  }
-
-	*/
 
 
-        /////////////////
+
         if (abiObj.type != 'fallback') {
             for (var i = 0; i < abiObj.inputs.length; i++) {
                 $('#callFunctionParam_' + i).val($('#callFunctionParam_' + i).val().trim())
@@ -1288,22 +1240,13 @@ $('#cardSendEthButtonOk').click(function(){
 
             }
         }
-        //////////////////////
+
 
 
 
         var myContract = new web3.eth.Contract(JSON.parse($('#contractAbiUser').text()), $('#contractAddress').val())
         if (isView) {
-            /*
-  myContract.methods[abiObj.name](...params).call(function(error, result){
-      console.log(result);
 
-	  console.log('outputs length - ' + abiObj.outputs.length)
-
-
-
-  });
-  */
         } else {
             // make tx
             if (abiObj.type != 'fallback') {
@@ -1374,7 +1317,6 @@ $('#cardSendEthButtonOk').click(function(){
 
             } else {
                 // make tx for fallback
-                //////////////////////////////////////////////////////
                 var tx = {
                     from: window.address,
                     to: $('#contractAddress').val(),
@@ -1432,7 +1374,6 @@ $('#cardSendEthButtonOk').click(function(){
                             clearTimeout(timerId);
                     }, 1000)
                 }
-                //////////////////////////////////////////////////////
             }
 
         }
@@ -1451,20 +1392,7 @@ $('#cardSendEthButtonOk').click(function(){
         }
 
     }
-    /*
-    $('#ParamsLinkSmartContract').mousedown(function() {
 
-      if(  $("#smartContractParamsDiv").is(":visible") == true ) {
-        $("#smartContractParamsDiv").hide();
-        $("#smartContractImgParams").attr("src","/assets/img/linedown.png");
-      }
-      else {
-        $("#smartContractParamsDiv").show();
-        $("#smartContractImgParams").attr("src","/assets/img/lineup.png");
-      }
-
-    })
-    */
 
     window.showContractFunctionInterface = function (abiObj) {
         $('#GasLimitExceedSpan').hide();
@@ -1475,7 +1403,7 @@ $('#cardSendEthButtonOk').click(function(){
         if (abiObj.type == 'fallback') {
             $('#smartContractGasAmountInput').val(23000)
 
-            //abiObj.name = "Fallback function"
+
         }
         else {
           $('#smartContractGasAmountInput').val(21000)
@@ -1505,32 +1433,7 @@ $('#cardSendEthButtonOk').click(function(){
             }
         }
 
-        /*
-	//////////////////////
-  if(abiObj.stateMutability == "nonpayable" || abiObj.stateMutability == "payable") {
-    // not view
-    if(abiObj.payable == true) {
-      var isPayable = "need pay eth"
-    }
-    else {
-      var isPayable = "no pay"
-    }
-    var isView = false
-	$('#ParamsLinkSmartContract').show();
-  }
-  else {
-    var isView = true
-		$('#ParamsLinkSmartContract').hide();
-		$('#smartContractParamsDiv').hide();
-  }
-  if(abiObj.payable == true) {
-    var isPayable = "need pay eth"
-  }
-  else {
-    var isPayable = "no pay"
-  }
-////////////////////////////
-*/
+
         if (abiObj.type == 'fallback') {
             $('#useContractFunctionName').text('Fallback function');
         } else {
@@ -1569,7 +1472,7 @@ $('#cardSendEthButtonOk').click(function(){
             $('#useContractInputs').append('<font size=3>ETH Amount <span id=smartContractETHAmountError><font color=red>' + $('#smartContractEthAmountErrorText').val() + '</font></span><br><input oninput=window.checkFunctInputs(' + JSON.stringify(abiObj) + ') id="ethValueSmartContract" type=text><br>')
         }
         if (!isView) {
-          //  if (!abiObj.inputs.length) {
+
           if (!abiObj.hasOwnProperty('inputs')) {
                 window.checkFunctInputs(abiObj);
             }
@@ -1650,12 +1553,7 @@ $('#cardSendEthButtonOk').click(function(){
       $('#contractPublicFunctions').html('')
       $('#contractPayFunctions').html('')
           loadContractInterface($('#contractAbiUser').val())
-      /*
-        $('#contractAddress').val($('#contractAddress').val() + ' ')
-        $('#contractAddress').trigger('input');
-        $('#useContractInputs').html('');
 
-        */
     })
 
 
@@ -1715,7 +1613,7 @@ $('#cardSendEthButtonOk').click(function(){
                 });
 
         } else {
-            //console.log('error 3')
+
         }
     }))
 
@@ -1764,19 +1662,7 @@ $('#cardSendEthButtonOk').click(function(){
 
 
 
-      /*
-        web3 = new Web3(web3.currentProvider);
-        web3.eth.getAccounts(function (err, res) {
-            if (res == "") {
-                $('#metamaskBlockWarning').show();
-            } else {
-                $("#start").hide();
-                $("#aboutAddress").show();
-                addressInfo(1);
-            }
-        })
-    });
-*/
+
 
 
 
@@ -1790,7 +1676,7 @@ $('#cardSendEthButtonOk').click(function(){
 
             $('#sendEthGasPriceRange').attr('max', parseFloat($('#inputGasPriceFast').val()) + 15);
 
-            //$('#inputGasPriceAverage').val( $('#inputGasPriceAverage').val())
+
             var average = $('#inputGasPriceAverage').val()
             $('#smartContractGasPriceInput').val(Math.ceil(average));
 
@@ -1827,13 +1713,11 @@ $('#cardSendEthButtonOk').click(function(){
             $('#addressBalance').text(web3.utils.fromWei(balance.toString()));
             if (Number($('#addressBalance').text()) > 0) {
 
-                //$('#buttonSendEth').css('display', 'inline');
+
                 $('#sendEthAddParamsLink').css('display', 'inline');
                 $('#cardSendEthAddress').removeAttr('disabled');
                 $('#cardSendEthAmount').removeAttr('disabled');
                 $('#cardSendEthButtonSend').removeAttr('disabled');
-                //  $('#buttonPayByEth').css('display', 'inline');
-                //  $('#buttonSellEth').css('display', 'inline');
             }
             else {
               $('#cardSendEthButtonSend').attr('disabled', 'disabled');
@@ -1924,16 +1808,14 @@ $('#cardSendEthButtonOk').click(function(){
             })
         }
         $('#address').text(address);
-        if (connectType != 1) {
-          //  window.web3 = new Web3(new Web3.providers.HttpProvider("https://" + $("#networkName").val() + ".infura.io/v3/96a551661d68428395068307f67dae53"));
-        }
+
         getBalancePeriod()
-        //getGasPricaData()
+
 
 
 
     }
-    /////////////////////
+
 
     $('#buttonDownloadUTC').mousedown(function () {
         var passwordForDownloadUTC = prompt($('#CreateWalletDesc').val(), '');
@@ -2114,12 +1996,10 @@ $('#cardSendEthButtonOk').click(function(){
             window.privateKey = privKeyRAW
             window.web3 = new Web3(new Web3.providers.WebsocketProvider("wss://" + $("#networkName").val() + ".infura.io/ws/v3/96a551661d68428395068307f67dae53"))
 
-          //  window.web3 = new Web3(new Web3.providers.HttpProvider("https://" + $("#networkName").val() + ".infura.io/v3/96a551661d68428395068307f67dae53"));
-            load()
+                load()
         } else if (accType == 3 || accType == 4) {
           window.web3 = new Web3(new Web3.providers.WebsocketProvider("wss://" + $("#networkName").val() + ".infura.io/ws/v3/96a551661d68428395068307f67dae53"))
-            //window.web3 = new Web3(new Web3.providers.HttpProvider("https://" + $("#networkName").val() + ".infura.io/v3/96a551661d68428395068307f67dae53"));
-            if (accType == 3) {
+              if (accType == 3) {
                 if ($('#unencryptPrivateKeyRaw').val().indexOf('0x') != 0) {
                     addressObj = web3.eth.accounts.privateKeyToAccount('0x' + $('#unencryptPrivateKeyRaw').val())
                     window.privateKey = '0x' + $('#unencryptPrivateKeyRaw').val();
@@ -2134,8 +2014,6 @@ $('#cardSendEthButtonOk').click(function(){
             } else if (accType == 4) {
 
                 setTimeout(showToastNewWallet, 1500);
-                //window.web3 =  new Web3(new Web3.providers.HttpProvider("https://" + $("#networkName").val() + ".infura.io/twtEF07b8chHoox55pdy"));
-                //addressObj = web3.eth.accounts.privateKeyToAccount('0x' + privKeyRAW)
                 addressObj = web3.eth.accounts.privateKeyToAccount(privKeyRAW)
                 window.privateKey = privKeyRAW;
                 window.address = addressObj.address;
