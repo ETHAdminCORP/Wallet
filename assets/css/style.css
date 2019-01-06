@@ -248,11 +248,11 @@ body.en-US #passEye {
 }
 
 #wallet .row-container:nth-child(2) .col.s12.m6.xl6:last-child .wallet-card {
-    padding: 0 25px;
+    padding: 0;
 }
 
 #wallet .row-container iframe {
-    height: 29vw;
+    height: 31vw;
 }
 
 .wallet-card {
