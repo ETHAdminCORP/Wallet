@@ -1085,7 +1085,7 @@ $('#cardSendEthButtonOk').click(function(){
 
                 } else {
                     $('#transactionsLoading').hide()
-                    $('#transactionsLis').append('<table id=txtable class="highlight" style=margin-left:50px;margin-right:50px;><thead><tr><th style="padding-left: 135px">' + $('#txListCardLabelDate').val() + '</th><th style="text-align: right">' + $('#txListCardLabelAmount').val() + '</th><th style="text-align: right">' + $('#txListCardLabelFrom').val() + '</th><th></th></thead>')
+                    $('#transactionsLis').append('<table id=txtable class="highlight" style=margin-left:50px;margin-right:50px;><thead><tr><th>' + $('#txListCardLabelDate').val() + '</th><th style="text-align: right">' + $('#txListCardLabelAmount').val() + '</th><th>' + $('#txListCardLabelFrom').val() + '</th><th></th></thead>')
                     var txC=0;
                     var txarr = []
 
@@ -1161,7 +1161,7 @@ $('#cardSendEthButtonOk').click(function(){
                         if(txC <6) {
                             if(txC == 0) {
                               $('#cardTxList').append('<a href=# style="text-decoration:none" onclick="moreTransactions()"><span style=color:#01c3b6><span style=font-size:20px;font-weight:500;>' + $('#txListCardLabel').val() +':</span></a>')
-                              $('#cardTxList').append('<table id=txtableTab class="highlight"><thead><tr><th align=right>' + $('#txListCardLabelDate').val() + '</th><th style="text-align: right">' + $('#txListCardLabelAmount').val() + '</th><th style="text-align: right">' + $('#txListCardLabelFrom').val() + '</th><th></th></thead>')
+                              $('#cardTxList').append('<table id=txtableTab class="highlight"><thead><tr><th align=right>' + $('#txListCardLabelDate').val() + '</th><th style="text-align: right">' + $('#txListCardLabelAmount').val() + '</th><th>' + $('#txListCardLabelFrom').val() + '</th><th></th></thead>')
                             }
                             $('#txtableTab').append('<tr bgcolor=' + txBgcolor + '><td style=align:right>' + txTime + '</td><td style="text-align: right">' + txType + ' ' + parseInt(transaction['value']) / 1e18 + ' ETH</td><td title="' + transaction['from'] + '">' + transaction['from'].substr(0,17) + '...' + '</td><td title="' + transaction['to'] + transaction['contractAddress'] + '">' + transactionToInfoTab + '</td></tr>')
 

@@ -1,3 +1,7 @@
+nav {
+    background-color: #01c3b6;
+}
+
 .navigation .container,
 .navigation .row {
     height: 100%;
@@ -78,7 +82,7 @@
 }
 
 #innerTabs {
-    height: 25px;
+    height: 35px;
 }
 
 #transactionTab {
@@ -86,8 +90,8 @@
 }
 
 #innerTabs .tab {
-    height: 25px;
-    line-height: 25px;
+    height: 35px;
+    line-height: 35px;
 }
 
 #frameTab {
@@ -206,6 +210,19 @@ body.en-US #passEye {
 
 .balance-values .eth {
     font-size: 20px;
+}
+
+.wallet-cart-content::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    transition: box-shadow 0.5s;
+    z-index: -10;
+    box-shadow: 0.4em 0.4em 10px rgba(122, 122, 122, 0.5);
 }
 
 .card::before {
@@ -334,13 +351,11 @@ body.en-US #passEye {
     background-color: rgb(250, 250, 250);
 }
 
-#txtable tr td:first-child {
-    padding-left: 60px;
-}
-
+#txtable tr td:first-child,
 #txtable tr th:first-child {
     padding-left: 60px;
 }
+
 
 #txtable tr td:last-child {
     padding-right: 60px;
@@ -352,6 +367,24 @@ body.en-US #passEye {
 
 #cardTxList center {
     line-height: 310px;
+}
+
+@media screen and (min-width: 1600px) {
+    #cardTxList td,
+    #cardTxList th {
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+    #txtable tr td:first-child,
+    #txtable tr th:first-child {
+        padding-left: calc(4% + 60px);
+    }
+}
+@media screen and (min-width: 1900px) {
+    #txtable tr td:first-child,
+    #txtable tr th:first-child {
+        padding-left: calc(5% + 60px);
+    }
 }
 
 /* Send ETH */
