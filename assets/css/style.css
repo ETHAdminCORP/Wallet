@@ -52,7 +52,33 @@ nav {
 }
 
 #transactionsLis {
-    margin: 0 50px;
+    margin: 0 5%;
+}
+
+@media screen and (min-width: 1600px) {
+    #transactionsLis {
+        margin: 0 14%;
+    }
+}
+@media screen and (min-width: 1900px) {
+    #transactionsLis {
+        margin: 0 19%;
+    }
+}
+@media screen and (min-width: 2000px) {
+    #transactionsLis {
+        margin: 0 21%;
+    }
+}
+@media screen and (min-width: 2200px) {
+    #transactionsLis {
+        margin: 0 23%;
+    }
+}
+@media screen and (min-width: 2400px) {
+    #transactionsLis {
+        margin: 0 25%;
+    }
 }
 
 .tabs .tab a.active{
@@ -353,16 +379,16 @@ body.en-US #passEye {
 
 #txtable tr td:first-child,
 #txtable tr th:first-child {
-    padding-left: 60px;
+    margin-left: 60px;
 }
 
 
 #txtable tr td:last-child {
-    padding-right: 60px;
+    margin-right: 60px;
 }
 
 #txtable tr th:last-child {
-    padding-right: 60px;
+    margin-right: 60px;
 }
 
 #cardTxList center {
@@ -372,18 +398,18 @@ body.en-US #passEye {
 @media screen and (min-width: 1600px) {
     #cardTxList td,
     #cardTxList th {
-        padding-right: 15px;
-        padding-left: 15px;
+        margin-right: 15px;
+        margin-left: 15px;
     }
     #txtable tr td:first-child,
     #txtable tr th:first-child {
-        padding-left: calc(4% + 60px);
+        margin-left: calc(4% + 60px);
     }
 }
 @media screen and (min-width: 1900px) {
     #txtable tr td:first-child,
     #txtable tr th:first-child {
-        padding-left: calc(5% + 60px);
+        margin-left: calc(5% + 60px);
     }
 }
 
