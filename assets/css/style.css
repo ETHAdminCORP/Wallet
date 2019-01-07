@@ -365,6 +365,11 @@ body.en-US #passEye {
 
 /* Transaction table */
 
+#txtable th,
+#txtableTab th {
+    padding-bottom: 5px;
+}
+
 #txtable td,
 #txtable th {
     min-width: 120px;
