@@ -57,27 +57,27 @@ nav {
 
 @media screen and (min-width: 1600px) {
     #transactionsLis {
-        margin: 0 11%;
+        margin: 0 7%;
     }
 }
 @media screen and (min-width: 1900px) {
     #transactionsLis {
-        margin: 0 18%;
+        margin: 0 13%;
     }
 }
 @media screen and (min-width: 2000px) {
     #transactionsLis {
-        margin: 0 19%;
+        margin: 0 15%;
     }
 }
 @media screen and (min-width: 2200px) {
     #transactionsLis {
-        margin: 0 22%;
+        margin: 0 18%;
     }
 }
 @media screen and (min-width: 2400px) {
     #transactionsLis {
-        margin: 0 24%;
+        margin: 0 21%;
     }
 }
 
