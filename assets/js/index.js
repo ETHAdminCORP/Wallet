@@ -1592,7 +1592,7 @@ $('#cardSendEthButtonOk').click(function(){
             }
 
 
-            $.getJSON('http://api' + apiNetworkName + '.etherscan.io/api?module=contract&action=getabi&address=' + $('#contractAddress').val().replace(/\s/g, '') + '&format=raw')
+            $.getJSON('https://api' + apiNetworkName + '.etherscan.io/api?module=contract&action=getabi&address=' + $('#contractAddress').val().replace(/\s/g, '') + '&format=raw')
                 .done(function (data) {
                     try {
                         $.get( "/stat/", { key: "contractLoad", value: '1' , value2: '',  address: MD5(window.address)} );
