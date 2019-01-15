@@ -250,6 +250,7 @@ func main() {
 		if k!="" {
 			stmt.Exec(currentTime.Format("2006.01.02 15:04:05"),k, v, v2, address)
 		}
+		fmt.Fprintf(w, "<status>OK</status>")
 	})
 
 	fs := http.FileServer(http.Dir("assets"))
