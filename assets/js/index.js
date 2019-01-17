@@ -702,7 +702,8 @@ $('#cardSendEthButtonOk').click(function(){
         //abiObj =  JSON.parse(abiObj)
         var emptyInput = 0;
 
-        var myContract = new web3.eth.Contract(JSON.parse($('#contractAbiUser').text()), $('#contractAddress').val())
+
+        var myContract = new web3.eth.Contract(JSON.parse(JSON.stringify(JSON.parse($('#contractAbiUser').val()))), $('#contractAddress').val())
 
 
         // We don't check inputs, if function == fallback
@@ -774,8 +775,7 @@ $('#cardSendEthButtonOk').click(function(){
             if (abiObj.stateMutability == 'view' || abiObj.stateMutability == 'pure' || abiObj.constant == true) {
                 // view
                 myContract.methods[abiObj.name](...params).call(function (error, result) {
-                  console.log('result --' + result)
-                  console.log('result2 --' + typeof result)
+
                     $('#callFunctionResult').append('<b>' + $('#resultCallFunctionTitle').val() + '</b><span id="smartContractEmptyArraySpan"></span><br>')
 
                     for (var i = 0; i < abiObj.outputs.length; i++) {
@@ -1517,11 +1517,9 @@ $('#cardSendEthButtonOk').click(function(){
     }
 
     function loadContractInterface(abidata) {
-      console.log('loadContractInterface type - ' + typeof abidata)
           if(typeof abidata == 'string') {
-            console.log('loadContractInterface abidata == string')
             abidata = JSON.parse(abidata)
-        
+
           }
           console.log('loadContractInterface type 2 - ' + typeof abidata)
         $('#contractPublicInfo').append('<b>' + $('#translate-ContractBalance').val() + '</b> - <span id=ContractBalance></span>')
