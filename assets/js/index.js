@@ -1517,10 +1517,13 @@ $('#cardSendEthButtonOk').click(function(){
     }
 
     function loadContractInterface(abidata) {
+      console.log('loadContractInterface type - ' + typeof abidata)
           if(typeof abidata == 'string') {
+            console.log('loadContractInterface abidata == string')
             abidata = JSON.parse(abidata)
+        
           }
-
+          console.log('loadContractInterface type 2 - ' + typeof abidata)
         $('#contractPublicInfo').append('<b>' + $('#translate-ContractBalance').val() + '</b> - <span id=ContractBalance></span>')
         web3.eth.getBalance($('#contractAddress').val(), function (error, balance) {
             balance = parseFloat(web3.utils.fromWei(balance)).toFixed(2)
@@ -1531,10 +1534,13 @@ $('#cardSendEthButtonOk').click(function(){
             }
             $('#ContractBalance').html(balance);
         })
-        $('#contractAbiUser').text(JSON.stringify(abidata));
+        $('#contractAbiUser').val(JSON.stringify(abidata));
         $('#contractAbiUser').hide();
         $('#contractRefreshInfo').show();
-        let abi = JSON.parse(JSON.stringify(abidata));
+
+          let abi = JSON.parse(JSON.stringify(abidata));
+
+
         var ethContract = new web3.eth.Contract(abi, $('#contractAddress').val())
 
         $('#contractPublicFunctions').append('<b>' + $('#ReadFunctionTitile').val() + '</b><hr>')
@@ -1586,7 +1592,9 @@ $('#cardSendEthButtonOk').click(function(){
       $('#contractPublicInfo').html('');
       $('#contractPublicFunctions').html('')
       $('#contractPayFunctions').html('')
-          loadContractInterface($('#contractAbiUser').val())
+
+      loadContractInterface($('#contractAbiUser').val())
+
 
     })
 
