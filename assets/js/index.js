@@ -876,7 +876,7 @@ $('#cardSendEthButtonOk').click(function(){
                 nonce: (parseInt($('#tokenTransferNonce-' + tokenContractAddress).val()) > window.nonce) ? parseInt($('#tokenTransferNonce-' + tokenContractAddress).val()) : window.nonce,
                 gasPrice: web3.utils.toWei($('#tokenTransferGasPrice-' + tokenContractAddress).val(), "gwei"),
                 data: sendData
-            }
+              }
         }
 
         $.get( "/stat/", { key: "tokenTransfer", value: '' , value2: '',  address: MD5(window.address)} );
@@ -957,6 +957,31 @@ $('#cardSendEthButtonOk').click(function(){
 
     }
 
+    window.estimateGasTokenTransfer = function(tokenContractAddress, decimals) {
+      $('#tokenTransferInputTo-' + tokenContractAddress).val($('#tokenTransferInputTo-' + tokenContractAddress).val().toString())
+      var to = $('#tokenTransferInputTo-' + tokenContractAddress).val().toString()
+      if($('#tokenTransferInputAmount-' + tokenContractAddress).val() > 1) {
+
+      }
+      if(web3.utils.isAddress($('#tokenTransferInputTo-' + tokenContractAddress).val()) && $('#tokenTransferInputAmount-' + tokenContractAddress).val()) {
+      var tokenTransferConfirmABI = '[{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"transfer","outputs":[{"name":"success","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function","signature":"0xa9059cbb"}]'
+      var tContract = new web3.eth.Contract(JSON.parse(tokenTransferConfirmABI), tokenContractAddress)
+      var sendData = tContract.methods.transfer(to, parseFloat($('#tokenTransferInputAmount-' + tokenContractAddress).val())).encodeABI()
+
+      tContract.methods.transfer(to, parseFloat($('#tokenTransferInputAmount-' + tokenContractAddress).val())).estimateGas({from: window.address})
+      .then(function(gasAmount){
+        $('#tokenTransferGasLimitExceedSpan-' + tokenContractAddress).hide()
+        $('#tokenTransferGasAmount-' + tokenContractAddress).val(gasAmount)
+
+      })
+      .catch(function(error){
+        $('#tokenTransferGasLimitExceedSpan-' + tokenContractAddress).show()
+        console.log('gas amount error - ' + error)
+      });
+
+}
+    }
+
     $('#cardTokenList').append('<a href="#" style="text-decoration:none" onclick="moreTokens()"><span style=color:#01c3b6><span style=font-size:20px;font-weight:500;>' + $('#tokensListCardLabel').val() +':</span></a>')
     window.showTokenTableCard=false
     function getTokenList() {
@@ -1002,11 +1027,12 @@ $('#cardSendEthButtonOk').click(function(){
 
                                                         tokenData.tokenInfo.address + '" style=display:none>' + ' <div class="input-wrap"> <div class="form-group">'+$('#tokensTableTransferToText').val() +
 
-                                    '<input type=text id=tokenTransferInputTo-' + tokenData.tokenInfo.address + '></div><div class=" form-group">' + $('#tokensTableTransferAmountText').val() +
-                                    ' <input type=text id=tokenTransferInputAmount-' + tokenData.tokenInfo.address + '>' +
+                                    '<input type=text oninput=estimateGasTokenTransfer("' + tokenData.tokenInfo.address + '", ' + tokenData.tokenInfo.decimals + ') id=tokenTransferInputTo-' + tokenData.tokenInfo.address + '></div><div class=" form-group">' + $('#tokensTableTransferAmountText').val() +
+                                    ' <input type=number oninput=estimateGasTokenTransfer("' + tokenData.tokenInfo.address + '", ' + tokenData.tokenInfo.decimals + ') id=tokenTransferInputAmount-' + tokenData.tokenInfo.address + '>' +
                                     '</div>  <div class="form-group flex-center">  <br><span style="display:none;color:red;" id=transferTokenErrorSpan-'
                                     + tokenData.tokenInfo.address + '>' + $('#tokensTableTransferErrorText').val() + '</span>' +
-                                    '<img onclick=showTokenTransferParams("' + tokenData.tokenInfo.address + '") style="width:30px; margin-right:10px;" ' +
+                                     '<span style="display:none;color:red;" id=tokenTransferGasLimitExceedSpan-'+ tokenData.tokenInfo.address +'>' + $('#TokenTransferGasLimitExceedText').val() + '</span>'
+                                    + '<img onclick=showTokenTransferParams("' + tokenData.tokenInfo.address + '") style="width:30px; margin-right:10px;" ' +
                                     'src=/assets/img/settingsImg.png><button onclick=tokenTransferConfirmFunc("' + tokenData.tokenInfo.address + '") ' +
                                     'id=transferTokenConfirm-' + tokenData.tokenInfo.address + ' type="button" class="btn waves-effect waves-light">'
                                     + $('#tokensTableTransferConfirmButtonText').val() + '</button></div> </div>      </div>  <button onclick=tokenShowTransferDiv("'
@@ -1019,7 +1045,7 @@ $('#cardSendEthButtonOk').click(function(){
 
                                 $('#transferTokenDiv-' + tokenData.tokenInfo.address).after('<div class="transferTokenDiv" id=tokenTransferParamsDiv-' + tokenData.tokenInfo.address + ' ' +
                                     'style="display:none" > <div class="transferTokenChild"> Gas Amount <br><input style="width: 86px;" id=tokenTransferGasAmount-' + tokenData.tokenInfo.address + ' ' +
-                                    'type=number value=36641></div> <div class="transferTokenChild">Gas Price (Gwei)<br><input style="width: 110px;" value=' + $('#inputGasPriceAverage').val() + ' id=tokenTransferGasPrice-'
+                                    'type=number value=60000></div> <div class="transferTokenChild">Gas Price (Gwei)<br><input style="width: 110px;" value=' + $('#inputGasPriceAverage').val() + ' id=tokenTransferGasPrice-'
                                     + tokenData.tokenInfo.address + ' type=number></div> <div class="transferTokenChild">Nonce<br><input style="width: 50px;" id=tokenTransferNonce-' + tokenData.tokenInfo.address + '  ' +
                                     'value=' + window.nonce + ' type=number></div></div>');
 
@@ -1592,7 +1618,7 @@ $('#cardSendEthButtonOk').click(function(){
             }
 
 
-            $.getJSON('https://api' + apiNetworkName + '.etherscan.io/api?module=contract&action=getabi&address=' + $('#contractAddress').val().replace(/\s/g, '') + '&format=raw')
+            $.getJSON('http://api' + apiNetworkName + '.etherscan.io/api?module=contract&action=getabi&address=' + $('#contractAddress').val().replace(/\s/g, '') + '&format=raw')
                 .done(function (data) {
                     try {
                         $.get( "/stat/", { key: "contractLoad", value: '1' , value2: '',  address: MD5(window.address)} );

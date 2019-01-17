@@ -389,6 +389,9 @@
 },
 { "id": "metamaskInstallText",
  "translation": "Вам необходимо установить Metamask"
+},
+{ "id": "TokenTransferGasLimitExceedText",
+ "translation": "Перевод токенов не будет выполнена. Превышен лимит газа."
 }
 
 
