@@ -774,6 +774,8 @@ $('#cardSendEthButtonOk').click(function(){
             if (abiObj.stateMutability == 'view' || abiObj.stateMutability == 'pure' || abiObj.constant == true) {
                 // view
                 myContract.methods[abiObj.name](...params).call(function (error, result) {
+                  console.log('result --' + result)
+                  console.log('result2 --' + typeof result)
                     $('#callFunctionResult').append('<b>' + $('#resultCallFunctionTitle').val() + '</b><span id="smartContractEmptyArraySpan"></span><br>')
 
                     for (var i = 0; i < abiObj.outputs.length; i++) {
@@ -800,8 +802,13 @@ $('#cardSendEthButtonOk').click(function(){
                             }
                         }
 
-                        $('#callFunctionResult').append(outputName + '<input type=text value=' + result[i] + '>')
 
+                        if(abiObj.outputs.length > 1) {
+                          $('#callFunctionResult').append(outputName + '<input type=text value="' + result[i] + '">')
+                        }
+                        else {
+                        $('#callFunctionResult').append(outputName + '<input id="test" type=text value="' + result + '">')
+                        }
                     }
 
 
