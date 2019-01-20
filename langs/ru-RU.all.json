@@ -389,6 +389,18 @@
 },
 { "id": "metamaskInstallText",
  "translation": "Вам необходимо установить Metamask"
+},
+{
+  "id": "receivedFromAddress",
+  "translation": "Получено от"
+},
+{
+  "id": "sentToAddress",
+  "translation": "Отправлено на"
+},
+{
+  "id": "sentToYourself",
+  "translation": "Отправлено самому себе"
 }
 
 

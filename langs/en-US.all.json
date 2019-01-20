@@ -382,6 +382,18 @@
 },
 { "id": "metamaskInstallText",
  "translation": "You have to install Metamask extension"
+},
+{
+  "id": "receivedFromAddress",
+  "translation": "Received from"
+},
+{
+  "id": "sentToAddress",
+  "translation": "Sent to"
+},
+{
+  "id": "sentToYourself",
+  "translation": "Sent to yourself"
 }
 
 
