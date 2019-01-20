@@ -1509,9 +1509,32 @@ $('#cardSendEthButtonOk').click(function(){
         if (!isView) {
 
           if (!abiObj.hasOwnProperty('inputs')) {
+
                 window.checkFunctInputs(abiObj);
             }
             $('#callFunctionButtonDiv').html('<button class="btn" id="useContractCallFunction" onmousedown=window.useContractCallFunction(' + JSON.stringify(abiObj) + ')>' + $('#CallSmartContractFuncText').val() + '</button>')
+            //estimage gas
+            var myContract = new web3.eth.Contract(JSON.parse(JSON.stringify(JSON.parse($('#contractAbiUser').val()))), $('#contractAddress').val())
+
+            myContract.methods[abiObj.name]().estimateGas({
+                from: window.address
+            }, function (error, gasAmount) {
+                if (typeof gasAmount != 'undefined') {
+                    $('#smartContractGasAmountInput').val(gasAmount)
+                    $('#GasLimitExceedSpan').hide();
+
+                } else {
+                    $('#smartContractGasAmountInput').val(23000)
+                    $('#GasLimitExceedSpan').show();
+
+                }
+            })
+
+
+      
+
+
+
         } else {
             $('#callFunctionButtonDiv').html('');
         }
