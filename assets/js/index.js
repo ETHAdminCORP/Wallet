@@ -1134,19 +1134,12 @@ $('#cardSendEthButtonOk').click(function(){
                         }
                         if (transaction['contractAddress'] ) {
                             let contractAddress = transaction["contractAddress"];
-                            var transactionTo = $('#txCreateContract').val() + ' - <a href="#" onclick="contractMore(\'' + contractAddress + '\')">'
-                                + transaction['contractAddress'] + '</a>';
-                            var transactionToInfoTab = $('#txCreateContract').val() +
-                                ' - <a href="#" onclick="contractMore(\'' + contractAddress + '\')">' + transaction['contractAddress'].substr(0,17) + '...'
-                            + '</a>';
+                            var txTypeText = $('#txCreateContract').val();
+                            var txTypeText = $('#txCreateContract').val();
                         } else if (transaction['input'] != '0x' && transaction['input'] != '0x00') {
                             let contractAddress = transaction['to'];
-                            var transactionTo = $('#txCallFunc').val()
-                                + ' <a href="#" onclick="contractMore(\'' + contractAddress + '\')">' + contractAddress
-                                + '</a>';
-                            var transactionToInfoTab = $('#txCallFunc').val()
-                                + ' <a href="#" onclick="contractMore(\'' + contractAddress + '\')">' + contractAddress.substr(0,17) + '...'
-                                + '</a>';
+                            var txTypeText = $('#txCallFunc').val();
+                            var txTypeText = $('#txCallFunc').val();
                         } else {
                             var transactionTo = transaction['to']
                             var transactionToInfoTab = transaction['to'].substr(0,17) + '...'
