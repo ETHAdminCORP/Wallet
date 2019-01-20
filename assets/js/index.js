@@ -789,7 +789,7 @@ $('#cardSendEthButtonOk').click(function(){
 
                         if (!result) {
                             var result = [];
-                            $('#smartContractEmptyArraySpan').html('<br><font color=red>' + $('#smartContractEmptyArrayText').val() + '</font>');
+                            //$('#smartContractEmptyArraySpan').html('<br><font color=red>' + $('#smartContractEmptyArrayText').val() + '</font>');
                             if (abiObj.outputs[i].type.match(/.*int.*/)) {
                                 result[i] = 0;
                             } else if (abiObj.outputs[i].type == 'address') {
@@ -799,6 +799,9 @@ $('#cardSendEthButtonOk').click(function(){
                             } else if (abiObj.outputs[i].type.match(/bytes(.*)/)) {
                                 found = abiObj.outputs[i].type.match(/bytes(.*)/)
                                 result[i] = '0x' + '00'.repeat(parseInt(found[1]))
+                            }
+                              else if (abiObj.outputs[i].type == 'bool') {
+                                result[i] = 'false';
                             }
                         }
 
@@ -1278,7 +1281,7 @@ $('#cardSendEthButtonOk').click(function(){
 
 
 
-        var myContract = new web3.eth.Contract(JSON.parse($('#contractAbiUser').text()), $('#contractAddress').val())
+        var myContract = new web3.eth.Contract(JSON.parse($('#contractAbiUser').val()), $('#contractAddress').val())
         if (isView) {
 
         } else {
@@ -1434,14 +1437,12 @@ $('#cardSendEthButtonOk').click(function(){
         $("#smartContractImgParams").attr("src", "/assets/img/linedown.png");
         abiObj = JSON.parse(JSON.stringify(abiObj));
         $('#useContractInputs').html('');
-        if (abiObj.type == 'fallback') {
-            $('#smartContractGasAmountInput').val(23000)
+
+        $('#smartContractGasAmountInput').val(23000)
 
 
-        }
-        else {
-          $('#smartContractGasAmountInput').val(21000)
-        }
+
+
 
 
 
@@ -1521,7 +1522,7 @@ $('#cardSendEthButtonOk').click(function(){
             abidata = JSON.parse(abidata)
 
           }
-          console.log('loadContractInterface type 2 - ' + typeof abidata)
+
         $('#contractPublicInfo').append('<b>' + $('#translate-ContractBalance').val() + '</b> - <span id=ContractBalance></span>')
         web3.eth.getBalance($('#contractAddress').val(), function (error, balance) {
             balance = parseFloat(web3.utils.fromWei(balance)).toFixed(2)
