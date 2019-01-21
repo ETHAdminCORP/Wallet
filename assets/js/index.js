@@ -788,30 +788,38 @@ $('#cardSendEthButtonOk').click(function(){
                         }
 
                         if (!result) {
-                            var result = [];
-                            //$('#smartContractEmptyArraySpan').html('<br><font color=red>' + $('#smartContractEmptyArrayText').val() + '</font>');
-                            if (abiObj.outputs[i].type.match(/.*int.*/)) {
-                                result[i] = 0;
-                            } else if (abiObj.outputs[i].type == 'address') {
-                                result[i] = '0x0000000000000000000000000000000000000000';
-                            } else if (abiObj.outputs[i].type == 'string') {
-                                result[i] = '';
-                            } else if (abiObj.outputs[i].type.match(/bytes(.*)/)) {
-                                found = abiObj.outputs[i].type.match(/bytes(.*)/)
-                                result[i] = '0x' + '00'.repeat(parseInt(found[1]))
+                            if(typeof result == 'boolean') {
+                              result[i] = 'false';
+                              var resultUndefined=false;
+
                             }
-                              else if (abiObj.outputs[i].type == 'bool') {
-                                result[i] = 'false';
+                            else {
+                              // typeof result == undefined
+                              $('#smartContractEmptyArraySpan').html('<br><font color=red>' + $('#smartContractEmptyArrayText').val() + '</font>');
+                              var resultUndefined=true;
+
+
                             }
+                          
+
+
+                        }
+
+                        if(resultUndefined==false) {
+                          if(abiObj.outputs.length > 1) {
+                            $('#callFunctionResult').append(outputName + '<input type=text value="' + result[i] + '">')
+                          }
+                          else {
+                            $('#callFunctionResult').append(outputName + '<input id="test" type=text value="' + result + '">')
+                          }
+                        } else {
+
                         }
 
 
-                        if(abiObj.outputs.length > 1) {
-                          $('#callFunctionResult').append(outputName + '<input type=text value="' + result[i] + '">')
-                        }
-                        else {
-                        $('#callFunctionResult').append(outputName + '<input id="test" type=text value="' + result + '">')
-                        }
+
+
+
                     }
 
 
@@ -1531,7 +1539,7 @@ $('#cardSendEthButtonOk').click(function(){
             })
 
 
-      
+
 
 
 
