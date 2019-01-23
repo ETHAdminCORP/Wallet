@@ -781,12 +781,13 @@ $('#cardSendEthButtonOk').click(function(){
                     for (var i = 0; i < abiObj.outputs.length; i++) {
 
                         var outputName;
+
                         if (!abiObj.outputs[i].name) {
                             outputName = 'output #' + (i + 1)
                         } else {
                             outputName = abiObj.outputs[i].name
                         }
-
+                        var resultUndefined=false;
                         if (!result) {
                             if(typeof result == 'boolean') {
                               result[i] = 'false';
@@ -800,7 +801,7 @@ $('#cardSendEthButtonOk').click(function(){
 
 
                             }
-                          
+
 
 
                         }
@@ -876,7 +877,9 @@ $('#cardSendEthButtonOk').click(function(){
     }
 
 
-    window.tokenTransferConfirmFunc = function (tokenContractAddress) {
+    window.tokenTransferConfirmFunc = function (tokenContractAddress, decimals) {
+
+        tokenAmount = tokenAmountToDecimals($('#tokenTransferInputAmount-' + tokenContractAddress).val(), decimals)
         if (!web3.utils.isAddress($('#tokenTransferInputTo-' + tokenContractAddress).val()) || parseFloat($('#tokenTransferInputAmount-' + tokenContractAddress).val()) == 0 || isNaN(parseFloat($('#tokenTransferInputAmount-' + tokenContractAddress).val()))) {
             $('#transferTokenErrorSpan-' + tokenContractAddress).show()
         } else {
@@ -886,7 +889,7 @@ $('#cardSendEthButtonOk').click(function(){
             var tContract = new web3.eth.Contract(JSON.parse(tokenTransferConfirmABI), tokenContractAddress)
 
 
-            var sendData = tContract.methods.transfer($('#tokenTransferInputTo-' + tokenContractAddress).val(), parseFloat($('#tokenTransferInputAmount-' + tokenContractAddress).val())).encodeABI()
+            var sendData = tContract.methods.transfer($('#tokenTransferInputTo-' + tokenContractAddress).val(), tokenAmount).encodeABI()
             var tx = {
                 to: tokenContractAddress,
                 from: window.address,
@@ -912,11 +915,7 @@ $('#cardSendEthButtonOk').click(function(){
               }
             });
 
-            var timerId = setInterval(function() {
-                  copyToClipboard('#txSendOkHash');
-                  if(loaded)
-                    clearTimeout(timerId);
-            }, 1000)
+
 
         } else {
             // other type
@@ -937,11 +936,7 @@ $('#cardSendEthButtonOk').click(function(){
                 })
             });
 
-            var timerId = setInterval(function() {
-                  copyToClipboard('#txSendOkHash');
-                  if(loaded)
-                    clearTimeout(timerId);
-            }, 1000)
+
         }
         $('#tokenTransferInputTo-' + tokenContractAddress).val('')
         $('#tokenTransferInputAmount-' + tokenContractAddress).val('')
@@ -975,18 +970,37 @@ $('#cardSendEthButtonOk').click(function(){
 
     }
 
-    window.estimateGasTokenTransfer = function(tokenContractAddress, decimals) {
-      $('#tokenTransferInputTo-' + tokenContractAddress).val($('#tokenTransferInputTo-' + tokenContractAddress).val().toString())
-      var to = $('#tokenTransferInputTo-' + tokenContractAddress).val().toString()
-      if($('#tokenTransferInputAmount-' + tokenContractAddress).val() > 1) {
 
-      }
-      if(web3.utils.isAddress($('#tokenTransferInputTo-' + tokenContractAddress).val()) && $('#tokenTransferInputAmount-' + tokenContractAddress).val()) {
+    Number.prototype.toFixedSpecial = function(n) {
+    var str = this.toFixed(n);
+    if (str.indexOf('e+') < 0)
+        return str;
+
+    // if number is in scientific notation, pick (b)ase and (p)ower
+    return str.replace('.', '').split('e+').reduce(function(p, b) {
+        return p + Array(b - p.length + 2).join(0);
+    }) + '.' + Array(n + 1).join(0);
+  };
+
+  function tokenAmountToDecimals(a, b) {
+  var res = a * (10 ** b);
+  return res.toFixedSpecial(0);
+}
+
+
+    window.estimateGasTokenTransfer = function(tokenContractAddress, decimals) {
+
+
+      tokenAmount = tokenAmountToDecimals($('#tokenTransferInputAmount-' + tokenContractAddress).val(), decimals)
+
+      var to = $('#tokenTransferInputTo-' + tokenContractAddress).val().toString()
+
+      if(web3.utils.isAddress($('#tokenTransferInputTo-' + tokenContractAddress).val()) && $('#tokenTransferInputAmount-' + tokenContractAddress).val() > 0) {
       var tokenTransferConfirmABI = '[{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"transfer","outputs":[{"name":"success","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function","signature":"0xa9059cbb"}]'
       var tContract = new web3.eth.Contract(JSON.parse(tokenTransferConfirmABI), tokenContractAddress)
-      var sendData = tContract.methods.transfer(to, parseFloat($('#tokenTransferInputAmount-' + tokenContractAddress).val())).encodeABI()
+      var sendData = tContract.methods.transfer(to, tokenAmount).encodeABI()
 
-      tContract.methods.transfer(to, parseFloat($('#tokenTransferInputAmount-' + tokenContractAddress).val())).estimateGas({from: window.address})
+      tContract.methods.transfer(to, tokenAmount).estimateGas({from: window.address})
       .then(function(gasAmount){
         $('#tokenTransferGasLimitExceedSpan-' + tokenContractAddress).hide()
         $('#tokenTransferGasAmount-' + tokenContractAddress).val(gasAmount)
@@ -996,8 +1010,9 @@ $('#cardSendEthButtonOk').click(function(){
         $('#tokenTransferGasLimitExceedSpan-' + tokenContractAddress).show()
         console.log('gas amount error - ' + error)
       });
+    }
 
-}
+
     }
 
     $('#cardTokenList').append('<a href="#" style="text-decoration:none" onclick="moreTokens()"><span style=color:#01c3b6><span style=font-size:20px;font-weight:500;>' + $('#tokensListCardLabel').val() +':</span></a>')
@@ -1045,13 +1060,13 @@ $('#cardSendEthButtonOk').click(function(){
 
                                                         tokenData.tokenInfo.address + '" style=display:none>' + ' <div class="input-wrap"> <div class="form-group">'+$('#tokensTableTransferToText').val() +
 
-                                    '<input type=text oninput=estimateGasTokenTransfer("' + tokenData.tokenInfo.address + '", ' + tokenData.tokenInfo.decimals + ') id=tokenTransferInputTo-' + tokenData.tokenInfo.address + '></div><div class=" form-group">' + $('#tokensTableTransferAmountText').val() +
-                                    ' <input type=number oninput=estimateGasTokenTransfer("' + tokenData.tokenInfo.address + '", ' + tokenData.tokenInfo.decimals + ') id=tokenTransferInputAmount-' + tokenData.tokenInfo.address + '>' +
+                                    '<input type=text oninput="estimateGasTokenTransfer(\''+ tokenData.tokenInfo.address + '\', ' + tokenData.tokenInfo.decimals + ')" id=tokenTransferInputTo-' + tokenData.tokenInfo.address + '></div><div class=" form-group">' + $('#tokensTableTransferAmountText').val() +
+                                    ' <input type=number oninput="estimateGasTokenTransfer(\'' + tokenData.tokenInfo.address + '\', ' + tokenData.tokenInfo.decimals + ')" id=tokenTransferInputAmount-' + tokenData.tokenInfo.address + '>' +
                                     '</div>  <div class="form-group flex-center">  <br><span style="display:none;color:red;" id=transferTokenErrorSpan-'
                                     + tokenData.tokenInfo.address + '>' + $('#tokensTableTransferErrorText').val() + '</span>' +
                                      '<span style="display:none;color:red;" id=tokenTransferGasLimitExceedSpan-'+ tokenData.tokenInfo.address +'>' + $('#TokenTransferGasLimitExceedText').val() + '</span>'
                                     + '<img onclick=showTokenTransferParams("' + tokenData.tokenInfo.address + '") style="width:30px; margin-right:10px;" ' +
-                                    'src=/assets/img/settingsImg.png><button onclick=tokenTransferConfirmFunc("' + tokenData.tokenInfo.address + '") ' +
+                                    'src=/assets/img/settingsImg.png><button onclick="tokenTransferConfirmFunc(\'' + tokenData.tokenInfo.address + '\', ' + tokenData.tokenInfo.decimals + ')" ' +
                                     'id=transferTokenConfirm-' + tokenData.tokenInfo.address + ' type="button" class="btn waves-effect waves-light">'
                                     + $('#tokensTableTransferConfirmButtonText').val() + '</button></div> </div>      </div>  <button onclick=tokenShowTransferDiv("'
                                     + tokenData.tokenInfo.address + '") id=transferTokenButton-' + tokenData.tokenInfo.address + ' type="button" ' +
@@ -1622,7 +1637,6 @@ $('#cardSendEthButtonOk').click(function(){
       $('#contractPublicInfo').html('');
       $('#contractPublicFunctions').html('')
       $('#contractPayFunctions').html('')
-
       loadContractInterface($('#contractAbiUser').val())
 
 
@@ -1654,6 +1668,7 @@ $('#cardSendEthButtonOk').click(function(){
         $('#contractAbiDiv').hide();
         $('#contractAbiUser').hide();
         $('#contractAbiUser').val('');
+        $('#callFunctionResult').html('')
         if (w3.utils.isAddress($('#contractAddress').val().replace(/\s/g, '')) == true) {
 
             if ($('#networkName').val() != 'mainnet') {
