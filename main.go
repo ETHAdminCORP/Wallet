@@ -168,10 +168,9 @@ func getTransactions(w http.ResponseWriter, r *http.Request) {
 	}
 
 
- 		res, err := http.Get(strings.Join([]string{"http://api", apiNetwork, ".etherscan.io/api?module=account&action=txlist&address=", address, "&startblock=0&endblock=99999999&sort=desc&apikey=", randKey()}, ""))
+ 		res, err := http.Get(strings.Join([]string{"http://api", apiNetwork, ".etherscan.io/api?module=account&action=txlist&address=", address, "&page=1&offset=100&startblock=0&endblock=99999999&sort=desc&apikey=", randKey()}, ""))
 
 
-	//res, err := http.Get(strings.Join([]string{"http://api", apiNetwork, ".etherscan.io/api?module=account&action=txlist&address=", address, "&startblock=0&endblock=99999999&sort=desc&apikey=", "JF4HRHIBAW19CCGAUMGZE77EW5BU4E4F87"}, ""))
 	if err != nil {
 		fmt.Fprintf(w, err.Error())
 		return
