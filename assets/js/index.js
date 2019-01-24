@@ -1878,6 +1878,12 @@ $('#cardSendEthButtonOk').click(function(){
         getGasPricaData();
         getTokenList();
         getNoncePeriod();
+        if ($("#networkName").val() == 'mainnet') {
+            $("#buttonMerchantServices").css('display', 'inline');
+        }
+        else {
+            $("#buttonMerchantServices").css('display', 'none');
+        }
         //getTransactionsByAccount()
         if (connectType != 1) {
             $('#buttonShowPrivateKey').css('display', 'inline');
