@@ -572,7 +572,7 @@ a.tx-more-link {
     cursor: pointer;
 }
 
-.modal-content {
+.modal-content-test-eth {
     width: 100%;
     padding: 20px;
     overflow: scroll;

@@ -2094,5 +2094,5 @@ function showModal() {
     if ($("#networkName").val() == 'kovan') {
         out = $("#getTestETHPopUpKovan").val();
     }
-    $('.modal-content').html(out);
+    $('.modal-content-test-eth').html(out);
 }
