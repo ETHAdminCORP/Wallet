@@ -987,6 +987,7 @@ window.addEventListener("load", async () => {
     window.showTokenTableCard = false
 
     function getTokenList() {
+      alert('getTokenList function')
         if ($("#networkName").val() === 'mainnet') {
             $.getJSON('https://api.ethplorer.io/getAddressInfo/' + window.address + '?apiKey=freekey')
 
