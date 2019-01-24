@@ -202,7 +202,8 @@
                                     <button id="buttonDownloadUTC" type="button" class="btn effect waves-light">{{T "DownloadKeyFile"}}</button>
                                     <button id="buttonShowPrivateKey" type="button" class="btn effect waves-light">{{T "buttonShowPrivateKey"}}</button>
                                     <button id="buttonHidePrivateKey" type="button" class="btn effect waves-light">{{T "buttonShowPrivateKeyHide"}}</button>
-                                    <a href="https://www.coinpayments.net/store-directory" target="_blank"><button id="buttonMerchantServices" type="button" class="btn effect waves-light">{{T "buttonPayServices"}}</button></a>
+                                    <a id="buttonMerchantServices" href="https://www.coinpayments.net/store-directory" target="_blank"><button type="button" class="btn effect waves-light">{{T "buttonPayServices"}}</button></a>
+                                    <button id="buttonPopUp" type="button" class="btn effect waves-light">{{T "buttonPopUp"}}</button>
                                 </div>
                             </div>
 
@@ -213,7 +214,14 @@
 
                     </div>
                 </div>
-
+                <!--PopUp Window-->
+                <div class="modal-get-eth" id="modalGetETH">
+                    <div class="modal-container-box">
+                        <div class="modal-header"><span class="modal-header-title"></span><span class="close-modal">x</span></div>
+                        <div class="modal-content">
+                        </div>
+                    </div>
+                </div>
                 <!-- Cards -->
                 <div class="row">
                     <div class="row-container">
@@ -508,6 +516,10 @@
 
     <input type=text value='{{ T "TokenTransferGasLimitExceedText" }}' id="TokenTransferGasLimitExceedText" hidden/>
 
+    <input type=text value='{{ T "getTestETHPopUpHeader" }}' id="getTestETHPopUpHeader" hidden/>
+    <input type=text value='{{ T "getTestETHPopUpRopsten" }}' id="getTestETHPopUpRopsten" hidden/>
+    <input type=text value='{{ T "getTestETHPopUpRinkeby" }}' id="getTestETHPopUpRinkeby" hidden/>
+    <input type=text value='{{ T "getTestETHPopUpKovan" }}' id="getTestETHPopUpKovan" hidden/>
 
     <span style="display:none" id=txSendOkHash></span>
 
