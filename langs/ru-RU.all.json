@@ -409,7 +409,7 @@
   },
   {
     "id": "txListHours",
-    "translation": "часов"
+    "translation": "ч."
   },
   {
     "id": "txListMins",
@@ -421,7 +421,7 @@
   },
   {
     "id": "txListHours2",
-    "translation": "часов"
+    "translation": "ч."
   },
   {
     "id": "txSendOk",
