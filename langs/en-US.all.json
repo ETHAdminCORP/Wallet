@@ -263,131 +263,172 @@
     "id": "SendEthLabelGasAmount",
     "translation": "Gas amount"
   },
-  { "id": "GasLimitExceedText",
-   "translation": "The function will not be executed. Error: gas limit exceed."
+  {
+    "id": "GasLimitExceedText",
+    "translation": "The function will not be executed. Error: gas limit exceed."
   },
-  { "id": "resultCallFunctionTitle",
-   "translation": "Result:"
+  {
+    "id": "resultCallFunctionTitle",
+    "translation": "Result:"
   },
-  { "id": "smartContractEthAmountErrorText",
-   "translation": "Not enought ETH"
+  {
+    "id": "smartContractEthAmountErrorText",
+    "translation": "Not enought ETH"
   },
-  { "id": "smartContractEmptyArrayText",
-   "translation": "Empty array!"
+  {
+    "id": "smartContractEmptyArrayText",
+    "translation": "Empty array!"
   },
-  { "id": "tokensTableTokenNameText",
-   "translation": "Name"
+  {
+    "id": "tokensTableTokenNameText",
+    "translation": "Name"
   },
-  { "id": "tokensTableBalanceText",
-   "translation": "Balance"
+  {
+    "id": "tokensTableBalanceText",
+    "translation": "Balance"
   },
-  { "id": "tokensTablePriceText",
-   "translation": "Price"
+  {
+    "id": "tokensTablePriceText",
+    "translation": "Price"
   },
-  { "id": "tokensTableSumText",
-   "translation": "Total"
+  {
+    "id": "tokensTableSumText",
+    "translation": "Total"
   },
-  { "id": "tokensTableButtonTransferText",
-   "translation": "Transfer"
+  {
+    "id": "tokensTableButtonTransferText",
+    "translation": "Transfer"
   },
-  { "id": "tokensTableButtonExchangeText",
-   "translation": "Trade"
+  {
+    "id": "tokensTableButtonExchangeText",
+    "translation": "Trade"
   },
-  { "id": "tokensTableTransferToText",
-   "translation": "Address"
+  {
+    "id": "tokensTableTransferToText",
+    "translation": "Address"
   },
-  { "id": "tokensTableTransferAmountText",
-   "translation": "Amount"
+  {
+    "id": "tokensTableTransferAmountText",
+    "translation": "Amount"
   },
-  { "id": "tokensTableTransferConfirmButtonText",
-   "translation": "Confirm transfer"
+  {
+    "id": "tokensTableTransferConfirmButtonText",
+    "translation": "Confirm transfer"
   },
-  { "id": "tokensTableTransferErrorText",
+  {
+    "id": "tokensTableTransferErrorText",
     "translation": "Incorrect address of the recipient or amount of tokens"
   },
-  { "id": "tokensTableNotLoadText",
-  "translation": "Token list avaliable only in MainNet"
+  {
+    "id": "tokensTableNotLoadText",
+    "translation": "Token list avaliable only in MainNet"
   },
-  { "id": "transactionsErrorText",
-  "translation": "We can't load list of transactions :("
+  {
+    "id": "transactionsErrorText",
+    "translation": "We can't load list of transactions :("
   },
-  { "id": "transactionsLoading",
-  "translation": "Loading list of transactions"
+  {
+    "id": "transactionsLoading",
+    "translation": "Loading list of transactions"
   },
- { "id": "txCallFunc",
-  "translation": "Smart contract function call"
- },
- { "id": "txCreateContract",
-  "translation": "Creating the contract"
- },
- { "id": "ContractsFooter",
-  "translation": "Contact us"
- },
- { "id": "txListEmpty",
-  "translation": "This address doesn't have any transactions."
- },
- { "id": "privateKeyLabel",
-  "translation": "Private key"
- },
- { "id": "txListCardLabel",
-  "translation": "Transactions"
- },
- { "id": "txListCardLabelDate",
-  "translation": "Date"
- },
- { "id": "txListCardLabelFrom",
-  "translation": "From"
- },
- { "id": "txListCardLabelTo",
-  "translation": "To"
- },
- { "id": "txListCardLabelAmount",
-  "translation": "Amount"
- },
- { "id": "txListCardLabelMore",
-  "translation": "More.."
- },
- { "id": "tokensListCardLabel",
-  "translation": "Tokens"
- },
- { "id": "noTokensWarningCard",
-  "translation": "You don't have any tokens"
- },
- { "id": "noTokensWarning",
-  "translation": "You don't have any tokens"
- },
- { "id": "tokenListCardLabelMore",
-  "translation": "More.."
-},
-{ "id": "sendEthLabelMainTab",
- "translation": "Send eth to another address"
-},
-{ "id": "CreateWalletPlaceholder",
- "translation": "At least 6 characters"
-},
-{ "id": "txListHours",
- "translation": "hrs ago"
-},
-{ "id": "txListMins",
- "translation": "mins ago"
-},
-{ "id": "txListSec",
- "translation": "secs ago"
-},
-{ "id": "txListHours2",
- "translation": "hrs"
-},
-{ "id": "txSendOk",
- "translation": "Transaction sent"
-},
-{ "id": "metamaskInstallText",
- "translation": "You have to install Metamask extension"
-},
-{ "id": "TokenTransferGasLimitExceedText",
- "translation": "Transfer of tokens will not be executed. Error: gas limit exceed."
-}
-
-
-
-
+  {
+    "id": "txCallFunc",
+    "translation": "Smart contract function call"
+  },
+  {
+    "id": "txCreateContract",
+    "translation": "Creating the contract"
+  },
+  {
+    "id": "ContractsFooter",
+    "translation": "Contact us"
+  },
+  {
+    "id": "txListEmpty",
+    "translation": "This address doesn't have any transactions."
+  },
+  {
+    "id": "privateKeyLabel",
+    "translation": "Private key"
+  },
+  {
+    "id": "txListCardLabel",
+    "translation": "Transactions"
+  },
+  {
+    "id": "txListCardLabelDate",
+    "translation": "Date"
+  },
+  {
+    "id": "txListCardLabelFrom",
+    "translation": "From"
+  },
+  {
+    "id": "txListCardLabelTo",
+    "translation": "To"
+  },
+  {
+    "id": "txListCardLabelAmount",
+    "translation": "Amount"
+  },
+  {
+    "id": "txListCardLabelMore",
+    "translation": "More.."
+  },
+  {
+    "id": "tokensListCardLabel",
+    "translation": "Tokens"
+  },
+  {
+    "id": "noTokensWarningCard",
+    "translation": "You don't have any tokens"
+  },
+  {
+    "id": "noTokensWarning",
+    "translation": "You don't have any tokens"
+  },
+  {
+    "id": "tokenListCardLabelMore",
+    "translation": "More.."
+  },
+  {
+    "id": "sendEthLabelMainTab",
+    "translation": "Send eth to another address"
+  },
+  {
+    "id": "CreateWalletPlaceholder",
+    "translation": "At least 6 characters"
+  },
+  {
+    "id": "txListHours",
+    "translation": "hrs ago"
+  },
+  {
+    "id": "txListMins",
+    "translation": "mins ago"
+  },
+  {
+    "id": "txListSec",
+    "translation": "secs ago"
+  },
+  {
+    "id": "txListHours2",
+    "translation": "hrs"
+  },
+  {
+    "id": "txSendOk",
+    "translation": "Transaction sent"
+  },
+  {
+    "id": "metamaskInstallText",
+    "translation": "You have to install Metamask extension"
+  },
+  {
+    "id": "TokenTransferGasLimitExceedText",
+    "translation": "Transfer of tokens will not be executed. Error: gas limit exceed."
+  },
+  {
+    "id": "buttonPayServices",
+    "translation": "Shops/Services"
+  }
 ]
