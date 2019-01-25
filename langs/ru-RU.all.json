@@ -438,5 +438,25 @@
   {
     "id": "buttonPayServices",
     "translation": "Магазины / Сервисы"
+  },
+  {
+    "id": "getTestETHPopUpRopsten",
+    "translation": "<p>Перейдите на сайт <a href='https://faucet.ropsten.be/' target='_blank'>https://faucet.ropsten.be/</a> или <a href='https://faucet.metamask.io/' target='_blank'>https://faucet.metamask.io/</a> и введите свой ethereum адрес.</p>"
+  },
+  {
+    "id": "getTestETHPopUpRinkeby",
+    "translation": "<p>Создайте пост в facebook/twitter/google+ с вашим ethereum адресом. Перейдите на сайт <a href='https://faucet.rinkeby.io/' target='_blank'>https://faucet.rinkeby.io/</a> и введите адрес поста с вашим адресом.</p>"
+  },
+  {
+    "id": "getTestETHPopUpKovan",
+    "translation": "<p>Перейдите в чат <a href='https://gitter.im/kovan-testnet/faucet' target='_blank'>https://gitter.im/kovan-testnet/faucet</a> и в чат напишите свой ethereum адрес. Бот автоматически пришлет вам ETH.</p>"
+  },
+  {
+    "id": "getTestETHPopUpHeader",
+    "translation": "Получение тестового ETH"
+  },
+  {
+    "id": "buttonPopUp",
+    "translation": "Получить эфир"
   }
 ]

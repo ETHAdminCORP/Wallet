@@ -11,13 +11,13 @@ $(document).ready(function () {
 
     let changeTab = () => {
         setTimeout(function () {
-            if ($('#transactions').css('display') === 'block')  {
+            if ($('#transactions').css('display') === 'block') {
                 $('.tabs').tabs('updateTabIndicator');
                 if ($("#networkName").val() === 'mainnet') {
                     setTimeout(function () {
                         let integrationFrame = $('#integrationFrame');
                         if (integrationFrame.css('display') === 'block') {
-                            $.get( "/stat/", { key: "txViz", value: '' , value2: '',  address: MD5(window.address)} );
+                            $.get("/stat/", {key: "txViz", value: '', value2: '', address: MD5(window.address)});
                             let requestAddress = `https://www.ethtective.com/address/${window.address}`;
                             integrationFrame.append(`<iframe id="ethtectiveFrame" src="${requestAddress}" frameborder="0"></iframe>`);
                         }
@@ -42,7 +42,7 @@ $(document).ready(function () {
         }, 100);
     };
 
-    $('.tabs').tabs({ onShow: changeTab });
+    $('.tabs').tabs({onShow: changeTab});
 
     $('#walletTypePrivateKey').on('click', function () {
 
@@ -55,7 +55,6 @@ $(document).ready(function () {
     });
 });
 
-
 function contractMore(address) {
     let contact = $('#contractTabLink');
     contact[0].click();
@@ -65,33 +64,32 @@ function contractMore(address) {
 }
 
 
-
 // auto logout
 var idleTime;
 $(document).ready(function () {
-         reloadPage();
-        $('html').bind('mousemove click mouseup mousedown keydown keypress keyup submit change mouseenter scroll resize dblclick', function () {
-            clearTimeout(idleTime);
-            reloadPage();
-        });
+    reloadPage();
+    $('html').bind('mousemove click mouseup mousedown keydown keypress keyup submit change mouseenter scroll resize dblclick', function () {
+        clearTimeout(idleTime);
+        reloadPage();
+    });
 });
 
 function reloadPage() {
     clearTimeout(idleTime);
     idleTime = setTimeout(function () {
-      if($("#start").is(":hidden")) {
-        location.reload();
-      }
+        if ($("#start").is(":hidden")) {
+            location.reload();
+        }
     }, 600000);
 }
 
 $('#passEye').click(function () {
     let passwordInput = $("#passwordForNewUTC");
-    if(passwordInput.attr("type") === "text"){
+    if (passwordInput.attr("type") === "text") {
         passwordInput.attr("type", "password");
         $('#passEye').css('opacity', '1');
     }
-    else{
+    else {
         passwordInput.attr("type", "text");
         $('#passEye').css('opacity', '0.5');
     }
@@ -112,175 +110,189 @@ $(document).mouseup(function (e) {
 });
 
 
-function MD5 ( str ) {
+function MD5(str) {
 
-    var RotateLeft = function(lValue, iShiftBits) {
-            return (lValue<<iShiftBits) | (lValue>>>(32-iShiftBits));
-        };
+    var RotateLeft = function (lValue, iShiftBits) {
+        return (lValue << iShiftBits) | (lValue >>> (32 - iShiftBits));
+    };
 
-    var AddUnsigned = function(lX,lY) {
-            var lX4,lY4,lX8,lY8,lResult;
-            lX8 = (lX & 0x80000000);
-            lY8 = (lY & 0x80000000);
-            lX4 = (lX & 0x40000000);
-            lY4 = (lY & 0x40000000);
-            lResult = (lX & 0x3FFFFFFF)+(lY & 0x3FFFFFFF);
-            if (lX4 & lY4) {
-                return (lResult ^ 0x80000000 ^ lX8 ^ lY8);
-            }
-            if (lX4 | lY4) {
-                if (lResult & 0x40000000) {
-                    return (lResult ^ 0xC0000000 ^ lX8 ^ lY8);
-                } else {
-                    return (lResult ^ 0x40000000 ^ lX8 ^ lY8);
-                }
+    var AddUnsigned = function (lX, lY) {
+        var lX4, lY4, lX8, lY8, lResult;
+        lX8 = (lX & 0x80000000);
+        lY8 = (lY & 0x80000000);
+        lX4 = (lX & 0x40000000);
+        lY4 = (lY & 0x40000000);
+        lResult = (lX & 0x3FFFFFFF) + (lY & 0x3FFFFFFF);
+        if (lX4 & lY4) {
+            return (lResult ^ 0x80000000 ^ lX8 ^ lY8);
+        }
+        if (lX4 | lY4) {
+            if (lResult & 0x40000000) {
+                return (lResult ^ 0xC0000000 ^ lX8 ^ lY8);
             } else {
-                return (lResult ^ lX8 ^ lY8);
+                return (lResult ^ 0x40000000 ^ lX8 ^ lY8);
             }
-        };
+        } else {
+            return (lResult ^ lX8 ^ lY8);
+        }
+    };
 
-    var F = function(x,y,z) { return (x & y) | ((~x) & z); };
-    var G = function(x,y,z) { return (x & z) | (y & (~z)); };
-    var H = function(x,y,z) { return (x ^ y ^ z); };
-    var I = function(x,y,z) { return (y ^ (x | (~z))); };
+    var F = function (x, y, z) {
+        return (x & y) | ((~x) & z);
+    };
+    var G = function (x, y, z) {
+        return (x & z) | (y & (~z));
+    };
+    var H = function (x, y, z) {
+        return (x ^ y ^ z);
+    };
+    var I = function (x, y, z) {
+        return (y ^ (x | (~z)));
+    };
 
-    var FF = function(a,b,c,d,x,s,ac) {
-            a = AddUnsigned(a, AddUnsigned(AddUnsigned(F(b, c, d), x), ac));
-            return AddUnsigned(RotateLeft(a, s), b);
-        };
+    var FF = function (a, b, c, d, x, s, ac) {
+        a = AddUnsigned(a, AddUnsigned(AddUnsigned(F(b, c, d), x), ac));
+        return AddUnsigned(RotateLeft(a, s), b);
+    };
 
-    var GG = function(a,b,c,d,x,s,ac) {
-            a = AddUnsigned(a, AddUnsigned(AddUnsigned(G(b, c, d), x), ac));
-            return AddUnsigned(RotateLeft(a, s), b);
-        };
+    var GG = function (a, b, c, d, x, s, ac) {
+        a = AddUnsigned(a, AddUnsigned(AddUnsigned(G(b, c, d), x), ac));
+        return AddUnsigned(RotateLeft(a, s), b);
+    };
 
-    var HH = function(a,b,c,d,x,s,ac) {
-            a = AddUnsigned(a, AddUnsigned(AddUnsigned(H(b, c, d), x), ac));
-            return AddUnsigned(RotateLeft(a, s), b);
-        };
+    var HH = function (a, b, c, d, x, s, ac) {
+        a = AddUnsigned(a, AddUnsigned(AddUnsigned(H(b, c, d), x), ac));
+        return AddUnsigned(RotateLeft(a, s), b);
+    };
 
-    var II = function(a,b,c,d,x,s,ac) {
-            a = AddUnsigned(a, AddUnsigned(AddUnsigned(I(b, c, d), x), ac));
-            return AddUnsigned(RotateLeft(a, s), b);
-        };
+    var II = function (a, b, c, d, x, s, ac) {
+        a = AddUnsigned(a, AddUnsigned(AddUnsigned(I(b, c, d), x), ac));
+        return AddUnsigned(RotateLeft(a, s), b);
+    };
 
-    var ConvertToWordArray = function(str) {
-            var lWordCount;
-            var lMessageLength = str.length;
-            var lNumberOfWords_temp1=lMessageLength + 8;
-            var lNumberOfWords_temp2=(lNumberOfWords_temp1-(lNumberOfWords_temp1 % 64))/64;
-            var lNumberOfWords = (lNumberOfWords_temp2+1)*16;
-            var lWordArray=Array(lNumberOfWords-1);
-            var lBytePosition = 0;
-            var lByteCount = 0;
-            while ( lByteCount < lMessageLength ) {
-                lWordCount = (lByteCount-(lByteCount % 4))/4;
-                lBytePosition = (lByteCount % 4)*8;
-                lWordArray[lWordCount] = (lWordArray[lWordCount] | (str.charCodeAt(lByteCount)<<lBytePosition));
-                lByteCount++;
-            }
-            lWordCount = (lByteCount-(lByteCount % 4))/4;
-            lBytePosition = (lByteCount % 4)*8;
-            lWordArray[lWordCount] = lWordArray[lWordCount] | (0x80<<lBytePosition);
-            lWordArray[lNumberOfWords-2] = lMessageLength<<3;
-            lWordArray[lNumberOfWords-1] = lMessageLength>>>29;
-            return lWordArray;
-        };
+    var ConvertToWordArray = function (str) {
+        var lWordCount;
+        var lMessageLength = str.length;
+        var lNumberOfWords_temp1 = lMessageLength + 8;
+        var lNumberOfWords_temp2 = (lNumberOfWords_temp1 - (lNumberOfWords_temp1 % 64)) / 64;
+        var lNumberOfWords = (lNumberOfWords_temp2 + 1) * 16;
+        var lWordArray = Array(lNumberOfWords - 1);
+        var lBytePosition = 0;
+        var lByteCount = 0;
+        while (lByteCount < lMessageLength) {
+            lWordCount = (lByteCount - (lByteCount % 4)) / 4;
+            lBytePosition = (lByteCount % 4) * 8;
+            lWordArray[lWordCount] = (lWordArray[lWordCount] | (str.charCodeAt(lByteCount) << lBytePosition));
+            lByteCount++;
+        }
+        lWordCount = (lByteCount - (lByteCount % 4)) / 4;
+        lBytePosition = (lByteCount % 4) * 8;
+        lWordArray[lWordCount] = lWordArray[lWordCount] | (0x80 << lBytePosition);
+        lWordArray[lNumberOfWords - 2] = lMessageLength << 3;
+        lWordArray[lNumberOfWords - 1] = lMessageLength >>> 29;
+        return lWordArray;
+    };
 
-    var WordToHex = function(lValue) {
-            var WordToHexValue="",WordToHexValue_temp="",lByte,lCount;
-            for (lCount = 0;lCount<=3;lCount++) {
-                lByte = (lValue>>>(lCount*8)) & 255;
-                WordToHexValue_temp = "0" + lByte.toString(16);
-                WordToHexValue = WordToHexValue + WordToHexValue_temp.substr(WordToHexValue_temp.length-2,2);
-            }
-            return WordToHexValue;
-        };
+    var WordToHex = function (lValue) {
+        var WordToHexValue = "", WordToHexValue_temp = "", lByte, lCount;
+        for (lCount = 0; lCount <= 3; lCount++) {
+            lByte = (lValue >>> (lCount * 8)) & 255;
+            WordToHexValue_temp = "0" + lByte.toString(16);
+            WordToHexValue = WordToHexValue + WordToHexValue_temp.substr(WordToHexValue_temp.length - 2, 2);
+        }
+        return WordToHexValue;
+    };
 
-    var x=Array();
-    var k,AA,BB,CC,DD,a,b,c,d;
-    var S11=7, S12=12, S13=17, S14=22;
-    var S21=5, S22=9 , S23=14, S24=20;
-    var S31=4, S32=11, S33=16, S34=23;
-    var S41=6, S42=10, S43=15, S44=21;
+    var x = Array();
+    var k, AA, BB, CC, DD, a, b, c, d;
+    var S11 = 7, S12 = 12, S13 = 17, S14 = 22;
+    var S21 = 5, S22 = 9, S23 = 14, S24 = 20;
+    var S31 = 4, S32 = 11, S33 = 16, S34 = 23;
+    var S41 = 6, S42 = 10, S43 = 15, S44 = 21;
 
     //str = this.utf8_encode(str);
     x = ConvertToWordArray(str);
-    a = 0x67452301; b = 0xEFCDAB89; c = 0x98BADCFE; d = 0x10325476;
+    a = 0x67452301;
+    b = 0xEFCDAB89;
+    c = 0x98BADCFE;
+    d = 0x10325476;
 
-    for (k=0;k<x.length;k+=16) {
-        AA=a; BB=b; CC=c; DD=d;
-        a=FF(a,b,c,d,x[k+0], S11,0xD76AA478);
-        d=FF(d,a,b,c,x[k+1], S12,0xE8C7B756);
-        c=FF(c,d,a,b,x[k+2], S13,0x242070DB);
-        b=FF(b,c,d,a,x[k+3], S14,0xC1BDCEEE);
-        a=FF(a,b,c,d,x[k+4], S11,0xF57C0FAF);
-        d=FF(d,a,b,c,x[k+5], S12,0x4787C62A);
-        c=FF(c,d,a,b,x[k+6], S13,0xA8304613);
-        b=FF(b,c,d,a,x[k+7], S14,0xFD469501);
-        a=FF(a,b,c,d,x[k+8], S11,0x698098D8);
-        d=FF(d,a,b,c,x[k+9], S12,0x8B44F7AF);
-        c=FF(c,d,a,b,x[k+10],S13,0xFFFF5BB1);
-        b=FF(b,c,d,a,x[k+11],S14,0x895CD7BE);
-        a=FF(a,b,c,d,x[k+12],S11,0x6B901122);
-        d=FF(d,a,b,c,x[k+13],S12,0xFD987193);
-        c=FF(c,d,a,b,x[k+14],S13,0xA679438E);
-        b=FF(b,c,d,a,x[k+15],S14,0x49B40821);
-        a=GG(a,b,c,d,x[k+1], S21,0xF61E2562);
-        d=GG(d,a,b,c,x[k+6], S22,0xC040B340);
-        c=GG(c,d,a,b,x[k+11],S23,0x265E5A51);
-        b=GG(b,c,d,a,x[k+0], S24,0xE9B6C7AA);
-        a=GG(a,b,c,d,x[k+5], S21,0xD62F105D);
-        d=GG(d,a,b,c,x[k+10],S22,0x2441453);
-        c=GG(c,d,a,b,x[k+15],S23,0xD8A1E681);
-        b=GG(b,c,d,a,x[k+4], S24,0xE7D3FBC8);
-        a=GG(a,b,c,d,x[k+9], S21,0x21E1CDE6);
-        d=GG(d,a,b,c,x[k+14],S22,0xC33707D6);
-        c=GG(c,d,a,b,x[k+3], S23,0xF4D50D87);
-        b=GG(b,c,d,a,x[k+8], S24,0x455A14ED);
-        a=GG(a,b,c,d,x[k+13],S21,0xA9E3E905);
-        d=GG(d,a,b,c,x[k+2], S22,0xFCEFA3F8);
-        c=GG(c,d,a,b,x[k+7], S23,0x676F02D9);
-        b=GG(b,c,d,a,x[k+12],S24,0x8D2A4C8A);
-        a=HH(a,b,c,d,x[k+5], S31,0xFFFA3942);
-        d=HH(d,a,b,c,x[k+8], S32,0x8771F681);
-        c=HH(c,d,a,b,x[k+11],S33,0x6D9D6122);
-        b=HH(b,c,d,a,x[k+14],S34,0xFDE5380C);
-        a=HH(a,b,c,d,x[k+1], S31,0xA4BEEA44);
-        d=HH(d,a,b,c,x[k+4], S32,0x4BDECFA9);
-        c=HH(c,d,a,b,x[k+7], S33,0xF6BB4B60);
-        b=HH(b,c,d,a,x[k+10],S34,0xBEBFBC70);
-        a=HH(a,b,c,d,x[k+13],S31,0x289B7EC6);
-        d=HH(d,a,b,c,x[k+0], S32,0xEAA127FA);
-        c=HH(c,d,a,b,x[k+3], S33,0xD4EF3085);
-        b=HH(b,c,d,a,x[k+6], S34,0x4881D05);
-        a=HH(a,b,c,d,x[k+9], S31,0xD9D4D039);
-        d=HH(d,a,b,c,x[k+12],S32,0xE6DB99E5);
-        c=HH(c,d,a,b,x[k+15],S33,0x1FA27CF8);
-        b=HH(b,c,d,a,x[k+2], S34,0xC4AC5665);
-        a=II(a,b,c,d,x[k+0], S41,0xF4292244);
-        d=II(d,a,b,c,x[k+7], S42,0x432AFF97);
-        c=II(c,d,a,b,x[k+14],S43,0xAB9423A7);
-        b=II(b,c,d,a,x[k+5], S44,0xFC93A039);
-        a=II(a,b,c,d,x[k+12],S41,0x655B59C3);
-        d=II(d,a,b,c,x[k+3], S42,0x8F0CCC92);
-        c=II(c,d,a,b,x[k+10],S43,0xFFEFF47D);
-        b=II(b,c,d,a,x[k+1], S44,0x85845DD1);
-        a=II(a,b,c,d,x[k+8], S41,0x6FA87E4F);
-        d=II(d,a,b,c,x[k+15],S42,0xFE2CE6E0);
-        c=II(c,d,a,b,x[k+6], S43,0xA3014314);
-        b=II(b,c,d,a,x[k+13],S44,0x4E0811A1);
-        a=II(a,b,c,d,x[k+4], S41,0xF7537E82);
-        d=II(d,a,b,c,x[k+11],S42,0xBD3AF235);
-        c=II(c,d,a,b,x[k+2], S43,0x2AD7D2BB);
-        b=II(b,c,d,a,x[k+9], S44,0xEB86D391);
-        a=AddUnsigned(a,AA);
-        b=AddUnsigned(b,BB);
-        c=AddUnsigned(c,CC);
-        d=AddUnsigned(d,DD);
+    for (k = 0; k < x.length; k += 16) {
+        AA = a;
+        BB = b;
+        CC = c;
+        DD = d;
+        a = FF(a, b, c, d, x[k + 0], S11, 0xD76AA478);
+        d = FF(d, a, b, c, x[k + 1], S12, 0xE8C7B756);
+        c = FF(c, d, a, b, x[k + 2], S13, 0x242070DB);
+        b = FF(b, c, d, a, x[k + 3], S14, 0xC1BDCEEE);
+        a = FF(a, b, c, d, x[k + 4], S11, 0xF57C0FAF);
+        d = FF(d, a, b, c, x[k + 5], S12, 0x4787C62A);
+        c = FF(c, d, a, b, x[k + 6], S13, 0xA8304613);
+        b = FF(b, c, d, a, x[k + 7], S14, 0xFD469501);
+        a = FF(a, b, c, d, x[k + 8], S11, 0x698098D8);
+        d = FF(d, a, b, c, x[k + 9], S12, 0x8B44F7AF);
+        c = FF(c, d, a, b, x[k + 10], S13, 0xFFFF5BB1);
+        b = FF(b, c, d, a, x[k + 11], S14, 0x895CD7BE);
+        a = FF(a, b, c, d, x[k + 12], S11, 0x6B901122);
+        d = FF(d, a, b, c, x[k + 13], S12, 0xFD987193);
+        c = FF(c, d, a, b, x[k + 14], S13, 0xA679438E);
+        b = FF(b, c, d, a, x[k + 15], S14, 0x49B40821);
+        a = GG(a, b, c, d, x[k + 1], S21, 0xF61E2562);
+        d = GG(d, a, b, c, x[k + 6], S22, 0xC040B340);
+        c = GG(c, d, a, b, x[k + 11], S23, 0x265E5A51);
+        b = GG(b, c, d, a, x[k + 0], S24, 0xE9B6C7AA);
+        a = GG(a, b, c, d, x[k + 5], S21, 0xD62F105D);
+        d = GG(d, a, b, c, x[k + 10], S22, 0x2441453);
+        c = GG(c, d, a, b, x[k + 15], S23, 0xD8A1E681);
+        b = GG(b, c, d, a, x[k + 4], S24, 0xE7D3FBC8);
+        a = GG(a, b, c, d, x[k + 9], S21, 0x21E1CDE6);
+        d = GG(d, a, b, c, x[k + 14], S22, 0xC33707D6);
+        c = GG(c, d, a, b, x[k + 3], S23, 0xF4D50D87);
+        b = GG(b, c, d, a, x[k + 8], S24, 0x455A14ED);
+        a = GG(a, b, c, d, x[k + 13], S21, 0xA9E3E905);
+        d = GG(d, a, b, c, x[k + 2], S22, 0xFCEFA3F8);
+        c = GG(c, d, a, b, x[k + 7], S23, 0x676F02D9);
+        b = GG(b, c, d, a, x[k + 12], S24, 0x8D2A4C8A);
+        a = HH(a, b, c, d, x[k + 5], S31, 0xFFFA3942);
+        d = HH(d, a, b, c, x[k + 8], S32, 0x8771F681);
+        c = HH(c, d, a, b, x[k + 11], S33, 0x6D9D6122);
+        b = HH(b, c, d, a, x[k + 14], S34, 0xFDE5380C);
+        a = HH(a, b, c, d, x[k + 1], S31, 0xA4BEEA44);
+        d = HH(d, a, b, c, x[k + 4], S32, 0x4BDECFA9);
+        c = HH(c, d, a, b, x[k + 7], S33, 0xF6BB4B60);
+        b = HH(b, c, d, a, x[k + 10], S34, 0xBEBFBC70);
+        a = HH(a, b, c, d, x[k + 13], S31, 0x289B7EC6);
+        d = HH(d, a, b, c, x[k + 0], S32, 0xEAA127FA);
+        c = HH(c, d, a, b, x[k + 3], S33, 0xD4EF3085);
+        b = HH(b, c, d, a, x[k + 6], S34, 0x4881D05);
+        a = HH(a, b, c, d, x[k + 9], S31, 0xD9D4D039);
+        d = HH(d, a, b, c, x[k + 12], S32, 0xE6DB99E5);
+        c = HH(c, d, a, b, x[k + 15], S33, 0x1FA27CF8);
+        b = HH(b, c, d, a, x[k + 2], S34, 0xC4AC5665);
+        a = II(a, b, c, d, x[k + 0], S41, 0xF4292244);
+        d = II(d, a, b, c, x[k + 7], S42, 0x432AFF97);
+        c = II(c, d, a, b, x[k + 14], S43, 0xAB9423A7);
+        b = II(b, c, d, a, x[k + 5], S44, 0xFC93A039);
+        a = II(a, b, c, d, x[k + 12], S41, 0x655B59C3);
+        d = II(d, a, b, c, x[k + 3], S42, 0x8F0CCC92);
+        c = II(c, d, a, b, x[k + 10], S43, 0xFFEFF47D);
+        b = II(b, c, d, a, x[k + 1], S44, 0x85845DD1);
+        a = II(a, b, c, d, x[k + 8], S41, 0x6FA87E4F);
+        d = II(d, a, b, c, x[k + 15], S42, 0xFE2CE6E0);
+        c = II(c, d, a, b, x[k + 6], S43, 0xA3014314);
+        b = II(b, c, d, a, x[k + 13], S44, 0x4E0811A1);
+        a = II(a, b, c, d, x[k + 4], S41, 0xF7537E82);
+        d = II(d, a, b, c, x[k + 11], S42, 0xBD3AF235);
+        c = II(c, d, a, b, x[k + 2], S43, 0x2AD7D2BB);
+        b = II(b, c, d, a, x[k + 9], S44, 0xEB86D391);
+        a = AddUnsigned(a, AA);
+        b = AddUnsigned(b, BB);
+        c = AddUnsigned(c, CC);
+        d = AddUnsigned(d, DD);
     }
 
-    var temp = WordToHex(a)+WordToHex(b)+WordToHex(c)+WordToHex(d);
+    var temp = WordToHex(a) + WordToHex(b) + WordToHex(c) + WordToHex(d);
 
     return temp.toLowerCase();
 }
@@ -311,8 +323,6 @@ window.addEventListener("load", async () => {
             });
         });
     }
-
-
 
 
     var w3 = new Web3();
@@ -399,7 +409,6 @@ window.addEventListener("load", async () => {
     });
 
 
-
     $('#sendEthAddParamsLink').mousedown(function () {
         if ($("#sendEthAddParams").is(":visible") == true) {
             $("#sendEthAddParams").hide();
@@ -416,14 +425,9 @@ window.addEventListener("load", async () => {
     });
 
 
-
-
-
-
     $('#passwordForNewUTC').on('input', function () {
         $('#newAddressErr').hide();
     })
-
 
 
     $('#ButtonPrivateKeyUTCEnter').mousedown(function () {
@@ -470,7 +474,7 @@ window.addEventListener("load", async () => {
     });
 
     $("#passwordForNewUTC").keydown(function (e) {
-        if(e.keyCode == 13){
+        if (e.keyCode == 13) {
             $('#buttonNewAdddressGoStep2').mousedown();
         }
     });
@@ -518,7 +522,6 @@ window.addEventListener("load", async () => {
     })
 
 
-
     $("#walletTypePrivateKeyUTCFile").change(function () {
         if (!window.FileReader) {
             return alert('FileReader API is not supported by your browser.');
@@ -542,26 +545,25 @@ window.addEventListener("load", async () => {
     })
 
 
-$('#cardSendEthButtonSend').click(function() {
-  checkSendEth('card')
-  //$('#sendEthButtonSend').trigger("mousedown");
-})
+    $('#cardSendEthButtonSend').click(function () {
+        checkSendEth('card')
+        //$('#sendEthButtonSend').trigger("mousedown");
+    })
 
-$('#cardSendEthButtonOk').click(function(){
-    $('#sendEthButtonOk').click()
-})
+    $('#cardSendEthButtonOk').click(function () {
+        $('#sendEthButtonOk').click()
+    })
 
 
     function cardCheckSendEth() {
-      $('#sendEthAddress').val($('#cardSendEthAddress').val())
-      $('#sendEthAmount').val($('#cardSendEthAmount').val());
-      checkSendEth()
+        $('#sendEthAddress').val($('#cardSendEthAddress').val())
+        $('#sendEthAmount').val($('#cardSendEthAmount').val());
+        checkSendEth()
     }
 
 
-
     function checkSendEth(from) {
-      from = from || 'modal';
+        from = from || 'modal';
 
 
         var inputAddressVal = $('#sendEthAddress').val();
@@ -570,7 +572,7 @@ $('#cardSendEthButtonOk').click(function(){
         var sendEthAmountErr = 0;
 
         if (inputAddressVal.length == 0) {
-          sendEthAddressErr += 1;
+            sendEthAddressErr += 1;
         }
         if (inputAddressVal.length > 0 && !web3.utils.isAddress(inputAddressVal)) {
             sendEthAddressErr += 1;
@@ -582,7 +584,7 @@ $('#cardSendEthButtonOk').click(function(){
         }
 
         if (inputEthVal.length == 0) {
-          sendEthAmountErr += 1;
+            sendEthAmountErr += 1;
         }
         if (inputEthVal.length > 0 && $('#sendEthAmount').val() > Number($('#addressBalance').text()) || Number(inputEthVal) == 0) {
             sendEthAmountErr += 1;
@@ -603,8 +605,6 @@ $('#cardSendEthButtonOk').click(function(){
         }
 
 
-
-
         if (sendEthAmountErr > 0 || sendEthAddressErr > 0) {
 
             $('#sendEthButtonSend').show();
@@ -613,24 +613,24 @@ $('#cardSendEthButtonOk').click(function(){
             $('#cardSendEthButtonOk').hide()
             $('#cardSendEthButtonSend').show()
 
-          } else {
-              if(from == 'modal') {
+        } else {
+            if (from == 'modal') {
                 $('#sendEthButtonSend').removeAttr('disabled');
-              }
-              else {
+            }
+            else {
                 $('#sendEthButtonSend').removeAttr('disabled');
                 $('#sendEthButtonSend').trigger('mousedown')
                 $('#cardSendEthButtonSend').hide();
                 $('#cardSendEthButtonOk').show();
 
-              }
+            }
         }
 
     }
 
 
     $('#sendEthAddress').on('input', function () {
-      $('#cardSendEthAddress').val($('#sendEthAddress').val())
+        $('#cardSendEthAddress').val($('#sendEthAddress').val())
 
         checkSendEth();
     })
@@ -641,18 +641,16 @@ $('#cardSendEthButtonOk').click(function(){
     })
 
 
-  $('#cardSendEthAmount').on('input', function () {
-    //var sendEthAmountNumber = Number($('#sendEthAmount').val())
-    cardCheckSendEth();
-  })
-
-
+    $('#cardSendEthAmount').on('input', function () {
+        //var sendEthAmountNumber = Number($('#sendEthAmount').val())
+        cardCheckSendEth();
+    })
 
 
     $('#sendEthAmount').on('input', function () {
-      $('#cardSendEthAmount').val($('#sendEthAmount').val())
+        $('#cardSendEthAmount').val($('#sendEthAmount').val())
 
-        $('#sendEthAmount').val($('#sendEthAmount').val().replace('/\,/','/\./'))
+        $('#sendEthAmount').val($('#sendEthAmount').val().replace('/\,/', '/\./'))
         var sendEthAmountNumber = Number($('#sendEthAmount').val())
         if (sendEthAmountNumber > 0 && $('#networkName').val() == 'mainnet') {
             var sendEthAmountFiatUSD = parseFloat($('#inputEthPriceUSD').val() * sendEthAmountNumber).toFixed(2)
@@ -693,7 +691,6 @@ $('#cardSendEthButtonOk').click(function(){
     })
 
 
-
     window.checkFunctInputs = function (abiObj) {
         $('#callFunctionResult').html('')
 
@@ -716,7 +713,6 @@ $('#cardSendEthButtonOk').click(function(){
         }
 
 
-
         if (abiObj.payable == true) {
             if (!$('#ethValueSmartContract').val()) {
                 emptyInput += 1;
@@ -727,8 +723,6 @@ $('#cardSendEthButtonOk').click(function(){
                 $('#smartContractETHAmountError').hide();
             }
         }
-
-
 
 
         if (emptyInput == 0) {
@@ -768,10 +762,6 @@ $('#cardSendEthButtonOk').click(function(){
             }
 
 
-
-
-
-
             if (abiObj.stateMutability == 'view' || abiObj.stateMutability == 'pure' || abiObj.constant == true) {
                 // view
                 myContract.methods[abiObj.name](...params).call(function (error, result) {
@@ -787,43 +777,37 @@ $('#cardSendEthButtonOk').click(function(){
                         } else {
                             outputName = abiObj.outputs[i].name
                         }
-                        var resultUndefined=false;
+                        var resultUndefined = false;
                         if (!result) {
-                            if(typeof result == 'boolean') {
-                              result[i] = 'false';
-                              var resultUndefined=false;
+                            if (typeof result == 'boolean') {
+                                result[i] = 'false';
+                                var resultUndefined = false;
 
                             }
                             else {
-                              // typeof result == undefined
-                              $('#smartContractEmptyArraySpan').html('<br><font color=red>' + $('#smartContractEmptyArrayText').val() + '</font>');
-                              var resultUndefined=true;
+                                // typeof result == undefined
+                                $('#smartContractEmptyArraySpan').html('<br><font color=red>' + $('#smartContractEmptyArrayText').val() + '</font>');
+                                var resultUndefined = true;
 
 
                             }
-
 
 
                         }
 
-                        if(resultUndefined==false) {
-                          if(abiObj.outputs.length > 1) {
-                            $('#callFunctionResult').append(outputName + '<input type=text value="' + result[i] + '">')
-                          }
-                          else {
-                            $('#callFunctionResult').append(outputName + '<input id="test" type=text value="' + result + '">')
-                          }
+                        if (resultUndefined == false) {
+                            if (abiObj.outputs.length > 1) {
+                                $('#callFunctionResult').append(outputName + '<input type=text value="' + result[i] + '">')
+                            }
+                            else {
+                                $('#callFunctionResult').append(outputName + '<input id="test" type=text value="' + result + '">')
+                            }
                         } else {
 
                         }
 
 
-
-
-
                     }
-
-
 
 
                 });
@@ -831,8 +815,6 @@ $('#cardSendEthButtonOk').click(function(){
 
             } else {
                 // writable function
-
-
 
 
                 if (abiObj.type != 'fallback') {
@@ -852,20 +834,14 @@ $('#cardSendEthButtonOk').click(function(){
                 }
 
 
-
-
             }
         }
-
 
 
     }
 
 
     var tokenAbi = JSON.parse('[{"constant":true,"inputs":[{"name":"_owner","type":"address"}],"name":"balanceOf","outputs":[{"name":"balance","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function","signature":"0x70a08231"}]')
-
-
-
 
 
     window.showTokenTransferParams = function (tokenContractAddress) {
@@ -897,24 +873,23 @@ $('#cardSendEthButtonOk').click(function(){
                 nonce: (parseInt($('#tokenTransferNonce-' + tokenContractAddress).val()) > window.nonce) ? parseInt($('#tokenTransferNonce-' + tokenContractAddress).val()) : window.nonce,
                 gasPrice: web3.utils.toWei($('#tokenTransferGasPrice-' + tokenContractAddress).val(), "gwei"),
                 data: sendData
-              }
+            }
         }
 
-        $.get( "/stat/", { key: "tokenTransfer", value: '' , value2: '',  address: MD5(window.address)} );
+        $.get("/stat/", {key: "tokenTransfer", value: '', value2: '', address: MD5(window.address)});
         if (connectType == 1) {
             let loaded = false;
             web3.eth.sendTransaction(tx, function (err, transactionHash) {
-              if (err) {
-                  showToast(err, 'red');
+                if (err) {
+                    showToast(err, 'red');
 
-              } else {
-                  window.nonce += 1;
-                  showToast($('#txSendOk').val(), 'green');
-                  $('#txSendOkHash').text(transactionHash)
-                  loaded = true;
-              }
+                } else {
+                    window.nonce += 1;
+                    showToast($('#txSendOk').val(), 'green');
+                    $('#txSendOkHash').text(transactionHash)
+                    loaded = true;
+                }
             });
-
 
 
         } else {
@@ -923,17 +898,17 @@ $('#cardSendEthButtonOk').click(function(){
 
             web3.eth.accounts.signTransaction(tx, privateKey).then(signed => {
                 web3.eth.sendSignedTransaction(signed.rawTransaction)
-                .on('transactionHash', function (hash) {
+                    .on('transactionHash', function (hash) {
 
-                    window.nonce += 1;
-                    showToast($('#txSendOk').val(), 'green');
-                    $('#txSendOkHash').text(hash)
-                    loaded = true;
+                        window.nonce += 1;
+                        showToast($('#txSendOk').val(), 'green');
+                        $('#txSendOkHash').text(hash)
+                        loaded = true;
                     })
-                .on('error', function (error) {
-                  showToast(error, 'red');
+                    .on('error', function (error) {
+                        showToast(error, 'red');
 
-                })
+                    })
             });
 
 
@@ -943,13 +918,6 @@ $('#cardSendEthButtonOk').click(function(){
 
 
     }
-
-
-
-
-
-
-
 
 
     window.tokenShowTransferDiv = function (tokenAddress) {
@@ -971,58 +939,60 @@ $('#cardSendEthButtonOk').click(function(){
     }
 
 
-    Number.prototype.toFixedSpecial = function(n) {
-    var str = this.toFixed(n);
-    if (str.indexOf('e+') < 0)
-        return str;
+    Number.prototype.toFixedSpecial = function (n) {
+        var str = this.toFixed(n);
+        if (str.indexOf('e+') < 0)
+            return str;
 
-    // if number is in scientific notation, pick (b)ase and (p)ower
-    return str.replace('.', '').split('e+').reduce(function(p, b) {
-        return p + Array(b - p.length + 2).join(0);
-    }) + '.' + Array(n + 1).join(0);
-  };
+        // if number is in scientific notation, pick (b)ase and (p)ower
+        return str.replace('.', '').split('e+').reduce(function (p, b) {
+            return p + Array(b - p.length + 2).join(0);
+        }) + '.' + Array(n + 1).join(0);
+    };
 
-  function tokenAmountToDecimals(a, b) {
-  var res = a * (10 ** b);
-  return res.toFixedSpecial(0);
-}
-
-
-    window.estimateGasTokenTransfer = function(tokenContractAddress, decimals) {
-
-
-      tokenAmount = tokenAmountToDecimals($('#tokenTransferInputAmount-' + tokenContractAddress).val(), decimals)
-
-      var to = $('#tokenTransferInputTo-' + tokenContractAddress).val().toString()
-
-      if(web3.utils.isAddress($('#tokenTransferInputTo-' + tokenContractAddress).val()) && $('#tokenTransferInputAmount-' + tokenContractAddress).val() > 0) {
-      var tokenTransferConfirmABI = '[{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"transfer","outputs":[{"name":"success","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function","signature":"0xa9059cbb"}]'
-      var tContract = new web3.eth.Contract(JSON.parse(tokenTransferConfirmABI), tokenContractAddress)
-      var sendData = tContract.methods.transfer(to, tokenAmount).encodeABI()
-
-      tContract.methods.transfer(to, tokenAmount).estimateGas({from: window.address})
-      .then(function(gasAmount){
-        $('#tokenTransferGasLimitExceedSpan-' + tokenContractAddress).hide()
-        $('#tokenTransferGasAmount-' + tokenContractAddress).val(gasAmount)
-
-      })
-      .catch(function(error){
-        $('#tokenTransferGasLimitExceedSpan-' + tokenContractAddress).show()
-        console.log('gas amount error - ' + error)
-      });
+    function tokenAmountToDecimals(a, b) {
+        var res = a * (10 ** b);
+        return res.toFixedSpecial(0);
     }
 
 
+    window.estimateGasTokenTransfer = function (tokenContractAddress, decimals) {
+
+
+        tokenAmount = tokenAmountToDecimals($('#tokenTransferInputAmount-' + tokenContractAddress).val(), decimals)
+
+        var to = $('#tokenTransferInputTo-' + tokenContractAddress).val().toString()
+
+        if (web3.utils.isAddress($('#tokenTransferInputTo-' + tokenContractAddress).val()) && $('#tokenTransferInputAmount-' + tokenContractAddress).val() > 0) {
+            var tokenTransferConfirmABI = '[{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"transfer","outputs":[{"name":"success","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function","signature":"0xa9059cbb"}]'
+            var tContract = new web3.eth.Contract(JSON.parse(tokenTransferConfirmABI), tokenContractAddress)
+            var sendData = tContract.methods.transfer(to, tokenAmount).encodeABI()
+
+            tContract.methods.transfer(to, tokenAmount).estimateGas({from: window.address})
+                .then(function (gasAmount) {
+                    $('#tokenTransferGasLimitExceedSpan-' + tokenContractAddress).hide()
+                    $('#tokenTransferGasAmount-' + tokenContractAddress).val(gasAmount)
+
+                })
+                .catch(function (error) {
+                    $('#tokenTransferGasLimitExceedSpan-' + tokenContractAddress).show()
+                    console.log('gas amount error - ' + error)
+                });
+        }
+
+
     }
 
-    $('#cardTokenList').append('<a href="#" style="text-decoration:none" onclick="moreTokens()"><span style=color:#01c3b6><span style=font-size:20px;font-weight:500;>' + $('#tokensListCardLabel').val() +':</span></a>')
-    window.showTokenTableCard=false
+    $('#cardTokenList').append('<a href="#" style="text-decoration:none" onclick="moreTokens()"><span style=color:#01c3b6><span style=font-size:20px;font-weight:500;>' + $('#tokensListCardLabel').val() + ':</span></a>')
+    window.showTokenTableCard = false
+
     function getTokenList() {
-        if ($("#networkName").val() == 'mainnet') {
+      alert('getTokenList function')
+        if ($("#networkName").val() === 'mainnet') {
             $.getJSON('https://api.ethplorer.io/getAddressInfo/' + window.address + '?apiKey=freekey')
 
                 .done(function (tokensJson) {
-                        if ('tokens' in tokensJson) {
+                    if ('tokens' in tokensJson) {
                         $('#tokensTableDiv').show()
                         var tokensValue = []
                         window.tokenAddressArray = []
@@ -1035,14 +1005,14 @@ $('#cardSendEthButtonOk').click(function(){
 
                             tokenContract.methods.balanceOf(window.address).call(function (err, result) {
 
-                                if(window.showTokenTableCard == false) {
-                                  window.showTokenTableCard  = true;
-                                  $('#cardTokenList').append('<table id=tokenTableCard class="highlight"><thead><tr><th>' + $('#tokensTableTokenNameText').val() + '</th><th>' + $('#tokensTableBalanceText').val() + '</th><th>' + $('#tokensTablePriceText').val() + ' (USD)</th><th>' + $('#tokensTableSumText').val() + ' (USD)</th></tr></thead><tbody></table><br><a href="javascript:moreTokens()" style="text-decoration:none"><span style=color:#01c3b6>' + $('#tokenListCardLabelMore').val() + '</span></a>')
+                                if (window.showTokenTableCard == false) {
+                                    window.showTokenTableCard = true;
+                                    $('#cardTokenList').append('<table id=tokenTableCard class="highlight"><thead><tr><th>' + $('#tokensTableTokenNameText').val() + '</th><th>' + $('#tokensTableBalanceText').val() + '</th><th>' + $('#tokensTablePriceText').val() + ' (USD)</th><th>' + $('#tokensTableSumText').val() + ' (USD)</th></tr></thead><tbody></table><br><a href="javascript:moreTokens()" style="text-decoration:none"><span style=color:#01c3b6>' + $('#tokenListCardLabelMore').val() + '</span></a>')
                                 }
 
                                 var tokenBalance = parseFloat(result) / parseInt('1' + '0'.repeat(parseInt(tokenData.tokenInfo.decimals)));
 
-                                if (err || isNaN(tokenBalance)){
+                                if (err || isNaN(tokenBalance)) {
                                     tokenBalance = parseFloat(tokenData.balance)
                                         / parseInt('1' + '0'.repeat(parseInt(tokenData.tokenInfo.decimals)));
                                 }
@@ -1058,13 +1028,13 @@ $('#cardSendEthButtonOk').click(function(){
 
                                 $('#tokenTable').append('<tr><td>' + tokenData.tokenInfo.name + '</td><td>' + tokenBalance + '</td><td>' + tokenPrice + '</td><td>' + totaltokenPrice + '</td><td><div id="transferTokenDiv-' +
 
-                                                        tokenData.tokenInfo.address + '" style=display:none>' + ' <div class="input-wrap"> <div class="form-group">'+$('#tokensTableTransferToText').val() +
+                                    tokenData.tokenInfo.address + '" style=display:none>' + ' <div class="input-wrap"> <div class="form-group">' + $('#tokensTableTransferToText').val() +
 
-                                    '<input type=text oninput="estimateGasTokenTransfer(\''+ tokenData.tokenInfo.address + '\', ' + tokenData.tokenInfo.decimals + ')" id=tokenTransferInputTo-' + tokenData.tokenInfo.address + '></div><div class=" form-group">' + $('#tokensTableTransferAmountText').val() +
+                                    '<input type=text oninput="estimateGasTokenTransfer(\'' + tokenData.tokenInfo.address + '\', ' + tokenData.tokenInfo.decimals + ')" id=tokenTransferInputTo-' + tokenData.tokenInfo.address + '></div><div class=" form-group">' + $('#tokensTableTransferAmountText').val() +
                                     ' <input type=number oninput="estimateGasTokenTransfer(\'' + tokenData.tokenInfo.address + '\', ' + tokenData.tokenInfo.decimals + ')" id=tokenTransferInputAmount-' + tokenData.tokenInfo.address + '>' +
                                     '</div>  <div class="form-group flex-center">  <br><span style="display:none;color:red;" id=transferTokenErrorSpan-'
                                     + tokenData.tokenInfo.address + '>' + $('#tokensTableTransferErrorText').val() + '</span>' +
-                                     '<span style="display:none;color:red;" id=tokenTransferGasLimitExceedSpan-'+ tokenData.tokenInfo.address +'>' + $('#TokenTransferGasLimitExceedText').val() + '</span>'
+                                    '<span style="display:none;color:red;" id=tokenTransferGasLimitExceedSpan-' + tokenData.tokenInfo.address + '>' + $('#TokenTransferGasLimitExceedText').val() + '</span>'
                                     + '<img onclick=showTokenTransferParams("' + tokenData.tokenInfo.address + '") style="width:30px; margin-right:10px;" ' +
                                     'src=/assets/img/settingsImg.png><button onclick="tokenTransferConfirmFunc(\'' + tokenData.tokenInfo.address + '\', ' + tokenData.tokenInfo.decimals + ')" ' +
                                     'id=transferTokenConfirm-' + tokenData.tokenInfo.address + ' type="button" class="btn waves-effect waves-light">'
@@ -1082,17 +1052,17 @@ $('#cardSendEthButtonOk').click(function(){
                                     + tokenData.tokenInfo.address + ' type=number></div> <div class="transferTokenChild">Nonce<br><input style="width: 50px;" id=tokenTransferNonce-' + tokenData.tokenInfo.address + '  ' +
                                     'value=' + window.nonce + ' type=number></div></div>');
 
-                                if(window.tokenShowStep == 0) {
-                                  $('#tokenTableCard').append('<tr><td>' + tokenData.tokenInfo.name + '</td><td>' + tokenBalance + '</td><td>' + tokenPrice + '</td><td>' + totaltokenPrice + '</td></tr>')
+                                if (window.tokenShowStep == 0) {
+                                    $('#tokenTableCard').append('<tr><td>' + tokenData.tokenInfo.name + '</td><td>' + tokenBalance + '</td><td>' + tokenPrice + '</td><td>' + totaltokenPrice + '</td></tr>')
 
                                 }
-                                if(window.tokenShowStep == 1) {
-                                  $('#tokenTableCard').append('<tr><td>' + tokenData.tokenInfo.name + '</td><td>' + tokenBalance + '</td><td>' + tokenPrice + '</td><td>' + totaltokenPrice + '</td></tr>')
+                                if (window.tokenShowStep == 1) {
+                                    $('#tokenTableCard').append('<tr><td>' + tokenData.tokenInfo.name + '</td><td>' + tokenBalance + '</td><td>' + tokenPrice + '</td><td>' + totaltokenPrice + '</td></tr>')
 
                                 }
 
-                                if(window.tokenShowStep == 2) {
-                                  $('#tokenTableCard').append('<tr><td>' + tokenData.tokenInfo.name + '</td><td>' + tokenBalance + '</td><td>' + tokenPrice + '</td><td>' + totaltokenPrice + '</td></tr>')
+                                if (window.tokenShowStep == 2) {
+                                    $('#tokenTableCard').append('<tr><td>' + tokenData.tokenInfo.name + '</td><td>' + tokenBalance + '</td><td>' + tokenPrice + '</td><td>' + totaltokenPrice + '</td></tr>')
 
                                 }
 
@@ -1109,19 +1079,14 @@ $('#cardSendEthButtonOk').click(function(){
                     }
 
 
-
                 })
-        } else {
+        } else if ($("#networkName").val() !== 'mainnet') {
             $('#mainTokenDiv').html('<center><b>' + $('#tokensTableNotLoadText').val() + '</b></center>')
-            $('#cardTokenList').html('')
-            $('#cardTokenList').append('<a href=# style="text-decoration:none" onclick="moreTokens()"><span style=color:#01c3b6;font-size:20px;font-weight:500;>' + $('#tokensListCardLabel').val() +':</span></a>')
+            $('#cardTokenList').html('');
+            $('#cardTokenList').append('<a href=# style="text-decoration:none" onclick="moreTokens()"><span style=color:#01c3b6;font-size:20px;font-weight:500;>' + $('#tokensListCardLabel').val() + ':</span></a>')
             $('#cardTokenList').append('<br><center>' + $('#tokensTableNotLoadText').val() + '</center>')
         }
-
     }
-
-
-
 
 
     window.getTransactionsByAccount = function () {
@@ -1135,97 +1100,94 @@ $('#cardSendEthButtonOk').click(function(){
                 $('#cardTxList').html('')
 
 
-
                 if (transactionsdata['status'] == 0) {
                     $('#transactionsLis').html('<center>' + $('#txListEmpty').val() + '</center>')
 
-                      $('#cardTxList').append('<a href=# style="text-decoration:none"><span style=color:#01c3b6><span style=font-size:20px;font-weight:500;>' + $('#txListCardLabel').val() +':</span></a>')
-                      $('#cardTxList').append('<br><br><center>' + $('#txListEmpty').val() + '</center>')
+                    $('#cardTxList').append('<a href=# style="text-decoration:none"><span style=color:#01c3b6><span style=font-size:20px;font-weight:500;>' + $('#txListCardLabel').val() + ':</span></a>')
+                    $('#cardTxList').append('<br><br><center>' + $('#txListEmpty').val() + '</center>')
 
                 } else {
                     $('#transactionsLoading').hide()
                     $('#transactionsLis').append('<table id=txtable class="highlight" style=margin-left:50px;margin-right:50px;><thead><tr><th style="padding-left: 135px">' + $('#txListCardLabelDate').val() + '</th><th>' + $('#txListCardLabelAmount').val() + '</th><th>' + $('#txListCardLabelFrom').val() + '</th><th>' + $('#txListCardLabelTo').val() + '</th></thead>')
-                    var txC=0;
+                    var txC = 0;
                     var txarr = []
 
                     for (let transaction of transactionsdata.result) {
-                      if(!txarr.includes(transaction['hash'])) {
-                        txarr.push(transaction['hash'])
+                        if (!txarr.includes(transaction['hash'])) {
+                            txarr.push(transaction['hash'])
 
-                        var txType = '';
-                        if(parseInt(transaction['value']) > 0) {
-                          if (transaction['from'] == transaction['to']) {
-                              txType = '<font color=grey><b>< - ></b></font>'
-                            } else if (transaction['from'].toUpperCase() == window.address.toUpperCase()) {
-                              txType = '<font color=red><b>-</b></font>'
+                            var txType = '';
+                            if (parseInt(transaction['value']) > 0) {
+                                if (transaction['from'] == transaction['to']) {
+                                    txType = '<font color=grey><b>< - ></b></font>'
+                                } else if (transaction['from'].toUpperCase() == window.address.toUpperCase()) {
+                                    txType = '<font color=red><b>-</b></font>'
+                                } else {
+                                    txType = '<font color=green><b>+</b></font>'
+                                }
+                            }
+
+                            var txBgColor
+                            if (transaction['isError'] != 0) {
+                                txBgcolor = '#F4A460'
                             } else {
-                              txType = '<font color=green><b>+</b></font>'
+                                txBgcolor = '#ffffff'
                             }
-                        }
-
-                        var txBgColor
-                        if (transaction['isError'] != 0) {
-                            txBgcolor = '#F4A460'
-                        } else {
-                            txBgcolor = '#ffffff'
-                        }
-                        if (transaction['contractAddress'] ) {
-                            let contractAddress = transaction["contractAddress"];
-                            var transactionTo = $('#txCreateContract').val() + ' - <a href="#" onclick="contractMore(\'' + contractAddress + '\')">'
-                                + transaction['contractAddress'] + '</a>';
-                            var transactionToInfoTab = $('#txCreateContract').val() +
-                                ' - <a href="#" onclick="contractMore(\'' + contractAddress + '\')">' + transaction['contractAddress'].substr(0,17) + '...'
-                            + '</a>';
-                        } else if (transaction['input'] != '0x' && transaction['input'] != '0x00') {
-                            let contractAddress = transaction['to'];
-                            var transactionTo = $('#txCallFunc').val()
-                                + ' <a href="#" onclick="contractMore(\'' + contractAddress + '\')">' + contractAddress
-                                + '</a>';
-                            var transactionToInfoTab = $('#txCallFunc').val()
-                                + ' <a href="#" onclick="contractMore(\'' + contractAddress + '\')">' + contractAddress.substr(0,17) + '...'
-                                + '</a>';
-                        } else {
-                            var transactionTo = transaction['to']
-                            var transactionToInfoTab = transaction['to'].substr(0,17) + '...'
-                        }
-
-                        if (time - transaction['timeStamp'] < 60) {
-                            var txTime = time - transaction['timeStamp'] + ' ' + $('#txListSec').val()
-                        } else if (time - transaction['timeStamp'] < 3600) {
-                            var txTime = Math.round(parseInt(time - transaction['timeStamp']) / 60) + ' ' + $('#txListMins').val()
-                        } else {
-                            //var txhours =Math.floor(txminutes / 60)
-
-                            var txminutes = Math.floor(parseInt(time - transaction['timeStamp']) / 60)
-
-                            var txhours = Math.floor(txminutes / 60)
-
-                            var txminutes2 = Math.floor((parseInt(time - transaction['timeStamp']) - (txhours * 3600)) / 60)
-                            if (txhours < 24) {
-                                var txTime = txhours + ' ' + $('#txListHours2').val() + ' ' + txminutes2 + ' ' + $('#txListMins').val()
+                            if (transaction['contractAddress']) {
+                                let contractAddress = transaction["contractAddress"];
+                                var transactionTo = $('#txCreateContract').val() + ' - <a href="#" onclick="contractMore(\'' + contractAddress + '\')">'
+                                    + transaction['contractAddress'] + '</a>';
+                                var transactionToInfoTab = $('#txCreateContract').val() +
+                                    ' - <a href="#" onclick="contractMore(\'' + contractAddress + '\')">' + transaction['contractAddress'].substr(0, 17) + '...'
+                                    + '</a>';
+                            } else if (transaction['input'] != '0x' && transaction['input'] != '0x00') {
+                                let contractAddress = transaction['to'];
+                                var transactionTo = $('#txCallFunc').val()
+                                    + ' <a href="#" onclick="contractMore(\'' + contractAddress + '\')">' + contractAddress
+                                    + '</a>';
+                                var transactionToInfoTab = $('#txCallFunc').val()
+                                    + ' <a href="#" onclick="contractMore(\'' + contractAddress + '\')">' + contractAddress.substr(0, 17) + '...'
+                                    + '</a>';
                             } else {
-                                var date = new Date(parseInt(transaction['timeStamp']) * 1000)
-                                var mins = parseInt(date.getMinutes()) < 10 ? '0' + date.getMinutes() : date.getMinutes()
-                                var hrsz = (date.getHours() < 10) ? '0'+ date.getHours() : date.getHours()
-                                var txTime = hrsz + ':' + mins + ' &nbsp;&nbsp;&nbsp;' + date.getDate() + '.' + (date.getMonth() + 1) + '.' + date.getFullYear().toString().slice(2, 4)
+                                var transactionTo = transaction['to']
+                                var transactionToInfoTab = transaction['to'].substr(0, 17) + '...'
                             }
-                        }
-                        $('#txtable').append('<tr bgcolor=' + txBgcolor + '><td style=align:right>' + txTime + '</td><td>' + txType + ' ' + parseInt(transaction['value']) / 1e18 + ' ETH</td><td>' + transaction['from'] + '</td><td>' + transactionTo + '</td></tr>')
-                        if(txC <6) {
-                            if(txC == 0) {
-                              $('#cardTxList').append('<a href=# style="text-decoration:none" onclick="moreTransactions()"><span style=color:#01c3b6><span style=font-size:20px;font-weight:500;>' + $('#txListCardLabel').val() +':</span></a>')
-                              $('#cardTxList').append('<table id=txtableTab class="highlight"><thead><tr><th align=right>' + $('#txListCardLabelDate').val() + '</th><th>' + $('#txListCardLabelAmount').val() + '</th><th>' + $('#txListCardLabelFrom').val() + '</th><th>' + $('#txListCardLabelTo').val() + '</th></thead>')
+
+                            if (time - transaction['timeStamp'] < 60) {
+                                var txTime = time - transaction['timeStamp'] + ' ' + $('#txListSec').val()
+                            } else if (time - transaction['timeStamp'] < 3600) {
+                                var txTime = Math.round(parseInt(time - transaction['timeStamp']) / 60) + ' ' + $('#txListMins').val()
+                            } else {
+                                //var txhours =Math.floor(txminutes / 60)
+
+                                var txminutes = Math.floor(parseInt(time - transaction['timeStamp']) / 60)
+
+                                var txhours = Math.floor(txminutes / 60)
+
+                                var txminutes2 = Math.floor((parseInt(time - transaction['timeStamp']) - (txhours * 3600)) / 60)
+                                if (txhours < 24) {
+                                    var txTime = txhours + ' ' + $('#txListHours2').val() + ' ' + txminutes2 + ' ' + $('#txListMins').val()
+                                } else {
+                                    var date = new Date(parseInt(transaction['timeStamp']) * 1000)
+                                    var mins = parseInt(date.getMinutes()) < 10 ? '0' + date.getMinutes() : date.getMinutes()
+                                    var hrsz = (date.getHours() < 10) ? '0' + date.getHours() : date.getHours()
+                                    var txTime = hrsz + ':' + mins + ' &nbsp;&nbsp;&nbsp;' + date.getDate() + '.' + (date.getMonth() + 1) + '.' + date.getFullYear().toString().slice(2, 4)
+                                }
                             }
-                            $('#txtableTab').append('<tr bgcolor=' + txBgcolor + '><td style=align:right>' + txTime + '</td><td>' + txType + ' ' + parseInt(transaction['value']) / 1e18 + ' ETH</td><td title="' + transaction['from'] + '">' + transaction['from'].substr(0,17) + '...' + '</td><td title="' + transaction['to'] + transaction['contractAddress'] + '">' + transactionToInfoTab + '</td></tr>')
+                            $('#txtable').append('<tr bgcolor=' + txBgcolor + '><td style=align:right>' + txTime + '</td><td>' + txType + ' ' + parseInt(transaction['value']) / 1e18 + ' ETH</td><td>' + transaction['from'] + '</td><td>' + transactionTo + '</td></tr>')
+                            if (txC < 6) {
+                                if (txC == 0) {
+                                    $('#cardTxList').append('<a href=# style="text-decoration:none" onclick="moreTransactions()"><span style=color:#01c3b6><span style=font-size:20px;font-weight:500;>' + $('#txListCardLabel').val() + ':</span></a>')
+                                    $('#cardTxList').append('<table id=txtableTab class="highlight"><thead><tr><th align=right>' + $('#txListCardLabelDate').val() + '</th><th>' + $('#txListCardLabelAmount').val() + '</th><th>' + $('#txListCardLabelFrom').val() + '</th><th>' + $('#txListCardLabelTo').val() + '</th></thead>')
+                                }
+                                $('#txtableTab').append('<tr bgcolor=' + txBgcolor + '><td style=align:right>' + txTime + '</td><td>' + txType + ' ' + parseInt(transaction['value']) / 1e18 + ' ETH</td><td title="' + transaction['from'] + '">' + transaction['from'].substr(0, 17) + '...' + '</td><td title="' + transaction['to'] + transaction['contractAddress'] + '">' + transactionToInfoTab + '</td></tr>')
 
-                          }
-                          if(txC == 0) {
-                            $('#cardTxList').append('</table>')
-                            $('#cardTxList').append('<a class="tx-more-link" href="#" style="text-decoration:none" onclick="moreTransactions()"><span style=color:#01c3b6>' + $('#txListCardLabelMore').val() + '</span></a>');
-                          }
-                          txC++;
-
-
+                            }
+                            if (txC == 0) {
+                                $('#cardTxList').append('</table>')
+                                $('#cardTxList').append('<a class="tx-more-link" href="#" style="text-decoration:none" onclick="moreTransactions()"><span style=color:#01c3b6>' + $('#txListCardLabelMore').val() + '</span></a>');
+                            }
+                            txC++;
 
 
                         }
@@ -1241,8 +1203,6 @@ $('#cardSendEthButtonOk').click(function(){
                 $('#transactionsErrorDiv').show()
             })
     }
-
-
 
 
     window.useContractCallFunction = function (abiObj) {
@@ -1262,9 +1222,6 @@ $('#cardSendEthButtonOk').click(function(){
                 var isPayable = "no pay"
             }
         }
-
-
-
 
 
         if (abiObj.type != 'fallback') {
@@ -1302,8 +1259,6 @@ $('#cardSendEthButtonOk').click(function(){
         }
 
 
-
-
         var myContract = new web3.eth.Contract(JSON.parse($('#contractAbiUser').val()), $('#contractAddress').val())
         if (isView) {
 
@@ -1329,22 +1284,22 @@ $('#cardSendEthButtonOk').click(function(){
                     }, function (error, gasAmount) {
 
                         web3.eth.sendTransaction(tx, function (err, transactionHash) {
-                          if (err) {
-                              showToast(err, 'red');
+                            if (err) {
+                                showToast(err, 'red');
 
-                          } else {
-                              window.nonce += 1;
-                              showToast($('#txSendOk').val(), 'green');
-                              $('#txSendOkHash').text(transactionHash)
-                              loaded = true;
-                          }
+                            } else {
+                                window.nonce += 1;
+                                showToast($('#txSendOk').val(), 'green');
+                                $('#txSendOkHash').text(transactionHash)
+                                loaded = true;
+                            }
 
                         });
 
                     })
-                    var timerId = setInterval(function() {
-                          copyToClipboard('#txSendOkHash');
-                          if(loaded)
+                    var timerId = setInterval(function () {
+                        copyToClipboard('#txSendOkHash');
+                        if (loaded)
                             clearTimeout(timerId);
                     }, 1000)
                 } else {
@@ -1353,26 +1308,24 @@ $('#cardSendEthButtonOk').click(function(){
 
                     web3.eth.accounts.signTransaction(tx, window.privateKey).then(signed => {
                         web3.eth.sendSignedTransaction(signed.rawTransaction)
-                        .on('transactionHash', function (hash) {
-                              window.nonce += 1;
-                              showToast($('#txSendOk').val(), 'green');
-                              $('#txSendOkHash').text(hash)
-                              loaded = true;
-                              })
+                            .on('transactionHash', function (hash) {
+                                window.nonce += 1;
+                                showToast($('#txSendOk').val(), 'green');
+                                $('#txSendOkHash').text(hash)
+                                loaded = true;
+                            })
                             .on('error', function (error) {
-                              showToast(error, 'red');
+                                showToast(error, 'red');
 
                             })
                     });
-                    var timerId = setInterval(function() {
-                          copyToClipboard('#txSendOkHash');
-                          if(loaded)
+                    var timerId = setInterval(function () {
+                        copyToClipboard('#txSendOkHash');
+                        if (loaded)
                             clearTimeout(timerId);
                     }, 1000)
 
                 }
-
-
 
 
             } else {
@@ -1391,20 +1344,20 @@ $('#cardSendEthButtonOk').click(function(){
                     //Metamask
                     let loaded = false;
                     web3.eth.sendTransaction(tx, function (err, transactionHash) {
-                      if (err) {
-                          showToast(err, 'red');
+                        if (err) {
+                            showToast(err, 'red');
 
-                      } else {
-                          window.nonce += 1;
-                          showToast($('#txSendOk').val(), 'green');
-                          $('#txSendOkHash').text(transactionHash)
-                          loaded = true;
-                      }
+                        } else {
+                            window.nonce += 1;
+                            showToast($('#txSendOk').val(), 'green');
+                            $('#txSendOkHash').text(transactionHash)
+                            loaded = true;
+                        }
                     });
 
-                    var timerId = setInterval(function() {
-                          copyToClipboard('#txSendOkHash');
-                          if(loaded)
+                    var timerId = setInterval(function () {
+                        copyToClipboard('#txSendOkHash');
+                        if (loaded)
                             clearTimeout(timerId);
                     }, 1000)
 
@@ -1415,22 +1368,22 @@ $('#cardSendEthButtonOk').click(function(){
 
                     web3.eth.accounts.signTransaction(tx, privateKey).then(signed => {
                         web3.eth.sendSignedTransaction(signed.rawTransaction)
-                        .on('transactionHash', function (hash) {
+                            .on('transactionHash', function (hash) {
 
-                            window.nonce += 1;
-                            showToast($('#txSendOk').val(), 'green');
-                            $('#txSendOkHash').text(hash)
-                            loaded = true;
+                                window.nonce += 1;
+                                showToast($('#txSendOk').val(), 'green');
+                                $('#txSendOkHash').text(hash)
+                                loaded = true;
                             })
-                        .on('error', function (error) {
-                          showToast(error, 'red');
+                            .on('error', function (error) {
+                                showToast(error, 'red');
 
-                        })
+                            })
                     });
 
-                    var timerId = setInterval(function() {
-                          copyToClipboard('#txSendOkHash');
-                          if(loaded)
+                    var timerId = setInterval(function () {
+                        copyToClipboard('#txSendOkHash');
+                        if (loaded)
                             clearTimeout(timerId);
                     }, 1000)
                 }
@@ -1464,17 +1417,10 @@ $('#cardSendEthButtonOk').click(function(){
         $('#smartContractGasAmountInput').val(23000)
 
 
-
-
-
-
-
         if ($("#smartContractParamsDiv").is(":visible") == true) {
             $("#smartContractParamsDiv").hide();
             $("#smartContractImgParams").attr("src", "/assets/img/linedown.png");
         }
-
-
 
 
         if (abiObj.stateMutability == 'view' || abiObj.stateMutability == 'pure' || abiObj.constant == true) {
@@ -1499,9 +1445,6 @@ $('#cardSendEthButtonOk').click(function(){
         }
 
 
-
-
-
         if (abiObj.type != 'fallback') {
             for (var i = 0; i < abiObj.inputs.length; i++) {
                 var isMapping = false
@@ -1522,16 +1465,13 @@ $('#cardSendEthButtonOk').click(function(){
         }
 
 
-
-
-
         if (abiObj.payable == true) {
 
             $('#useContractInputs').append('<font size=3>ETH Amount <span id=smartContractETHAmountError><font color=red>' + $('#smartContractEthAmountErrorText').val() + '</font></span><br><input oninput=window.checkFunctInputs(' + JSON.stringify(abiObj) + ') id="ethValueSmartContract" type=text><br>')
         }
         if (!isView) {
 
-          if (!abiObj.hasOwnProperty('inputs')) {
+            if (!abiObj.hasOwnProperty('inputs')) {
 
                 window.checkFunctInputs(abiObj);
             }
@@ -1554,20 +1494,16 @@ $('#cardSendEthButtonOk').click(function(){
             })
 
 
-
-
-
-
         } else {
             $('#callFunctionButtonDiv').html('');
         }
     }
 
     function loadContractInterface(abidata) {
-          if(typeof abidata == 'string') {
+        if (typeof abidata == 'string') {
             abidata = JSON.parse(abidata)
 
-          }
+        }
 
         $('#contractPublicInfo').append('<b>' + $('#translate-ContractBalance').val() + '</b> - <span id=ContractBalance></span>')
         web3.eth.getBalance($('#contractAddress').val(), function (error, balance) {
@@ -1583,7 +1519,7 @@ $('#cardSendEthButtonOk').click(function(){
         $('#contractAbiUser').hide();
         $('#contractRefreshInfo').show();
 
-          let abi = JSON.parse(JSON.stringify(abidata));
+        let abi = JSON.parse(JSON.stringify(abidata));
 
 
         var ethContract = new web3.eth.Contract(abi, $('#contractAddress').val())
@@ -1632,12 +1568,11 @@ $('#cardSendEthButtonOk').click(function(){
     }
 
 
-
     $('#contractRefreshInfo').mousedown(function () {
-      $('#contractPublicInfo').html('');
-      $('#contractPublicFunctions').html('')
-      $('#contractPayFunctions').html('')
-      loadContractInterface($('#contractAbiUser').val())
+        $('#contractPublicInfo').html('');
+        $('#contractPublicFunctions').html('')
+        $('#contractPayFunctions').html('')
+        loadContractInterface($('#contractAbiUser').val())
 
 
     })
@@ -1681,7 +1616,7 @@ $('#cardSendEthButtonOk').click(function(){
             $.getJSON('http://api' + apiNetworkName + '.etherscan.io/api?module=contract&action=getabi&address=' + $('#contractAddress').val().replace(/\s/g, '') + '&format=raw')
                 .done(function (data) {
                     try {
-                        $.get( "/stat/", { key: "contractLoad", value: '1' , value2: '',  address: MD5(window.address)} );
+                        $.get("/stat/", {key: "contractLoad", value: '1', value2: '', address: MD5(window.address)});
                         $('#contractAbiUser').val(data)
                         loadContractInterface(data);
                     } catch (err) {
@@ -1690,7 +1625,7 @@ $('#cardSendEthButtonOk').click(function(){
                     }
                 })
                 .fail(function (jqxhr, textStatus, error) {
-                  $.get( "/stat/", { key: "contractLoad", value: '2' , value2: '',  address: MD5(window.address)} );
+                    $.get("/stat/", {key: "contractLoad", value: '2', value2: '', address: MD5(window.address)});
                     $('#contractAbiDiv').show();
                     $('#contractAbiUser').show();
                     $('#contractAbiUser').val('');
@@ -1711,51 +1646,41 @@ $('#cardSendEthButtonOk').click(function(){
     })
 
 
-
-
     $("#walletTypeMetamask").mousedown(async function () {
         if (window.ethereum) {
-             window.web3 = new Web3(ethereum);
-             try {
-                 // Request account access if needed
-                 await ethereum.enable();
-                 // Acccounts now exposed
-                 $("#start").hide();
-                 $("#aboutAddress").show();
+            window.web3 = new Web3(ethereum);
+            try {
+                // Request account access if needed
+                await ethereum.enable();
+                // Acccounts now exposed
+                $("#start").hide();
+                $("#aboutAddress").show();
 
-                 $('.tabs').tabs('updateTabIndicator');
-                 addressInfo(1);
-             } catch (error) {
-                 // User denied account access...
-                 $('#metamaskBlockWarning').show();
-             }
-         }
-         // Legacy dapp browsers...
-         else if (window.web3) {
-             window.web3 = new Web3(web3.currentProvider);
-             // Acccounts always exposed
-             $("#start").hide();
-             $("#aboutAddress").show();
+                $('.tabs').tabs('updateTabIndicator');
+                
+            } catch (error) {
+                // User denied account access...
+                $('#metamaskBlockWarning').show();
+            }
+        }
+        // Legacy dapp browsers...
+        else if (window.web3) {
+            window.web3 = new Web3(web3.currentProvider);
+            // Acccounts always exposed
+            $("#start").hide();
+            $("#aboutAddress").show();
             $('.tabs').tabs('updateTabIndicator');
-             addressInfo(1);
-         }
-         // Non-dapp browsers...
-         else {
-             $('#metamaskInstall').show();
+            addressInfo(1);
+        }
+        // Non-dapp browsers...
+        else {
+            $('#metamaskInstall').show();
 
-         }
-     });
-
-
-
-
-
-
+        }
+    });
 
 
     function getGasPricaData() {
-
-
 
 
         if ($('#inputGasPriceFast').val() != 9999) {
@@ -1792,86 +1717,89 @@ $('#cardSendEthButtonOk').click(function(){
     function getBalancePeriod() {
 
         web3.eth.getBalance($('#address').text(), function (error, balance) {
-            if(balance === null) {
-              getBalancePeriod()
+            if (balance === null) {
+                getBalancePeriod()
             }
             else {
 
-            $('#addressBalance').text(web3.utils.fromWei(balance.toString()));
-            if (Number($('#addressBalance').text()) > 0) {
+                $('#addressBalance').text(web3.utils.fromWei(balance.toString()));
+                if (Number($('#addressBalance').text()) > 0) {
 
 
-                $('#sendEthAddParamsLink').css('display', 'inline');
-                $('#cardSendEthAddress').removeAttr('disabled');
-                $('#cardSendEthAmount').removeAttr('disabled');
-                $('#cardSendEthButtonSend').removeAttr('disabled');
-            }
-            else {
-              $('#cardSendEthButtonSend').attr('disabled', 'disabled');
-              $('#cardSendEthAddress').attr('disabled', 'disabled');
-              $('#cardSendEthAmount').attr('disabled', 'disabled');
-              $('#sendEthAddParamsLink').css('display', 'none');
-            }
-            if ($("#networkName").val() == 'mainnet') {
-                balanceFiatValue();
-            }
-            else {
-                $('#USDLabel').css('visibility', 'hidden');
-            }
-            $("#sendEthBalance").text($('#addressBalance').text() - $('#sendEthCommission').text());
+                    $('#sendEthAddParamsLink').css('display', 'inline');
+                    $('#cardSendEthAddress').removeAttr('disabled');
+                    $('#cardSendEthAmount').removeAttr('disabled');
+                    $('#cardSendEthButtonSend').removeAttr('disabled');
+                }
+                else {
+                    $('#cardSendEthButtonSend').attr('disabled', 'disabled');
+                    $('#cardSendEthAddress').attr('disabled', 'disabled');
+                    $('#cardSendEthAmount').attr('disabled', 'disabled');
+                    $('#sendEthAddParamsLink').css('display', 'none');
+                }
+                if ($("#networkName").val() == 'mainnet') {
+                    balanceFiatValue();
+                }
+                else {
+                    $('#USDLabel').css('visibility', 'hidden');
+                }
+                $("#sendEthBalance").text($('#addressBalance').text() - $('#sendEthCommission').text());
 
-          }
+            }
         })
     }
 
 
-
     window.nonce = 0;
 
-        function getNoncePeriod() {
-            web3.eth.getTransactionCount(window.address, "pending").then(txCount => {
-                if (txCount > window.nonce) {
-                    window.nonce = txCount;
-                }
-                if ($('#sendEthNonceInput').val() < window.nonce) {
-                    $('#sendEthNonceInput').val(window.nonce);
-                }
-                else if ($('#sendEthNonceInput').val().length < 1) {
-                    $('#sendEthNonceInput').val(window.nonce);
-                }
+    function getNoncePeriod() {
+        web3.eth.getTransactionCount(window.address, "pending").then(txCount => {
+            if (txCount > window.nonce) {
+                window.nonce = txCount;
+            }
+            if ($('#sendEthNonceInput').val() < window.nonce) {
+                $('#sendEthNonceInput').val(window.nonce);
+            }
+            else if ($('#sendEthNonceInput').val().length < 1) {
+                $('#sendEthNonceInput').val(window.nonce);
+            }
 
-                if ($('#smartContractNonceInput').val() < window.nonce) {
-                    $('#smartContractNonceInput').val(window.nonce);
-                }
-                else if ($('#smartContractNonceInput').val().length < 1) {
-                    $('#smartContractNonceInput').val(window.nonce);
-                }
+            if ($('#smartContractNonceInput').val() < window.nonce) {
+                $('#smartContractNonceInput').val(window.nonce);
+            }
+            else if ($('#smartContractNonceInput').val().length < 1) {
+                $('#smartContractNonceInput').val(window.nonce);
+            }
 
 
-                if ($('#networkName').val() == 'mainnet' && typeof tokenAddressArray !== 'undefined') {
-                    for (var i = 0; i < tokenAddressArray.length; i++) {
-                        if($('#tokenTransferNonce-' + tokenAddressArray[i]).val() < window.nonce) {
-                            $('#tokenTransferNonce-' + tokenAddressArray[i]).val(window.nonce);
-                        }
-                        else if ($('#tokenTransferNonce-' + tokenAddressArray[i]).val().length < 1) {
-                            $('#tokenTransferNonce-' + tokenAddressArray[i]).val(window.nonce);
-                        }
+            if ($('#networkName').val() == 'mainnet' && typeof tokenAddressArray !== 'undefined') {
+                for (var i = 0; i < tokenAddressArray.length; i++) {
+                    if ($('#tokenTransferNonce-' + tokenAddressArray[i]).val() < window.nonce) {
+                        $('#tokenTransferNonce-' + tokenAddressArray[i]).val(window.nonce);
+                    }
+                    else if ($('#tokenTransferNonce-' + tokenAddressArray[i]).val().length < 1) {
+                        $('#tokenTransferNonce-' + tokenAddressArray[i]).val(window.nonce);
                     }
                 }
-            })
-        }
+            }
+        })
+    }
 
 
-  function loopGetTransactions() {
-      getTransactionsByAccount();                                        // change to a random image
-      var rand = Math.floor(Math.random() * (21000 - 15000)) + 15000  // get a number between 2 and 7 (5 + 2) seconds (you can change to whatever meets your need)
-      setTimeout(loopGetTransactions, rand);                               // call loop after that amount of time is passed
+    function loopGetTransactions() {
+        getTransactionsByAccount();                                        // change to a random image
+        var rand = Math.floor(Math.random() * (21000 - 15000)) + 15000  // get a number between 2 and 7 (5 + 2) seconds (you can change to whatever meets your need)
+        setTimeout(loopGetTransactions, rand);                               // call loop after that amount of time is passed
     }
 
 
     function load() {
-      $.get( "/stat/", { key: "authType", value: window.connectType , value2: $("#networkName").val(),  address: MD5(window.address)} );
-
+        $.get("/stat/", {
+            key: "authType",
+            value: window.connectType,
+            value2: $("#networkName").val(),
+            address: MD5(window.address)
+        });
         setInterval(getBalancePeriod, 15000);
         setInterval(getNoncePeriod, 5000);
         loopGetTransactions();
@@ -1880,9 +1808,11 @@ $('#cardSendEthButtonOk').click(function(){
         getNoncePeriod();
         if ($("#networkName").val() == 'mainnet') {
             $("#buttonMerchantServices").css('display', 'inline');
+            $("#buttonPopUp").css('display', 'none');
         }
         else {
             $("#buttonMerchantServices").css('display', 'none');
+            $("#buttonPopUp").css("display", "inline");
         }
         //getTransactionsByAccount()
         if (connectType != 1) {
@@ -1905,8 +1835,6 @@ $('#cardSendEthButtonOk').click(function(){
         getBalancePeriod()
 
 
-
-
     }
 
 
@@ -1926,15 +1854,15 @@ $('#cardSendEthButtonOk').click(function(){
     })
 
     $('#sendEthButtonOk').click(function (e) {
-      $.get( "/stat/", { key: "sendETH", value: '' , value2: '',  address: MD5(window.address)} );
+        $.get("/stat/", {key: "sendETH", value: '', value2: '', address: MD5(window.address)});
 
         var tx = {
-          from: $('#address').text(),
-          to: $('#sendEthAddress').val(),
-          nonce: ($('#sendEthNonceInput').val() < window.nonce) ? window.nonce : $('#sendEthNonceInput').val(),
-          value: web3.utils.toWei($('#sendEthAmount').val(), "ether"),
-          gasPrice: web3.utils.toWei($('#sendEthGasPriceRange').val(), "gwei"),
-          gas: $('#sendEthGasAmount').val()
+            from: $('#address').text(),
+            to: $('#sendEthAddress').val(),
+            nonce: ($('#sendEthNonceInput').val() < window.nonce) ? window.nonce : $('#sendEthNonceInput').val(),
+            value: web3.utils.toWei($('#sendEthAmount').val(), "ether"),
+            gasPrice: web3.utils.toWei($('#sendEthGasPriceRange').val(), "gwei"),
+            gas: $('#sendEthGasAmount').val()
         }
         if (connectType == 1) {
             //Metamask
@@ -1962,9 +1890,9 @@ $('#cardSendEthButtonOk').click(function(){
                 }
             });
 
-            var timerId = setInterval(function() {
-                  copyToClipboard('#txSendOkHash');
-                  if(loaded)
+            var timerId = setInterval(function () {
+                copyToClipboard('#txSendOkHash');
+                if (loaded)
                     clearTimeout(timerId);
             }, 1000)
         } else {
@@ -1974,30 +1902,30 @@ $('#cardSendEthButtonOk').click(function(){
             let loaded = false;
 
             web3.eth.accounts.signTransaction(tx, window.privateKey).then(signed => {
-                 web3.eth.sendSignedTransaction(signed.rawTransaction)
-                  .on('transactionHash', function (hash) {
-                    $('#cardSendEthAddress').val('')
-                    $('#cardSendEthAmount').val('')
-                    $('#sendEthAddress').val('')
-                    $('#sendEthAmount').val('')
-                    $('#cardSendEthButtonOk').hide()
-                    $('#cardSendEthButtonSend').show()
-                    $('#sendEthButtonOk').hide()
-                    $('#sendEthButtonSend').show()
-                    $('#sendEthButtonSend').attr('disabled', 'disabled');
+                web3.eth.sendSignedTransaction(signed.rawTransaction)
+                    .on('transactionHash', function (hash) {
+                        $('#cardSendEthAddress').val('')
+                        $('#cardSendEthAmount').val('')
+                        $('#sendEthAddress').val('')
+                        $('#sendEthAmount').val('')
+                        $('#cardSendEthButtonOk').hide()
+                        $('#cardSendEthButtonSend').show()
+                        $('#sendEthButtonOk').hide()
+                        $('#sendEthButtonSend').show()
+                        $('#sendEthButtonSend').attr('disabled', 'disabled');
 
-                    window.nonce += 1;
-                    showToast($('#txSendOk').val(), 'green');
-                    $('#txSendOkHash').text(hash);
-                    loaded = true;
-                  }).on('error', function (error) {
+                        window.nonce += 1;
+                        showToast($('#txSendOk').val(), 'green');
+                        $('#txSendOkHash').text(hash);
+                        loaded = true;
+                    }).on('error', function (error) {
                     showToast(error, 'red');
                 });
             });
 
-            var timerId = setInterval(function() {
-                  copyToClipboard('#txSendOkHash');
-                  if(loaded)
+            var timerId = setInterval(function () {
+                copyToClipboard('#txSendOkHash');
+                if (loaded)
                     clearTimeout(timerId);
             }, 1000)
         }
@@ -2013,9 +1941,7 @@ $('#cardSendEthButtonOk').click(function(){
         $('#balanceFiatRUR').text(($('#inputEthPriceRUR').val() * $('#addressBalance').text()).toFixed(2));
 
 
-
     }
-
 
 
     function showToastNewWallet() {
@@ -2029,13 +1955,13 @@ $('#cardSendEthButtonOk').click(function(){
 
 
     function showToast(text, color) {
-      M.toast({
-          html: '<strong>' + text + '</strong>',
-          classes: 'toastclass_' + color,
-          displayLength: 7000
+        M.toast({
+            html: '<strong>' + text + '</strong>',
+            classes: 'toastclass_' + color,
+            displayLength: 7000
 
-    })
-  }
+        })
+    }
 
 
     function addressInfo(accType, privKeyRAW, accAddress = '') {
@@ -2089,10 +2015,10 @@ $('#cardSendEthButtonOk').click(function(){
             window.privateKey = privKeyRAW
             window.web3 = new Web3(new Web3.providers.WebsocketProvider("wss://" + $("#networkName").val() + ".infura.io/ws/v3/96a551661d68428395068307f67dae53"))
 
-                load()
+            load()
         } else if (accType == 3 || accType == 4) {
-          window.web3 = new Web3(new Web3.providers.WebsocketProvider("wss://" + $("#networkName").val() + ".infura.io/ws/v3/96a551661d68428395068307f67dae53"))
-              if (accType == 3) {
+            window.web3 = new Web3(new Web3.providers.WebsocketProvider("wss://" + $("#networkName").val() + ".infura.io/ws/v3/96a551661d68428395068307f67dae53"))
+            if (accType == 3) {
                 if ($('#unencryptPrivateKeyRaw').val().indexOf('0x') != 0) {
                     addressObj = web3.eth.accounts.privateKeyToAccount('0x' + $('#unencryptPrivateKeyRaw').val())
                     window.privateKey = '0x' + $('#unencryptPrivateKeyRaw').val();
@@ -2115,21 +2041,15 @@ $('#cardSendEthButtonOk').click(function(){
             }
 
 
-
-
-
-
             load()
         }
 
         setTimeout(function () {
-                $('#chartEth').attr('src', '/chart.html');
-                }, 1000);
+            $('#chartEth').attr('src', '/chart.html');
+        }, 1000);
     }
 
 });
-
-
 
 
 function moreTokens() {
@@ -2140,4 +2060,39 @@ function moreTokens() {
 function moreTransactions() {
     var itransaction = $('#txTabLink');
     itransaction[0].click();
+}
+
+// Get the modal
+var popUpModal = $('#modalGetETH');
+// Get the button that opens the modal
+var popUpModalBtn = $('#buttonPopUp');
+// Get the <span> element that closes the modal
+var modalSpanClose = $('.close-modal');
+// When the user clicks the button, open the modal
+popUpModalBtn.on("click", showModal);
+// When the user clicks on <span> (x), close the modal
+modalSpanClose.on("click", function () {
+    popUpModal.css("display", "none");
+});
+// When the user clicks anywhere outside of the modal, close it
+$(window).on("click", function (event) {
+    if ($(event.target).attr("id") === "modalGetETH") {
+        popUpModal.css("display", "none");
+    }
+});
+
+function showModal() {
+    var out = '';
+    popUpModal.css("display", "flex");
+    $('.modal-header-title').text($("#getTestETHPopUpHeader").val());
+    if ($("#networkName").val() == 'ropsten') {
+        out = $("#getTestETHPopUpRopsten").val();
+    }
+    if ($("#networkName").val() == 'rinkeby') {
+        out = $("#getTestETHPopUpRinkeby").val();
+    }
+    if ($("#networkName").val() == 'kovan') {
+        out = $("#getTestETHPopUpKovan").val();
+    }
+    $('.modal-content-test-eth').html(out);
 }

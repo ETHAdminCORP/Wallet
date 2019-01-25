@@ -430,5 +430,25 @@
   {
     "id": "buttonPayServices",
     "translation": "Shops / Services"
+  },
+  {
+    "id": "getTestETHPopUpRopsten",
+    "translation": "<p>Go to the <a href='https://faucet.ropsten.be/' target='_blank'>https://faucet.ropsten.be/</a> or <a href='https://faucet.metamask.io/' target='_blank'>https://faucet.metamask.io/</a> site and enter your Ethereum address.</p>"
+  },
+  {
+    "id": "getTestETHPopUpRinkeby",
+    "translation": "<p>Create a post on facebook/twitter/google+ with your Ethereum address. Go to the <a href='https://faucet.rinkeby.io/' target='_blank'>https://faucet.rinkeby.io/</a> site and enter the URL of the post with your address.</p>"
+  },
+  {
+    "id": "getTestETHPopUpKovan",
+    "translation": "<p>Enter the <a href='https://gitter.im/kovan-testnet/faucet' target='_blank'>https://gitter.im/kovan-testnet/faucet</a> chat and send your Ethereum address there. Bot will automatically send you ETH.</p>"
+  },
+  {
+    "id": "getTestETHPopUpHeader",
+    "translation": "Get ETH"
+  },
+  {
+    "id": "buttonPopUp",
+    "translation": "Get ETH"
   }
 ]
