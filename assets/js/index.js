@@ -101,7 +101,7 @@ $('#passEye').click(function () {
 $(document).mouseup(function (e) {
     if ($("#tokens").css("display") === "block") {
         let container = $("#tokenTable");
-        if (container.has(e.target).length === 0) {
+        if (container.has(e.target).length === 0 && typeof tokenAddressArray !== 'undefined') {
             for (let i = 0; i < tokenAddressArray.length; i++) {
                 $('#transferTokenDiv-' + tokenAddressArray[i]).hide();
                 $('#transferTokenButton-' + tokenAddressArray[i]).show();
