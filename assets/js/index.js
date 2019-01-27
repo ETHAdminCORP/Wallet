@@ -1656,7 +1656,7 @@ window.addEventListener("load", async () => {
                 $("#aboutAddress").show();
 
                 $('.tabs').tabs('updateTabIndicator');
-                
+                addressInfo(1);
             } catch (error) {
                 // User denied account access...
                 $('#metamaskBlockWarning').show();
