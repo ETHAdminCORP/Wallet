@@ -104,6 +104,10 @@ $(document).mouseup(function (e) {
                 $('#transferTokenDiv-' + tokenAddressArray[i]).hide();
                 $('#transferTokenButton-' + tokenAddressArray[i]).show();
                 $('#tokenExchangeLink-' + tokenAddressArray[i]).show();
+
+                if ($('#tokenTransferParamsDiv-' + tokenAddressArray[i]).is(":visible")) {
+                    $('#tokenTransferParamsDiv-' + tokenAddressArray[i]).hide()
+                }
             }
         }
     }
@@ -919,7 +923,6 @@ window.addEventListener("load", async () => {
 
     }
 
-
     window.tokenShowTransferDiv = function (tokenAddress) {
 
 
@@ -928,14 +931,15 @@ window.addEventListener("load", async () => {
                 $('#transferTokenDiv-' + tokenAddressArray[i]).hide()
                 $('#transferTokenButton-' + tokenAddressArray[i]).show()
                 $('#tokenExchangeLink-' + tokenAddressArray[i]).show()
+                if ($('#tokenTransferParamsDiv-' + tokenAddressArray[i]).is(":visible")) {
+                    $('#tokenTransferParamsDiv-' + tokenAddressArray[i]).hide()
+                }
             } else {
                 $('#transferTokenDiv-' + tokenAddressArray[i]).show()
                 $('#transferTokenButton-' + tokenAddressArray[i]).hide()
                 $('#tokenExchangeLink-' + tokenAddressArray[i]).hide()
             }
         }
-
-
     }
 
 
