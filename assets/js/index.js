@@ -2066,27 +2066,27 @@ function moreTransactions() {
 }
 
 // Get the modal
-var popUpModal = $('#modalGetETH');
+var popUpModalTestETH = $('#modalGetETH');
 // Get the button that opens the modal
-var popUpModalBtn = $('#buttonPopUp');
+var popUpModalBtnTestETH = $('#buttonPopUp');
 // Get the <span> element that closes the modal
-var modalSpanClose = $('.close-modal');
+var modalSpanCloseTestETH = $('.close-modal');
 // When the user clicks the button, open the modal
-popUpModalBtn.on("click", showModal);
+popUpModalBtnTestETH.on("click", showModalTestETH);
 // When the user clicks on <span> (x), close the modal
-modalSpanClose.on("click", function () {
-    popUpModal.css("display", "none");
+modalSpanCloseTestETH.on("click", function () {
+    popUpModalTestETH.css("display", "none");
 });
 // When the user clicks anywhere outside of the modal, close it
 $(window).on("click", function (event) {
     if ($(event.target).attr("id") === "modalGetETH") {
-        popUpModal.css("display", "none");
+        popUpModalTestETH.css("display", "none");
     }
 });
 
-function showModal() {
+function showModalTestETH() {
     var out = '';
-    popUpModal.css("display", "flex");
+    popUpModalTestETH.css("display", "flex");
     $('.modal-header-title').text($("#getTestETHPopUpHeader").val());
     if ($("#networkName").val() == 'ropsten') {
         out = $("#getTestETHPopUpRopsten").val();
