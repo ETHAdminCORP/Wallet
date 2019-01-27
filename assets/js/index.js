@@ -1170,7 +1170,8 @@ $('#cardSendEthButtonOk').click(function(){
                                 var txTime = hrsz + ':' + mins + ' &nbsp;&nbsp;&nbsp;' + dateDay + '.' + dateMonth + '.' + date.getFullYear().toString().slice(2, 4)
                             }
                         }
-                        $('#txtable').append('<tr bgcolor=' + txBgcolor + '><td style=align:right>' + txTime + '</td><td style="text-align: right">' + txType + ' ' + parseInt(transaction['value']) / 1e18 + ' ETH</td><td>' + txTypeText + ' ' + currentFinalTxAddress + '</td></tr>')
+                        if (currentFinalTxAddress != undefined) { var cfta = currentFinalTxAddress }
+                        $('#txtable').append('<tr bgcolor=' + txBgcolor + '><td style=align:right>' + txTime + '</td><td style="text-align: right">' + txType + ' ' + parseInt(transaction['value']) / 1e18 + ' ETH</td><td>' + txTypeText + ' ' + cfta + '</td></tr>')
                         if(txC <6) {
                             if(txC == 0) {
                               $('#cardTxList').append('<a href=# style="text-decoration:none" onclick="moreTransactions()"><span style=color:#01c3b6><span style=font-size:20px;font-weight:500;>' + $('#txListCardLabel').val() +':</span></a>')
