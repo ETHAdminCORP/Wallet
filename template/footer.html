@@ -5,7 +5,11 @@
       <div class="col s12 l8">
         <h5 class="white-text">About ETHAdmin:</h5>
         <p class="grey-text text-lighten-4">ETHAdmin is a free, open-source web wallet for interacting with Ethereum blockchain.</p>
-        <div class="donate"><p>Donate:&nbsp;</p><p>0xA4F2374B56BADd4516dCcA20a81C8a8b678F33eA</p></div>
+        <div class="donate">
+          <p>Donate:&nbsp;</p>
+          <p id="donate-address">0xA4F2374B56BADd4516dCcA20a81C8a8b678F33eA</p>
+          <img style="margin-left:10px; margin-top: -10px" id="copyToClipboardImg" onmousedown="copyToClipboard('#donate-address')" src="/assets/img/clipboard.png" title={{T "AddressCopyIcon"}}>
+        </div>
       </div>
       <div class="col l4 offset-12 s12">
         <h5 class="white-text">Contact us:</h5>
