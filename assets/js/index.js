@@ -99,7 +99,7 @@ $('#passEye').click(function () {
 $(document).mouseup(function (e) {
     if ($("#tokens").css("display") === "block") {
         let container = $("#tokenTable");
-        if (container.has(e.target).length === 0) {
+        if (container.has(e.target).length === 0 && typeof tokenAddressArray !== 'undefined') {
             for (let i = 0; i < tokenAddressArray.length; i++) {
                 $('#transferTokenDiv-' + tokenAddressArray[i]).hide();
                 $('#transferTokenButton-' + tokenAddressArray[i]).show();
@@ -1221,14 +1221,17 @@ window.addEventListener("load", async () => {
                                 var txTime = hrsz + ':' + mins + ' &nbsp;&nbsp;&nbsp;' + dateDay + '.' + dateMonth + '.' + date.getFullYear().toString().slice(2, 4)
                             }
                         }
-                        */
-                        $('#txtable').append('<tr bgcolor=' + txBgcolor + '><td style=align:right>' + txTime + '</td><td style="text-align: right">' + txType + ' ' + parseInt(transaction['value']) / 1e18 + ' ETH</td><td>' + txTypeText + ' ' + currentFinalTxAddress + '</td></tr>')
+
+                        if (currentFinalTxAddress != undefined) { var cfta = currentFinalTxAddress }
+                        $('#txtable').append('<tr bgcolor=' + txBgcolor + '><td style=align:right>' + txTime + '</td><td style="text-align: right">' + txType + ' ' + parseInt(transaction['value']) / 1e18 + ' ETH</td><td>' + txTypeText + ' ' + cfta + '</td></tr>')
+
+
                         if(txC <6) {
                             if(txC == 0) {
                               $('#cardTxList').append('<a href=# style="text-decoration:none" onclick="moreTransactions()"><span style=color:#01c3b6><span style=font-size:20px;font-weight:500;>' + $('#txListCardLabel').val() +':</span></a>')
                               $('#cardTxList').append('<table id=txtableTab class="highlight"><thead><tr><th align=right>' + $('#txListCardLabelDate').val() + '</th><th style="text-align: right">' + $('#txListCardLabelAmount').val() + '</th><th>' + $('#txListCardLabelFrom').val() + '</th></thead>')
                             }
-                            $('#txtableTab').append('<tr bgcolor=' + txBgcolor + '><td style=align:right>' + txTime + '</td><td style="text-align: right">' + txType + ' ' + parseInt(transaction['value']) / 1e18 + ' ETH</td><td>' + txTypeText + ' ' + currentFinalTxAddress + '</td></tr>')
+                            $('#txtableTab').append('<tr bgcolor=' + txBgcolor + '><td style=align:right>' + txTime + '</td><td style="text-align: right">' + txType + ' ' + parseInt(transaction['value']) / 1e18 + ' ETH</td><td>' + txTypeText + ' ' + cfta + '</td></tr>')
 
                           }
                           if(txC == 0) {
