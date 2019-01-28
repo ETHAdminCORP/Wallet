@@ -202,6 +202,8 @@
                                     <button id="buttonDownloadUTC" type="button" class="btn effect waves-light">{{T "DownloadKeyFile"}}</button>
                                     <button id="buttonShowPrivateKey" type="button" class="btn effect waves-light">{{T "buttonShowPrivateKey"}}</button>
                                     <button id="buttonHidePrivateKey" type="button" class="btn effect waves-light">{{T "buttonShowPrivateKeyHide"}}</button>
+                                    <a id="buttonMerchantServices" href="https://www.coinpayments.net/store-directory" target="_blank"><button type="button" class="btn effect waves-light">{{T "buttonPayServices"}}</button></a>
+                                    <button id="buttonPopUp" type="button" class="btn effect waves-light">{{T "buttonPopUp"}}</button>
                                 </div>
                             </div>
 
@@ -212,7 +214,14 @@
 
                     </div>
                 </div>
-
+                <!--PopUp Window-->
+                <div class="modal-get-eth" id="modalGetETH">
+                    <div class="modal-container-box">
+                        <div class="modal-header"><span class="modal-header-title"></span><span class="close-modal">x</span></div>
+                        <div class="modal-content-test-eth">
+                        </div>
+                    </div>
+                </div>
                 <!-- Cards -->
                 <div class="row">
                     <div class="row-container">
@@ -283,7 +292,7 @@
                     </div>
 
                     <div class="form-inline">
-                        <label>{{ T "SendEthAmount"}} <span id="sendEthAmountFiat"></span></label>
+                        <label>{{ T "SendEthAmount"}} <span id="sendEthAmountFiat"></span></label><br>
                         <input id="sendEthAmount" type="tel" pattern="[0-9]+([\.][0-9]+)?" class="form-control"> ETH
                     </div>
 
@@ -299,7 +308,7 @@
                         <label class="active">{{ T "SendEthLabelGasAmount"}}</label>
                         <input type=text value=21000 placeholder="gas amount" id="sendEthGasAmount" /> {{ T "SendEthCommission"}} ( +<span id="sendEthCommission"></span> ETH )
                         <br><i>
-            <span style="font-size:13px">{{ T "SendEthCommissionWarning"}}</i></span>
+            <span style="font-size:13px">{{ T "SendEthCommissionWarning"}}</span></i>
                         <input id="sendEthGasPriceRange" type=range min=1 max=100 step=1 oninput="sendEthGasPriceGWEI.value = sendEthGasPriceRange.value + ' GWEI'" />
                         <output id="sendEthGasPriceGWEI"></output>
                         <div class="row">
@@ -451,11 +460,11 @@
 
     <input type=text id="langId" value='{{T "langId" }}' hidden/>
     <input type=text id="translate-ContractBalance" value='{{T "ConctractBalanceLine"}}' hidden/>
-    <input type=text value={{.gasPriceFast}} id="inputGasPriceFast" hidden/>
-    <input type=text value={{.gasPriceAverage}} id="inputGasPriceAverage" hidden/>
-    <input type=text value={{.ethPriceUSD}} id="inputEthPriceUSD" hidden/>
-    <input type=text value={{.ethPriceRUR}} id="inputEthPriceRUR" hidden/>
-    <input type=text value={{ T "CallSmartContractFunc" }} id="CallSmartContractFuncText" hidden/>
+    <input type=text value='{{.gasPriceFast}}' id="inputGasPriceFast" hidden/>
+    <input type=text value='{{.gasPriceAverage}}' id="inputGasPriceAverage" hidden/>
+    <input type=text value='{{.ethPriceUSD}}' id="inputEthPriceUSD" hidden/>
+    <input type=text value='{{.ethPriceRUR}}' id="inputEthPriceRUR" hidden/>
+    <input type=text value='{{ T "CallSmartContractFunc" }}' id="CallSmartContractFuncText" hidden/>
     <input type=text value='{{ T "ReadFunctionTitile" }}' id="ReadFunctionTitile" hidden/>
     <input type=text value='{{ T "WriteFUnctionTitle" }}' id="WriteFUnctionTitle" hidden/>
     <input type=text value='{{ T "resultCallFunctionTitle" }}' id="resultCallFunctionTitle" hidden/>
@@ -505,10 +514,17 @@
     <input type=text value='{{ T "txSendOk" }}' id="txSendOk" hidden/>
     <input type=text value='{{ T "CreateWalletDesc" }}' id="CreateWalletDesc" hidden/>
 
+
+    <input type=text value='{{ T "TokenTransferGasLimitExceedText" }}' id="TokenTransferGasLimitExceedText" hidden/>
     <input type="text" value='{{ T "receivedFromAddress"}}' id="receivedFromAddress" hidden />
     <input type="text" value='{{ T "sentToAddress"}}' id="sentToAddress" hidden />
     <input type="text" value='{{ T "sentToYourself"}}' id="sentToYourself" hidden />
 
+
+    <input type=text value='{{ T "getTestETHPopUpHeader" }}' id="getTestETHPopUpHeader" hidden/>
+    <input type=text value='{{ T "getTestETHPopUpRopsten" }}' id="getTestETHPopUpRopsten" hidden/>
+    <input type=text value='{{ T "getTestETHPopUpRinkeby" }}' id="getTestETHPopUpRinkeby" hidden/>
+    <input type=text value='{{ T "getTestETHPopUpKovan" }}' id="getTestETHPopUpKovan" hidden/>
 
     <span style="display:none" id=txSendOkHash></span>
 
