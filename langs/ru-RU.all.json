@@ -267,7 +267,6 @@
     "id": "WriteFUnctionTitle",
     "translation": "Функции записи"
   },
-<<<<<<< HEAD
   {
     "id": "SendEthLabelGasAmount",
     "translation": "Gas amount"
@@ -342,7 +341,7 @@
   },
   {
     "id": "txCallFunc",
-    "translation": "Вызов функции смарт-контракта"
+    "translation": "Вызов функции контракта"
   },
   {
     "id": "txCreateContract",
@@ -370,7 +369,7 @@
   },
   {
     "id": "txListCardLabelFrom",
-    "translation": "От"
+    "translation": "Описание"
   },
   {
     "id": "txListCardLabelTo",
@@ -459,147 +458,17 @@
   {
     "id": "buttonPopUp",
     "translation": "Получить эфир"
+  },
+  {
+    "id": "receivedFromAddress",
+    "translation": "Получено от"
+  },
+  {
+    "id": "sentToAddress",
+    "translation": "Отправлено на"
+  },
+  {
+    "id": "sentToYourself",
+    "translation": "Отправлено самому себе"
   }
-=======
-  { "id": "SendEthLabelGasAmount",
-   "translation": "Gas amount"
- },
- { "id": "GasLimitExceedText",
-  "translation": "Функция не будет выполнена. Превышен лимит газа."
- },
- { "id": "resultCallFunctionTitle",
-  "translation": "Результат:"
- },
- { "id": "smartContractEthAmountErrorText",
-  "translation": "Недостаточно средств на балансе"
- },
- { "id": "smartContractEmptyArrayText",
-  "translation": "Массив не содержит данных!"
- },
- { "id": "tokensTableTokenNameText",
-  "translation": "Имя"
- },
- { "id": "tokensTableBalanceText",
-  "translation": "Баланс"
- },
- { "id": "tokensTablePriceText",
-  "translation": "Цена"
- },
- { "id": "tokensTableSumText",
-  "translation": "Сумма"
- },
- { "id": "tokensTableButtonTransferText",
-  "translation": "Переслать"
- },
- { "id": "tokensTableButtonExchangeText",
-  "translation": "Торговать"
- },
- { "id": "tokensTableTransferToText",
-  "translation": "Адрес"
- },
- { "id": "tokensTableTransferAmountText",
-  "translation": "Сколько"
- },
- { "id": "tokensTableTransferConfirmButtonText",
-  "translation": "Подтвердить перевод"
- },
- { "id": "tokensTableTransferErrorText",
-  "translation": "Неверно введен адрес получателя или количество токенов"
- },
- { "id": "tokensTableNotLoadText",
-  "translation": "Просмотр списка токенов возможен только в сети MainNet"
- },
- { "id": "transactionsErrorText",
-  "translation": "Не удалось загрузить список транзакций :("
- },
- { "id": "transactionsLoading",
-  "translation": "Загружаем список транзакций"
- },
- { "id": "txCallFunc",
-  "translation": "Вызов функции смарт-контракта"
- },
- { "id": "txCreateContract",
-  "translation": "Создание контракта"
- },
- { "id": "ContractsFooter",
-  "translation": "Связаться с нами"
- },
- { "id": "txListEmpty",
-  "translation": "На этом адресе еще не было транзакций."
- },
- { "id": "privateKeyLabel",
-  "translation": "Приватный ключ"
- },
- { "id": "txListCardLabel",
-  "translation": "Транзакции"
- },
- { "id": "txListCardLabelDate",
-  "translation": "Дата"
- },
- { "id": "txListCardLabelFrom",
-  "translation": "Описание"
- },
- { "id": "txListCardLabelTo",
-  "translation": "Кому"
- },
- { "id": "txListCardLabelAmount",
-  "translation": "Сумма"
- },
- { "id": "txListCardLabelMore",
-  "translation": "Подробнее.."
- },
- { "id": "tokensListCardLabel",
-  "translation": "Токены"
- },
- { "id": "noTokensWarningCard",
-  "translation": "У вас еще нет токенов"
- },
- { "id": "noTokensWarning",
-  "translation": "У вас еще нет токенов"
- },
- { "id": "tokenListCardLabelMore",
-  "translation": "Подробнее.."
-},
-{ "id": "sendEthLabelMainTab",
- "translation": "Перевод ETH на другой адрес"
-},
-{ "id": "CreateWalletPlaceholder",
- "translation": "Не менее 6 символов"
-},
-{ "id": "txListHours",
- "translation": "часов"
-},
-{ "id": "txListMins",
- "translation": "мин. назад"
-},
-{ "id": "txListSec",
- "translation": "сек. назад"
-},
-{ "id": "txListHours2",
- "translation": "часов"
-},
-{ "id": "txSendOk",
- "translation": "Транзакция отправлена"
-},
-{ "id": "metamaskInstallText",
- "translation": "Вам необходимо установить Metamask"
-},
-{
-  "id": "receivedFromAddress",
-  "translation": "Получено от"
-},
-{
-  "id": "sentToAddress",
-  "translation": "Отправлено на"
-},
-{
-  "id": "sentToYourself",
-  "translation": "Отправлено самому себе"
-}
-
-
-
-
-
->>>>>>> origin/VIZ-40
 ]

@@ -333,7 +333,7 @@
   },
   {
     "id": "txCallFunc",
-    "translation": "Smart contract function call"
+    "translation": "Contract function call"
   },
   {
     "id": "txCreateContract",
@@ -361,7 +361,7 @@
   },
   {
     "id": "txListCardLabelFrom",
-    "translation": "From"
+    "translation": "Description"
   },
   {
     "id": "txListCardLabelTo",
@@ -463,3 +463,4 @@
     "id": "sentToYourself",
     "translation": "Sent to yourself"
   }
+]
