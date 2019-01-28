@@ -450,5 +450,16 @@
   {
     "id": "buttonPopUp",
     "translation": "Get ETH"
+  },
+  {
+    "id": "receivedFromAddress",
+    "translation": "Received from"
+  },
+  {
+    "id": "sentToAddress",
+    "translation": "Sent to"
+  },
+  {
+    "id": "sentToYourself",
+    "translation": "Sent to yourself"
   }
-]

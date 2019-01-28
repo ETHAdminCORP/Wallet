@@ -1,3 +1,7 @@
+nav {
+    background-color: #01c3b6;
+}
+
 .navigation .container,
 .navigation .row {
     height: 100%;
@@ -48,7 +52,33 @@
 }
 
 #transactionsLis {
-    margin: 0 50px;
+    margin: 0 5%;
+}
+
+@media screen and (min-width: 1600px) {
+    #transactionsLis {
+        margin: 0 7%;
+    }
+}
+@media screen and (min-width: 1900px) {
+    #transactionsLis {
+        margin: 0 13%;
+    }
+}
+@media screen and (min-width: 2000px) {
+    #transactionsLis {
+        margin: 0 15%;
+    }
+}
+@media screen and (min-width: 2200px) {
+    #transactionsLis {
+        margin: 0 18%;
+    }
+}
+@media screen and (min-width: 2400px) {
+    #transactionsLis {
+        margin: 0 21%;
+    }
 }
 
 .tabs .tab a.active{
@@ -78,7 +108,7 @@
 }
 
 #innerTabs {
-    height: 25px;
+    height: 35px;
 }
 
 #transactionTab {
@@ -86,8 +116,8 @@
 }
 
 #innerTabs .tab {
-    height: 25px;
-    line-height: 25px;
+    height: 35px;
+    line-height: 35px;
 }
 
 #frameTab {
@@ -208,6 +238,19 @@ body.en-US #passEye {
     font-size: 20px;
 }
 
+.wallet-cart-content::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    transition: box-shadow 0.5s;
+    z-index: -10;
+    box-shadow: 0.4em 0.4em 10px rgba(122, 122, 122, 0.5);
+}
+
 .card::before {
     content: "";
     display: block;
@@ -248,11 +291,11 @@ body.en-US #passEye {
 }
 
 #wallet .row-container:nth-child(2) .col.s12.m6.xl6:last-child .wallet-card {
-    padding: 0 25px;
+    padding: 0;
 }
 
 #wallet .row-container iframe {
-    height: 29vw;
+    height: 31vw;
 }
 
 .wallet-card {
@@ -322,6 +365,11 @@ body.en-US #passEye {
 
 /* Transaction table */
 
+#txtable th,
+#txtableTab th {
+    padding-bottom: 5px;
+}
+
 #txtable td,
 #txtable th {
     min-width: 120px;
@@ -334,24 +382,40 @@ body.en-US #passEye {
     background-color: rgb(250, 250, 250);
 }
 
-#txtable tr td:first-child {
-    padding-left: 60px;
+#txtable tr td:first-child,
+#txtable tr th:first-child {
+    margin-left: 60px;
 }
 
-#txtable tr th:first-child {
-    padding-left: 60px;
-}
 
 #txtable tr td:last-child {
-    padding-right: 60px;
+    margin-right: 60px;
 }
 
 #txtable tr th:last-child {
-    padding-right: 60px;
+    margin-right: 60px;
 }
 
 #cardTxList center {
     line-height: 310px;
+}
+
+@media screen and (min-width: 1600px) {
+    #cardTxList td,
+    #cardTxList th {
+        margin-right: 15px;
+        margin-left: 15px;
+    }
+    #txtable tr td:first-child,
+    #txtable tr th:first-child {
+        margin-left: calc(4% + 60px);
+    }
+}
+@media screen and (min-width: 1900px) {
+    #txtable tr td:first-child,
+    #txtable tr th:first-child {
+        margin-left: calc(5% + 60px);
+    }
 }
 
 /* Send ETH */

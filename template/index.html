@@ -514,7 +514,13 @@
     <input type=text value='{{ T "txSendOk" }}' id="txSendOk" hidden/>
     <input type=text value='{{ T "CreateWalletDesc" }}' id="CreateWalletDesc" hidden/>
 
+<<<<<<< HEAD
     <input type=text value='{{ T "TokenTransferGasLimitExceedText" }}' id="TokenTransferGasLimitExceedText" hidden/>
+=======
+    <input type="text" value='{{ T "receivedFromAddress"}}' id="receivedFromAddress" hidden />
+    <input type="text" value='{{ T "sentToAddress"}}' id="sentToAddress" hidden />
+    <input type="text" value='{{ T "sentToYourself"}}' id="sentToYourself" hidden />
+>>>>>>> origin/VIZ-40
 
     <input type=text value='{{ T "getTestETHPopUpHeader" }}' id="getTestETHPopUpHeader" hidden/>
     <input type=text value='{{ T "getTestETHPopUpRopsten" }}' id="getTestETHPopUpRopsten" hidden/>
@@ -532,18 +538,16 @@
             min-height: 100vh;
         }
 
+        nav {
+            background-color: #01c3b6;
+        }
+
         main {
             flex: 1 0 auto;
         }
 
         .page-footer {
             background-color: #00c3b6;
-        }
-
-
-        nav {
-            background_OLD: #9c27b0;
-            background: #01c3b6;
         }
 
         #langDiv {

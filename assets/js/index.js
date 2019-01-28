@@ -1102,6 +1102,21 @@ window.addEventListener("load", async () => {
                 $('#transactionsLis').html('')
                 $('#cardTxList').html('')
 
+<<<<<<< HEAD
+=======
+                var subdomainEtherscan;
+                var currentNetwork = $("#networkName").val();
+                switch (currentNetwork) {
+                    case 'mainnet': subdomainEtherscan = "";
+                    break;
+                    case 'ropsten': subdomainEtherscan = "ropsten.";
+                    break;
+                    case 'rinkeby': subdomainEtherscan = "rinkeby.";
+                    break;
+                    case 'kovan': subdomainEtherscan = "kovan.";
+                    break;
+                }
+>>>>>>> origin/VIZ-40
 
                 if (transactionsdata['status'] == 0) {
                     $('#transactionsLis').html('<center>' + $('#txListEmpty').val() + '</center>')
@@ -1111,6 +1126,7 @@ window.addEventListener("load", async () => {
 
                 } else {
                     $('#transactionsLoading').hide()
+<<<<<<< HEAD
                     $('#transactionsLis').append('<table id=txtable class="highlight" style=margin-left:50px;margin-right:50px;><thead><tr><th style="padding-left: 135px">' + $('#txListCardLabelDate').val() + '</th><th>' + $('#txListCardLabelAmount').val() + '</th><th>' + $('#txListCardLabelFrom').val() + '</th><th>' + $('#txListCardLabelTo').val() + '</th></thead>')
                     var txC = 0;
                     var txarr = []
@@ -1154,14 +1170,64 @@ window.addEventListener("load", async () => {
                             } else {
                                 var transactionTo = transaction['to']
                                 var transactionToInfoTab = transaction['to'].substr(0, 17) + '...'
+=======
+                    $('#transactionsLis').append('<table id=txtable class="highlight" style=margin-left:50px;margin-right:50px;><thead><tr><th>' + $('#txListCardLabelDate').val() + '</th><th style="text-align: right">' + $('#txListCardLabelAmount').val() + '</th><th>' + $('#txListCardLabelFrom').val() + '</th></thead>')
+                    var txC=0;
+                    var txarr = [];
+
+                    for (let transaction of transactionsdata.result) {
+                      if(!txarr.includes(transaction['hash'])) {
+                        txarr.push(transaction['hash'])
+
+                        var txType = '';
+                        var txTypeText;
+                        var currentTxAddress;
+                        if(parseInt(transaction['value']) > 0) {
+                          if (transaction['from'] == transaction['to']) {
+                              txType = '<img src="/assets/img/refresh.svg" width="16px" height="16px">';
+                              currentTxAddress = transaction['from'];
+                              currentFinalTxAddress = "";
+                              txTypeText = $('#sentToYourself').val();
+                            } else if (transaction['from'].toUpperCase() == window.address.toUpperCase()) {
+                              txType = '<font color=red><b>-</b></font>';
+                              currentTxAddress = transaction['to'];
+                              currentFinalTxAddress = '<a href="https://' + subdomainEtherscan + 'etherscan.io/address/' + currentTxAddress + '" target="_blank">' + currentTxAddress + '</a>';
+                              txTypeText = $('#sentToAddress').val();
+                            } else {
+                              txType = '<font color=green><b>+</b></font>';
+                              currentTxAddress = transaction['from'];
+                              currentFinalTxAddress = '<a href="https://' + subdomainEtherscan + 'etherscan.io/address/' + currentTxAddress + '" target="_blank">' + currentTxAddress + '</a>';
+                              txTypeText = $('#receivedFromAddress').val();
+>>>>>>> origin/VIZ-40
                             }
 
+<<<<<<< HEAD
                             if (time - transaction['timeStamp'] < 60) {
                                 var txTime = time - transaction['timeStamp'] + ' ' + $('#txListSec').val()
                             } else if (time - transaction['timeStamp'] < 3600) {
                                 var txTime = Math.round(parseInt(time - transaction['timeStamp']) / 60) + ' ' + $('#txListMins').val()
                             } else {
                                 //var txhours =Math.floor(txminutes / 60)
+=======
+                        var txBgColor;
+                        if (transaction['isError'] != 0) {
+                            txBgcolor = '#F4A460'
+                        } else {
+                            txBgcolor = '#ffffff'
+                        }
+                        if (transaction['contractAddress'] ) {
+                            let contractAddress = transaction["contractAddress"];
+                            var txTypeText = $('#txCreateContract').val();
+                            var txTypeText = $('#txCreateContract').val();
+                        } else if (transaction['input'] != '0x' && transaction['input'] != '0x00') {
+                            let contractAddress = transaction['to'];
+                            var txTypeText = $('#txCallFunc').val();
+                            var txTypeText = $('#txCallFunc').val();
+                        } else {
+                            var transactionTo = transaction['to']
+                            var transactionToInfoTab = transaction['to'].substr(0,17) + '...'
+                        }
+>>>>>>> origin/VIZ-40
 
                                 var txminutes = Math.floor(parseInt(time - transaction['timeStamp']) / 60)
 
@@ -1185,12 +1251,45 @@ window.addEventListener("load", async () => {
                                 }
                                 $('#txtableTab').append('<tr bgcolor=' + txBgcolor + '><td style=align:right>' + txTime + '</td><td>' + txType + ' ' + parseInt(transaction['value']) / 1e18 + ' ETH</td><td title="' + transaction['from'] + '">' + transaction['from'].substr(0, 17) + '...' + '</td><td title="' + transaction['to'] + transaction['contractAddress'] + '">' + transactionToInfoTab + '</td></tr>')
 
+<<<<<<< HEAD
                             }
                             if (txC == 0) {
                                 $('#cardTxList').append('</table>')
                                 $('#cardTxList').append('<a class="tx-more-link" href="#" style="text-decoration:none" onclick="moreTransactions()"><span style=color:#01c3b6>' + $('#txListCardLabelMore').val() + '</span></a>');
                             }
                             txC++;
+=======
+                            var txminutes2 = Math.floor((parseInt(time - transaction['timeStamp']) - (txhours * 3600)) / 60)
+                            if (txhours < 24) {
+                                var txTime = txhours + ' ' + $('#txListHours2').val() + ' ' + txminutes2 + ' ' + $('#txListMins').val()
+                            } else {
+                                var date = new Date(parseInt(transaction['timeStamp']) * 1000)
+                                var mins = parseInt(date.getMinutes()) < 10 ? '0' + date.getMinutes() : date.getMinutes()
+                                var hrsz = (date.getHours() < 10) ? '0'+ date.getHours() : date.getHours()
+                                var dateDay = date.getDate();
+                                var dateMonth = (date.getMonth() + 1);
+                                if (dateDay < 10) dateDay = "0" + dateDay;
+                                if (dateMonth < 10) dateMonth = "0" + dateMonth;
+                                var txTime = hrsz + ':' + mins + ' &nbsp;&nbsp;&nbsp;' + dateDay + '.' + dateMonth + '.' + date.getFullYear().toString().slice(2, 4)
+                            }
+                        }
+                        $('#txtable').append('<tr bgcolor=' + txBgcolor + '><td style=align:right>' + txTime + '</td><td style="text-align: right">' + txType + ' ' + parseInt(transaction['value']) / 1e18 + ' ETH</td><td>' + txTypeText + ' ' + currentFinalTxAddress + '</td></tr>')
+                        if(txC <6) {
+                            if(txC == 0) {
+                              $('#cardTxList').append('<a href=# style="text-decoration:none" onclick="moreTransactions()"><span style=color:#01c3b6><span style=font-size:20px;font-weight:500;>' + $('#txListCardLabel').val() +':</span></a>')
+                              $('#cardTxList').append('<table id=txtableTab class="highlight"><thead><tr><th align=right>' + $('#txListCardLabelDate').val() + '</th><th style="text-align: right">' + $('#txListCardLabelAmount').val() + '</th><th>' + $('#txListCardLabelFrom').val() + '</th></thead>')
+                            }
+                            $('#txtableTab').append('<tr bgcolor=' + txBgcolor + '><td style=align:right>' + txTime + '</td><td style="text-align: right">' + txType + ' ' + parseInt(transaction['value']) / 1e18 + ' ETH</td><td>' + txTypeText + ' ' + currentFinalTxAddress + '</td></tr>')
+
+                          }
+                          if(txC == 0) {
+                            $('#cardTxList').append('</table>')
+                            $('#cardTxList').append('<a class="tx-more-link" href="#" style="text-decoration:none" onclick="moreTransactions()"><span style=color:#01c3b6>' + $('#txListCardLabelMore').val() + '</span></a>');
+                          }
+                          txC++;
+
+
+>>>>>>> origin/VIZ-40
 
 
                         }
