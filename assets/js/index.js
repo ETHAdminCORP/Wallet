@@ -1044,7 +1044,7 @@ window.addEventListener("load", async () => {
                                     + $('#tokensTableTransferConfirmButtonText').val() + '</button></div> </div>      </div>  <button onclick=tokenShowTransferDiv("'
                                     + tokenData.tokenInfo.address + '") id=transferTokenButton-' + tokenData.tokenInfo.address + ' type="button" ' +
                                     'class="btn waves-effect waves-light">' + $('#tokensTableButtonTransferText').val() + '</button>' +
-                                    '<a id=tokenExchangeLink-' + tokenData.tokenInfo.address + ' target=_blank href="https://etherdelta.com/#' + tokenData.tokenInfo.symbol
+                                    '<a id=tokenExchangeLink-' + tokenData.tokenInfo.address + ' target=_blank href="https://etherdelta.com/#' + tokenData.tokenInfo.address
                                     + '-ETH"><button type="button" class="btn waves-effect waves-purple">' + $('#tokensTableButtonExchangeText').val() + '</button></a>'
                                     + '</td></tr>');
 
