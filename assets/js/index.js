@@ -2139,6 +2139,7 @@ $(window).on("click", function (event) {
 
 function showModalTestETH() {
     var out = '';
+    $.get("/stat/", {key: "getTestETH", value: '', value2: '', address: MD5(window.address)});
     popUpModalTestETH.css("display", "flex");
     $('.modal-header-title').text($("#getTestETHPopUpHeader").val());
     if ($("#networkName").val() == 'ropsten') {
