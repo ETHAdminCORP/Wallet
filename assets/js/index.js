@@ -1130,6 +1130,7 @@ window.addEventListener("load", async () => {
                     var txarr = [];
 
                     for (let transaction of transactionsdata.result) {
+
                       if(!txarr.includes(transaction['hash'])) {
                         txarr.push(transaction['hash'])
 
@@ -1137,6 +1138,12 @@ window.addEventListener("load", async () => {
                         var txTypeText;
                         var currentTxAddress;
                         var currentFinalTxAddress;
+                        var txBgColor;
+                        if (transaction['isError'] != 0) {
+                            txBgColor = '#FAF0EF'
+                        } else {
+                            txBgColor = '#ffffff'
+                        }
                         if(parseInt(transaction['value']) > 0) {
                           if (transaction['from'] == transaction['to']) {
                               txType = '<img src="/assets/img/refresh.svg" width="16px" height="16px">';
@@ -1146,42 +1153,61 @@ window.addEventListener("load", async () => {
                             } else if (transaction['from'].toUpperCase() == window.address.toUpperCase()) {
                               txType = '<font color=red><b>-</b></font>';
                               currentTxAddress = transaction['to'];
-                              currentFinalTxAddress = '<a href="https://' + subdomainEtherscan + 'etherscan.io/address/' + currentTxAddress + '" target="_blank">' + currentTxAddress.slice(1,20) + '... </a>';
+                              currentFinalTxAddress = '<a href="https://' + subdomainEtherscan + 'etherscan.io/address/' + currentTxAddress + '" target="_blank">' + currentTxAddress.slice(0,20) + '... </a>';
                               txTypeText = $('#sentToAddress').val();
                             } else {
                               txType = '<font color=green><b>+</b></font>';
                               currentTxAddress = transaction['from'];
-                              currentFinalTxAddress = '<a href="https://' + subdomainEtherscan + 'etherscan.io/address/' + currentTxAddress + '" target="_blank">' + currentTxAddress.slice(1,20) + '... </a>';
+                              currentFinalTxAddress = '<a href="https://' + subdomainEtherscan + 'etherscan.io/address/' + currentTxAddress + '" target="_blank">' + currentTxAddress.slice(0,20) + '... </a>';
                               txTypeText = $('#receivedFromAddress').val();
-
                             }
-
+                          }
 
                             if (time - transaction['timeStamp'] < 60) {
                                 var txTime = time - transaction['timeStamp'] + ' ' + $('#txListSec').val()
                             } else if (time - transaction['timeStamp'] < 3600) {
                                 var txTime = Math.round(parseInt(time - transaction['timeStamp']) / 60) + ' ' + $('#txListMins').val()
                             } else {
-                                //var txhours =Math.floor(txminutes / 60)
+                              var txminutes = Math.floor(parseInt(time - transaction['timeStamp']) / 60)
+                              var txhours = Math.floor(txminutes / 60)
+                              var txminutes2 = Math.floor((parseInt(time - transaction['timeStamp']) - (txhours * 3600)) / 60)
+                              //var txhours = Math.floor(txminutes / 60)
+                              if (txhours < 24) {
+                                  var txTime = txhours + ' ' + $('#txListHours2').val() + ' ' + txminutes2 + ' ' + $('#txListMins').val()
+                              } else {
+                                  var date = new Date(parseInt(transaction['timeStamp']) * 1000)
+                                  var mins = parseInt(date.getMinutes()) < 10 ? '0' + date.getMinutes() : date.getMinutes()
+                                  var hrsz = (date.getHours() < 10) ? '0'+ date.getHours() : date.getHours()
+                                  var dateDay = date.getDate();
+                                  var dateMonth = (date.getMonth() + 1);
+                                  if (dateDay < 10) dateDay = "0" + dateDay;
+                                  if (dateMonth < 10) dateMonth = "0" + dateMonth;
+                                  var txTime = hrsz + ':' + mins + ' &nbsp;&nbsp;&nbsp;' + dateDay + '.' + dateMonth + '.' + date.getFullYear().toString().slice(2, 4)
+                              }
+                          }
 
-                        var txBgColor;
-                        if (transaction['isError'] != 0) {
-                            txBgColor = '#FAF0EF'
-                        } else {
-                            txBgColor = '#ffffff'
-                        }
+
 
                         if (transaction['contractAddress'] ) {
                             let contractAddress = transaction["contractAddress"];
                             var txTypeText = $('#txCreateContract').val();
+                            var currentTxAddress = contractAddress;
+                            var currentFinalTxAddress = '<a href="https://' + subdomainEtherscan + 'etherscan.io/address/' + currentTxAddress + '" target="_blank">' + currentTxAddress.slice(0,20) + '... </a>';
+
 
                         } else if (transaction['input'] != '0x' && transaction['input'] != '0x00') {
                             let contractAddress = transaction['to'];
+                            var currentTxAddress = contractAddress;
                             var txTypeText = $('#txCallFunc').val();
+                            var currentFinalTxAddress = '<a href="https://' + subdomainEtherscan + 'etherscan.io/address/' + currentTxAddress + '" target="_blank">' + currentTxAddress.slice(0,20) + '... </a>';
+
 
                         } else {
                             var transactionTo = transaction['to']
-                            var transactionToInfoTab = transaction['to'].substr(0,17) + '...'
+                            var currentTxAddress = transactionTo;
+                            var transactionToInfoTab = transaction['to'].substr(0,20) + '...'
+                            var currentFinalTxAddress = '<a href="https://' + subdomainEtherscan + 'etherscan.io/address/' + currentTxAddress + '" target="_blank">' + currentTxAddress.slice(0,20) + '... </a>';
+
                         }
 
                         /*
@@ -1204,29 +1230,14 @@ window.addEventListener("load", async () => {
 
                                 //$('#txtableTab').append('<tr bgcolor=' + txBgcolor + '><td style=align:right>' + txTime + '</td><td>' + txType + ' ' + parseInt(transaction['value']) / 1e18 + ' ETH</td><td title="' + transaction['from'] + '">' + transaction['from'].substr(0, 17) + '...' + '</td><td title="' + transaction['to'] + transaction['contractAddress'] + '">' + transactionToInfoTab + '</td></tr>')
 
-                            var txminutes = Math.floor(parseInt(time - transaction['timeStamp']) / 60)
-                            var txhours = Math.floor(txminutes / 60)
-                            var txminutes2 = Math.floor((parseInt(time - transaction['timeStamp']) - (txhours * 3600)) / 60)
-                            //var txhours = Math.floor(txminutes / 60)
-                            if (txhours < 24) {
-                                var txTime = txhours + ' ' + $('#txListHours2').val() + ' ' + txminutes2 + ' ' + $('#txListMins').val()
-                            } else {
-                                var date = new Date(parseInt(transaction['timeStamp']) * 1000)
-                                var mins = parseInt(date.getMinutes()) < 10 ? '0' + date.getMinutes() : date.getMinutes()
-                                var hrsz = (date.getHours() < 10) ? '0'+ date.getHours() : date.getHours()
-                                var dateDay = date.getDate();
-                                var dateMonth = (date.getMonth() + 1);
-                                if (dateDay < 10) dateDay = "0" + dateDay;
-                                if (dateMonth < 10) dateMonth = "0" + dateMonth;
-                                var txTime = hrsz + ':' + mins + ' &nbsp;&nbsp;&nbsp;' + dateDay + '.' + dateMonth + '.' + date.getFullYear().toString().slice(2, 4)
-                            }
-                        }
+
 
                         //if (currentFinalTxAddress != undefined) { var cfta = currentFinalTxAddress }
                         //$('#txtable').append('<tr bgcolor=' + txBgcolor + '><td style=align:right>' + txTime + '</td><td style="text-align: right">' + txType + ' ' + parseInt(transaction['value']) / 1e18 + ' ETH</td><td>' + txTypeText + ' ' + cfta + '</td></tr>')
                         $('#txtable').append('<tr bgcolor=' + txBgColor + '><td style=align:right>' + txTime + '</td><td style="text-align: right">' + txType + ' ' + (parseInt(transaction['value']) / 1e18).toFixed(18).replace(/\.?0+$/,'') + ' ETH</td><td>' + txTypeText + ' ' + currentFinalTxAddress + '</td></tr>')
 
                         if(txC <6) {
+
                             if(txC == 0) {
                               $('#cardTxList').append('<a href=# style="text-decoration:none" onclick="moreTransactions()"><span style=color:#01c3b6><span style=font-size:20px;font-weight:500;>' + $('#txListCardLabel').val() +':</span></a>')
                               $('#cardTxList').append('<table id=txtableTab class="highlight"><thead><tr><th align=right>' + $('#txListCardLabelDate').val() + '</th><th style="text-align: right">' + $('#txListCardLabelAmount').val() + '</th><th>' + $('#txListCardLabelFrom').val() + '</th></thead>')
@@ -1257,7 +1268,7 @@ window.addEventListener("load", async () => {
 
 
           //  })
-        }})
+        })
             .fail(function (data) {
                 $('#transactionsLoading').hide()
                 $('#transactionsErrorDiv').show()
@@ -1532,27 +1543,28 @@ window.addEventListener("load", async () => {
         if (!isView) {
 
             if (!abiObj.hasOwnProperty('inputs')) {
+              var myContract = new web3.eth.Contract(JSON.parse(JSON.stringify(JSON.parse($('#contractAbiUser').val()))), $('#contractAddress').val())
 
-                window.checkFunctInputs(abiObj);
+              myContract.methods[abiObj.name]().estimateGas({
+                  from: window.address
+              }, function (error, gasAmount) {
+                  if (typeof gasAmount != 'undefined') {
+                      $('#smartContractGasAmountInput').val(gasAmount)
+                      $('#GasLimitExceedSpan').hide();
+
+                  } else {
+                      $('#smartContractGasAmountInput').val(23000)
+                      $('#GasLimitExceedSpan').show();
+
+                  }
+              })
+
+            }
+            else {
+          window.checkFunctInputs(abiObj);
             }
             $('#callFunctionButtonDiv').html('<button class="btn" id="useContractCallFunction" onmousedown=window.useContractCallFunction(' + JSON.stringify(abiObj) + ')>' + $('#CallSmartContractFuncText').val() + '</button>')
-            //estimage gas
-            var myContract = new web3.eth.Contract(JSON.parse(JSON.stringify(JSON.parse($('#contractAbiUser').val()))), $('#contractAddress').val())
-
-            myContract.methods[abiObj.name]().estimateGas({
-                from: window.address
-            }, function (error, gasAmount) {
-                if (typeof gasAmount != 'undefined') {
-                    $('#smartContractGasAmountInput').val(gasAmount)
-                    $('#GasLimitExceedSpan').hide();
-
-                } else {
-                    $('#smartContractGasAmountInput').val(23000)
-                    $('#GasLimitExceedSpan').show();
-
-                }
-            })
-
+          
 
         } else {
             $('#callFunctionButtonDiv').html('');
