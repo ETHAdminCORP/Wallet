@@ -1136,6 +1136,7 @@ window.addEventListener("load", async () => {
                         var txType = '';
                         var txTypeText;
                         var currentTxAddress;
+                        var currentFinalTxAddress;
                         if(parseInt(transaction['value']) > 0) {
                           if (transaction['from'] == transaction['to']) {
                               txType = '<img src="/assets/img/refresh.svg" width="16px" height="16px">';
@@ -1145,12 +1146,12 @@ window.addEventListener("load", async () => {
                             } else if (transaction['from'].toUpperCase() == window.address.toUpperCase()) {
                               txType = '<font color=red><b>-</b></font>';
                               currentTxAddress = transaction['to'];
-                              currentFinalTxAddress = '<a href="https://' + subdomainEtherscan + 'etherscan.io/address/' + currentTxAddress + '" target="_blank">' + currentTxAddress + '</a>';
+                              currentFinalTxAddress = '<a href="https://' + subdomainEtherscan + 'etherscan.io/address/' + currentTxAddress + '" target="_blank">' + currentTxAddress.slice(1,20) + '... </a>';
                               txTypeText = $('#sentToAddress').val();
                             } else {
                               txType = '<font color=green><b>+</b></font>';
                               currentTxAddress = transaction['from'];
-                              currentFinalTxAddress = '<a href="https://' + subdomainEtherscan + 'etherscan.io/address/' + currentTxAddress + '" target="_blank">' + currentTxAddress + '</a>';
+                              currentFinalTxAddress = '<a href="https://' + subdomainEtherscan + 'etherscan.io/address/' + currentTxAddress + '" target="_blank">' + currentTxAddress.slice(1,20) + '... </a>';
                               txTypeText = $('#receivedFromAddress').val();
 
                             }
@@ -1223,7 +1224,7 @@ window.addEventListener("load", async () => {
 
                         //if (currentFinalTxAddress != undefined) { var cfta = currentFinalTxAddress }
                         //$('#txtable').append('<tr bgcolor=' + txBgcolor + '><td style=align:right>' + txTime + '</td><td style="text-align: right">' + txType + ' ' + parseInt(transaction['value']) / 1e18 + ' ETH</td><td>' + txTypeText + ' ' + cfta + '</td></tr>')
-                        $('#txtable').append('<tr bgcolor=' + txBgColor + '><td style=align:right>' + txTime + '</td><td style="text-align: right">' + txType + ' ' + (parseInt(transaction['value']) / 1e18).toFixed(18) + ' ETH</td><td>' + txTypeText + ' ' + currentFinalTxAddress + '</td></tr>')
+                        $('#txtable').append('<tr bgcolor=' + txBgColor + '><td style=align:right>' + txTime + '</td><td style="text-align: right">' + txType + ' ' + (parseInt(transaction['value']) / 1e18).toFixed(18).replace(/\.?0+$/,'') + ' ETH</td><td>' + txTypeText + ' ' + currentFinalTxAddress + '</td></tr>')
 
                         if(txC <6) {
                             if(txC == 0) {
@@ -1233,7 +1234,7 @@ window.addEventListener("load", async () => {
                               $('#cardTxList').append('<a class="tx-more-link" href="#" style="text-decoration:none" onclick="moreTransactions()"><span style=color:#01c3b6>' + $('#txListCardLabelMore').val() + '</span></a>');
 
                             }
-                            $('#txtableTab').append('<tr bgcolor=' + txBgColor + '><td style=align:right>' + txTime + '</td><td style="text-align: right">' + txType + ' ' + (parseInt(transaction['value']) / 1e18).toFixed(18) + ' ETH</td><td>' + txTypeText + ' ' + currentFinalTxAddress + '</td></tr>')
+                            $('#txtableTab').append('<tr bgcolor=' + txBgColor + '><td style=align:right>' + txTime + '</td><td style="text-align: right">' + txType + ' ' + (parseInt(transaction['value']) / 1e18).toFixed(18).replace(/\.?0+$/,'') + ' ETH</td><td>' + txTypeText + ' ' + currentFinalTxAddress + '</td></tr>')
 
                           }
                           /*
