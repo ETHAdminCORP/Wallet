@@ -55,6 +55,20 @@ nav {
     margin: 0 5%;
 }
 
+#transactionsLis h3 {
+    background-color: rgba(54, 197, 171, 0.2);
+    text-align: center;
+}
+
+#noTokensWarning h3 {
+    background-color: rgba(54, 197, 171, 0.2);
+}
+
+#mainTokenDiv h3 {
+    text-align: center;
+    background-color: rgba(54, 197, 171, 0.2);
+}
+
 @media screen and (min-width: 1600px) {
     #transactionsLis {
         margin: 0 7%;
@@ -425,12 +439,25 @@ input#cardSendEthAmount {
     width: 93%;
 }
 
+#sendEthAddParams span.active {
+    width: 0!important;
+    height: 0!important;
+}
+
 #sendEthGasPriceGWEI {
     margin-left: calc(50% - 28px);
 }
 
 #tokenTableCard td {
     padding: 5px;
+}
+
+#tokenTable [id^="tokenTransferParamsDiv"] .transferTokenChild input {
+    text-align: center;
+}
+
+#smartContractParamsDiv .contractAdditionalsChild input {
+    text-align: center;
 }
 
 #modal1 {

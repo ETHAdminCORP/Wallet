@@ -1084,7 +1084,7 @@ window.addEventListener("load", async () => {
 
                 })
         } else if ($("#networkName").val() !== 'mainnet') {
-            $('#mainTokenDiv').html('<center><b>' + $('#tokensTableNotLoadText').val() + '</b></center>')
+            $('#mainTokenDiv').html('<h3><b>' + $('#tokensTableNotLoadText').val() + '</b></h3>')
             $('#cardTokenList').html('');
             $('#cardTokenList').append('<a href=# style="text-decoration:none" onclick="moreTokens()"><span style=color:#01c3b6;font-size:20px;font-weight:500;>' + $('#tokensListCardLabel').val() + ':</span></a>')
             $('#cardTokenList').append('<br><center>' + $('#tokensTableNotLoadText').val() + '</center>')
@@ -1118,9 +1118,9 @@ window.addEventListener("load", async () => {
 
 
                 if (transactionsdata['status'] == 0) {
-                    $('#transactionsLis').html('<center>' + $('#txListEmpty').val() + '</center>')
+                    $('#transactionsLis').html('<h3>' + $('#txListEmpty').val() + '</h3>')
                     $('#cardTxList').append('<a href=# style="text-decoration:none"><span style=color:#01c3b6><span style=font-size:20px;font-weight:500;>' + $('#txListCardLabel').val() + ':</span></a>')
-                    $('#cardTxList').append('<br><br><center>' + $('#txListEmpty').val() + '</center>')
+                    $('#cardTxList').append('<br><br><h3>' + $('#txListEmpty').val() + '</h3>')
                 } else {
                     $('#transactionsLoading').hide()
 
