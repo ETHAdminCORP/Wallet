@@ -439,6 +439,11 @@ input#cardSendEthAmount {
     width: 93%;
 }
 
+#sendEthAddParams span.active {
+    width: 0!important;
+    height: 0!important;
+}
+
 #sendEthGasPriceGWEI {
     margin-left: calc(50% - 28px);
 }
