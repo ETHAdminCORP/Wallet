@@ -433,6 +433,14 @@ input#cardSendEthAmount {
     padding: 5px;
 }
 
+#tokenTable [id^="tokenTransferParamsDiv"] .transferTokenChild input {
+    text-align: center;
+}
+
+#smartContractParamsDiv .contractAdditionalsChild input {
+    text-align: center;
+}
+
 #modal1 {
     top: 5%!important;
     max-height: 85%;
