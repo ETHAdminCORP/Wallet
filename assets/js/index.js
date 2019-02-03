@@ -1202,13 +1202,7 @@ window.addEventListener("load", async () => {
                             var currentFinalTxAddress = '<a href="https://' + subdomainEtherscan + 'etherscan.io/address/' + currentTxAddress + '" target="_blank">' + currentTxAddress.slice(0,20) + '... </a>';
 
 
-                        } else {
-                            var transactionTo = transaction['to']
-                            var currentTxAddress = transactionTo;
-                            var transactionToInfoTab = transaction['to'].substr(0,20) + '...'
-                            var currentFinalTxAddress = '<a href="https://' + subdomainEtherscan + 'etherscan.io/address/' + currentTxAddress + '" target="_blank">' + currentTxAddress.slice(0,20) + '... </a>';
-
-                        }
+                        } 
 
                         /*
                                 var txminutes = Math.floor(parseInt(time - transaction['timeStamp']) / 60)
@@ -1564,7 +1558,7 @@ window.addEventListener("load", async () => {
           window.checkFunctInputs(abiObj);
             }
             $('#callFunctionButtonDiv').html('<button class="btn" id="useContractCallFunction" onmousedown=window.useContractCallFunction(' + JSON.stringify(abiObj) + ')>' + $('#CallSmartContractFuncText').val() + '</button>')
-          
+
 
         } else {
             $('#callFunctionButtonDiv').html('');
