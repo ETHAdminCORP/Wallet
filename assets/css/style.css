@@ -20,6 +20,7 @@ nav {
     display: flex;
     align-items: center;
     height: 100%;
+    align-self: center;
 }
 
 
@@ -41,11 +42,31 @@ nav {
     z-index: 1;
     border-bottom: none;
     padding-left: 10px;
+    color: #fff;
 }
-.header-logo{
+.header-logo, .navigation  .network-select{
     display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-right: 12px;
 }
-
+.network-select i{
+    align-self: baseline;
+    margin-top: -6px;
+    margin-right: 8px;
+}
+.header-logo img{
+    margin-right: 12px;
+}
+.network-select  .caret, .lang-select  .caret{
+    fill: #fff
+}
+.donate i.material-icons{
+    cursor: pointer;
+}
+nav .brand-logo{
+    position: relative !important;
+}
 .select-wrapper .caret {
     bottom: 10px;
 }
