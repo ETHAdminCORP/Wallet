@@ -1,3 +1,4 @@
+
 [data-dropdown-element = "current"]::after {
     content:"▼";
     font-size:0.5em;
@@ -9,22 +10,33 @@
 }
 
 [data-dropdown-element = "current"]{
-    height: 20px;
+    height: 24px;
     position: relative;
-    border: 1px solid #fac
+    /*border: 1px solid #fac;*/
 }
 [data-dropdown-element = "list"] ul>li>span>img, [data-dropdown-element = "current"]>span>img{
-    height:20px;
+    width:33px;
 }
 [data-dropdown-element = "list"] ul>li>span, [data-dropdown-element = "current"]>span{
     padding:2px;
 }
 [data-dropdown-element = "list"]{
     display: none;
+    background: lightcyan;
+    padding-top: 4px
+}
+[data-dropdown-element = "list"] ul>li{
+    line-height: 24px;
+}
+[data-dropdown-element = "list"] ul>li:hover{
+    line-height: 24px;
+    cursor: pointer;
+    /*background: lightgray;*/
 }
 [data-dropdown-conponent]{
+    line-height: 24px;
     display: flex;
     flex-direction: column;
     margin-left: 30px;
-    width: 40px;
+    width: 56px;
 }

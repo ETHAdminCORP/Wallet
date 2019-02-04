@@ -7,9 +7,16 @@ function globalListener(e){
 function getInitialLang(){
     let lang = document.querySelector('#langId').value;
     let chosen =  (lang.split('-')[0].toLowerCase() === 'ru') ?
-            '<img src = "/assets/img/ru.svg" alt="Русский">' :
-            '<img src="/assets/img/en.svg" alt="English" />';
-    document.querySelector('[data-dropdown-element = "current"]').innerHTML = '<span>' + chosen + '</span>';
+        {
+            img : '<img src = "/assets/img/ru.svg" alt="Русский">',
+            val : "ru-RU"
+        } :
+        {
+            img:'<img src="/assets/img/en.svg" alt="English" />',
+            val:"en-EN"
+        } ;
+    document.querySelector('[data-dropdown-element = "current"]').innerHTML = '<span>' + chosen.img + '</span>';
+    document.querySelector('[data-dropdown-conponent]').dataset.value = chosen.val;
 }
 document.addEventListener('DOMContentLoaded', ()=>{
     getInitialLang();
@@ -23,7 +30,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
             //e.target.closest('li>span>img').getAttribute('src');
             if(cur.innerHTML !== e.target.closest('li').innerHTML){
                 cur.innerHTML = e.target.closest('li').innerHTML;
-                //let event = new Event('change');
+                document.querySelector('[data-dropdown-conponent]').dataset.value =  e.target.closest('li').dataset.value;
+                document.querySelector('[data-dropdown-conponent]').setAttribute('value',e.target.closest('li').dataset.value);
+                console.log("value= ",e.target.closest('li').dataset.value);
+                debugger;
                 let event = document.createEvent('Event');
                 event.initEvent('change', true);
                 cur.dispatchEvent(event);

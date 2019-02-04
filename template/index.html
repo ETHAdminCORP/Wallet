@@ -35,14 +35,14 @@
                     </div>
 
 
-                    <div class="lang-select col push-xl1 xl2" style="margin-top:10px">
+                    <div class="lang-select col push-xl1 xl2" >
                         <div id="langDiv">
-                            <div data-dropdown-conponent id="walletLanguage">
-                                <div data-dropdown-element = "current" style=""><span><img src = "/assets/img/ru.svg" alt="Русский"></span></div>
+                            <div data-dropdown-conponent id="walletLanguage" data-value = ''>
+                                <div data-dropdown-element = "current" style=""><!--<span><img src = "/assets/img/ru.svg" alt="Русский"></span>--></div>
                                 <div data-dropdown-element = "list" style="display: none;">
                                     <ul>
-                                        <li><span><img src = "/assets/img/ru.svg" alt="Русский"></span></li>
-                                        <li><span><img src="/assets/img/en.svg" alt="English" /></span></li>
+                                        <li data-value="ru-RU"><span><img src = "/assets/img/ru.svg" alt="Русский" /></span></li>
+                                        <li data-value="en-EN"><span><img src="/assets/img/en.svg" alt="English" /></span></li>
                                     </ul>
                                 </div>
                             </div>
@@ -475,7 +475,7 @@
     </main>
 
 
-    <input type=text id="langId" value='{{T "langId" }}' hidden/>
+    <input type=text id="langId" value='{{T "langId" }}' />
     <input type=text id="translate-ContractBalance" value='{{T "ConctractBalanceLine"}}' hidden/>
     <input type=text value='{{.gasPriceFast}}' id="inputGasPriceFast" hidden/>
     <input type=text value='{{.gasPriceAverage}}' id="inputGasPriceAverage" hidden/>
