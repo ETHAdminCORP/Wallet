@@ -27,7 +27,7 @@ nav {
 .navigation .lang-select,
 .navigation .lang-select #langDiv {
     height: 100%;
-    margin-top: 10px;
+    margin-top: 12px;
 }
 
 .navigation .lang-select .select-wrapper {
@@ -46,9 +46,9 @@ nav {
     color: #fff;
 }
 .header-logo, .navigation  .network-select{
-    display: flex;
+    /*display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: flex-start;*/
     margin-right: 12px;
 }
 .network-select i{
@@ -58,6 +58,8 @@ nav {
 }
 .header-logo img{
     margin-right: 12px;
+    vertical-align: sub;
+    margin-top: 10px;
 }
 .network-select  .caret, .lang-select  .caret{
     fill: #fff
@@ -67,6 +69,7 @@ nav {
 }
 nav .brand-logo{
     position: relative !important;
+    vertical-align: top;
 }
 .select-wrapper .caret {
     bottom: 10px;
@@ -703,7 +706,8 @@ a.tx-more-link {
     position:absolute;
     top:50%;
     right:5px;
-    transform:translate(0, -50%);
+    transform:translate(0, -50%) scale(1.2,0.6);
+    font-size: x-small;
 }
 
 [data-dropdown-element = "current"]{

@@ -13,12 +13,12 @@ function getInitialLang(){
         } :
         {
             img:'<img src="/assets/img/en.svg" alt="English" />',
-            val:"en-EN"
+            val:"en-US"
         } ;
     document.querySelector('[data-dropdown-element = "current"]').innerHTML = '<span>' + chosen.img + '</span>';
     document.querySelector('[data-dropdown-conponent]').dataset.value = chosen.val;
 }
-document.addEventListener('DOMContentLoaded', ()=>{
+window.addEventListener("load", async () => {
     getInitialLang();
     document.querySelector('[data-dropdown-conponent]').addEventListener('click', (e)=>{
         if(e.target.closest('[data-dropdown-element = "current"]')){
@@ -31,9 +31,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
             if(cur.innerHTML !== e.target.closest('li').innerHTML){
                 cur.innerHTML = e.target.closest('li').innerHTML;
                 document.querySelector('[data-dropdown-conponent]').dataset.value =  e.target.closest('li').dataset.value;
-                document.querySelector('[data-dropdown-conponent]').setAttribute('value',e.target.closest('li').dataset.value);
-                console.log("value= ",e.target.closest('li').dataset.value);
-                debugger;
                 let event = document.createEvent('Event');
                 event.initEvent('change', true);
                 cur.dispatchEvent(event);

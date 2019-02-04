@@ -1,4 +1,3 @@
-
 [data-dropdown-element = "current"]::after {
     content:"▼";
     font-size:0.5em;
@@ -6,7 +5,8 @@
     position:absolute;
     top:50%;
     right:5px;
-    transform:translate(0, -50%);
+    transform:translate(0, -50%) scale(1.2,0.6);
+    font-size: x-small;
 }
 
 [data-dropdown-element = "current"]{
@@ -22,8 +22,9 @@
 }
 [data-dropdown-element = "list"]{
     display: none;
-    background: lightcyan;
-    padding-top: 4px
+    background: #fdfdfd;
+    padding-top: 4px;
+    border: 1px solid #ccc;
 }
 [data-dropdown-element = "list"] ul>li{
     line-height: 24px;

@@ -406,8 +406,6 @@ window.addEventListener("load", async () => {
     //$('#walletLanguage').formSelect();
 
     $('#walletLanguage').on('change', function () {
-        console.log("changed", this, this.dataset.value, this.value);
-        debugger;
         $.cookie('lang', this.dataset.value, {
             expires: 365
         });
@@ -2188,11 +2186,10 @@ function getInitialLang(){
         } :
         {
             img:'<img src="/assets/img/en.svg" alt="English" />',
-            val:"en-EN"
+            val:"en-US"
         } ;
     document.querySelector('[data-dropdown-element = "current"]').innerHTML = '<span>' + chosen.img + '</span>';
     document.querySelector('[data-dropdown-conponent]').dataset.value = chosen.val;
-    document.querySelector('[data-dropdown-conponent]').setAttribute('value', chosen.val);
 }
 window.addEventListener("load", async () => {
     getInitialLang();
@@ -2207,9 +2204,6 @@ window.addEventListener("load", async () => {
             if(cur.innerHTML !== e.target.closest('li').innerHTML){
                 cur.innerHTML = e.target.closest('li').innerHTML;
                 document.querySelector('[data-dropdown-conponent]').dataset.value =  e.target.closest('li').dataset.value;
-                document.querySelector('[data-dropdown-conponent]').setAttribute('value',e.target.closest('li').dataset.value);
-                console.log("value= ",e.target.closest('li').dataset.value);
-                debugger;
                 let event = document.createEvent('Event');
                 event.initEvent('change', true);
                 cur.dispatchEvent(event);
