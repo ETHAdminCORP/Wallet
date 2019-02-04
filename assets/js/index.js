@@ -2143,12 +2143,12 @@ function moreTransactions() {
 var popUpModalTestETH = $('#modalGetETH');
 // Get the button that opens the modal
 var popUpModalBtnTestETH = $('#buttonPopUp');
-// Get the <span> element that closes the modal
-var modalSpanCloseTestETH = $('.close-modal');
+// Add value button-popup across hidden input
+$('.button-close-popup').text($('#clodeModelGetETH').val());
 // When the user clicks the button, open the modal
 popUpModalBtnTestETH.on("click", showModalTestETH);
-// When the user clicks on <span> (x), close the modal
-modalSpanCloseTestETH.on("click", function () {
+// When the user clicks on button-close-popup (close/закрыть), close the modal
+$('.button-close-popup').on("click", function () {
     popUpModalTestETH.css("display", "none");
 });
 // When the user clicks anywhere outside of the modal, close it
