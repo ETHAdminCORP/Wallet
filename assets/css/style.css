@@ -719,7 +719,7 @@ a.tx-more-link {
 }
 [data-dropdown-element = "list"]{
     display: none;
-    background: lightcyan;
+    background: #fdfdfd;
     padding-top: 4px;
     border: 1px solid #ccc;
 }
