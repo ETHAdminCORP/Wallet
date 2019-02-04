@@ -1230,6 +1230,12 @@ window.addEventListener("load", async () => {
                         //$('#txtable').append('<tr bgcolor=' + txBgcolor + '><td style=align:right>' + txTime + '</td><td style="text-align: right">' + txType + ' ' + parseInt(transaction['value']) / 1e18 + ' ETH</td><td>' + txTypeText + ' ' + cfta + '</td></tr>')
                         $('#txtable').append('<tr bgcolor=' + txBgColor + '><td style=align:right>' + txTime + '</td><td style="text-align: right">' + txType + ' ' + (parseInt(transaction['value']) / 1e18).toFixed(18).replace(/\.?0+$/,'') + ' ETH</td><td>' + txTypeText + ' ' + currentFinalTxAddress + '</td></tr>')
 
+                        if ($('#txtable').children("[bgcolor='#FAF0EF']")) {
+                            $('#txtable').children("[bgcolor='#FAF0EF']").hover(function(){
+                                $('#txtable').children("[bgcolor='#FAF0EF']").css('background-color' , '#FAF0EF');
+                            });
+                        }
+
                         if(txC <6) {
 
                             if(txC == 0) {
@@ -1240,7 +1246,12 @@ window.addEventListener("load", async () => {
 
                             }
                             $('#txtableTab').append('<tr bgcolor=' + txBgColor + '><td style=align:right>' + txTime + '</td><td style="text-align: right">' + txType + ' ' + (parseInt(transaction['value']) / 1e18).toFixed(18).replace(/\.?0+$/,'') + ' ETH</td><td>' + txTypeText + ' ' + currentFinalTxAddress + '</td></tr>')
-
+                           
+                            if ($('#txtableTab').children("[bgcolor='#FAF0EF']")) {
+                                $('#txtableTab').children("[bgcolor='#FAF0EF']").hover(function(){
+                                    $('#txtableTab').children("[bgcolor='#FAF0EF']").css('background-color' , '#FAF0EF');
+                                });
+                            }
                           }
                           /*
                           if(txC == 0) {
