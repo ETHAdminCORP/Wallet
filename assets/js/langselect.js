@@ -9,13 +9,15 @@ function getInitialLang(){
     let chosen =  (lang.split('-')[0].toLowerCase() === 'ru') ?
         {
             img : '<img src = "/assets/img/ru.svg" alt="Русский">',
-            val : "ru-RU"
+            val : "ru-RU",
+            label: '<span>RU</span>'
         } :
         {
             img:'<img src="/assets/img/en.svg" alt="English" />',
-            val:"en-US"
+            val:"en-US",
+            label: '<span>EN</span>'
         } ;
-    document.querySelector('[data-dropdown-element = "current"]').innerHTML = '<span>' + chosen.img + '</span>';
+    document.querySelector('[data-dropdown-element = "current"]').innerHTML = '<span>' + chosen.label + chosen.img + '</span>';
     document.querySelector('[data-dropdown-conponent]').dataset.value = chosen.val;
 }
 window.addEventListener("load", async () => {
