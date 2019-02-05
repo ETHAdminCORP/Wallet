@@ -1192,17 +1192,19 @@ window.addEventListener("load", async () => {
                             let contractAddress = transaction["contractAddress"];
                             var txTypeText = $('#txCreateContract').val();
                             var currentTxAddress = contractAddress;
-                            var currentFinalTxAddress = '<a href="https://' + subdomainEtherscan + 'etherscan.io/address/' + currentTxAddress + '" target="_blank">' + currentTxAddress.slice(0,20) + '... </a>';
+                            currentFinalTxAddress = '<a href="https://' + subdomainEtherscan + 'etherscan.io/address/' + currentTxAddress + '" target="_blank">' + currentTxAddress.slice(0,20) + '... </a>';
+
 
 
                         } else if (transaction['input'] != '0x' && transaction['input'] != '0x00') {
                             let contractAddress = transaction['to'];
                             var currentTxAddress = contractAddress;
                             var txTypeText = $('#txCallFunc').val();
-                            var currentFinalTxAddress = '<a href="https://' + subdomainEtherscan + 'etherscan.io/address/' + currentTxAddress + '" target="_blank">' + currentTxAddress.slice(0,20) + '... </a>';
+                            currentFinalTxAddress = '<a id="contractRed" href="#"  onclick = "moveContractBlock()"> ' + currentTxAddress.slice(0,20) + '... </a>';
+
+                        }
 
 
-                        } 
 
                         /*
                                 var txminutes = Math.floor(parseInt(time - transaction['timeStamp']) / 60)
@@ -2138,6 +2140,13 @@ function moreTransactions() {
     var itransaction = $('#txTabLink');
     itransaction[0].click();
 }
+
+function moveContractBlock() {
+    var icontract = $('#contractTabLink');      
+    icontract[0].click();
+    var contractRed = $('#contractdRed').val();
+    $('#contractAddress').val(contractRed);
+} 
 
 // Get the modal
 var popUpModalTestETH = $('#modalGetETH');
