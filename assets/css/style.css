@@ -1,7 +1,9 @@
 nav {
     background-color: #01c3b6;
 }
-
+body{
+    min-width: 600px;
+}
 .navigation .container,
 .navigation .row {
     height: 100%;
@@ -11,9 +13,20 @@ nav {
 .navigation .logo {
     height: 100%;
 }
-
+.navigation .header-logo{
+    display: inline-block;
+}
 .navigation .network-select {
     height: 100%;
+    min-width: 260px;
+    display: inline-block;
+    margin-left: 48px;
+}
+@media screen and (max-width: 700px) {
+    .navigation .network-select {
+        min-width: 100px;
+        margin-left: 12px;
+    }
 }
 
 .navigation .network-select .select-wrapper {
@@ -27,7 +40,7 @@ nav {
 .navigation .lang-select,
 .navigation .lang-select #langDiv {
     height: 100%;
-    margin-top: 12px;
+    margin-top: 10px;
 }
 
 .navigation .lang-select .select-wrapper {
@@ -72,7 +85,7 @@ nav .brand-logo{
     vertical-align: top;
 }
 .select-wrapper .caret {
-    bottom: 10px;
+    bottom: 16px;
 }
 
 .navigation .lang-select .select-dropdown li img {

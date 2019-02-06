@@ -16,22 +16,29 @@
                 <div class="row">
                     <div class="col xl2">
                     </div>
-                    <div class="logo col xl3">
+                    <div class="logo col xl6">
                         <!--<a href="/" class="brand-logo"><img src="/assets/img/LogoETHAdmin.png" width=200px height=50px style="margin-top: 13px;"></a>-->
                         <div class="header-logo">
-                            <img src="/assets/img/logo.png">
-                            <a href="/" class="brand-logo">ETH Admin</a>
+                            <a href="/" class="brand-logo"><img src="/assets/img/logo.png"> ETH Admin</a>
+                        </div>
+                        <div class="network-select" >
+                            <select id="networkName" name="networkName">
+                                <option value="mainnet" >{{T "NetworkTypeMainnet"}}</option>
+                                <option value="ropsten">{{T "NetworkTypeRopsten"}}</option>
+                                <option value="rinkeby">{{T "NetworkTypeRinkeby"}}</option>
+                                <option value="kovan">{{T "NetworkTypeKovan"}}</option>
+                            </select>
                         </div>
                     </div>
 
-                    <div class="network-select col xl3" style="margin-top:10px">
+                    <!--<div class="network-select col xl3" style="margin-top:10px">
                         <select id="networkName" name="networkName">
                       <option value="mainnet" >{{T "NetworkTypeMainnet"}}</option>
                       <option value="ropsten">{{T "NetworkTypeRopsten"}}</option>
                       <option value="rinkeby">{{T "NetworkTypeRinkeby"}}</option>
                       <option value="kovan">{{T "NetworkTypeKovan"}}</option>
                     </select>
-                    </div>
+                    </div>-->
 
 
                     <div class="lang-select col push-xl1 xl1" >
