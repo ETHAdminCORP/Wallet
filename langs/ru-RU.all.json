@@ -462,5 +462,9 @@
   {
     "id": "sentToYourself",
     "translation": "Отправлено самому себе"
+  },
+  {
+    "id": "clodeModelGetETH",
+    "translation": "Закрыть"
   }
 ]

@@ -1192,17 +1192,18 @@ window.addEventListener("load", async () => {
                             let contractAddress = transaction["contractAddress"];
                             var txTypeText = $('#txCreateContract').val();
                             var currentTxAddress = contractAddress;
-                            var currentFinalTxAddress = '<a href="https://' + subdomainEtherscan + 'etherscan.io/address/' + currentTxAddress + '" target="_blank">' + currentTxAddress.slice(0,20) + '... </a>';
+                            currentFinalTxAddress = '<a href="https://' + subdomainEtherscan + 'etherscan.io/address/' + currentTxAddress + '" target="_blank">' + currentTxAddress.slice(0,20) + '... </a>';
+
 
 
                         } else if (transaction['input'] != '0x' && transaction['input'] != '0x00') {
                             let contractAddress = transaction['to'];
                             var currentTxAddress = contractAddress;
                             var txTypeText = $('#txCallFunc').val();
-                            var currentFinalTxAddress = '<a href="https://' + subdomainEtherscan + 'etherscan.io/address/' + currentTxAddress + '" target="_blank">' + currentTxAddress.slice(0,20) + '... </a>';
+                            currentFinalTxAddress = '<a href="https://' + subdomainEtherscan + 'etherscan.io/address/' + currentTxAddress + '" target="_blank">' + currentTxAddress.slice(0,20) + '... </a>';
+                        }
 
 
-                        } 
 
                         /*
                                 var txminutes = Math.floor(parseInt(time - transaction['timeStamp']) / 60)
@@ -2139,16 +2140,18 @@ function moreTransactions() {
     itransaction[0].click();
 }
 
+
+
 // Get the modal
 var popUpModalTestETH = $('#modalGetETH');
 // Get the button that opens the modal
 var popUpModalBtnTestETH = $('#buttonPopUp');
-// Get the <span> element that closes the modal
-var modalSpanCloseTestETH = $('.close-modal');
+// Add value button-popup across hidden input
+$('.button-close-popup').text($('#clodeModelGetETH').val());
 // When the user clicks the button, open the modal
 popUpModalBtnTestETH.on("click", showModalTestETH);
-// When the user clicks on <span> (x), close the modal
-modalSpanCloseTestETH.on("click", function () {
+// When the user clicks on button-close-popup (close/закрыть), close the modal
+$('.button-close-popup').on("click", function () {
     popUpModalTestETH.css("display", "none");
 });
 // When the user clicks anywhere outside of the modal, close it

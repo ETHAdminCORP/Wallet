@@ -638,15 +638,28 @@ a.tx-more-link {
     border-radius: 5px;
 }
 
-.close-modal {
-    position: absolute;
-    top: 0px;
-    right: 10px;
-    color: #aaaaaa;
-    font-size: 28px;
-    font-weight: bold;
+.button-close-popup {
+    float: right;
+    border: none;
+    margin-top: 10px;
+    margin-right: 4px;
+    margin-bottom: 3px;
+    border-radius: 2px;
+    padding: 0px 16px;
+    background-color: #26a69a;
+    color: #fff;
+    height: 36px;
+    cursor: pointer;
+    text-transform: uppercase;
 }
 
+.button-close-popup:focus {
+    background-color: #26a69a;
+}
+
+.button-close-popup:hover {
+    background-color: #2bbbad;;
+}
 .modal-header .modal-header-title {
     display: block;
     width: 100%;
@@ -667,4 +680,15 @@ a.tx-more-link {
     width: 100%;
     padding: 20px;
     overflow: scroll;
+}
+
+#sendEthModalClose {
+    background-color: #26a69a;
+    color: #fff;
+}
+#sendEthModalClose:focus {
+    background-color: #26a69a;
+}
+#sendEthModalClose:hover {
+    background-color: #2bbbad;
 }

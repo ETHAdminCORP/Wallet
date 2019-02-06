@@ -217,9 +217,10 @@
                 <!--PopUp Window-->
                 <div class="modal-get-eth" id="modalGetETH">
                     <div class="modal-container-box">
-                        <div class="modal-header"><span class="modal-header-title"></span><span class="close-modal">x</span></div>
+                        <div class="modal-header"><span class="modal-header-title"></span></div>
                         <div class="modal-content-test-eth">
                         </div>
+                        <button class="button-close-popup btn"></button>
                     </div>
                 </div>
                 <!-- Cards -->
@@ -321,7 +322,7 @@
                 <div class="modal-footer">
                     <button id="sendEthButtonOk" class="btn btn-success modal-close">{{ T "SendEthAccept"}}</button>
                     <button id="sendEthButtonSend" type="button" class="btn btn-primary" disabled>{{ T "SendEthSendButton"}}</button>
-                    <a id="sendEthModalClose" href="#!" class="modal-close effect green btn-flat">{{ T "SendEthCloseModal"}}</a>
+                    <a id="sendEthModalClose" href="#!" class="modal-close effect btn">{{ T "SendEthCloseModal"}}</a>
                 </div>
             </div>
 
@@ -525,6 +526,8 @@
     <input type=text value='{{ T "getTestETHPopUpRopsten" }}' id="getTestETHPopUpRopsten" hidden/>
     <input type=text value='{{ T "getTestETHPopUpRinkeby" }}' id="getTestETHPopUpRinkeby" hidden/>
     <input type=text value='{{ T "getTestETHPopUpKovan" }}' id="getTestETHPopUpKovan" hidden/>
+
+    <input type=text value='{{  T "clodeModelGetETH" }}' id="clodeModelGetETH" hidden/>
 
     <span style="display:none" id=txSendOkHash></span>
 
