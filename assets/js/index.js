@@ -1200,8 +1200,7 @@ window.addEventListener("load", async () => {
                             let contractAddress = transaction['to'];
                             var currentTxAddress = contractAddress;
                             var txTypeText = $('#txCallFunc').val();
-                            currentFinalTxAddress = '<a id="contractRed" href="#"  onclick = "moveContractBlock()"> ' + currentTxAddress.slice(0,20) + '... </a>';
-
+                            currentFinalTxAddress = '<a href="https://' + subdomainEtherscan + 'etherscan.io/address/' + currentTxAddress + '" target="_blank">' + currentTxAddress.slice(0,20) + '... </a>';
                         }
 
 
@@ -2141,12 +2140,7 @@ function moreTransactions() {
     itransaction[0].click();
 }
 
-function moveContractBlock() {
-    var icontract = $('#contractTabLink');      
-    icontract[0].click();
-    var contractRed = $('#contractdRed').val();
-    $('#contractAddress').val(contractRed);
-} 
+
 
 // Get the modal
 var popUpModalTestETH = $('#modalGetETH');
