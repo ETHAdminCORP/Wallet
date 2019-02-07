@@ -1186,13 +1186,16 @@ window.addEventListener("load", async () => {
                               }
                           }
 
+                        var contractAddress = transaction['to'];
 
 
                         if (transaction['contractAddress'] ) {
                             let contractAddress = transaction["contractAddress"];
                             var txTypeText = $('#txCreateContract').val();
                             var currentTxAddress = contractAddress;
-                            currentFinalTxAddress = '<a href="https://' + subdomainEtherscan + 'etherscan.io/address/' + currentTxAddress + '" target="_blank">' + currentTxAddress.slice(0,20) + '... </a>';
+
+                            var currentFinalTxAddress = '<a href="#"  title = "' + currentTxAddress + '"  onclick = "moveContractBlock(this)" > ' + currentTxAddress.slice(0,20) + '... </a>';
+
 
 
 
@@ -1200,8 +1203,13 @@ window.addEventListener("load", async () => {
                             let contractAddress = transaction['to'];
                             var currentTxAddress = contractAddress;
                             var txTypeText = $('#txCallFunc').val();
-                            currentFinalTxAddress = '<a href="https://' + subdomainEtherscan + 'etherscan.io/address/' + currentTxAddress + '" target="_blank">' + currentTxAddress.slice(0,20) + '... </a>';
-                        }
+
+                            var currentFinalTxAddress = '<a href="#"  title = "' + currentTxAddress + '" onclick = "moveContractBlock(this)" > ' + currentTxAddress.slice(0,20) + '... </a>';
+                            /*var TxAdressHiddenInput = '<input  type="text" value="' + currentTxAddress + '">' 
+                            $('body').append(TxAdressHiddenInput);
+                            $('.contractRed').hide();*/
+                           
+                        } 
 
 
 
@@ -2139,6 +2147,17 @@ function moreTransactions() {
     var itransaction = $('#txTabLink');
     itransaction[0].click();
 }
+
+
+function moveContractBlock(a) {
+    var icontract = $('#contractTabLink');      
+    icontract[0].click();
+    $('label[for="contractAddress"]').click();
+    var contractRed = $(a).attr("title")
+    $('#contractAddress').val(contractRed);
+    $('#contractAddress').trigger("input");
+}
+
 
 
 
