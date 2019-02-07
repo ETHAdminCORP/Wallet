@@ -537,6 +537,7 @@ a.tx-more-link {
     text-align: right;
     float:right;
     display: inline-block;
+    margin-bottom: 36px;
 }
 
 .trans-amount > span {
