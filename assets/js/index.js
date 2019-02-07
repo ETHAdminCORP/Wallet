@@ -1193,7 +1193,9 @@ window.addEventListener("load", async () => {
                             let contractAddress = transaction["contractAddress"];
                             var txTypeText = $('#txCreateContract').val();
                             var currentTxAddress = contractAddress;
+
                             var currentFinalTxAddress = '<a href="#"  title = "' + currentTxAddress + '"  onclick = "moveContractBlock(this)" > ' + currentTxAddress.slice(0,20) + '... </a>';
+
 
 
 
@@ -1201,12 +1203,14 @@ window.addEventListener("load", async () => {
                             let contractAddress = transaction['to'];
                             var currentTxAddress = contractAddress;
                             var txTypeText = $('#txCallFunc').val();
+
                             var currentFinalTxAddress = '<a href="#"  title = "' + currentTxAddress + '" onclick = "moveContractBlock(this)" > ' + currentTxAddress.slice(0,20) + '... </a>';
                             /*var TxAdressHiddenInput = '<input  type="text" value="' + currentTxAddress + '">' 
                             $('body').append(TxAdressHiddenInput);
                             $('.contractRed').hide();*/
                            
                         } 
+
 
 
                         /*
@@ -2144,6 +2148,7 @@ function moreTransactions() {
     itransaction[0].click();
 }
 
+
 function moveContractBlock(a) {
     var icontract = $('#contractTabLink');      
     icontract[0].click();
@@ -2152,6 +2157,7 @@ function moveContractBlock(a) {
     $('#contractAddress').val(contractRed);
     $('#contractAddress').trigger("input");
 }
+
 
 
 

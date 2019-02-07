@@ -644,11 +644,13 @@ a.tx-more-link {
     margin-top: 10px;
     margin-right: 4px;
     margin-bottom: 3px;
-    border-radius: 3px;
-    padding: 6px 17px;
+    border-radius: 2px;
+    padding: 0px 16px;
     background-color: #26a69a;
-    color: #343434;
+    color: #fff;
+    height: 36px;
     cursor: pointer;
+    text-transform: uppercase;
 }
 
 .button-close-popup:focus {
@@ -682,6 +684,7 @@ a.tx-more-link {
 
 #sendEthModalClose {
     background-color: #26a69a;
+    color: #fff;
 }
 #sendEthModalClose:focus {
     background-color: #26a69a;
