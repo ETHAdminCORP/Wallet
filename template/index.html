@@ -231,24 +231,28 @@
                             <span style=color:#01c3b6;font-size:20px;font-weight:500;>{{ T "sendEthLabelMainTab" }}:</span><br>
 
                                 <div class="row wallet-address-container">
-                                <div class="col s3 address-to">
+                                <div class="col  address-to">
                                 {{ T "SendEthTo"}}
                                 </div>
-                                <div class="col s9 fake-s9">
+                                <div class="col  fake-s9">
                                 <!-- sendEthAddress  -->
                                 <input id="cardSendEthAddress" autocomplete="autocompletefalse" placeholder="0x..." type="text" class="form-control" />
                                 </div>
                             </div>
                             <div class="trans-amount">
-                            <p class="amount-label">{{ T "SendEthAmount"}}</p>
-                            <div class="col s6">
-                                 <input id="cardSendEthAmount" class="form-control">
+                                <p class="col amount-label">{{ T "SendEthAmount"}}</p>
+                                <div class="col ">
+                                     <input id="cardSendEthAmount" class="form-control">
                                 </div>
                                  <span>ETH</span>
+                                 <div class="more-option col">
+                                         <a id="sendEthAddParamsLink2" href="#">{{ T "SendEthAdditionalOptions"}} </a>
                                  </div>
-                                <a id="sendEthAddParamsLink2" href="#">{{ T "SendEthAdditionalOptions"}} </a><br>
-                                <button id="cardSendEthButtonSend" type="button" class="btn btn-primary">{{ T "SendEthSendButton"}}</button>
-                                <button id="cardSendEthButtonOk" class="btn btn-success">{{ T "SendEthAccept"}}</button>
+                            </div>
+                                
+                              <br>
+                            <button id="cardSendEthButtonSend" type="button" class="btn btn-primary">{{ T "SendEthSendButton"}}</button>
+                            <button id="cardSendEthButtonOk" class="btn btn-success">{{ T "SendEthAccept"}}</button>
 
 
 

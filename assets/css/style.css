@@ -284,6 +284,10 @@ body.en-US #passEye {
 
 /* Cards */
 
+#cardSendEthAddress { 
+    width: 50%;
+}
+
 #wallet .row.balance {
     margin-bottom: 0;
 }
@@ -320,6 +324,12 @@ body.en-US #passEye {
 
 .contact-card {
     padding: 15px 25px;
+}
+
+.wallet-address-container {
+    display:  grid;
+    grid-template-columns: 1fr 2fr;
+    align-items: center;
 }
 
 /* Tokens Inputs */
@@ -434,10 +444,10 @@ body.en-US #passEye {
 
 /* Send ETH */
 
-input#sendEthAmount,
+/* input#sendEthAmount,
 input#cardSendEthAmount {
     width: 93%;
-}
+} */
 
 #sendEthAddParams span.active {
     width: 0!important;
@@ -502,7 +512,7 @@ button[id|="transferTokenButton"] {
     display: flex;
     height: 54px;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 a.tx-more-link {
@@ -512,19 +522,25 @@ a.tx-more-link {
 
 @media screen and (max-width: 1599px) {
     .trans-amount {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
         margin: 0 -0.75rem;
+        align-items: center;
+    }
+    .more-option {
+        grid-column-start: 1;
+        grid-column-end: 3;
+
     }
     .trans-amount .amount-label {
         display: inline-block;
-        text-align: center;
         float: left;
         box-sizing: border-box;
-        padding: 0 0.75rem;
         min-height: 1px;
-        width: 25%;
-        margin-left: auto;
-        left: auto;
-        right: auto;
+    }
+    .amount-label {
+        margin-bottom: 0;
     }
     .trans-amount > span {
         display: block;
@@ -532,7 +548,8 @@ a.tx-more-link {
         margin-top: 20px;
     }
     #sendEthAddParamsLink2 {
-        margin: 5px 10px 0 38%;
+        text-align: right;
+        float:right;
         display: inline-block;
     }
 }
@@ -579,6 +596,7 @@ a.tx-more-link {
     input#cardSendEthAmount {
         width: 100%;
     }
+
 }
 
 /* Footer */

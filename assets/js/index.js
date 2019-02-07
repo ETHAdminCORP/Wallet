@@ -640,6 +640,12 @@ window.addEventListener("load", async () => {
     })
 
 //Card
+
+   /* var widthInput = $('#cardSendEthAmount').width();
+    $('#cardSendEthAddress').css("width" , widthInput);
+    alert(widthInput);*/
+
+
     $('#cardSendEthAddress').on('input', function () {
         cardCheckSendEth();
     })
