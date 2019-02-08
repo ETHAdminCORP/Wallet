@@ -1,7 +1,9 @@
 nav {
     background-color: #01c3b6;
 }
-
+body{
+    min-width: 600px;
+}
 .navigation .container,
 .navigation .row {
     height: 100%;
@@ -11,21 +13,34 @@ nav {
 .navigation .logo {
     height: 100%;
 }
-
+.navigation .header-logo{
+    display: inline-block;
+}
 .navigation .network-select {
     height: 100%;
+    min-width: 260px;
+    display: inline-block;
+    margin-left: 48px;
+}
+@media screen and (max-width: 700px) {
+    .navigation .network-select {
+        min-width: 100px;
+        margin-left: 12px;
+    }
 }
 
 .navigation .network-select .select-wrapper {
     display: flex;
     align-items: center;
     height: 100%;
+    align-self: center;
 }
 
 
 .navigation .lang-select,
 .navigation .lang-select #langDiv {
     height: 100%;
+    margin-top: 10px;
 }
 
 .navigation .lang-select .select-wrapper {
@@ -37,12 +52,40 @@ nav {
 .select-wrapper input.select-dropdown {
     height: 2.5rem;
     margin: 0 0 15px 0;
-    background-color:rgba(2, 201, 188, 0.5);
-    z-index: 0;
+    background-color: rgba(255, 255, 255, 0.1);
+    z-index: 1;
+    border-bottom: none;
+    padding-left: 10px;
+    color: #fff;
 }
-
+.header-logo, .navigation  .network-select{
+    /*display: flex;
+    align-items: center;
+    justify-content: flex-start;*/
+    margin-right: 12px;
+}
+.network-select i{
+    align-self: baseline;
+    margin-top: -6px;
+    margin-right: 8px;
+}
+.header-logo img{
+    margin-right: 12px;
+    vertical-align: sub;
+    margin-top: 10px;
+}
+.network-select  .caret, .lang-select  .caret{
+    fill: #fff
+}
+.donate i.material-icons{
+    cursor: pointer;
+}
+nav .brand-logo{
+    position: relative !important;
+    vertical-align: top;
+}
 .select-wrapper .caret {
-    bottom: 10px;
+    bottom: 16px;
 }
 
 .navigation .lang-select .select-dropdown li img {
@@ -284,6 +327,10 @@ body.en-US #passEye {
 
 /* Cards */
 
+#cardSendEthAddress {
+    width: 65%;
+}
+
 #wallet .row.balance {
     margin-bottom: 0;
 }
@@ -320,6 +367,12 @@ body.en-US #passEye {
 
 .contact-card {
     padding: 15px 25px;
+}
+
+.wallet-address-container {
+    display:  grid;
+    grid-template-columns: 1fr 3fr;
+    align-items: center;
 }
 
 /* Tokens Inputs */
@@ -434,10 +487,10 @@ body.en-US #passEye {
 
 /* Send ETH */
 
-input#sendEthAmount,
+/* input#sendEthAmount,
 input#cardSendEthAmount {
     width: 93%;
-}
+} */
 
 #sendEthAddParams span.active {
     width: 0!important;
@@ -502,7 +555,7 @@ button[id|="transferTokenButton"] {
     display: flex;
     height: 54px;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 a.tx-more-link {
@@ -510,51 +563,67 @@ a.tx-more-link {
     margin: 15px 0 25px 0;
 }
 
+.trans-amount {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    margin: 0 -0.75rem;
+    align-items: center;
+}
+.more-option {
+    grid-column-start: 1;
+    grid-column-end: 3;
+
+}
+
+#sendEthAddParamsLink2 {
+    text-align: right;
+    float:right;
+    display: inline-block;
+    margin-bottom: 36px;
+}
+
+.trans-amount > span {
+    display: block;
+    float: left;
+    margin-top: 20px;
+}
+
+.amount-label {
+    margin-bottom: 0;
+}
+
 @media screen and (max-width: 1599px) {
-    .trans-amount {
-        margin: 0 -0.75rem;
-    }
+
     .trans-amount .amount-label {
         display: inline-block;
-        text-align: center;
         float: left;
         box-sizing: border-box;
-        padding: 0 0.75rem;
         min-height: 1px;
-        width: 25%;
-        margin-left: auto;
-        left: auto;
-        right: auto;
     }
-    .trans-amount > span {
-        display: block;
-        float: left;
-        margin-top: 20px;
-    }
-    #sendEthAddParamsLink2 {
-        margin: 5px 10px 0 38%;
-        display: inline-block;
-    }
+
+
+
 }
 
 @media screen and (min-width: 1600px) {
-    .trans-amount {
-        display: flex;
-        align-items: baseline;
-        margin-left: -0.75rem;
-        margin-right: -0.75rem;
-    }
+/* ?    .trans-amount {
+    display: flex;
+    align-items: baseline;
+    margin-left: -0.75rem;
+    margin-right: -0.75rem;
+} */
     .trans-amount .s6 {
         margin-left: 0!important;
     }
     .address-to {
+        margin-bottom: 0;
         justify-content: flex-end;
     }
     .trans-amount span {
         margin-left: 5px;
     }
     .amount-label {
-        width: 25%;
         padding-right: 0.8rem;
         text-align: right;
     }
@@ -578,6 +647,9 @@ a.tx-more-link {
     }
     input#cardSendEthAmount {
         width: 100%;
+    }
+    #cardSendEthAddress {
+        width: 135%;
     }
 }
 
@@ -681,6 +753,7 @@ a.tx-more-link {
     padding: 20px;
     overflow: scroll;
 }
+
 
 #sendEthModalClose {
     background-color: #26a69a;

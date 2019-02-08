@@ -1,10 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30">
-<clipPath id="t">
-<path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="900pt" height="600pt" viewBox="0 0 900 600" version="1.1">
+<defs>
+<clipPath id="clip1">
+  <path d="M 450 300 L 900 300 L 900 600 Z M 450 300 L 450 600 L 0 600 Z M 450 300 L 0 300 L 0 0 Z M 450 300 L 450 0 L 900 0 Z M 450 300 "/>
 </clipPath>
-<path d="M0,0 v30 h60 v-30 z" fill="#00247d"/>
-<path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/>
-<path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#t)" stroke="#cf142b" stroke-width="4"/>
-<path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/>
-<path d="M30,0 v30 M0,15 h60" stroke="#cf142b" stroke-width="6"/>
+</defs>
+<g id="surface1">
+<rect x="0" y="0" width="900" height="600" style="fill:rgb(0%,14.117647%,49.019608%);fill-opacity:1;stroke:none;"/>
+<path style="fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;stroke-width:6;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(100%,100%,100%);stroke-opacity:1;stroke-miterlimit:4;" d="M 0 0 L 60 30 M 60 0 L 0 30 " transform="matrix(15,0,0,20,0,0)"/>
+<g clip-path="url(#clip1)" clip-rule="nonzero">
+<path style="fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(81.176471%,7.843137%,16.862745%);stroke-opacity:1;stroke-miterlimit:4;" d="M 0 0 L 60 30 M 60 0 L 0 30 " transform="matrix(15,0,0,20,0,0)"/>
+</g>
+<path style="fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;stroke-width:10;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(100%,100%,100%);stroke-opacity:1;stroke-miterlimit:4;" d="M 30 0 L 30 30 M 0 15 L 60 15 " transform="matrix(15,0,0,20,0,0)"/>
+<path style="fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;stroke-width:6;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(81.176471%,7.843137%,16.862745%);stroke-opacity:1;stroke-miterlimit:4;" d="M 30 0 L 30 30 M 0 15 L 60 15 " transform="matrix(15,0,0,20,0,0)"/>
+</g>
 </svg>

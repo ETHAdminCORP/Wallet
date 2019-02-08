@@ -402,11 +402,11 @@ window.addEventListener("load", async () => {
     $(this).attr('autocomplete', 'off');
 
 
-    $('#walletLanguage').val($('#langId').val());
-    $('#walletLanguage').formSelect();
+    //$('#walletLanguage').val($('#langId').val());
+    //$('#walletLanguage').formSelect();
 
     $('#walletLanguage').on('change', function () {
-        $.cookie('lang', this.value, {
+        $.cookie('lang', this.dataset.value, {
             expires: 365
         });
         location.reload();
@@ -640,6 +640,12 @@ window.addEventListener("load", async () => {
     })
 
 //Card
+
+   /* var widthInput = $('#cardSendEthAmount').width();
+    $('#cardSendEthAddress').css("width" , widthInput);
+    alert(widthInput);*/
+
+
     $('#cardSendEthAddress').on('input', function () {
         cardCheckSendEth();
     })
@@ -2196,3 +2202,4 @@ function showModalTestETH() {
     }
     $('.modal-content-test-eth').html(out);
 }
+
