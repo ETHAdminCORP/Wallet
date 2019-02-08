@@ -327,7 +327,7 @@ body.en-US #passEye {
 
 /* Cards */
 
-#cardSendEthAddress { 
+#cardSendEthAddress {
     width: 65%;
 }
 
@@ -594,7 +594,7 @@ a.tx-more-link {
 }
 
 @media screen and (max-width: 1599px) {
-    
+
     .trans-amount .amount-label {
         display: inline-block;
         float: left;
@@ -751,7 +751,7 @@ a.tx-more-link {
     padding: 20px;
     overflow: scroll;
 }
-<<<<<<< HEAD
+
 
 #sendEthModalClose {
     background-color: #26a69a;
@@ -762,5 +762,3 @@ a.tx-more-link {
 #sendEthModalClose:hover {
     background-color: #2bbbad;
 }
-=======
->>>>>>> 47ecb0226ca06ff508bee4800aa9ef566c36ff1c
