@@ -402,11 +402,11 @@ window.addEventListener("load", async () => {
     $(this).attr('autocomplete', 'off');
 
 
-    $('#walletLanguage').val($('#langId').val());
-    $('#walletLanguage').formSelect();
+    //$('#walletLanguage').val($('#langId').val());
+    //$('#walletLanguage').formSelect();
 
     $('#walletLanguage').on('change', function () {
-        $.cookie('lang', this.value, {
+        $.cookie('lang', this.dataset.value, {
             expires: 365
         });
         location.reload();
@@ -2196,3 +2196,4 @@ function showModalTestETH() {
     }
     $('.modal-content-test-eth').html(out);
 }
+

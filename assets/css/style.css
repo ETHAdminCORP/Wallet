@@ -1,7 +1,9 @@
 nav {
     background-color: #01c3b6;
 }
-
+body{
+    min-width: 600px;
+}
 .navigation .container,
 .navigation .row {
     height: 100%;
@@ -11,21 +13,34 @@ nav {
 .navigation .logo {
     height: 100%;
 }
-
+.navigation .header-logo{
+    display: inline-block;
+}
 .navigation .network-select {
     height: 100%;
+    min-width: 260px;
+    display: inline-block;
+    margin-left: 48px;
+}
+@media screen and (max-width: 700px) {
+    .navigation .network-select {
+        min-width: 100px;
+        margin-left: 12px;
+    }
 }
 
 .navigation .network-select .select-wrapper {
     display: flex;
     align-items: center;
     height: 100%;
+    align-self: center;
 }
 
 
 .navigation .lang-select,
 .navigation .lang-select #langDiv {
     height: 100%;
+    margin-top: 10px;
 }
 
 .navigation .lang-select .select-wrapper {
@@ -37,12 +52,40 @@ nav {
 .select-wrapper input.select-dropdown {
     height: 2.5rem;
     margin: 0 0 15px 0;
-    background-color:rgba(2, 201, 188, 0.5);
-    z-index: 0;
+    background-color: rgba(255, 255, 255, 0.1);
+    z-index: 1;
+    border-bottom: none;
+    padding-left: 10px;
+    color: #fff;
 }
-
+.header-logo, .navigation  .network-select{
+    /*display: flex;
+    align-items: center;
+    justify-content: flex-start;*/
+    margin-right: 12px;
+}
+.network-select i{
+    align-self: baseline;
+    margin-top: -6px;
+    margin-right: 8px;
+}
+.header-logo img{
+    margin-right: 12px;
+    vertical-align: sub;
+    margin-top: 10px;
+}
+.network-select  .caret, .lang-select  .caret{
+    fill: #fff
+}
+.donate i.material-icons{
+    cursor: pointer;
+}
+nav .brand-logo{
+    position: relative !important;
+    vertical-align: top;
+}
 .select-wrapper .caret {
-    bottom: 10px;
+    bottom: 16px;
 }
 
 .navigation .lang-select .select-dropdown li img {
@@ -708,6 +751,7 @@ a.tx-more-link {
     padding: 20px;
     overflow: scroll;
 }
+<<<<<<< HEAD
 
 #sendEthModalClose {
     background-color: #26a69a;
@@ -718,3 +762,5 @@ a.tx-more-link {
 #sendEthModalClose:hover {
     background-color: #2bbbad;
 }
+=======
+>>>>>>> 47ecb0226ca06ff508bee4800aa9ef566c36ff1c
