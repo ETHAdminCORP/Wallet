@@ -1084,7 +1084,8 @@ window.addEventListener("load", async () => {
                         $('#mainTokenDiv').append('</tbody></table>')
                     } else {
                         $('#noTokensWarning').show()
-                        $('#cardTokenList').append('<br><center>' + $('#noTokensWarningCard').val() + '</center>')
+                        //$('#cardTokenList').append('<br><center>' + $('#noTokensWarningCard').val() + '</center>')
+                        $('#cardTokenList').append('<br><div class="f-item"><h6 class="noactive">' + $('#noTokensWarningCard').val() + '</h6></div>')
                     }
 
 
@@ -1126,7 +1127,7 @@ window.addEventListener("load", async () => {
                 if (transactionsdata['status'] == 0) {
                     $('#transactionsLis').html('<h3>' + $('#txListEmpty').val() + '</h3>')
                     $('#cardTxList').append('<a href=# style="text-decoration:none"><span style=color:#01c3b6><span style=font-size:20px;font-weight:500;>' + $('#txListCardLabel').val() + ':</span></a>')
-                    $('#cardTxList').append('<br><br><h3>' + $('#txListEmpty').val() + '</h3>')
+                    $('#cardTxList').append('<br><br><div class="f-item"><h6 class="noactive">' + $('#txListEmpty').val() + '</h6></div>')
                 } else {
                     $('#transactionsLoading').hide()
 

@@ -4,6 +4,9 @@ nav {
 body{
     min-width: 600px;
 }
+.tabs {
+    overflow-x: hidden;
+}
 .navigation .container,
 .navigation .row {
     height: 100%;
@@ -94,17 +97,27 @@ nav .brand-logo{
     margin-left: 13px;
 }
 
-#transactionsLis {
+#transactionsLis, #noTokensWarning {
     margin: 0 5%;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
 }
 
-#transactionsLis h3 {
-    background-color: rgba(54, 197, 171, 0.2);
+#transactionsLis h3, #cardTxList h3, #noTokensWarning h3  {
+    /*background-color: rgba(54, 197, 171, 0.2);*/
     text-align: center;
+    text-align:-webkit-center;
+    font-weight: 300;
+    font-size: 1.5rem;
+    display: block;
+    color: #747d7c;
+    background: none !important;
 }
 
 #noTokensWarning h3 {
-    background-color: rgba(54, 197, 171, 0.2);
+    /*background-color: rgba(54, 197, 171, 0.2);*/
 }
 
 #mainTokenDiv h3 {
@@ -429,8 +442,25 @@ body.en-US #passEye {
 #cardTokenList center {
     line-height: 150px;
 }
-
-/* Transaction table */
+#cardTokenList, #cardTxList{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#cardTokenList a:first-of-type, #cardTxList a:first-of-type{
+    align-self: flex-start;
+    flex: 50%;
+}
+#cardTokenList .f-item, #cardTxList .f-item{
+    height: 100%;
+}
+#cardTokenList h6.noactive, #cardTxList h6.noactive{
+    font-weight: 300;
+    font-size: 1.5rem;
+    color: #747d7c;
+}
+    /* Transaction table */
 
 #txtable th,
 #txtableTab th {
