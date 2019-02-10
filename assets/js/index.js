@@ -1086,6 +1086,7 @@ window.addEventListener("load", async () => {
                         $('#noTokensWarning').show()
                         //$('#cardTokenList').append('<br><center>' + $('#noTokensWarningCard').val() + '</center>')
                         $('#cardTokenList').append('<br><div class="f-item"><h6 class="noactive">' + $('#noTokensWarningCard').val() + '</h6></div>')
+                        $('#cardTokenList').addClass('centered');
                     }
 
 
@@ -1127,7 +1128,8 @@ window.addEventListener("load", async () => {
                 if (transactionsdata['status'] == 0) {
                     $('#transactionsLis').html('<h3>' + $('#txListEmpty').val() + '</h3>')
                     $('#cardTxList').append('<a href=# style="text-decoration:none"><span style=color:#01c3b6><span style=font-size:20px;font-weight:500;>' + $('#txListCardLabel').val() + ':</span></a>')
-                    $('#cardTxList').append('<br><br><div class="f-item"><h6 class="noactive">' + $('#txListEmpty').val() + '</h6></div>')
+                    $('#cardTxList').append('<br><br><div class="f-item"><h6 class="noactive">' + $('#txListEmpty').val() + '</h6></div>');
+                    $('#cardTxList').addClass('centered');
                 } else {
                     $('#transactionsLoading').hide()
 
@@ -1259,7 +1261,7 @@ window.addEventListener("load", async () => {
                               $('#cardTxList').append('<table id=txtableTab class="highlight"><thead><tr><th align=right>' + $('#txListCardLabelDate').val() + '</th><th style="text-align: right">' + $('#txListCardLabelAmount').val() + '</th><th>' + $('#txListCardLabelFrom').val() + '</th></thead>')
                               $('#cardTxList').append('</table>')
                               $('#cardTxList').append('<a class="tx-more-link" href="#" style="text-decoration:none" onclick="moreTransactions()"><span style=color:#01c3b6>' + $('#txListCardLabelMore').val() + '</span></a>');
-
+                              $('#cardTxList').removeClass('centered');
                             }
                             $('#txtableTab').append('<tr bgcolor=' + txBgColor + '><td style=align:right>' + txTime + '</td><td style="text-align: right">' + txType + ' ' + (parseInt(transaction['value']) / 1e18).toFixed(18).replace(/\.?0+$/,'') + ' ETH</td><td>' + txTypeText + ' ' + currentFinalTxAddress + '</td></tr>')
                            

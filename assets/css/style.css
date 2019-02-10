@@ -445,15 +445,21 @@ body.en-US #passEye {
 #cardTokenList, #cardTxList{
     display: flex;
     flex-direction: column;
+
+}
+#cardTokenList.centered, #cardTxList.centered{
     justify-content: center;
     align-items: center;
 }
-#cardTokenList a:first-of-type, #cardTxList a:first-of-type{
+#cardTokenList.centered a:first-of-type, #cardTxList.centered a:first-of-type{
     align-self: flex-start;
     flex: 50%;
 }
 #cardTokenList .f-item, #cardTxList .f-item{
     height: 100%;
+}
+#cardTokenList .f-item.align-top, #cardTxList .f-item.align-top{
+    align-self: flex-start;
 }
 #cardTokenList h6.noactive, #cardTxList h6.noactive{
     font-weight: 300;
