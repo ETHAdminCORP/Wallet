@@ -1083,7 +1083,8 @@ window.addEventListener("load", async () => {
 
                         $('#mainTokenDiv').append('</tbody></table>')
                     } else {
-                        $('#noTokensWarning').show()
+                        $('#noTokensWarning').show();
+                        $('#noTokensWarning').css( "display", "flex" );
                         //$('#cardTokenList').append('<br><center>' + $('#noTokensWarningCard').val() + '</center>')
                         $('#cardTokenList').append('<br><div class="f-item"><h6 class="noactive">' + $('#noTokensWarningCard').val() + '</h6></div>')
                         $('#cardTokenList').addClass('centered');
