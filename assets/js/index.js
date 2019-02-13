@@ -1,7 +1,6 @@
 $(document).ready(function () {
     $('.sidenav').sidenav();
     $('select').formSelect();
-
     $('body').addClass($('#langId').val());
 
     $('.modal').modal({
@@ -9,6 +8,7 @@ $(document).ready(function () {
         inDuration: 350
     });
 
+    // tab transactions -> vizualization
     let changeTab = () => {
         setTimeout(function () {
             if ($('#transactions').css('display') === 'block') {
@@ -44,17 +44,19 @@ $(document).ready(function () {
 
     $('.tabs').tabs({onShow: changeTab});
 
-    $('#walletTypePrivateKey').on('click', function () {
 
 
-        setTimeout(function () {
-            $('#unencryptPrivateKeyRaw').focus();
-
-        }, 100)
-
-    });
+// Delay before show border of input for unencrypted private key. Login -> Private key
+$('#walletTypePrivateKey').on('click', function () {
+    setTimeout(function () {
+        $('#unencryptPrivateKeyRaw').focus();
+    }, 100)
+  });
 });
 
+
+// If you click on contract's address in transaction list, it will open tab Contract
+// and you can start interact with this contract
 function contractMore(address) {
     let contact = $('#contractTabLink');
     contact[0].click();
@@ -64,7 +66,7 @@ function contractMore(address) {
 }
 
 
-// auto logout
+// Auto logout
 var idleTime;
 $(document).ready(function () {
     reloadPage();
@@ -83,6 +85,8 @@ function reloadPage() {
     }, 600000);
 }
 
+
+// Icon EYE in password's input. You can see this icon when you create new wallet
 $('#passEye').click(function () {
     let passwordInput = $("#passwordForNewUTC");
     if (passwordInput.attr("type") === "text") {
@@ -96,6 +100,8 @@ $('#passEye').click(function () {
 });
 
 
+// When you open settings div in Token's tab for writting Amount,To (send tokens)
+// and click to other tab, all divs on token's tab will be closed.
 $(document).mouseup(function (e) {
     if ($("#tokens").css("display") === "block") {
         let container = $("#tokenTable");
@@ -112,6 +118,7 @@ $(document).mouseup(function (e) {
         }
     }
 });
+
 
 
 function MD5(str) {
@@ -329,10 +336,13 @@ window.addEventListener("load", async () => {
     }
 
 
+    // If user has Metamask, so metamask inject web3 0.2 version.
+    // For generate Keystore file we use function of web3 1.0
+    // So we need web3 instance with 1.0 version or higher
     var w3 = new Web3();
 
 
-    //hover colors
+    // Hover colors in login page
     $("#walletTypePrivateKey").hover(function () {
         if ($("#unencryptPrivateKey").is(":visible") == false) {
             $(this).css("background-color", "#FAFAFA")
@@ -397,13 +407,8 @@ window.addEventListener("load", async () => {
     function hideHighlight(element) {
         $(element).css('background-color', "rgba(0, 0, 0, 0)")
     }
-
-
     $(this).attr('autocomplete', 'off');
 
-
-    //$('#walletLanguage').val($('#langId').val());
-    //$('#walletLanguage').formSelect();
 
     $('#walletLanguage').on('change', function () {
         $.cookie('lang', this.dataset.value, {
@@ -434,6 +439,8 @@ window.addEventListener("load", async () => {
     })
 
 
+    // Login -> Keystore file
+    // Try decrypt file
     $('#ButtonPrivateKeyUTCEnter').mousedown(function () {
         $('#privateKeyUTCPassword').val()
         try {
@@ -445,8 +452,8 @@ window.addEventListener("load", async () => {
         } catch (e) {
             $('#keystoreDecryptError').show();
         }
-
     })
+
 
     $('#passwordForNewUTC').focus(function () {
         $('#walletTypePrivateKeyUTCdiv').hide();
@@ -455,11 +462,10 @@ window.addEventListener("load", async () => {
         $('#metamaskBlockWarning').hide();
     })
 
-    // New wallet - generate UTC file
+
+    // New wallet - generate Keystore file
     $('#buttonNewAdddressGoStep2').mousedown(function () {
         if ($('#passwordForNewUTC').val().length > 5) {
-            //const accounts = new Accounts();
-            //const accountObject = accounts.new();
             accountObject = w3.eth.accounts.create()
             var j = w3.eth.accounts.encrypt(accountObject.privateKey, $('#passwordForNewUTC').val());
             var d = new Date();
@@ -476,6 +482,7 @@ window.addEventListener("load", async () => {
             $('#newAddressErr').show();
         }
     });
+
 
     $("#passwordForNewUTC").keydown(function (e) {
         if (e.keyCode == 13) {
@@ -498,6 +505,7 @@ window.addEventListener("load", async () => {
     })
 
 
+    // Login -> seed - not implemented now
     $('#walletTypeSeed').mousedown(function () {
         $('#walletTypePrivateKeyUTCdiv').hide();
         $('#unencryptPrivateKey').hide();
@@ -516,6 +524,7 @@ window.addEventListener("load", async () => {
             }
         }
     })
+
 
     $("#walletTypePrivateKeyUTCHeader").mousedown(function () {
         $('#unencryptPrivateKey').hide();
@@ -538,7 +547,6 @@ window.addEventListener("load", async () => {
             fr.onloadend = function () {
                 window.UTCFileSource = fr.result;
             };
-
             fr.readAsText(file);
         } else {
             // Handle errors here
@@ -551,8 +559,8 @@ window.addEventListener("load", async () => {
 
     $('#cardSendEthButtonSend').click(function () {
         checkSendEth('card')
-        //$('#sendEthButtonSend').trigger("mousedown");
     })
+
 
     $('#cardSendEthButtonOk').click(function () {
         $('#sendEthButtonOk').click()
@@ -566,10 +574,9 @@ window.addEventListener("load", async () => {
     }
 
 
+    // When user send ETH, we check address and Amount and gasAmount
     function checkSendEth(from) {
         from = from || 'modal';
-
-
         var inputAddressVal = $('#sendEthAddress').val();
         var inputEthVal = $('#sendEthAmount').val();
         var sendEthAddressErr = 0;
@@ -610,7 +617,6 @@ window.addEventListener("load", async () => {
 
 
         if (sendEthAmountErr > 0 || sendEthAddressErr > 0) {
-
             $('#sendEthButtonSend').show();
             $('#sendEthButtonOk').hide();
             $('#sendEthButtonSend').attr('disabled', 'disabled');
@@ -626,24 +632,15 @@ window.addEventListener("load", async () => {
                 $('#sendEthButtonSend').trigger('mousedown')
                 $('#cardSendEthButtonSend').hide();
                 $('#cardSendEthButtonOk').show();
-
             }
         }
-
     }
 
 
     $('#sendEthAddress').on('input', function () {
         $('#cardSendEthAddress').val($('#sendEthAddress').val())
-
         checkSendEth();
     })
-
-//Card
-
-   /* var widthInput = $('#cardSendEthAmount').width();
-    $('#cardSendEthAddress').css("width" , widthInput);
-    alert(widthInput);*/
 
 
     $('#cardSendEthAddress').on('input', function () {
@@ -659,7 +656,6 @@ window.addEventListener("load", async () => {
 
     $('#sendEthAmount').on('input', function () {
         $('#cardSendEthAmount').val($('#sendEthAmount').val())
-
         $('#sendEthAmount').val($('#sendEthAmount').val().replace('/\,/', '/\./'))
         var sendEthAmountNumber = Number($('#sendEthAmount').val())
         if (sendEthAmountNumber > 0 && $('#networkName').val() == 'mainnet') {
@@ -669,7 +665,6 @@ window.addEventListener("load", async () => {
         } else {
             $('#sendEthAmountFiat').text('')
         }
-
         checkSendEth();
     })
 
@@ -688,32 +683,26 @@ window.addEventListener("load", async () => {
     })
 
 
+    // Login -> Private key
     $("#unencryptPrivateKeyRaw").on('input', function () {
         if ($("#unencryptPrivateKeyRaw").val().length == 64 || $("#unencryptPrivateKeyRaw").val().length == 66) {
-
             addressObj = w3.eth.accounts.privateKeyToAccount($('#unencryptPrivateKeyRaw').val())
             $("#start").hide();
             $("#aboutAddress").show();
             $('.tabs').tabs('updateTabIndicator');
             addressInfo(3);
         }
-
     })
 
 
+    // Check data in inputs, when user interact with smart contract
     window.checkFunctInputs = function (abiObj) {
         $('#callFunctionResult').html('')
-
-        //abiObj = JSON.parse(JSON.stringify(abiObj));
-        //window.aabb = abiObj.name
-        //abiObj =  JSON.parse(abiObj)
         var emptyInput = 0;
-
-
         var myContract = new web3.eth.Contract(JSON.parse(JSON.stringify(JSON.parse($('#contractAbiUser').val()))), $('#contractAddress').val())
 
-
         // We don't check inputs, if function == fallback
+        // If input is empty..
         if (abiObj.type != 'fallback' && abiObj.inputs) {
             for (var i = 0; i < abiObj.inputs.length; i++) {
                 if (!$('#callFunctionParam_' + i).val()) {
@@ -722,26 +711,30 @@ window.addEventListener("load", async () => {
             }
         }
 
-
+        // If funciton is payable, we should check input of ETH's Amount
+        // And check if inputETHAmount < ETH balance
         if (abiObj.payable == true) {
             if (!$('#ethValueSmartContract').val()) {
                 emptyInput += 1;
             }
-            if (parseFloat($('#ethValueSmartContract').val()) > parseFloat($('#addressBalance').text())) {
+            else {
+              if (parseFloat($('#ethValueSmartContract').val()) > parseFloat($('#addressBalance').text())) {
                 $('#smartContractETHAmountError').show();
-            } else {
+              } else {
                 $('#smartContractETHAmountError').hide();
+                }
             }
         }
 
-
+        // if we don't have empty inputs, lets check type of data in inputs
         if (emptyInput == 0) {
-
             var params = []
             if (abiObj.type != 'fallback' && abiObj.inputs) {
                 for (var i = 0; i < abiObj.inputs.length; i++) {
                     $('#callFunctionParam_' + i).val($('#callFunctionParam_' + i).val().trim())
-                    if (abiObj.inputs[i].type.match(/bytes\d\d\[\]/)) {
+
+                    // bytes32[], bytesXX[]
+                    if (abiObj.inputs[i].type.match(/bytes\d*\d*\[\d*\]/)) {
                         var inputVar = JSON.parse($('#callFunctionParam_' + i).val());
                         for (var ii = 0; ii < inputVar.length; ii++) {
                             if (inputVar[ii].indexOf("0x") == 0) {
@@ -750,12 +743,33 @@ window.addEventListener("load", async () => {
                                 inputVar[ii] = web3.eth.abi.encodeParameter(abiObj.inputs[i].type.slice(0, -2), web3.utils.asciiToHex(inputVar[ii]))
                             }
                         }
+
+                    // bytes32, bytesXX
                     } else if (abiObj.inputs[i].type.match(/bytes\d\d/) || abiObj.inputs[i].type.match(/bytes\d/) || abiObj.inputs[i].type.match(/bytes/)) {
                         if ($('#callFunctionParam_' + i).val().indexOf("0x") == 0) {
                             var inputVar = web3.eth.abi.encodeParameter(abiObj.inputs[i].type, $('#callFunctionParam_' + i).val())
                         } else {
                             var inputVar = web3.eth.abi.encodeParameter(abiObj.inputs[i].type, web3.utils.asciiToHex($('#callFunctionParam_' + i).val()))
                         }
+
+
+                    // uint[] -> bigNUMBER
+                  } else if (abiObj.inputs[i].type.match(/u*int\d*\d*\d*\[\d*\]/)) {
+                    console.log('number array')
+                      var inputVar = JSON.parse($('#callFunctionParam_' + i).val());
+                          for (var ii = 0; ii < inputVar.length; ii++) {
+                            inputVar[ii] = web3.utils.toBN(inputVar[ii]).toString()
+                          }
+
+                    //uint -> bigNUMBER
+                    } else if (abiObj.inputs[i].type.match(/u*int\d*\d*\d*/) ) {
+                      console.log('number one')
+                        var inputVar = web3.utils.toBN($('#callFunctionParam_' + i).val()).toString()
+
+
+
+
+                    // string / address
                     } else if (abiObj.inputs[i].type == 'string' || abiObj.inputs[i].type == 'address') {
                         if (abiObj.inputs[i].type == 'address') {
                             $('#callFunctionParam_' + i).val(web3.utils.toChecksumAddress($('#callFunctionParam_' + i).val()))
@@ -1215,11 +1229,11 @@ window.addEventListener("load", async () => {
                             var txTypeText = $('#txCallFunc').val();
 
                             var currentFinalTxAddress = '<a href="#"  title = "' + currentTxAddress + '" onclick = "moveContractBlock(this)" > ' + currentTxAddress.slice(0,20) + '... </a>';
-                            /*var TxAdressHiddenInput = '<input  type="text" value="' + currentTxAddress + '">' 
+                            /*var TxAdressHiddenInput = '<input  type="text" value="' + currentTxAddress + '">'
                             $('body').append(TxAdressHiddenInput);
                             $('.contractRed').hide();*/
-                           
-                        } 
+
+                        }
 
 
 
@@ -1265,7 +1279,7 @@ window.addEventListener("load", async () => {
                               $('#cardTxList').removeClass('centered');
                             }
                             $('#txtableTab').append('<tr bgcolor=' + txBgColor + '><td style=align:right>' + txTime + '</td><td style="text-align: right">' + txType + ' ' + (parseInt(transaction['value']) / 1e18).toFixed(18).replace(/\.?0+$/,'') + ' ETH</td><td>' + txTypeText + ' ' + currentFinalTxAddress + '</td></tr>')
-                           
+
                             if ($('#txtableTab').children("[bgcolor='#FAF0EF']")) {
                                 $('#txtableTab').children("[bgcolor='#FAF0EF']").hover(function(){
                                     $('#txtableTab').children("[bgcolor='#FAF0EF']").css('background-color' , '#FAF0EF');
@@ -1322,7 +1336,7 @@ window.addEventListener("load", async () => {
         if (abiObj.type != 'fallback') {
             for (var i = 0; i < abiObj.inputs.length; i++) {
                 $('#callFunctionParam_' + i).val($('#callFunctionParam_' + i).val().trim())
-                if (abiObj.inputs[i].type.match(/bytes\d\d\[\]/)) {
+                if (abiObj.inputs[i].type.match(/bytes\d*\d*\[\d*\]/)) {
                     var inputVar = JSON.parse($('#callFunctionParam_' + i).val());
                     for (var ii = 0; ii < inputVar.length; ii++) {
                         if (inputVar[ii].indexOf("0x") == 0) {
@@ -1337,6 +1351,21 @@ window.addEventListener("load", async () => {
                     } else {
                         var inputVar = web3.eth.abi.encodeParameter(abiObj.inputs[i].type, web3.utils.asciiToHex($('#callFunctionParam_' + i).val()))
                     }
+
+
+
+                      // uint[] -> bigNUMBER
+                    } else if (abiObj.inputs[i].type.match(/u*int\d*\d*\d*\[\d*\]/)) {
+                        var inputVar = JSON.parse($('#callFunctionParam_' + i).val());
+                            for (var ii = 0; ii < inputVar.length; ii++) {
+                              inputVar[ii] = web3.utils.toBN(inputVar[ii]).toString()
+                            }
+
+                  } else if (abiObj.inputs[i].type.match(/u*int\d*\d*\d*/) ) {
+                      var inputVar = web3.utils.toBN($('#callFunctionParam_' + i).val()).toString()
+
+
+
                 } else if (abiObj.inputs[i].type == 'string' || abiObj.inputs[i].type == 'address') {
                     if (abiObj.inputs[i].type == 'address') {
                         $('#callFunctionParam_' + i).val(web3.utils.toChecksumAddress($('#callFunctionParam_' + i).val()))
@@ -1686,6 +1715,7 @@ window.addEventListener("load", async () => {
 
 
     $('#contractAddress').on('input', (function () {
+        $('#contractViewSourceCode').hide();
         $('#contractAddress').val($('#contractAddress').val().replace(/\s/g, ''))
         $('#contractPublicInfo').html('');
         $('#contractPublicFunctions').html('')
@@ -1714,6 +1744,8 @@ window.addEventListener("load", async () => {
                     try {
                         $.get("/stat/", {key: "contractLoad", value: '1', value2: '', address: MD5(window.address)});
                         $('#contractAbiUser').val(data)
+                        $('#contractViewSourceCode').show()
+                        $('#contractViewSourceCode').attr("href", 'https://' + $('#networkName').val() + '.etherscan.io/address/' + $('#contractAddress').val().replace(/\s/g, '') + '#code')
                         loadContractInterface(data);
                     } catch (err) {
 
@@ -2160,7 +2192,7 @@ function moreTransactions() {
 
 
 function moveContractBlock(a) {
-    var icontract = $('#contractTabLink');      
+    var icontract = $('#contractTabLink');
     icontract[0].click();
     $('label[for="contractAddress"]').click();
     var contractRed = $(a).attr("title")
@@ -2206,4 +2238,3 @@ function showModalTestETH() {
     }
     $('.modal-content-test-eth').html(out);
 }
-

@@ -466,5 +466,11 @@
   {
     "id": "clodeModelGetETH",
     "translation": "Закрыть"
+  },
+  {
+    "id": "SCViewSourceCode",
+    "translation": "Исходный код контракта"
   }
+
+
 ]

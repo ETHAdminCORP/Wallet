@@ -466,5 +466,9 @@
   {
     "id": "clodeModelGetETH",
     "translation": "Close"
+  },
+  {
+    "id": "SCViewSourceCode",
+    "translation": "View source code"
   }
 ]

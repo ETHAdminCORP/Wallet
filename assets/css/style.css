@@ -801,3 +801,8 @@ a.tx-more-link {
 #sendEthModalClose:hover {
     background-color: #2bbbad;
 }
+
+
+#contractViewSourceCode {
+  display: none;
+}
