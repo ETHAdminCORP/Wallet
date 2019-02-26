@@ -1,12 +1,20 @@
 nav {
     background-color: #01c3b6;
 }
-body{
-    min-width: 600px;
+
+body:not(iframe body) {
+    min-width: 320px;
+    min-height: 100vh;
 }
+
 .tabs {
     overflow-x: hidden;
 }
+
+.navigation {
+    padding: 0 15px;
+}
+
 .navigation .container,
 .navigation .row {
     height: 100%;
@@ -16,15 +24,18 @@ body{
 .navigation .logo {
     height: 100%;
 }
-.navigation .header-logo{
+
+.navigation .header-logo {
     display: inline-block;
 }
+
 .navigation .network-select {
     height: 100%;
     min-width: 260px;
     display: inline-block;
     margin-left: 48px;
 }
+
 @media screen and (max-width: 700px) {
     .navigation .network-select {
         min-width: 100px;
@@ -54,42 +65,55 @@ body{
 
 .select-wrapper input.select-dropdown {
     height: 2.5rem;
-    margin: 0 0 15px 0;
     background-color: rgba(255, 255, 255, 0.1);
     z-index: 1;
     border-bottom: none;
     padding-left: 10px;
     color: #fff;
+    margin-bottom: 0;
 }
-.header-logo, .navigation  .network-select{
+
+.header-logo,
+.navigation .network-select {
     /*display: flex;
     align-items: center;
     justify-content: flex-start;*/
     margin-right: 12px;
 }
-.network-select i{
+
+.header-logo,
+.navigation .network-select.mobile {
+    display: none;
+}
+
+
+.network-select i {
     align-self: baseline;
     margin-top: -6px;
     margin-right: 8px;
 }
-.header-logo img{
+
+.header-logo img {
     margin-right: 12px;
     vertical-align: sub;
     margin-top: 10px;
 }
-.network-select  .caret, .lang-select  .caret{
+
+.network-select .caret,
+.lang-select .caret {
     fill: #fff
 }
-.donate i.material-icons{
+
+.donate i.material-icons {
     cursor: pointer;
 }
-nav .brand-logo{
+
+nav .brand-logo {
     position: relative !important;
     vertical-align: top;
 }
-.select-wrapper .caret {
-    bottom: 16px;
-}
+
+.select-wrapper .caret {}
 
 .navigation .lang-select .select-dropdown li img {
     width: 33px;
@@ -97,7 +121,8 @@ nav .brand-logo{
     margin-left: 13px;
 }
 
-#transactionsLis, #noTokensWarning {
+#transactionsLis,
+#noTokensWarning {
     margin: 0 5%;
     display: flex;
     align-items: center;
@@ -105,10 +130,12 @@ nav .brand-logo{
     min-height: 300px;
 }
 
-#transactionsLis h3, #cardTxList h3, #noTokensWarning h3  {
+#transactionsLis h3,
+#cardTxList h3,
+#noTokensWarning h3 {
     /*background-color: rgba(54, 197, 171, 0.2);*/
     text-align: center;
-    text-align:-webkit-center;
+    text-align: -webkit-center;
     font-weight: 300;
     font-size: 1.5rem;
     display: block;
@@ -130,50 +157,55 @@ nav .brand-logo{
         margin: 0 7%;
     }
 }
+
 @media screen and (min-width: 1900px) {
     #transactionsLis {
         margin: 0 13%;
     }
 }
+
 @media screen and (min-width: 2000px) {
     #transactionsLis {
         margin: 0 15%;
     }
 }
+
 @media screen and (min-width: 2200px) {
     #transactionsLis {
         margin: 0 18%;
     }
 }
+
 @media screen and (min-width: 2400px) {
     #transactionsLis {
         margin: 0 21%;
     }
 }
 
-.tabs .tab a.active{
+.tabs .tab a.active {
     box-shadow: 4px 5px 8px 0 rgba(0, 0, 0, 0.2);
     background-color: rgba(54, 197, 171, 0.2);
     color: black;
     font-weight: 500;
 }
 
-.tabs .tab a{
+.tabs .tab a {
     box-shadow: 4px 5px 8px 0 rgba(0, 0, 0, 0.1);
     color: rgba(35, 134, 126, 1);
 }
 
-.tabs .indicator{
+.tabs .indicator {
     background-color: rgba(35, 134, 126, 1);
 }
 
-.tabs .tab a:hover{
+.tabs .tab a:hover {
     box-shadow: 4px 5px 8px 0 rgba(0, 0, 0, 0.2);
     font-weight: 500;
     color: rgba(35, 134, 126, 1);
 }
 
-.tabs .tab a:focus, .tabs .tab a:focus.active {
+.tabs .tab a:focus,
+.tabs .tab a:focus.active {
     background-color: rgba(54, 197, 171, 0.2);
 }
 
@@ -224,7 +256,7 @@ nav .brand-logo{
 }
 
 body.ru-RU #passEye {
-    top: 58px;
+    top: 15px;
 }
 
 body.en-US #passEye {
@@ -257,7 +289,6 @@ body.en-US #passEye {
 }
 
 .wallet-cart-content-inner .card-action {
-    padding-left: 0 !important;
     border-top: 0 !important;
     padding-bottom: 0;
 }
@@ -383,7 +414,7 @@ body.en-US #passEye {
 }
 
 .wallet-address-container {
-    display:  grid;
+    display: grid;
     grid-template-columns: 1fr 3fr;
     align-items: center;
 }
@@ -442,31 +473,44 @@ body.en-US #passEye {
 #cardTokenList center {
     line-height: 150px;
 }
-#cardTokenList, #cardTxList{
+
+#cardTokenList,
+#cardTxList {
     display: flex;
     flex-direction: column;
 
 }
-#cardTokenList.centered, #cardTxList.centered{
+
+#cardTokenList.centered,
+#cardTxList.centered {
     justify-content: center;
     align-items: center;
 }
-#cardTokenList.centered a:first-of-type, #cardTxList.centered a:first-of-type{
+
+#cardTokenList.centered a:first-of-type,
+#cardTxList.centered a:first-of-type {
     align-self: flex-start;
     flex: 50%;
 }
-#cardTokenList .f-item, #cardTxList .f-item{
+
+#cardTokenList .f-item,
+#cardTxList .f-item {
     height: 100%;
 }
-#cardTokenList .f-item.align-top, #cardTxList .f-item.align-top{
+
+#cardTokenList .f-item.align-top,
+#cardTxList .f-item.align-top {
     align-self: flex-start;
 }
-#cardTokenList h6.noactive, #cardTxList h6.noactive{
+
+#cardTokenList h6.noactive,
+#cardTxList h6.noactive {
     font-weight: 300;
     font-size: 1.5rem;
     color: #747d7c;
 }
-    /* Transaction table */
+
+/* Transaction table */
 
 #txtable th,
 #txtableTab th {
@@ -480,8 +524,8 @@ body.en-US #passEye {
     padding-right: 30px;
 }
 
-#txtable > tr:hover,
-#txtableTab > tr:hover {
+#txtable>tr:hover,
+#txtableTab>tr:hover {
     background-color: rgb(250, 250, 250);
 }
 
@@ -504,17 +548,21 @@ body.en-US #passEye {
 }
 
 @media screen and (min-width: 1600px) {
+
     #cardTxList td,
     #cardTxList th {
         margin-right: 15px;
         margin-left: 15px;
     }
+
     #txtable tr td:first-child,
     #txtable tr th:first-child {
         margin-left: calc(4% + 60px);
     }
 }
+
 @media screen and (min-width: 1900px) {
+
     #txtable tr td:first-child,
     #txtable tr th:first-child {
         margin-left: calc(5% + 60px);
@@ -529,8 +577,8 @@ input#cardSendEthAmount {
 } */
 
 #sendEthAddParams span.active {
-    width: 0!important;
-    height: 0!important;
+    width: 0 !important;
+    height: 0 !important;
 }
 
 #sendEthGasPriceGWEI {
@@ -550,7 +598,7 @@ input#cardSendEthAmount {
 }
 
 #modal1 {
-    top: 5%!important;
+    top: 5% !important;
     max-height: 85%;
 }
 
@@ -560,7 +608,6 @@ input#cardSendEthAmount {
 }
 
 #cardSendEthButtonSend {
-    float: left;
     margin-top: 15px;
     margin-bottom: 15px;
     margin-left: calc(50% - 100px);
@@ -606,6 +653,7 @@ a.tx-more-link {
     margin: 0 -0.75rem;
     align-items: center;
 }
+
 .more-option {
     grid-column-start: 1;
     grid-column-end: 3;
@@ -614,12 +662,12 @@ a.tx-more-link {
 
 #sendEthAddParamsLink2 {
     text-align: right;
-    float:right;
+    float: right;
     display: inline-block;
     margin-bottom: 36px;
 }
 
-.trans-amount > span {
+.trans-amount>span {
     display: block;
     float: left;
     margin-top: 20px;
@@ -643,26 +691,31 @@ a.tx-more-link {
 }
 
 @media screen and (min-width: 1600px) {
-/* ?    .trans-amount {
+
+    /* ?    .trans-amount {
     display: flex;
     align-items: baseline;
     margin-left: -0.75rem;
     margin-right: -0.75rem;
 } */
     .trans-amount .s6 {
-        margin-left: 0!important;
+        margin-left: 0 !important;
     }
+
     .address-to {
         margin-bottom: 0;
         justify-content: flex-end;
     }
+
     .trans-amount span {
         margin-left: 5px;
     }
+
     .amount-label {
         padding-right: 0.8rem;
         text-align: right;
     }
+
     .wallet-address-container {
         margin-bottom: 5px;
     }
@@ -678,12 +731,15 @@ a.tx-more-link {
     #sendEthAddParamsLink2 {
         margin-left: 40%;
     }
+
     .fake-s9 {
-        width: 50%!important;
+        width: 50% !important;
     }
+
     input#cardSendEthAmount {
         width: 100%;
     }
+
     #cardSendEthAddress {
         width: 135%;
     }
@@ -725,16 +781,24 @@ a.tx-more-link {
 
 
 .modal-get-eth {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0, 0, 0); /* Fallback color */
-    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
 }
 
 .modal-container-box {
@@ -766,8 +830,10 @@ a.tx-more-link {
 }
 
 .button-close-popup:hover {
-    background-color: #2bbbad;;
+    background-color: #2bbbad;
+    ;
 }
+
 .modal-header .modal-header-title {
     display: block;
     width: 100%;
@@ -795,14 +861,635 @@ a.tx-more-link {
     background-color: #26a69a;
     color: #fff;
 }
+
 #sendEthModalClose:focus {
     background-color: #26a69a;
 }
+
 #sendEthModalClose:hover {
     background-color: #2bbbad;
 }
 
-
-#contractViewSourceCode {
-  display: none;
+.inp {
+    position: relative;
 }
+
+#start .row .col {
+    padding: 0;
+}
+
+.wrapper {
+    position: relative;
+    min-height: 100vh;
+}
+
+footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+
+.wallet-cart-content-inner .s12 {
+    display: flex;
+    align-items: center;
+}
+
+.openTabs {
+    display: none;
+}
+
+@media(max-width: 921px) {
+    #wallet {
+        padding: 0 15px;
+    }
+
+    #wallet .row.applications {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #wallet .row.row.applications .row-container {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 0;
+    }
+
+    #wallet .row.applications .xl6 {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    #wallet .row.applications .wallet-card {
+        padding: 15px;
+    }
+
+    .graphics {
+        height: 290px;
+    }
+
+    .graphics iframe {
+        height: 100% !important;
+    }
+
+    .ccc-widget {
+        height: 100% !important;
+    }
+
+    
+
+    .wallet-cart-content {
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 15px;
+    }
+
+    .wallet-cart-content-inner {
+        padding-left: 0;
+    }
+
+    .card-action {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 16px 24px 0 24px !important;
+    }
+
+    #buttonMerchantServices {
+        margin-right: 0;
+    }
+
+    .card-action button {
+        margin-bottom: 15px;
+    }
+
+    .card-action button:last-child {
+        margin-bottom: 0px;
+    }
+
+    .balance {
+        display: flex;
+        justify-content: center;
+    }
+
+    .wallet-cart-content-inner .s12 {
+        justify-content: center;
+    }
+
+    .balance-values {
+        min-width: auto;
+    }
+
+    #privateKeyRAW {
+        font-size: 20px;
+    }
+    #contract {
+        display: flex;
+        flex-direction: column;
+        margin-left: 0 !important;
+    }
+    #contract .row {
+        flex-direction: column;
+    }
+    .input-field {
+        width: 100% !important;
+    }
+    #contract .col.s4.m5 {
+        margin-left: 0;
+    }
+    #cardSendEthAddress {
+        width: 90%;
+    }
+    #cardSendEthAmount {
+        width: 1000%;
+    }
+    .wallet-address-container {
+        display: flex;
+    }
+    .wallet-address-container .fake-s9 {
+        width: 80%;
+    }
+
+    .contact-card .col.s1 {
+        margin-left: 0;
+        width: auto;
+    }
+    #useContractDiv {
+        margin-left: 0 !important;
+        width: 100%;
+    }
+    #callFunctionButtonDiv {
+        margin-top: 20px;
+    }
+    #useContractCallFunction {
+        width: 50%;
+    }
+    .flexwrapflex {
+        display: flex;
+        justify-content: space-around;
+    }
+    .contractAdditionalsChild {
+        width: auto;
+    }
+    .contractAdditionalsChild:last-child {
+        margin-left: 0;
+    }
+    input#smartContractNonceInput {
+        width: 70px;
+    }
+    #transactionsLis tr  {
+        align-items: center;
+    }
+    #transactionsLis tr td:nth-child(2) {
+        justify-content: center;
+        font-size: 17px;
+    }
+    #txtableTab tr  {
+        align-items: center;
+    }
+    #txtableTab tr td:nth-child(2) {
+        justify-content: center;
+        font-size: 17px;
+    }
+    #cardSendEthButtonSend {
+        float: both !important;
+    }
+}
+
+@media(max-width: 375px) {
+    #useContractCallFunction {
+        width: 100%;
+    }
+}
+
+.trans-amount .colAfter:after {
+    content: "ETH";
+    display: inline-block;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+#modal1 .inpwrap:after {
+    content: "ETH";
+    display: inline-block;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+#modal1 #sendEthAmount {
+    margin-bottom: 0;
+    padding: 0 5px;
+}
+
+.colAfter {
+    display: flex;
+    align-items: center;
+}
+
+#cardSendEthAmount {
+    margin-bottom: 0;
+}
+
+.inpwrap {
+    display: flex;
+    align-items: center;
+}
+
+.modal {
+    max-width: 700px !important;
+}
+
+#modal1 {
+    max-width: 700px !important;
+}
+
+@media(max-width: 861px) {
+    #transactionsLis {
+        margin: 0;
+    }
+    #txtable td a {
+        margin-left: 10px;
+    }
+
+    #txtable {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #txtable thead {
+        display: none;
+    }
+
+    #txtable tr {
+        display: flex;
+        flex-direction: column;
+        padding: 5px 15px;
+    }
+
+    #txtable tr td {
+        margin: 0 !important;
+        padding: 0 !important;
+        text-align: right;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    #txtable tr td font {
+        margin-right: 5px;
+    }
+
+    #txtable tr td:nth-child(2) {
+        order: -1;
+        font-weight: 700;
+    }
+
+    #txtable tr td:nth-child(1) {
+        order: 1;
+    }
+}
+
+@media(max-width: 637px) {
+    #txtableTab thead {
+        display: none;
+    }
+
+    #txtableTab tr {
+        display: flex;
+        flex-direction: column;
+        padding: 5px 0;
+    }
+
+    #txtableTab tr td {
+        padding: 0;
+        text-align: right !important;
+    }
+
+    #txtableTab tr td:nth-child(2) {
+        order: -1;
+        font-weight: 700;
+    }
+
+    #txtableTab tr td:nth-child(1) {
+        order: 1;
+    }
+}
+
+@media(max-width: 649px) {
+    #addressBalance {
+        font-size: 35px;
+    }
+
+    #address {
+        font-size: 17px;
+    }
+
+    #privateKeyRAW {
+        font-size: 17px;
+    }
+}
+
+@media(max-width: 529px) {
+    #addressBalance {
+        font-size: 25px;
+        transform: translateY(6px);
+    }
+
+    #address {
+        font-size: 14px;
+    }
+
+    #privateKeyRAW {
+        font-size: 14px;
+    }
+}
+
+
+
+@media(max-width: 744px) {
+    .hidethis {
+        display: none;
+    }
+    .navigation .header-logo span {
+        display: none;
+    }
+
+    .navigation .row {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .navigation .row:after {
+        display: none;
+    }
+
+    #walletLanguage {
+        margin-left: 0;
+    }
+
+    .header-logo,
+    .navigation .network-select.hide-this {
+        display: none;
+    }
+
+    .header-logo,
+    .navigation .network-select.mobile {
+        display: flex;
+    }
+
+    .brand-logo img {
+        margin-right: 0;
+    }
+
+    #start .collection {
+        padding: 0 0 1.75rem 0 !important;
+    }
+
+    .collection-item {
+        border-bottom: 1px solid #e0e0e0 !important;
+        margin-bottom: 10px !important;
+        font-weight: 700;
+        font-size: 16px;
+        padding-top: 14px;
+        padding-bottom: 14px;
+        -webkit-box-shadow: 0px 6px 15px -8px rgba(50, 50, 50, 0.66);
+        -moz-box-shadow: 0px 6px 15px -8px rgba(50, 50, 50, 0.66);
+        box-shadow: 0px 6px 15px -8px rgba(50, 50, 50, 0.66);
+    }
+
+    .collection-item:last-child {
+        margin-bottom: 0px;
+    }
+
+    .collection {
+        padding: 0 1.75rem 1.75rem 1.75rem !important;
+        margin-bottom: 0;
+    }
+
+    .page-footer .row {
+        text-align: center;
+    }
+
+    .balance-values {
+        padding-bottom: 0;
+    }
+}
+
+@media(max-width: 600px) {
+    .network-select {
+        margin-left: 0 !important;
+    }
+}
+
+@media(max-width: 320px) {
+    button.waves-light {
+        font-size: 13px;
+    }
+}
+
+@media(max-width: 417px) {
+    #addressBalance {
+        font-size: 21px;
+        transform: translateY(8px);
+    }
+
+    #address {
+        font-size: 13px;
+    }
+
+    #privateKeyRAW {
+        font-size: 13px;
+    }
+}
+
+@media(max-width: 373px) {
+    .wallet-cart-content {
+        padding: 15px 10px;
+    }
+}
+
+
+
+
+
+
+@media(max-width: 671px) {
+    #mainTokenDiv table {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #mainTokenDiv table tbody {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #mainTokenDiv table tbody tr {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    #mainTokenDiv table tbody td:last-child {
+        display: block;
+    }
+
+    #mainTokenDiv table thead tr {
+        display: flex;
+    }
+
+    #mainTokenDiv table thead th:nth-child(1) {
+        width: 25%;
+    }
+
+    #mainTokenDiv table thead th:nth-child(2) {
+        width: 25%;
+    }
+
+    #mainTokenDiv table thead th:nth-child(3) {
+        width: 25%
+    }
+
+    #mainTokenDiv table thead th:nth-child(4) {
+        width: 25%;
+    }
+
+    #mainTokenDiv table thead th:last-child {
+        display: none;
+    }
+
+    #mainTokenDiv table tbody td:nth-child(1) {
+        width: 25%;
+    }
+
+    #mainTokenDiv table tbody td:nth-child(2) {
+        width: 25%;
+    }
+
+    #mainTokenDiv table tbody td:nth-child(3) {
+        width: 25%
+    }
+
+    #mainTokenDiv table tbody td:nth-child(4) {
+        width: 25%;
+    }
+
+    #mainTokenDiv table {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #mainTokenDiv table td {
+        word-wrap: break-word;
+    }
+
+    .form-group img {
+        margin-bottom: 5px;
+    }
+}
+
+
+@media(max-width: 1001px) {
+    #contract .row {
+        display: flex;
+    }
+
+    #contract .row .col.s4.m5 {
+        width: auto !important;
+    }
+}
+
+@media(max-width: 701px) {
+    .balance-flex {
+        flex-direction: column;
+    }
+
+    .balance-values {
+        text-align: center;
+    }
+    .eth {
+        display: none;
+    }
+    #addressBalance {
+        padding-right: 0;
+    }
+    #addressBalance:after {
+        content: 'ETH';
+        font-weight: 500;
+        font-size: 20px;
+        text-transform: uppercase;
+    }
+}
+
+@media(max-width: 600px) {
+    #aboutAddress .tabMenu ul.tabs {
+        display: none;
+        height: 100%;
+    }
+
+    #aboutAddress .tabMenu ul.tabs li {
+        display: block;
+        width: 100% !important;
+    }
+
+    .openTabs {
+        display: flex;
+        align-items: center;
+        padding: 15px;
+        font-weight: 400;
+        font-size: 18px;
+        text-transform: uppercase;
+    }
+
+    .openTabs .burger {
+        position: absolute;
+        cursor: pointer;
+    }
+
+    .openTabs .burger div {
+        width: 28px;
+        height: 3px;
+        background: #01c3b6;
+        margin: 0 0 5px 0px;
+    }
+
+    .openTabs .burger div:last-child {
+        margin-bottom: 0;
+    }
+
+    .openTabs span {
+        margin: auto;
+    }
+
+    #tabTitle {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    #tabTitle:after {
+        content: "";
+        display: inline-block;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 5px 5px 0 5px;
+        border-color: #000 transparent transparent transparent;
+        margin-left: 5px;
+    }
+}
+
+@media(max-width: 380px) {
+    #cardSendEthAmount {
+        width: 140%;
+    }
+}
+
+body.mobile .ccc-widget canvas {
+    max-height: 168px !important;
+}
+
+/* @media(max-width: 891px) {
+    .ccc-widget canvas {
+        max-height: 168px !important;
+    }
+} */

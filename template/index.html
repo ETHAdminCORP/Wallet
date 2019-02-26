@@ -4,24 +4,18 @@
 
 <body>
 
-
+<div class="wrapper">
     <nav class="navigation">
         <!--<div class="container">-->
             <!-- Центрирует по странице-->
             <div class="nav-wrapper">
-
-
-
-
                 <div class="row">
-                    <div class="col xl1">
-                    </div>
                     <div class="logo col xl10">
                         <!--<a href="/" class="brand-logo"><img src="/assets/img/LogoETHAdmin.png" width=200px height=50px style="margin-top: 13px;"></a>-->
                         <div class="header-logo">
-                            <a href="/" class="brand-logo"><img src="/assets/img/logo.png"> ETH Admin</a>
+                            <a href="/" class="brand-logo"><img src="/assets/img/logo.png"> <span>ETH Admin</span></a>
                         </div>
-                        <div class="network-select" >
+                        <div class="network-select hide-this">
                             <select id="networkName" name="networkName">
                                 <option value="mainnet" >{{T "NetworkTypeMainnet"}}</option>
                                 <option value="ropsten">{{T "NetworkTypeRopsten"}}</option>
@@ -30,15 +24,14 @@
                             </select>
                         </div>
                     </div>
-
-                    <!--<div class="network-select col xl3" style="margin-top:10px">
+                    <div class="network-select mobile">
                         <select id="networkName" name="networkName">
-                      <option value="mainnet" >{{T "NetworkTypeMainnet"}}</option>
-                      <option value="ropsten">{{T "NetworkTypeRopsten"}}</option>
-                      <option value="rinkeby">{{T "NetworkTypeRinkeby"}}</option>
-                      <option value="kovan">{{T "NetworkTypeKovan"}}</option>
-                    </select>
-                    </div>-->
+                            <option value="mainnet" >{{T "NetworkTypeMainnet"}}</option>
+                            <option value="ropsten">{{T "NetworkTypeRopsten"}}</option>
+                            <option value="rinkeby">{{T "NetworkTypeRinkeby"}}</option>
+                            <option value="kovan">{{T "NetworkTypeKovan"}}</option>
+                        </select>
+                    </div>
 
 
                     <div class="lang-select col pull-xl1 xl1" >
@@ -79,7 +72,6 @@
             <div style="margin-top:50px" class="row">
                 <div class="col l6 m12 s12 center-align">
                     <h4>{{T "QuestionHaveWallet"}}</h4>
-                    <p>{{T "ChooseType"}}</p>
                     <ul id="openWalletType" class="collection openWalletType">
                         <li class="settoast collection-item" id="walletTypeMetamask">Metamask<br>
                             <span id="metamaskBlockWarning">{{ T "metamaskBlockWarning"}}</span>
@@ -161,8 +153,10 @@
                     <div id="newAddressStep1">
                         {{T "CreateWalletDesc"}}<br>
                         <form onSubmit="$('#buttonNewAdddressGoStep2').click(); return false" id="formCreateWallet">
-                            <input style="text-align: center;" type=password id="passwordForNewUTC" placeholder="{{ T "CreateWalletPlaceholder"}}">
-                            <i class="material-icons" id="passEye">remove_red_eye</i>
+                            <div class="inp">
+                                <input style="text-align: center;" type=password id="passwordForNewUTC" placeholder="{{ T "CreateWalletPlaceholder"}}">
+                                <i class="material-icons" id="passEye">remove_red_eye</i>
+                            </div>
                             <button type=button id="buttonNewAdddressGoStep2" class="btn effect waves-light">{{T "CreateButton"}}</button><br>
                             <span id="newAddressErr">{{T "CreateWalletWarning"}}</span>
                           </form>
@@ -173,6 +167,14 @@
 
         <div id="aboutAddress" class="row">
             <div class="row">
+                <div class="openTabs">
+                    <div class="burger">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>    
+                    <span id="tabTitle">кошелек</span>
+                </div>
                 <ul class="tabs">
                     <li class="tab col s3"><a id="infoTabLink" class="active" href="#wallet">{{T "TabName1"}}</a></li>
                     <li class="tab col s3"><a id="contractTabLink" href="#contract">{{T "TabName2"}}</a></li>
@@ -186,7 +188,6 @@
                 <div class="row balance">
                     <div class="col s12 m12">
                         <div class="wallet-cart-content card horizontal">
-
                             <div class="balance">
                                 <div class="balance-flex">
                                     <span id="addressBalance"></span>
@@ -196,7 +197,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="wallet-cart-content-inner">
                                 <div class=row style="margin-bottom:0px;">
                                     <div class="col s12">
@@ -207,7 +207,7 @@
 
                                 <div id="privateKeyLine">
                                     <div class=row style="margin-bottom:0px;">
-                                        <div class="col s12"><span style="float:left;margin-right:10px" class=key-field>{{ T "privateKeyLabel" }}: </span>
+                                        <div class="col s12">
                                             <span class="key-field" style="float:left" id="privateKeyRAW"></span>
                                             <img style="margin-left:10px" id="copyToClipboardImg" onmousedown="copyToClipboard('#privateKeyRAW')" src="/assets/img/clipboard.png" title={{T "PrivateKeyCopyIcon"}}>
                                         </div>
@@ -247,7 +247,7 @@
                     </div>
                 </div>
                 <!-- Cards -->
-                <div class="row">
+                <div class="row applications">
                     <div class="row-container">
                         <div class="col s12 m6 xl6 ">
                             <div class="card wallet-card">
@@ -264,15 +264,14 @@
                             </div>
                             <div class="trans-amount">
                                 <p class="col amount-label">{{ T "SendEthAmount"}}</p>
-                                <div class="col ">
+                                <div class="col colAfter">
                                      <input id="cardSendEthAmount" class="form-control">
                                 </div>
-                                 <span>ETH</span>
                                  <div class="more-option col">
                                          <a id="sendEthAddParamsLink2" href="#">{{ T "SendEthAdditionalOptions"}} </a>
                                  </div>
                             </div>
-
+                                
                               <br>
                             <button id="cardSendEthButtonSend" type="button" class="btn btn-primary">{{ T "SendEthSendButton"}}</button>
                             <button id="cardSendEthButtonOk" class="btn btn-success">{{ T "SendEthAccept"}}</button>
@@ -289,28 +288,30 @@
                         </div>
                     </div>
                     <div class="row-container">
-                        <div class="col s12 m6 xl6 ">
-
+                        <div class="col s12 m6 xl6">
                             <div class="card wallet-card" id=cardTxList>
-
+                                
                             </div>
                         </div>
-                        <div class="col s12 m6 xl6 ">
-                            <div class="card wallet-card">
+                        <div class="col s12 m6 xl6 graph">
+                            <div class="card wallet-card graphics">
                                 <iframe id="chartEth" style="border:0" width=100%></iframe>
                             </div>
                         </div>
+                        <!-- <div class="col s12 m6 xl6 graphics-mobile">
+                            <div class="card wallet-card graphics">
+                                <iframe id="chartEth1" style="border:0" width=100%></iframe>
+                            </div>
+                        </div> -->
                     </div>
                 </div>
-
-
             </div>
 
 
 
 
             <!-- Modal Structure -->
-            <div id="modal1" class="modal">
+            <div id="modal1" class="modal" style="max-width: 700px">
                 <div class="modal-content">
                     <h4>{{ T "SendEthModalTitile"}}</h4>
 
@@ -321,7 +322,9 @@
 
                     <div class="form-inline">
                         <label>{{ T "SendEthAmount"}} <span id="sendEthAmountFiat"></span></label><br>
-                        <input id="sendEthAmount" type="tel" pattern="[0-9]+([\.][0-9]+)?" class="form-control"> ETH
+                        <div class="inpwrap">
+                            <input id="sendEthAmount" type="tel" pattern="[0-9]+([\.][0-9]+)?" class="form-control">
+                        </div>
                     </div>
 
                     <div id="sendEthMaxAmount">
@@ -396,7 +399,6 @@
                             <div class="row">
                                 <div class="col s1">
                                     <button type="button" class="effect btn" id="contractRefreshInfo">{{ T "SCReloadPublicData"}}</button>
-                                    <a target=_blank id=contractViewSourceCode href="#"><button type="button" class="effect btn" id="contractViewSourceCodeButton">{{ T "SCViewSourceCode"}}</button></a>
                                 </div>
                             </div>
 
@@ -410,17 +412,19 @@
 
                         <a href=# id="ParamsLinkSmartContract" onclick="ParamsLinkSmartContractFunc(); return false;">{{ T "SendEthAdditionalOptions"}} <img id="smartContractImgParams" src="/assets/img/linedown.png"></a>
                         <div id="smartContractParamsDiv">
-                            <div class="contractAdditionalsChild">
-                                Gas amount<br>
-                                <input style="width: 80px;" type="number" value=21000 id="smartContractGasAmountInput">
-                            </div>
-                            <div class="contractAdditionalsChild">
-                                Gas price (Gwei)<br>
-                                <input style="width: 105px;" type="number" id="smartContractGasPriceInput">
-                            </div>
-                            <div class="contractAdditionalsChild">
-                                Nonce<br>
-                                <input style="width: 45px;" type="number" id="smartContractNonceInput">
+                            <div class="flexwrapflex">
+                                <div class="contractAdditionalsChild">
+                                    Gas amount<br>
+                                    <input style="width: 80px;" type="number" value=21000 id="smartContractGasAmountInput">
+                                </div>
+                                <div class="contractAdditionalsChild">
+                                    Gas price (Gwei)<br>
+                                    <input style="width: 105px;" type="number" id="smartContractGasPriceInput">
+                                </div>
+                                <div class="contractAdditionalsChild">
+                                    Nonce<br>
+                                    <input style="width: 45px;" type="number" id="smartContractNonceInput">
+                                </div>
                             </div>
                         </div>
                         <span id="GasLimitExceedSpan">{{ T "GasLimitExceedText" }}</span>
@@ -485,6 +489,7 @@
             </div>
         </div>
     </main>
+
 
 
     <input type=text id="langId" value='{{T "langId" }}' hidden/>
@@ -561,18 +566,17 @@
 
 
     <iframe src=/counter.html width="1px" height="1px"></iframe>
+    {{ template "footer" . }}
+</div>
+    
     <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
 
         nav {
             background-color: #01c3b6;
         }
 
         main {
+            margin-bottom: 240px;
             flex: 1 0 auto;
         }
 
@@ -646,10 +650,6 @@
         }
 
         /* modal */
-
-        .modal {
-            width: 700px;
-        }
 
         #sendEthImgParams {
             width: 15px;
@@ -776,5 +776,6 @@
         }
 
     </style>
+    
 </body>
-{{ template "footer" . }} {{ end }}
+ {{ end }}
