@@ -65,7 +65,7 @@ body:not(iframe body) {
 
 .select-wrapper input.select-dropdown {
     height: 2.5rem;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.2);
     z-index: 1;
     border-bottom: none;
     padding-left: 10px;
@@ -253,14 +253,6 @@ nav .brand-logo {
     right: 7px;
     cursor: pointer;
     pointer-events: all;
-}
-
-body.ru-RU #passEye {
-    top: 15px;
-}
-
-body.en-US #passEye {
-    top: 36px;
 }
 
 
@@ -871,12 +863,18 @@ a.tx-more-link {
 }
 
 .inp {
+    display: flex;
+    align-items: center;
     position: relative;
 }
 
 #start .row .col {
     padding: 0;
 }
+
+.mb-120 {
+    margin-bottom: 120px !important;
+} 
 
 .wrapper {
     position: relative;
@@ -898,7 +896,20 @@ footer {
     display: none;
 }
 
+.show {
+    display: block;
+}
+
 @media(max-width: 921px) {
+    .col.s12.m12.l4.xl4 {
+        margin-top: 30px;
+    }
+    #aboutAddress {
+        position: relative;
+    }
+    #transactions {
+        margin-bottom: 200px;
+    }
     #wallet {
         padding: 0 15px;
     }
@@ -960,7 +971,7 @@ footer {
     }
 
     .card-action button {
-        margin-bottom: 15px;
+        margin-bottom: 5px;
     }
 
     .card-action button:last-child {
@@ -1103,6 +1114,16 @@ footer {
     max-width: 700px !important;
 }
 
+.transaction-footer {
+    display: none;
+    bottom: -150px;
+}
+
+#address {
+    opacity: 0;
+    position: absolute;
+}
+
 @media(max-width: 861px) {
     #transactionsLis {
         margin: 0;
@@ -1162,7 +1183,9 @@ footer {
 
     #txtableTab tr td {
         padding: 0;
-        text-align: right !important;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     #txtableTab tr td:nth-child(2) {
@@ -1203,10 +1226,23 @@ footer {
         font-size: 14px;
     }
 }
+@media(min-width: 922px) {
+    main {
+        margin-bottom: 300px;
+        transform: translateY(-10px);
+    }
+    #wallet {
+        margin-bottom: 80px;
+    }
+}
 
-
-
-@media(max-width: 744px) {
+@media(max-width: 921px) {
+    main {
+        height: 100vh;
+    }
+    .graph {
+        margin-bottom: 140px !important;
+    }
     .hidethis {
         display: none;
     }
@@ -1417,10 +1453,14 @@ footer {
         font-weight: 500;
         font-size: 20px;
         text-transform: uppercase;
+        margin-left: 10px;
     }
 }
 
 @media(max-width: 600px) {
+    #aboutAddress .tabMenu {
+        margin-bottom: 0;
+    }
     #aboutAddress .tabMenu ul.tabs {
         display: none;
         height: 100%;
@@ -1476,11 +1516,24 @@ footer {
         border-color: #000 transparent transparent transparent;
         margin-left: 5px;
     }
+    #tabTitle.opened:after {
+        transform: rotate(180deg);
+    }
 }
-
+@media(max-width: 561px) {
+    #contract button {
+        width: 100%;
+    }
+}
 @media(max-width: 380px) {
     #cardSendEthAmount {
         width: 140%;
+    }
+    #contract .btn {
+        font-size: 13px;
+    }
+    #contractPublicInfo {
+        font-size: 13px;
     }
 }
 
@@ -1488,8 +1541,6 @@ body.mobile .ccc-widget canvas {
     max-height: 168px !important;
 }
 
-/* @media(max-width: 891px) {
-    .ccc-widget canvas {
-        max-height: 168px !important;
-    }
-} */
+@media(max-width: 993px) {
+
+}
