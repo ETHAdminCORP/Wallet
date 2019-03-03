@@ -399,19 +399,20 @@ window.addEventListener("load", async () => {
     })
 
 
-    window.copyToClipboard = function (element) {
+    window.copyToClipboard = function (element, element2) {
         var $temp = $("<input>");
         $("body").append($temp);
         $temp.val($(element).text()).select();
         document.execCommand("copy");
         $temp.remove();
         $(element).css('background-color', '#08e2d4');
-        setTimeout(hideHighlight, 400, element);
-
+        $(element2).css('background-color', '#08e2d4');
+        setTimeout(hideHighlight, 400, element, element2);
     }
 
-    function hideHighlight(element) {
+    function hideHighlight(element, element2) {
         $(element).css('background-color', "rgba(0, 0, 0, 0)")
+        $(element2).css('background-color', "rgba(0, 0, 0, 0)")
     }
 
 
@@ -2178,14 +2179,15 @@ window.addEventListener("load", async () => {
         setTimeout(function () {
             $('#chartEth').attr('src', '/chart.html');
         }, 1);
-        setTimeout(function() {
-            var text = $("span.key-field ").text();
-            console.log(text)
-            var text1 = text.slice(0, 12);
-            var text2 = text.slice(-12);
-            $(".addr").html(text1 + "..." + text2);
-        }, 170);
-        
+        if (sessionStorage.getItem('width') <= 921) {
+            setTimeout(function () {
+                $('span.key-field').addClass('hideAddr')
+                var text = $("span.key-field").text();
+                var text1 = text.slice(0, 12);
+                var text2 = text.slice(-12);
+                $(".addr").html(text1 + "..." + text2);
+            }, 170);
+        }
     }
 
 });

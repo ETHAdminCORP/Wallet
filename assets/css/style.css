@@ -94,9 +94,9 @@ body:not(iframe body) {
 }
 
 .header-logo img {
-    margin-right: 12px;
     vertical-align: sub;
     margin-top: 10px;
+    margin-left: 15px;
 }
 
 .network-select .caret,
@@ -112,8 +112,6 @@ nav .brand-logo {
     position: relative !important;
     vertical-align: top;
 }
-
-.select-wrapper .caret {}
 
 .navigation .lang-select .select-dropdown li img {
     width: 33px;
@@ -141,10 +139,6 @@ nav .brand-logo {
     display: block;
     color: #747d7c;
     background: none !important;
-}
-
-#noTokensWarning h3 {
-    /*background-color: rgba(54, 197, 171, 0.2);*/
 }
 
 #mainTokenDiv h3 {
@@ -283,10 +277,6 @@ nav .brand-logo {
 .wallet-cart-content-inner .card-action {
     border-top: 0 !important;
     padding-bottom: 0;
-}
-
-.wallet-cart-content-inner .card-action button {
-    /* margin-bottom: 4px; */
 }
 
 .wallet-cart-content-inner .key-field {
@@ -901,6 +891,11 @@ footer {
 }
 
 @media(max-width: 921px) {
+    #contractAbiDiv {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
     .col.s12.m12.l4.xl4 {
         margin-top: 30px;
     }
@@ -1119,8 +1114,11 @@ footer {
     bottom: -150px;
 }
 
-#address {
+#address.hideAddr {
     opacity: 0;
+}
+
+.addr {
     position: absolute;
 }
 
@@ -1541,6 +1539,29 @@ body.mobile .ccc-widget canvas {
     max-height: 168px !important;
 }
 
-@media(max-width: 993px) {
+@media(max-height: 670px) {
+    main {
+        margin-bottom: 60px;
+    }
+}
 
+
+@media(max-height: 600px) {
+    main {
+        margin-bottom: 130px;
+    }
+}
+
+
+@media(max-height: 520px) {
+    main {
+        margin-bottom: 190px;
+    }
+}
+
+
+@media(max-height: 450px) {
+    main {
+        margin-bottom: 250px;
+    }
 }

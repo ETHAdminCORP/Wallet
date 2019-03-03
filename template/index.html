@@ -77,10 +77,6 @@
                             <span id="metamaskBlockWarning">{{ T "metamaskBlockWarning"}}</span>
                             <span id="metamaskInstall">{{ T "metamaskInstallText"}}</span>
                         </li>
-
-
-
-
                         <li id="walletTypePrivateKeyUTC" class="collection-item"><span id="walletTypePrivateKeyUTCHeader">{{T "EnterTypeKeystore"}}</span>
                             <input id="walletTypePrivateKeyUTCFile" type='file' hidden/>
                             <div id="walletTypePrivateKeyUTCdiv">
@@ -200,8 +196,8 @@
                                 <div class=row style="margin-bottom:0px;">
                                     <div class="col s12">
                                         <span class="key-field " id="address" style="float:left"></span>
-                                        <span class="addr"></span>
-                                        <img style="margin-left:10px" id="copyToClipboardImg" onmousedown="copyToClipboard('#address')" src="/assets/img/clipboard.png" title={{T "AddressCopyIcon"}}>
+                                        <span id="address" class="addr"></span>
+                                        <img style="margin-left:10px" id="copyToClipboardImg" onmousedown="copyToClipboard('#address','.addr')" src="/assets/img/clipboard.png" title={{T "AddressCopyIcon"}}>
                                     </div>
                                 </div>
 
@@ -641,10 +637,6 @@
 
         #buttonSellEth {
             display: none;
-        }
-
-        #mainTokenDiv {
-            /*padding-left: 100px;*/
         }
 
         #buttonPayByEth {
