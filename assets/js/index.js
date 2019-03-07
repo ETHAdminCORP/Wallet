@@ -2212,6 +2212,7 @@ function moveContractBlock(a) {
     var contractRed = $(a).attr("title")
     $('#contractAddress').val(contractRed);
     $('#contractAddress').trigger("input");
+    $('#tabTitle').html('Контракт');
 }
 
 
@@ -2291,3 +2292,7 @@ $(window).resize(function () {
 })
 
 sessionStorage.setItem('width', winWidth);
+
+if($('#contract').hasClass('active')) {
+    $('#tabTitle').html('text');
+}

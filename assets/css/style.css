@@ -903,6 +903,14 @@ footer {
 }
 
 @media(max-width: 921px) {
+    #contractAbiDiv {
+        display: flex;
+    }
+    .logo {
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
+    }
     .wallet-address-container {
         display: flex;
         flex-direction: column;
@@ -1287,9 +1295,6 @@ footer {
     .graph {
         margin-bottom: 140px !important;
     }
-    .hidethis {
-        display: none;
-    }
     .navigation .header-logo span {
         display: none;
     }
@@ -1344,10 +1349,6 @@ footer {
     .collection {
         padding: 0 1.75rem 1.75rem 1.75rem !important;
         margin-bottom: 0;
-    }
-
-    .page-footer .row {
-        text-align: center;
     }
 
     .balance-values {
@@ -1605,6 +1606,14 @@ body.mobile .ccc-widget canvas {
     }
 }
 
+@media(max-width: 993px) {
+    .hidethis {
+        display: none;
+    }
+    .page-footer .row {
+        text-align: center;
+    }
+}
 
 @media(max-height: 450px) {
     main {
