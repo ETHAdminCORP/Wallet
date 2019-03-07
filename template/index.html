@@ -4,24 +4,18 @@
 
 <body>
 
-
+<div class="wrapper">
     <nav class="navigation">
         <!--<div class="container">-->
             <!-- Центрирует по странице-->
             <div class="nav-wrapper">
-
-
-
-
                 <div class="row">
-                    <div class="col xl1">
-                    </div>
                     <div class="logo col xl10">
                         <!--<a href="/" class="brand-logo"><img src="/assets/img/LogoETHAdmin.png" width=200px height=50px style="margin-top: 13px;"></a>-->
                         <div class="header-logo">
-                            <a href="/" class="brand-logo"><img src="/assets/img/logo.png"> ETH Admin</a>
+                            <a href="/" class="brand-logo"><img src="/assets/img/logo.png"> <span>ETH Admin</span></a>
                         </div>
-                        <div class="network-select" >
+                        <div class="network-select">
                             <select id="networkName" name="networkName">
                                 <option value="mainnet" >{{T "NetworkTypeMainnet"}}</option>
                                 <option value="ropsten">{{T "NetworkTypeRopsten"}}</option>
@@ -30,16 +24,6 @@
                             </select>
                         </div>
                     </div>
-
-                    <!--<div class="network-select col xl3" style="margin-top:10px">
-                        <select id="networkName" name="networkName">
-                      <option value="mainnet" >{{T "NetworkTypeMainnet"}}</option>
-                      <option value="ropsten">{{T "NetworkTypeRopsten"}}</option>
-                      <option value="rinkeby">{{T "NetworkTypeRinkeby"}}</option>
-                      <option value="kovan">{{T "NetworkTypeKovan"}}</option>
-                    </select>
-                    </div>-->
-
 
                     <div class="lang-select col pull-xl1 xl1" >
                         <div id="langDiv">
@@ -79,16 +63,11 @@
             <div style="margin-top:50px" class="row">
                 <div class="col l6 m12 s12 center-align">
                     <h4>{{T "QuestionHaveWallet"}}</h4>
-                    <p>{{T "ChooseType"}}</p>
                     <ul id="openWalletType" class="collection openWalletType">
                         <li class="settoast collection-item" id="walletTypeMetamask">Metamask<br>
                             <span id="metamaskBlockWarning">{{ T "metamaskBlockWarning"}}</span>
                             <span id="metamaskInstall">{{ T "metamaskInstallText"}}</span>
                         </li>
-
-
-
-
                         <li id="walletTypePrivateKeyUTC" class="collection-item"><span id="walletTypePrivateKeyUTCHeader">{{T "EnterTypeKeystore"}}</span>
                             <input id="walletTypePrivateKeyUTCFile" type='file' hidden/>
                             <div id="walletTypePrivateKeyUTCdiv">
@@ -161,8 +140,10 @@
                     <div id="newAddressStep1">
                         {{T "CreateWalletDesc"}}<br>
                         <form onSubmit="$('#buttonNewAdddressGoStep2').click(); return false" id="formCreateWallet">
-                            <input style="text-align: center;" type=password id="passwordForNewUTC" placeholder="{{ T "CreateWalletPlaceholder"}}">
-                            <i class="material-icons" id="passEye">remove_red_eye</i>
+                            <div class="inp">
+                                <input style="text-align: center;" type=password id="passwordForNewUTC" placeholder="{{ T "CreateWalletPlaceholder"}}">
+                                <i class="material-icons" id="passEye">remove_red_eye</i>
+                            </div>
                             <button type=button id="buttonNewAdddressGoStep2" class="btn effect waves-light">{{T "CreateButton"}}</button><br>
                             <span id="newAddressErr">{{T "CreateWalletWarning"}}</span>
                           </form>
@@ -173,6 +154,14 @@
 
         <div id="aboutAddress" class="row">
             <div class="row">
+                <div class="openTabs">
+                    <div class="burger">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>    
+                    <span id="tabTitle">кошелек</span>
+                </div>
                 <ul class="tabs">
                     <li class="tab col s3"><a id="infoTabLink" class="active" href="#wallet">{{T "TabName1"}}</a></li>
                     <li class="tab col s3"><a id="contractTabLink" href="#contract">{{T "TabName2"}}</a></li>
@@ -180,13 +169,11 @@
                     <li class="tab col s3" id="transactionsTab"><a id="txTabLink" href="#transactions">{{T "TabName4"}}</a></li>
                 </ul>
             </div>
-
             <div id="wallet" class="col s12">
                 <!-- Wallet Block -->
                 <div class="row balance">
                     <div class="col s12 m12">
                         <div class="wallet-cart-content card horizontal">
-
                             <div class="balance">
                                 <div class="balance-flex">
                                     <span id="addressBalance"></span>
@@ -196,18 +183,18 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="wallet-cart-content-inner">
                                 <div class=row style="margin-bottom:0px;">
                                     <div class="col s12">
-                                        <span class="key-field " id="address" style="float:left" ></span>
-                                        <img style="margin-left:10px" id="copyToClipboardImg" onmousedown="copyToClipboard('#address')" src="/assets/img/clipboard.png" title={{T "AddressCopyIcon"}}>
+                                        <span class="key-field " id="address" style="float:left"></span>
+                                        <span id="address" class="addr"></span>
+                                        <img style="margin-left:10px" id="copyToClipboardImg" onmousedown="copyToClipboard('#address','.addr')" src="/assets/img/clipboard.png" title={{T "AddressCopyIcon"}}>
                                     </div>
                                 </div>
 
                                 <div id="privateKeyLine">
                                     <div class=row style="margin-bottom:0px;">
-                                        <div class="col s12"><span style="float:left;margin-right:10px" class=key-field>{{ T "privateKeyLabel" }}: </span>
+                                        <div class="col s12">
                                             <span class="key-field" style="float:left" id="privateKeyRAW"></span>
                                             <img style="margin-left:10px" id="copyToClipboardImg" onmousedown="copyToClipboard('#privateKeyRAW')" src="/assets/img/clipboard.png" title={{T "PrivateKeyCopyIcon"}}>
                                         </div>
@@ -247,7 +234,7 @@
                     </div>
                 </div>
                 <!-- Cards -->
-                <div class="row">
+                <div class="row applications">
                     <div class="row-container">
                         <div class="col s12 m6 xl6 ">
                             <div class="card wallet-card">
@@ -264,15 +251,14 @@
                             </div>
                             <div class="trans-amount">
                                 <p class="col amount-label">{{ T "SendEthAmount"}}</p>
-                                <div class="col ">
+                                <div class="col colAfter">
                                      <input id="cardSendEthAmount" class="form-control">
                                 </div>
-                                 <span>ETH</span>
                                  <div class="more-option col">
                                          <a id="sendEthAddParamsLink2" href="#">{{ T "SendEthAdditionalOptions"}} </a>
                                  </div>
                             </div>
-
+                                
                               <br>
                             <button id="cardSendEthButtonSend" type="button" class="btn btn-primary">{{ T "SendEthSendButton"}}</button>
                             <button id="cardSendEthButtonOk" class="btn btn-success">{{ T "SendEthAccept"}}</button>
@@ -289,54 +275,51 @@
                         </div>
                     </div>
                     <div class="row-container">
-                        <div class="col s12 m6 xl6 ">
-
+                        <div class="col s12 m6 xl6">
                             <div class="card wallet-card" id=cardTxList>
-
+                                
                             </div>
                         </div>
-                        <div class="col s12 m6 xl6 ">
-                            <div class="card wallet-card">
+                        <div class="col s12 m6 xl6 graph">
+                            <div class="card wallet-card graphics">
                                 <iframe id="chartEth" style="border:0" width=100%></iframe>
                             </div>
                         </div>
+                        <!-- <div class="col s12 m6 xl6 graphics-mobile">
+                            <div class="card wallet-card graphics">
+                                <iframe id="chartEth1" style="border:0" width=100%></iframe>
+                            </div>
+                        </div> -->
                     </div>
                 </div>
-
-
             </div>
 
 
 
 
             <!-- Modal Structure -->
-            <div id="modal1" class="modal">
+            <div id="modal1" class="modal" style="max-width: 700px">
                 <div class="modal-content">
                     <h4>{{ T "SendEthModalTitile"}}</h4>
-
                     <div id="sendEthForm" class="form-inline">
                         <label>{{ T "SendEthTo"}}</label>
                         <input id="sendEthAddress" autocomplete="autocompletefalse" placeholder="0x..." type="text" class="form-control" />
                     </div>
-
                     <div class="form-inline">
                         <label>{{ T "SendEthAmount"}} <span id="sendEthAmountFiat"></span></label><br>
-                        <input id="sendEthAmount" type="tel" pattern="[0-9]+([\.][0-9]+)?" class="form-control"> ETH
+                        <div class="inpwrap"><input id="sendEthAmount" type="tel" pattern="[0-9]+([\.][0-9]+)?" class="form-control"></div>
                     </div>
-
                     <div id="sendEthMaxAmount">
                         <a href="#" id="sendEthMaxAmountLink">{{ T "SendALLEth"}} (<span id="sendEthBalance"></span> ETH)</a>
                     </div>
-
                     <br>
                     <a id="sendEthAddParamsLink" href="#">{{ T "SendEthAdditionalOptions"}} <img id="sendEthImgParams" src="/assets/img/linedown.png"></a>
-
                     <div id="sendEthAddParams">
                         Nonce <input type="number" id="sendEthNonceInput">
                         <label class="active">{{ T "SendEthLabelGasAmount"}}</label>
                         <input type=text value=21000 placeholder="gas amount" id="sendEthGasAmount" /> {{ T "SendEthCommission"}} ( +<span id="sendEthCommission"></span> ETH )
-                        <br><i>
-            <span style="font-size:13px">{{ T "SendEthCommissionWarning"}}</span></i>
+                        <br>
+                        <i><span style="font-size:13px">{{ T "SendEthCommissionWarning"}}</span></i>
                         <input id="sendEthGasPriceRange" type=range min=1 max=100 step=1 oninput="sendEthGasPriceGWEI.value = sendEthGasPriceRange.value + ' GWEI'" />
                         <output id="sendEthGasPriceGWEI"></output>
                         <div class="row">
@@ -345,7 +328,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="modal-footer">
                     <button id="sendEthButtonOk" class="btn btn-success modal-close">{{ T "SendEthAccept"}}</button>
                     <button id="sendEthButtonSend" type="button" class="btn btn-primary" disabled>{{ T "SendEthSendButton"}}</button>
@@ -353,8 +335,8 @@
                 </div>
             </div>
 
-   <!--
-            <div class="modal" id="myModal2">
+   
+            <!--<div class="modal" id="myModal2">
                 <div class="modal-dialog">
                     <div class="modal-content">
 
@@ -376,8 +358,8 @@
 
                     </div>
                 </div>
-            </div>
--->
+            </div>-->
+
 
 
             <div id="contract">
@@ -396,7 +378,6 @@
                             <div class="row">
                                 <div class="col s1">
                                     <button type="button" class="effect btn" id="contractRefreshInfo">{{ T "SCReloadPublicData"}}</button>
-                                    <a target=_blank id=contractViewSourceCode href="#"><button type="button" class="effect btn" id="contractViewSourceCodeButton">{{ T "SCViewSourceCode"}}</button></a>
                                 </div>
                             </div>
 
@@ -410,17 +391,19 @@
 
                         <a href=# id="ParamsLinkSmartContract" onclick="ParamsLinkSmartContractFunc(); return false;">{{ T "SendEthAdditionalOptions"}} <img id="smartContractImgParams" src="/assets/img/linedown.png"></a>
                         <div id="smartContractParamsDiv">
-                            <div class="contractAdditionalsChild">
-                                Gas amount<br>
-                                <input style="width: 80px;" type="number" value=21000 id="smartContractGasAmountInput">
-                            </div>
-                            <div class="contractAdditionalsChild">
-                                Gas price (Gwei)<br>
-                                <input style="width: 105px;" type="number" id="smartContractGasPriceInput">
-                            </div>
-                            <div class="contractAdditionalsChild">
-                                Nonce<br>
-                                <input style="width: 45px;" type="number" id="smartContractNonceInput">
+                            <div class="flexwrapflex">
+                                <div class="contractAdditionalsChild">
+                                    Gas amount<br>
+                                    <input style="width: 80px;" type="number" value=21000 id="smartContractGasAmountInput">
+                                </div>
+                                <div class="contractAdditionalsChild">
+                                    Gas price (Gwei)<br>
+                                    <input style="width: 105px;" type="number" id="smartContractGasPriceInput">
+                                </div>
+                                <div class="contractAdditionalsChild">
+                                    Nonce<br>
+                                    <input style="width: 45px;" type="number" id="smartContractNonceInput">
+                                </div>
                             </div>
                         </div>
                         <span id="GasLimitExceedSpan">{{ T "GasLimitExceedText" }}</span>
@@ -447,7 +430,6 @@
                 </div>
 
             </div>
-
             <div id="tokens">
                 <div class="row">
                     <div id="mainTokenDiv" class="col s12 m12 ">
@@ -460,7 +442,6 @@
                     </div>
                 </div>
             </div>
-
             <div id="transactions" class="col s12">
 
                 <div class="row">
@@ -483,9 +464,35 @@
                     </div>
                 </div>
             </div>
+            <footer class="page-footer transaction-footer">
+                <div class="container">
+                  <div class="row">
+                    <div class="col s12 l8 hidethis">
+                      <h5 class="white-text">About ETHAdmin:</h5>
+                      <p class="grey-text text-lighten-4">ETHAdmin is a free, open-source web wallet for interacting with Ethereum blockchain.</p>
+                      <div class="donate">
+                        <p>Donate:&nbsp;</p>
+                        <p id="donate-address">0xA4F2374B56BADd4516dCcA20a81C8a8b678F33eA</p>
+                        <i class="tini material-icons" title={{T "AddressCopyIcon"}} onmousedown="copyToClipboard('#donate-address')">content_copy</i>
+                        <!--<img style="margin-left:10px; margin-top: -10px" id="copyToClipboardImg" onmousedown="copyToClipboard('#donate-address')" src="/assets/img/clipboard.png" title={{T "AddressCopyIcon"}}>-->
+                      </div>
+                    </div>
+                <div class="col l4 offset-12 s12">
+                  <h5 class="white-text">Contact us:</h5>
+                  <ul>
+                    <li class="footer-icon"><a href="mailto:eth@ethadmin.com" class="grey-text text-lighten-3"><svg width="36" height="36" aria-labelledby="github icon" role="img" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path fill="#ffffff" d="M1664 1504v-768q-32 36-69 66-268 206-426 338-51 43-83 67t-86.5 48.5-102.5 24.5h-2q-48 0-102.5-24.5t-86.5-48.5-83-67q-158-132-426-338-37-30-69-66v768q0 13 9.5 22.5t22.5 9.5h1472q13 0 22.5-9.5t9.5-22.5zm0-1051v-24.5l-.5-13-3-12.5-5.5-9-9-7.5-14-2.5h-1472q-13 0-22.5 9.5t-9.5 22.5q0 168 147 284 193 152 401 317 6 5 35 29.5t46 37.5 44.5 31.5 50.5 27.5 43 9h2q20 0 43-9t50.5-27.5 44.5-31.5 46-37.5 35-29.5q208-165 401-317 54-43 100.5-115.5t46.5-131.5zm128-37v1088q0 66-47 113t-113 47h-1472q-66 0-113-47t-47-113v-1088q0-66 47-113t113-47h1472q66 0 113 47t47 113z"></path></svg></a></li>
+                    <li class="footer-icon" onclick="$.get( '/stat/', { key: 'twitterlink', value: '' , value2: '', address: '' });"><a target=_blank href="https://twitter.com/ethadmin" class="grey-text text-lighten-3"><svg width="36" height="36" aria-labelledby="twitter icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.954 4.569c-.885.389-1.83.654-2.825.775 1.014-.611 1.794-1.574 2.163-2.723-.951.555-2.005.959-3.127 1.184-.896-.959-2.173-1.559-3.591-1.559-2.717 0-4.92 2.203-4.92 4.917 0 .39.045.765.127 1.124C7.691 8.094 4.066 6.13 1.64 3.161c-.427.722-.666 1.561-.666 2.475 0 1.71.87 3.213 2.188 4.096-.807-.026-1.566-.248-2.228-.616v.061c0 2.385 1.693 4.374 3.946 4.827-.413.111-.849.171-1.296.171-.314 0-.615-.03-.916-.086.631 1.953 2.445 3.377 4.604 3.417-1.68 1.319-3.809 2.105-6.102 2.105-.39 0-.779-.023-1.17-.067 2.189 1.394 4.768 2.209 7.557 2.209 9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63.961-.689 1.8-1.56 2.46-2.548l-.047-.02z" fill="#ffffff"></path></svg></a></li>
+                    <li class="footer-icon" onclick="$.get( '/stat/', { key: 'githublink', value: '' , value2: '', address: '' });"><a target=_blank href="https://github.com/ETHAdminCORP?tab=repositories" class="grey-text text-lighten-3"><svg width="36" height="36" aria-labelledby="github icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" fill="#ffffff"></path></svg></a></li>
+                    <li class="footer-icon"><a href="https://t.me/SovaSlava" title="Telegram" class="grey-text text-lighten-3" target="_blank"><svg width="36" height="36" aria-labelledby="telegram icon" role="img" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg"><path d="M5.299,144.645l69.126,25.8l26.756,86.047c1.712,5.511,8.451,7.548,12.924,3.891l38.532-31.412 c4.039-3.291,9.792-3.455,14.013-0.391l69.498,50.457c4.785,3.478,11.564,0.856,12.764-4.926L299.823,29.22 c1.31-6.316-4.896-11.585-10.91-9.259L5.218,129.402C-1.783,132.102-1.722,142.014,5.299,144.645z M96.869,156.711l135.098-83.207 c2.428-1.491,4.926,1.792,2.841,3.726L123.313,180.87c-3.919,3.648-6.447,8.53-7.163,13.829l-3.798,28.146 c-0.503,3.758-5.782,4.131-6.819,0.494l-14.607-51.325C89.253,166.16,91.691,159.907,96.869,156.711z" fill="#ffffff"></path></svg></a></li>
+                  </ul>
+                </div>
+                  </div>
+                </div>
+            </footer>
         </div>
     </main>
 
+    
 
     <input type=text id="langId" value='{{T "langId" }}' hidden/>
     <input type=text id="translate-ContractBalance" value='{{T "ConctractBalanceLine"}}' hidden/>
@@ -561,12 +568,10 @@
 
 
     <iframe src=/counter.html width="1px" height="1px"></iframe>
+    
+</div>
+    {{ template "footer" . }}
     <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
 
         nav {
             background-color: #01c3b6;
@@ -625,10 +630,6 @@
             display: none;
         }
 
-        #mainTokenDiv {
-            /*padding-left: 100px;*/
-        }
-
         #buttonPayByEth {
             display: none;
         }
@@ -646,10 +647,6 @@
         }
 
         /* modal */
-
-        .modal {
-            width: 700px;
-        }
 
         #sendEthImgParams {
             width: 15px;
@@ -776,5 +773,6 @@
         }
 
     </style>
+    
 </body>
-{{ template "footer" . }} {{ end }}
+ {{ end }}

@@ -8,6 +8,8 @@ main {
     flex: 1 0 auto;
 }
 
+
+
 .page-footer {
     background-color: #00c3b6;
 }
@@ -75,10 +77,6 @@ nav {
 }
 
 /* modal */
-
-.modal {
-    width: 700px;
-}
 
 #sendEthImgParams {
     width: 15px;
@@ -185,8 +183,6 @@ nav {
     margin-left: 50px;
     color: white;
 }
-
-
 
 /*
 

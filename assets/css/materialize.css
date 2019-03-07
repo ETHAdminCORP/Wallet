@@ -3,7 +3,7 @@
  * Copyright 2014-2017 Materialize
  * MIT License (https://raw.githubusercontent.com/Dogfalo/materialize/master/LICENSE)
  */
-.materialize-red {
+ .materialize-red {
   background-color: #e51c23 !important;
 }
 
@@ -2163,6 +2163,7 @@ html {
  */
 body {
   margin: 0;
+  position: relative;
 }
 
 /**
@@ -3080,8 +3081,6 @@ td, th {
 
 .collection {
   margin: 0.5rem 0 1rem 0;
-  border: 1px solid #e0e0e0;
-  border-radius: 2px;
   overflow: hidden;
   position: relative;
 }
@@ -3091,7 +3090,8 @@ td, th {
   line-height: 1.5rem;
   padding: 10px 20px;
   margin: 0;
-  border-bottom: 1px solid #e0e0e0;
+  border: 1px solid #e0e0e0;
+  border-radius: 2px;
 }
 
 .collection .collection-item.avatar {
@@ -3133,7 +3133,12 @@ td, th {
   right: 16px;
 }
 
-.collection .collection-item:last-child {
+.collection .collection-item:nth-child(1) {
+  border-bottom: none;
+}
+
+
+.collection .collection-item:nth-child(2) {
   border-bottom: none;
 }
 
@@ -4273,7 +4278,7 @@ nav {
   color: #fff;
   background-color: #ee6e73;
   width: 100%;
-  height: 56px;
+  height: 64px;
   line-height: 56px;
 }
 
@@ -4497,13 +4502,13 @@ html {
 
 @media only screen and (min-width: 0) {
   html {
-    font-size: 14px;
+    font-size: 15px;
   }
 }
 
 @media only screen and (min-width: 992px) {
   html {
-    font-size: 14.5px;
+    font-size: 15px;
   }
 }
 
@@ -4906,7 +4911,6 @@ small {
   background-color: inherit;
   border-top: 1px solid rgba(160, 160, 160, 0.2);
   position: relative;
-  padding: 16px 24px;
 }
 
 .card .card-action:last-child {
@@ -5756,21 +5760,15 @@ body.keyboard-focused .dropdown-content li:focus {
   background-color: #fafafa;
   padding: 0;
   max-height: 70%;
-  width: 55%;
   margin: auto;
   overflow-y: auto;
   border-radius: 2px;
   will-change: top, opacity;
+  max-width: 700px;
 }
 
 .modal:focus {
   outline: none;
-}
-
-@media only screen and (max-width: 992px) {
-  .modal {
-    width: 80%;
-  }
 }
 
 .modal h1, .modal h2, .modal h3, .modal h4 {
