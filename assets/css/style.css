@@ -1281,9 +1281,9 @@ footer {
 }
 
 @media(max-width: 921px) {
-    main {
-        height: 100vh;
-    }
+    /* main {
+        height: 110vh;
+    } */
     .graph {
         margin-bottom: 140px !important;
     }
@@ -1587,7 +1587,7 @@ body.mobile .ccc-widget canvas {
 
 @media(max-height: 670px) {
     main {
-        margin-bottom: 60px;
+        margin-bottom: 130px;
     }
 }
 
