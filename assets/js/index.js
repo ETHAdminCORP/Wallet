@@ -326,6 +326,7 @@ window.addEventListener("load", async () => {
     // If metamask found, set Metamask's div color - green
     if (window.ethereum || window.web3) {
         $("#walletTypeMetamask").css("background-color", "#08e2d4");
+        // $("#openWalletType .collection-item").css("border-color", "#08e2d4");
         $("#walletTypeMetamask").hover(function () {
             $(this).css("background-color", "#0FDCCF")
         }).mouseout(function () {

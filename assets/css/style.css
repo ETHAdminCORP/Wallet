@@ -1292,7 +1292,7 @@ footer {
     }
 
     .collection-item {
-        border-bottom: 1px solid #e0e0e0 !important;
+        border: 1px solid #08e2d4 !important;
         margin-bottom: 10px !important;
         font-weight: 700;
         font-size: 16px;
