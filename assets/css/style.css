@@ -907,7 +907,7 @@ footer {
         margin-bottom: 130px;
     }
     #contractAbiDiv {
-        display: flex;
+        display: flex !important;
     }
     .logo {
         display: flex;
