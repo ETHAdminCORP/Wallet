@@ -903,6 +903,40 @@ footer {
 }
 
 @media(max-width: 921px) {
+    .wallet-address-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .address-to {
+        margin-bottom: 0;
+        height: auto;
+    }
+    .fake-s9 {
+        width: 100% !important;
+    }
+    #cardSendEthAddress {
+        width: 100% !important;
+    }
+    .trans-amount {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .colAfter {
+        width: 100%;
+    }
+    #sendEthAddParamsLink2 {
+        margin-bottom: 0;
+    }
+    .card.wallet-card {
+        display: flex;
+        flex-direction: column;
+    }
+    #cardSendEthButtonSend {
+        margin-left: 0;
+        align-self: center;
+    }
     #contractAbiDiv {
         display: flex;
         flex-direction: column;
