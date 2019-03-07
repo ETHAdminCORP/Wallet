@@ -12,7 +12,7 @@ body:not(iframe body) {
 }
 
 .navigation {
-    padding: 0 15px;
+    padding: 0 130px;
 }
 
 .navigation .container,
@@ -888,6 +888,18 @@ footer {
 
 .show {
     display: block;
+}
+
+@media(max-width: 963px) {
+    .navigation {
+        padding: 0 45px;
+    }
+}
+
+@media(max-width: 562px) {
+    .navigation {
+        padding: 0 5px;
+    }
 }
 
 @media(max-width: 921px) {
