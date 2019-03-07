@@ -2197,11 +2197,13 @@ window.addEventListener("load", async () => {
 function moreTokens() {
     var itoken = $('#tokensTabLink');
     itoken[0].click();
+    $('#tabTitle').html('Токены');
 }
 
 function moreTransactions() {
     var itransaction = $('#txTabLink');
     itransaction[0].click();
+    $('#tabTitle').html('Транкзации');
 }
 
 
