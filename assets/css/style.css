@@ -389,6 +389,15 @@ nav .brand-logo {
     margin: 0;
     padding: 25px;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#cardTokenList center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }
 
 .contact-card {
@@ -591,8 +600,7 @@ input#cardSendEthAmount {
 
 #cardSendEthButtonSend {
     margin-top: 15px;
-    margin-bottom: 15px;
-    margin-left: calc(50% - 100px);
+    align-self: center;
 }
 
 #cardSendEthButtonOk {
@@ -646,7 +654,6 @@ a.tx-more-link {
     text-align: right;
     float: right;
     display: inline-block;
-    margin-bottom: 36px;
 }
 
 .trans-amount>span {

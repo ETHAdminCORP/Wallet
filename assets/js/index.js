@@ -1879,6 +1879,9 @@ window.addEventListener("load", async () => {
                 $("#sendEthBalance").text($('#addressBalance').text() - $('#sendEthCommission').text());
 
             }
+            var res = $('#addressBalance').text();
+            var arr = res.split('.');
+            $('#addressBalance').html(arr[0] + '.' + arr[1].substr(0, 3))
         })
     }
 
@@ -2180,6 +2183,8 @@ window.addEventListener("load", async () => {
         setTimeout(function () {
             $('#chartEth').attr('src', '/chart.html');
         }, 1);
+        setTimeout(function() {
+        }, 700)
         if (sessionStorage.getItem('width') <= 921) {
             setTimeout(function () {
                 $('span.key-field').addClass('hideAddr')
@@ -2187,7 +2192,7 @@ window.addEventListener("load", async () => {
                 var text1 = text.slice(0, 12);
                 var text2 = text.slice(-12);
                 $(".addr").html(text1 + "..." + text2);
-            }, 170);
+            }, 300);
         }
     }
 
@@ -2295,6 +2300,6 @@ $(window).resize(function () {
 
 sessionStorage.setItem('width', winWidth);
 
-if($('#contract').hasClass('active')) {
+if ($('#contract').hasClass('active')) {
     $('#tabTitle').html('text');
 }
