@@ -385,6 +385,11 @@ nav .brand-logo {
     height: 31vw;
 }
 
+.transVal:after {
+    content: "ETH";
+    margin-left: 7px;
+}
+
 .wallet-card {
     margin: 0;
     padding: 25px;

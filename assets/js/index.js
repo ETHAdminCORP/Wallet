@@ -1124,7 +1124,6 @@ window.addEventListener("load", async () => {
 
     window.getTransactionsByAccount = function () {
 
-
         var time = Math.round(new Date().getTime() / 1000)
         $.getJSON('/getTransactions/?address=' + window.address + '&network=' + $('#networkName').val())
             .done(function (transactionsdata) {
@@ -1156,9 +1155,8 @@ window.addEventListener("load", async () => {
                     $('#cardTxList').append('<a href=# style="text-decoration:none"><span style=color:#01c3b6><span style=font-size:20px;font-weight:500;>' + $('#txListCardLabel').val() + ':</span></a>')
                     $('#cardTxList').append('<br><br><div class="f-item"><h6 class="noactive">' + $('#txListEmpty').val() + '</h6></div>');
                     $('#cardTxList').addClass('centered');
-                } else {
                     $('#transactionsLoading').hide()
-
+                } else {
 
                     $('#transactionsLis').append('<table id=txtable class="highlight" style=margin-left:50px;margin-right:50px;><thead><tr><th>' + $('#txListCardLabelDate').val() + '</th><th style="text-align: right">' + $('#txListCardLabelAmount').val() + '</th><th>' + $('#txListCardLabelFrom').val() + '</th></thead>')
                     var txC = 0;
@@ -1272,7 +1270,7 @@ window.addEventListener("load", async () => {
 
                             //if (currentFinalTxAddress != undefined) { var cfta = currentFinalTxAddress }
                             //$('#txtable').append('<tr bgcolor=' + txBgcolor + '><td style=align:right>' + txTime + '</td><td style="text-align: right">' + txType + ' ' + parseInt(transaction['value']) / 1e18 + ' ETH</td><td>' + txTypeText + ' ' + cfta + '</td></tr>')
-                            $('#txtable').append('<tr bgcolor=' + txBgColor + '><td style=align:right>' + txTime + '</td><td style="text-align: right">' + txType + ' ' + (parseInt(transaction['value']) / 1e18).toFixed(18).replace(/\.?0+$/, '') + ' ETH</td><td>' + txTypeText + ' ' + currentFinalTxAddress + '</td></tr>')
+                            $('#txtable').append('<tr bgcolor=' + txBgColor + '><td style=align:right>' + txTime + '</td><td class="transVal" style="text-align: right">' + txType + ' ' + (parseInt(transaction['value']) / 1e18).toFixed(18).replace(/\.?0+$/, '') + '</td><td>' + txTypeText + ' ' + currentFinalTxAddress + '</td></tr>')
 
                             if ($('#txtable').children("[bgcolor='#FAF0EF']")) {
                                 $('#txtable').children("[bgcolor='#FAF0EF']").hover(function () {
@@ -1311,7 +1309,15 @@ window.addEventListener("load", async () => {
 
                         }
                     }
-
+                    $('#txtable tr td.transVal').each(function(){
+                        var ress = $(this).text();
+                        var arrs = ress.split('.');
+                        if(arrs.length > 1) {
+                            $(this).html(arrs[0] + '.' + Math.floor(arrs[1].substr(0, 3)));
+                        } else {
+                            $(this).html(arrs[0])
+                        }
+                    });
                     $('#txtable').append('</table>')
                 }
 
@@ -1881,7 +1887,7 @@ window.addEventListener("load", async () => {
             }
             var res = $('#addressBalance').text();
             var arr = res.split('.');
-            $('#addressBalance').html(arr[0] + '.' + arr[1].substr(0, 3))
+            $('#addressBalance').html(arr[0] + '.' + Math.floor(arr[1].substr(0, 3)));
         })
     }
 
@@ -2183,8 +2189,7 @@ window.addEventListener("load", async () => {
         setTimeout(function () {
             $('#chartEth').attr('src', '/chart.html');
         }, 1);
-        setTimeout(function() {
-        }, 700)
+        setTimeout(function () {}, 700)
         if (sessionStorage.getItem('width') <= 921) {
             setTimeout(function () {
                 $('span.key-field').addClass('hideAddr')
