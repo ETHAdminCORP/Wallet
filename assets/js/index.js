@@ -1287,7 +1287,7 @@ window.addEventListener("load", async () => {
                                     $('#cardTxList').append('<a class="tx-more-link" href="#" style="text-decoration:none" onclick="moreTransactions()"><span style=color:#01c3b6>' + $('#txListCardLabelMore').val() + '</span></a>');
                                     $('#cardTxList').removeClass('centered');
                                 }
-                                $('#txtableTab').append('<tr bgcolor=' + txBgColor + '><td style=align:right>' + txTime + '</td><td style="text-align: right">' + txType + ' ' + (parseInt(transaction['value']) / 1e18).toFixed(18).replace(/\.?0+$/, '') + ' ETH</td><td>' + txTypeText + ' ' + currentFinalTxAddress + '</td></tr>')
+                                $('#txtableTab').append('<tr bgcolor=' + txBgColor + '><td style=align:right>' + txTime + '</td><td class="transVal" style="text-align: right">' + txType + ' ' + (parseInt(transaction['value']) / 1e18).toFixed(18).replace(/\.?0+$/, '') + '</td><td>' + txTypeText + ' ' + currentFinalTxAddress + '</td></tr>')
 
                                 if ($('#txtableTab').children("[bgcolor='#FAF0EF']")) {
                                     $('#txtableTab').children("[bgcolor='#FAF0EF']").hover(function () {
