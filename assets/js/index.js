@@ -1319,26 +1319,97 @@ window.addEventListener("load", async () => {
 
                         }
                     }
-                    $('#txtable tr td.transVal').each(function(){
-                        var ress = $(this).text();
-                        var arrs = ress.split('.');
-                        if(arrs.length > 1) {
-                            var val1 = arrs[0];
-                            var val2 = arrs[1].substr(0,3);
-                            $(this).html(val1 + '.' + val2);
-                        } else {
-                            $(this).html(ress);
+                    // $('#txtable tr td.transVal').each(function(){
+                    //     var ress = $(this).text();
+                    //     var arrs = ress.split('.');
+                    //     if(arrs.length > 1) {
+                    //         var arrsPlusOrMinus = arrs[0].split(' ');
+                    //         if(arrsPlusOrMinus[0] == '+') {
+                    //             var val1 = arrsPlusOrMinus[1];
+                    //             var val2 = arrs[1].substr(0,3);
+                    //             $(this).html('<font color="green"><b>+</b></font> ' + val1 + '.' + val2);
+                    //         } else {
+                    //             var val1 = arrsPlusOrMinus[1];
+                    //             var val2 = arrs[1].substr(0,3);
+                    //             $(this).html('<font color="red"><b>-</b></font> ' + val1 + '.' + val2);
+                    //         }
+                    //     } else {
+                    //         var arrsPlusOrMinus = arrs[0].split(' ');
+                    //         $(this).html(arrsPlusOrMinus[1]);
+                    //     }
+                    // });
+                    
+                    // $('#txtableTab tr td.transValTab').each(function(){
+                    //     var resss = $(this).text();
+                    //     var arrrs = resss.split('.');
+                    //     if(arrrs.length > 1) {
+                    //         var val1 = arrrs[0];
+                    //         var val2 = arrrs[1].substr(0,3);
+                    //         $(this).html(val1 + '.' + val2);
+                    //     } else {
+                    //         $(this).html(resss);
+                    //     }
+                    // });
+
+                    // $('#txtable tr td.transVal').each(function(){
+                    //     var ress = $(this).text();
+                    //     var arrs = ress.split('.');
+                    //     if(arrs.length > 1) {
+                    //         var arrsPlusOrMinus = arrs[0].split(' ');
+                    //         if(arrsPlusOrMinus[0] == '+') {
+                    //             var val1 = arrsPlusOrMinus[1];
+                    //             var val2 = arrs[1].substr(0,3);
+                    //             $(this).html('<font color="green"><b>+</b></font> ' + val1 + '.' + val2);
+                    //         } 
+                    //         else if(arrsPlusOrMinus[0] == '-') {
+                    //             var val1 = arrsPlusOrMinus[1];
+                    //             var val2 = arrs[1].substr(0,3);
+                    //             $(this).html('<font color="red"><b>-</b></font> ' + val1 + '.' + val2);
+                    //         }
+                    //         else {
+                    //             var val = '<img src="/assets/img/refresh.svg" width="16px" height="16px">';
+                    //             var val1 = arrsPlusOrMinus[1];
+                    //             var val2 = arrs[1].substr(0,3);
+                    //             $(this).html(val + val1 + '.' + val2);
+                    //         }
+                    //     } else {
+                    //         var arrsPlusOrMinus = arrs[0].split(' ');
+                    //         $(this).html(arrsPlusOrMinus[1]);
+                    //     }
+                    // });
+
+                    $('#txtableTab tr td.transValTab').each(function(){
+                        var arr = $(this).text();
+                        var arr = arr.split(' ');
+                        var arrCount = arr[1].split('.');
+                        if(arrCount.length > 1) {
+                            var val1 = arrCount[0];
+                            var val2 = arrCount[1];
+                            if(arr[0] == '+') {
+                                $(this).html('<font color="green"><b>+</b></font>' + val1 + '.' + Math.floor(val2.substr(0,3)))
+                            }
+                            else if(arr[0] == '-') {
+                                $(this).html('<font color="red"><b>-</b></font>' + val1 + '.' + Math.floor(val2.substr(0,3)))
+                            } else {
+                                $(this).html('<img src="/assets/img/refresh.svg" width="16px" height="16px">' + val1 + '.' + Math.floor(val2.substr(0,3)))
+                            }
                         }
                     });
-                    $('#txtableTab tr td.transValTab').each(function(){
-                        var resss = $(this).text();
-                        var arrrs = resss.split('.');
-                        if(arrrs.length > 1) {
-                            var val1 = arrrs[0];
-                            var val2 = arrrs[1].substr(0,3);
-                            $(this).html(val1 + '.' + val2);
-                        } else {
-                            $(this).html(resss);
+                    $('#txtable tr td.transVal').each(function(){
+                        var arr = $(this).text();
+                        var arr = arr.split(' ');
+                        var arrCount = arr[1].split('.');
+                        if(arrCount.length > 1) {
+                            var val1 = arrCount[0];
+                            var val2 = arrCount[1];
+                            if(arr[0] == '+') {
+                                $(this).html('<font color="green"><b>+</b></font> ' + val1 + '.' + Math.floor(val2.substr(0,3)))
+                            }
+                            else if(arr[0] == '-') {
+                                $(this).html('<font color="red"><b>-</b></font> ' + val1 + '.' + Math.floor(val2.substr(0,3)))
+                            } else {
+                                $(this).html('<img src="/assets/img/refresh.svg" width="16px" height="16px"> ' + val1 + '.' + Math.floor(val2.substr(0,3)))
+                            }
                         }
                     });
                     $('#txtable').append('</table>')

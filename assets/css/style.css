@@ -1191,6 +1191,14 @@ footer {
     position: absolute;
 }
 
+.transValTab:after {
+    content: "ETH";
+    display: inline-block;
+    font-weight: 400;
+    text-transform: uppercase;
+    margin-left: 5px;
+}
+
 @media(max-width: 861px) {
     #transactionsLis {
         margin: 0;
