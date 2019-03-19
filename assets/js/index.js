@@ -1287,7 +1287,18 @@ window.addEventListener("load", async () => {
                                     $('#cardTxList').append('<a class="tx-more-link" href="#" style="text-decoration:none" onclick="moreTransactions()"><span style=color:#01c3b6>' + $('#txListCardLabelMore').val() + '</span></a>');
                                     $('#cardTxList').removeClass('centered');
                                 }
-                                $('#txtableTab').append('<tr bgcolor=' + txBgColor + '><td style=align:right>' + txTime + '</td><td class="transVal" style="text-align: right">' + txType + ' ' + (parseInt(transaction['value']) / 1e18).toFixed(18).replace(/\.?0+$/, '') + '</td><td>' + txTypeText + ' ' + currentFinalTxAddress + '</td></tr>')
+                                $('#txtableTab').append('<tr bgcolor=' + txBgColor + '><td style=align:right>' + txTime + '</td><td class="transValTab" style="text-align: right">' + txType + ' ' + (parseInt(transaction['value']) / 1e18).toFixed(18).replace(/\.?0+$/, '') + '</td><td>' + txTypeText + ' ' + currentFinalTxAddress + '</td></tr>');
+                                // $('#txtable tr td.transValTab').each(function(){
+                                //     var resss = $(this).text();
+                                //     var arrrs = resss.split('.');
+                                //     if(arrrs.length > 1) {
+                                //         var val1 = arrs[0];
+                                //         var val2 = arrs[1].substr(0,3);
+                                //         $(this).html(val1 + '.' + val2);
+                                //     } else {
+                                //         $(this).html(resss);
+                                //     }
+                                // });
 
                                 if ($('#txtableTab').children("[bgcolor='#FAF0EF']")) {
                                     $('#txtableTab').children("[bgcolor='#FAF0EF']").hover(function () {
@@ -1306,16 +1317,28 @@ window.addEventListener("load", async () => {
 
 
 
-
                         }
                     }
                     $('#txtable tr td.transVal').each(function(){
                         var ress = $(this).text();
                         var arrs = ress.split('.');
                         if(arrs.length > 1) {
-                            $(this).html(arrs[0] + '.' + Math.floor(arrs[1].substr(0, 3)));
+                            var val1 = arrs[0];
+                            var val2 = arrs[1].substr(0,3);
+                            $(this).html(val1 + '.' + val2);
                         } else {
-                            $(this).html(arrs[0])
+                            $(this).html(ress);
+                        }
+                    });
+                    $('#txtableTab tr td.transValTab').each(function(){
+                        var resss = $(this).text();
+                        var arrrs = resss.split('.');
+                        if(arrrs.length > 1) {
+                            var val1 = arrrs[0];
+                            var val2 = arrrs[1].substr(0,3);
+                            $(this).html(val1 + '.' + val2);
+                        } else {
+                            $(this).html(resss);
                         }
                     });
                     $('#txtable').append('</table>')
