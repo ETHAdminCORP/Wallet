@@ -1412,15 +1412,27 @@ window.addEventListener("load", async () => {
                         var arr = arr.split(' ');
                         var arrCount = arr[1].split('.');
                         if(arrCount.length > 1) {
-                            var val1 = arrCount[0];
-                            var val2 = arrCount[1];
+                            var val1 = Math.floor(arrCount[0]);
+                            var val2 = Math.floor(arrCount[1].substr(0,3));
                             if(arr[0] == '+') {
-                                $(this).html('<font color="green"><b>+</b></font> ' + val1 + '.' + Math.floor(val2.substr(0,3)))
+                                if(val2 == '0') {
+                                    $(this).html('<font color="green"><b>+</b></font> ' + val1);
+                                } else {
+                                    $(this).html('<font color="green"><b>+</b></font> ' + val1 + '.' + val2);
+                                }
                             }
                             else if(arr[0] == '-') {
-                                $(this).html('<font color="red"><b>-</b></font> ' + val1 + '.' + Math.floor(val2.substr(0,3)))
+                                if(val2 == '0') {
+                                    $(this).html('<font color="red"><b>-</b></font> ' + val1);
+                                } else {
+                                    $(this).html('<font color="red"><b>-</b></font> ' + val1 + '.' + val2);
+                                }
                             } else {
-                                $(this).html('<img src="/assets/img/refresh.svg" width="16px" height="16px"> ' + val1 + '.' + Math.floor(val2.substr(0,3)))
+                                if(val2 == '0') {
+                                    $(this).html('<img src="/assets/img/refresh.svg" width="16px" height="16px"> ' + val1);
+                                } else {
+                                    $(this).html('<img src="/assets/img/refresh.svg" width="16px" height="16px"> ' + val1 + '.' + val2);
+                                }
                             }
                         }
                     });
