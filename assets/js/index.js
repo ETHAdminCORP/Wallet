@@ -1386,12 +1386,12 @@ window.addEventListener("load", async () => {
                             var val1 = arrCount[0];
                             var val2 = arrCount[1];
                             if(arr[0] == '+') {
-                                $(this).html('<font color="green"><b>+</b></font>' + val1 + '.' + Math.floor(val2.substr(0,3)))
+                                $(this).html('<font color="green"><b>+</b></font> ' + val1 + '.' + Math.floor(val2.substr(0,3)))
                             }
                             else if(arr[0] == '-') {
-                                $(this).html('<font color="red"><b>-</b></font>' + val1 + '.' + Math.floor(val2.substr(0,3)))
+                                $(this).html('<font color="red"><b>-</b></font> ' + val1 + '.' + Math.floor(val2.substr(0,3)))
                             } else {
-                                $(this).html('<img src="/assets/img/refresh.svg" width="16px" height="16px">' + val1 + '.' + Math.floor(val2.substr(0,3)))
+                                $(this).html('<img src="/assets/img/refresh.svg" width="16px" height="16px"> ' + val1 + '.' + Math.floor(val2.substr(0,3)))
                             }
                         }
                     });
