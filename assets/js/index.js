@@ -1124,7 +1124,6 @@ window.addEventListener("load", async () => {
 
     window.getTransactionsByAccount = function () {
 
-
         var time = Math.round(new Date().getTime() / 1000)
         $.getJSON('/getTransactions/?address=' + window.address + '&network=' + $('#networkName').val())
             .done(function (transactionsdata) {
@@ -1156,9 +1155,8 @@ window.addEventListener("load", async () => {
                     $('#cardTxList').append('<a href=# style="text-decoration:none"><span style=color:#01c3b6><span style=font-size:20px;font-weight:500;>' + $('#txListCardLabel').val() + ':</span></a>')
                     $('#cardTxList').append('<br><br><div class="f-item"><h6 class="noactive">' + $('#txListEmpty').val() + '</h6></div>');
                     $('#cardTxList').addClass('centered');
-                } else {
                     $('#transactionsLoading').hide()
-
+                } else {
 
                     $('#transactionsLis').append('<table id=txtable class="highlight" style=margin-left:50px;margin-right:50px;><thead><tr><th>' + $('#txListCardLabelDate').val() + '</th><th style="text-align: right">' + $('#txListCardLabelAmount').val() + '</th><th>' + $('#txListCardLabelFrom').val() + '</th></thead>')
                     var txC = 0;
@@ -1272,7 +1270,7 @@ window.addEventListener("load", async () => {
 
                             //if (currentFinalTxAddress != undefined) { var cfta = currentFinalTxAddress }
                             //$('#txtable').append('<tr bgcolor=' + txBgcolor + '><td style=align:right>' + txTime + '</td><td style="text-align: right">' + txType + ' ' + parseInt(transaction['value']) / 1e18 + ' ETH</td><td>' + txTypeText + ' ' + cfta + '</td></tr>')
-                            $('#txtable').append('<tr bgcolor=' + txBgColor + '><td style=align:right>' + txTime + '</td><td style="text-align: right">' + txType + ' ' + (parseInt(transaction['value']) / 1e18).toFixed(18).replace(/\.?0+$/, '') + ' ETH</td><td>' + txTypeText + ' ' + currentFinalTxAddress + '</td></tr>')
+                            $('#txtable').append('<tr bgcolor=' + txBgColor + '><td style=align:right>' + txTime + '</td><td class="transVal" style="text-align: right">' + txType + ' ' + (parseInt(transaction['value']) / 1e18).toFixed(18).replace(/\.?0+$/, '') + '</td><td>' + txTypeText + ' ' + currentFinalTxAddress + '</td></tr>')
 
                             if ($('#txtable').children("[bgcolor='#FAF0EF']")) {
                                 $('#txtable').children("[bgcolor='#FAF0EF']").hover(function () {
@@ -1289,7 +1287,18 @@ window.addEventListener("load", async () => {
                                     $('#cardTxList').append('<a class="tx-more-link" href="#" style="text-decoration:none" onclick="moreTransactions()"><span style=color:#01c3b6>' + $('#txListCardLabelMore').val() + '</span></a>');
                                     $('#cardTxList').removeClass('centered');
                                 }
-                                $('#txtableTab').append('<tr bgcolor=' + txBgColor + '><td style=align:right>' + txTime + '</td><td style="text-align: right">' + txType + ' ' + (parseInt(transaction['value']) / 1e18).toFixed(18).replace(/\.?0+$/, '') + ' ETH</td><td>' + txTypeText + ' ' + currentFinalTxAddress + '</td></tr>')
+                                $('#txtableTab').append('<tr bgcolor=' + txBgColor + '><td style=align:right>' + txTime + '</td><td class="transValTab" style="text-align: right">' + txType + ' ' + (parseInt(transaction['value']) / 1e18).toFixed(18).replace(/\.?0+$/, '') + '</td><td>' + txTypeText + ' ' + currentFinalTxAddress + '</td></tr>');
+                                // $('#txtable tr td.transValTab').each(function(){
+                                //     var resss = $(this).text();
+                                //     var arrrs = resss.split('.');
+                                //     if(arrrs.length > 1) {
+                                //         var val1 = arrs[0];
+                                //         var val2 = arrs[1].substr(0,3);
+                                //         $(this).html(val1 + '.' + val2);
+                                //     } else {
+                                //         $(this).html(resss);
+                                //     }
+                                // });
 
                                 if ($('#txtableTab').children("[bgcolor='#FAF0EF']")) {
                                     $('#txtableTab').children("[bgcolor='#FAF0EF']").hover(function () {
@@ -1308,10 +1317,125 @@ window.addEventListener("load", async () => {
 
 
 
-
                         }
                     }
+                    // $('#txtable tr td.transVal').each(function(){
+                    //     var ress = $(this).text();
+                    //     var arrs = ress.split('.');
+                    //     if(arrs.length > 1) {
+                    //         var arrsPlusOrMinus = arrs[0].split(' ');
+                    //         if(arrsPlusOrMinus[0] == '+') {
+                    //             var val1 = arrsPlusOrMinus[1];
+                    //             var val2 = arrs[1].substr(0,3);
+                    //             $(this).html('<font color="green"><b>+</b></font> ' + val1 + '.' + val2);
+                    //         } else {
+                    //             var val1 = arrsPlusOrMinus[1];
+                    //             var val2 = arrs[1].substr(0,3);
+                    //             $(this).html('<font color="red"><b>-</b></font> ' + val1 + '.' + val2);
+                    //         }
+                    //     } else {
+                    //         var arrsPlusOrMinus = arrs[0].split(' ');
+                    //         $(this).html(arrsPlusOrMinus[1]);
+                    //     }
+                    // });
+                    
+                    // $('#txtableTab tr td.transValTab').each(function(){
+                    //     var resss = $(this).text();
+                    //     var arrrs = resss.split('.');
+                    //     if(arrrs.length > 1) {
+                    //         var val1 = arrrs[0];
+                    //         var val2 = arrrs[1].substr(0,3);
+                    //         $(this).html(val1 + '.' + val2);
+                    //     } else {
+                    //         $(this).html(resss);
+                    //     }
+                    // });
 
+                    // $('#txtable tr td.transVal').each(function(){
+                    //     var ress = $(this).text();
+                    //     var arrs = ress.split('.');
+                    //     if(arrs.length > 1) {
+                    //         var arrsPlusOrMinus = arrs[0].split(' ');
+                    //         if(arrsPlusOrMinus[0] == '+') {
+                    //             var val1 = arrsPlusOrMinus[1];
+                    //             var val2 = arrs[1].substr(0,3);
+                    //             $(this).html('<font color="green"><b>+</b></font> ' + val1 + '.' + val2);
+                    //         } 
+                    //         else if(arrsPlusOrMinus[0] == '-') {
+                    //             var val1 = arrsPlusOrMinus[1];
+                    //             var val2 = arrs[1].substr(0,3);
+                    //             $(this).html('<font color="red"><b>-</b></font> ' + val1 + '.' + val2);
+                    //         }
+                    //         else {
+                    //             var val = '<img src="/assets/img/refresh.svg" width="16px" height="16px">';
+                    //             var val1 = arrsPlusOrMinus[1];
+                    //             var val2 = arrs[1].substr(0,3);
+                    //             $(this).html(val + val1 + '.' + val2);
+                    //         }
+                    //     } else {
+                    //         var arrsPlusOrMinus = arrs[0].split(' ');
+                    //         $(this).html(arrsPlusOrMinus[1]);
+                    //     }
+                    // });
+
+                    $('#txtableTab tr td.transValTab').each(function(){
+                        var arr = $(this).text();
+                        var arr = arr.split(' ');
+                        var arrCount = arr[1].split('.');
+                        if(arrCount.length > 1) {
+                            var val1 = Math.floor(arrCount[0]);
+                            var val2 = Math.floor(arrCount[1].substr(0,3));
+                            if(arr[0] == '+') {
+                                if(val2 == '0') {
+                                    $(this).html('<font color="green"><b>+</b></font> ' + val1);
+                                } else {
+                                    $(this).html('<font color="green"><b>+</b></font> ' + val1 + '.' + val2);
+                                }
+                            }
+                            else if(arr[0] == '-') {
+                                if(val2 == '0') {
+                                    $(this).html('<font color="red"><b>-</b></font> ' + val1);
+                                } else {
+                                    $(this).html('<font color="red"><b>-</b></font> ' + val1 + '.' + val2);
+                                }
+                            } else {
+                                if(val2 == '0') {
+                                    $(this).html('<img src="/assets/img/refresh.svg" width="16px" height="16px"> ' + val1);
+                                } else {
+                                    $(this).html('<img src="/assets/img/refresh.svg" width="16px" height="16px"> ' + val1 + '.' + val2);
+                                }
+                            }
+                        }
+                    });
+                    $('#txtable tr td.transVal').each(function(){
+                        var arr = $(this).text();
+                        var arr = arr.split(' ');
+                        var arrCount = arr[1].split('.');
+                        if(arrCount.length > 1) {
+                            var val1 = Math.floor(arrCount[0]);
+                            var val2 = Math.floor(arrCount[1].substr(0,3));
+                            if(arr[0] == '+') {
+                                if(val2 == '0') {
+                                    $(this).html('<font color="green"><b>+</b></font> ' + val1);
+                                } else {
+                                    $(this).html('<font color="green"><b>+</b></font> ' + val1 + '.' + val2);
+                                }
+                            }
+                            else if(arr[0] == '-') {
+                                if(val2 == '0') {
+                                    $(this).html('<font color="red"><b>-</b></font> ' + val1);
+                                } else {
+                                    $(this).html('<font color="red"><b>-</b></font> ' + val1 + '.' + val2);
+                                }
+                            } else {
+                                if(val2 == '0') {
+                                    $(this).html('<img src="/assets/img/refresh.svg" width="16px" height="16px"> ' + val1);
+                                } else {
+                                    $(this).html('<img src="/assets/img/refresh.svg" width="16px" height="16px"> ' + val1 + '.' + val2);
+                                }
+                            }
+                        }
+                    });
                     $('#txtable').append('</table>')
                 }
 
@@ -1879,6 +2003,9 @@ window.addEventListener("load", async () => {
                 $("#sendEthBalance").text($('#addressBalance').text() - $('#sendEthCommission').text());
 
             }
+            var res = $('#addressBalance').text();
+            var arr = res.split('.');
+            $('#addressBalance').html(arr[0] + '.' + Math.floor(arr[1].substr(0, 3)));
         })
     }
 
@@ -2180,6 +2307,7 @@ window.addEventListener("load", async () => {
         setTimeout(function () {
             $('#chartEth').attr('src', '/chart.html');
         }, 1);
+        setTimeout(function () {}, 700)
         if (sessionStorage.getItem('width') <= 921) {
             setTimeout(function () {
                 $('span.key-field').addClass('hideAddr')
@@ -2187,7 +2315,7 @@ window.addEventListener("load", async () => {
                 var text1 = text.slice(0, 12);
                 var text2 = text.slice(-12);
                 $(".addr").html(text1 + "..." + text2);
-            }, 170);
+            }, 300);
         }
     }
 
@@ -2295,6 +2423,6 @@ $(window).resize(function () {
 
 sessionStorage.setItem('width', winWidth);
 
-if($('#contract').hasClass('active')) {
+if ($('#contract').hasClass('active')) {
     $('#tabTitle').html('text');
 }
