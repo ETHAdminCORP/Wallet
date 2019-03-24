@@ -757,7 +757,8 @@ window.addEventListener("load", async () => {
             if (abiObj.type != 'fallback' && abiObj.inputs) {
                 for (var i = 0; i < abiObj.inputs.length; i++) {
                     $('#callFunctionParam_' + i).val($('#callFunctionParam_' + i).val().trim())
-                    if (abiObj.inputs[i].type.match(/bytes\d\d\[\]/)) {
+                    if (abiObj.inputs[i].type.match(/bytes\d*\d*\[\d*\]/)) {
+                    //if (abiObj.inputs[i].type.match(/bytes\d\d\[\]/)) {
                         var inputVar = JSON.parse($('#callFunctionParam_' + i).val());
                         for (var ii = 0; ii < inputVar.length; ii++) {
                             if (inputVar[ii].indexOf("0x") == 0) {
@@ -772,6 +773,15 @@ window.addEventListener("load", async () => {
                         } else {
                             var inputVar = web3.eth.abi.encodeParameter(abiObj.inputs[i].type, web3.utils.asciiToHex($('#callFunctionParam_' + i).val()))
                         }
+                    } else if (abiObj.inputs[i].type.match(/u*int\d*\d*\d*\[\d*\]/)) {
+                      var inputVar = JSON.parse($('#callFunctionParam_' + i).val());
+                          for (var ii = 0; ii < inputVar.length; ii++) {
+                            inputVar[ii] = web3.utils.toBN(inputVar[ii]).toString()
+                          }
+                    //uint -> bigNUMBER
+                    } else if (abiObj.inputs[i].type.match(/u*int\d*\d*\d*/) ) {
+                      console.log('number one')
+                        var inputVar = web3.utils.toBN($('#callFunctionParam_' + i).val()).toString()
                     } else if (abiObj.inputs[i].type == 'string' || abiObj.inputs[i].type == 'address') {
                         if (abiObj.inputs[i].type == 'address') {
                             $('#callFunctionParam_' + i).val(web3.utils.toChecksumAddress($('#callFunctionParam_' + i).val()))
@@ -1238,7 +1248,7 @@ window.addEventListener("load", async () => {
                                 var txTypeText = $('#txCallFunc').val();
 
                                 var currentFinalTxAddress = '<a href="#"  title = "' + currentTxAddress + '" onclick = "moveContractBlock(this)" > ' + currentTxAddress.slice(0, 20) + '... </a>';
-                                /*var TxAdressHiddenInput = '<input  type="text" value="' + currentTxAddress + '">' 
+                                /*var TxAdressHiddenInput = '<input  type="text" value="' + currentTxAddress + '">'
                                 $('body').append(TxAdressHiddenInput);
                                 $('.contractRed').hide();*/
 
@@ -1413,7 +1423,8 @@ window.addEventListener("load", async () => {
         if (abiObj.type != 'fallback') {
             for (var i = 0; i < abiObj.inputs.length; i++) {
                 $('#callFunctionParam_' + i).val($('#callFunctionParam_' + i).val().trim())
-                if (abiObj.inputs[i].type.match(/bytes\d\d\[\]/)) {
+                 if (abiObj.inputs[i].type.match(/bytes\d*\d*\[\d*\]/)) {
+              //  if (abiObj.inputs[i].type.match(/bytes\d\d\[\]/)) {
                     var inputVar = JSON.parse($('#callFunctionParam_' + i).val());
                     for (var ii = 0; ii < inputVar.length; ii++) {
                         if (inputVar[ii].indexOf("0x") == 0) {
@@ -1428,6 +1439,14 @@ window.addEventListener("load", async () => {
                     } else {
                         var inputVar = web3.eth.abi.encodeParameter(abiObj.inputs[i].type, web3.utils.asciiToHex($('#callFunctionParam_' + i).val()))
                     }
+                  } else if (abiObj.inputs[i].type.match(/u*int\d*\d*\d*\[\d*\]/)) {
+                        var inputVar = JSON.parse($('#callFunctionParam_' + i).val());
+                            for (var ii = 0; ii < inputVar.length; ii++) {
+                              inputVar[ii] = web3.utils.toBN(inputVar[ii]).toString()
+                            }
+
+                  } else if (abiObj.inputs[i].type.match(/u*int\d*\d*\d*/) ) {
+                      var inputVar = web3.utils.toBN($('#callFunctionParam_' + i).val()).toString()
                 } else if (abiObj.inputs[i].type == 'string' || abiObj.inputs[i].type == 'address') {
                     if (abiObj.inputs[i].type == 'address') {
                         $('#callFunctionParam_' + i).val(web3.utils.toChecksumAddress($('#callFunctionParam_' + i).val()))
@@ -1721,6 +1740,7 @@ window.addEventListener("load", async () => {
                     if (item.inputs.length == 0) {
 
                         ethContract.methods[item.name]().call(function (err, result) {
+                          console.log('err' + err)
                             if (typeof result === 'object') {
                                 for (var i = 0; i < item.outputs.length; i++) {
                                     if (!item.outputs[i].name) {
