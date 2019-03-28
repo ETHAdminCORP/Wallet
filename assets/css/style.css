@@ -609,6 +609,12 @@ input#cardSendEthAmount {
 }
 
 #cardSendEthButtonOk {
+    margin-top: 15px;
+    align-self: center;
+    margin-left: 0 !important;
+}
+
+#cardSendEthButtonOk {
     float: left;
     margin-top: 15px;
     margin-bottom: 15px;
@@ -1180,7 +1186,7 @@ footer {
 
 .transaction-footer {
     display: none;
-    bottom: -150px;
+    bottom: -155px;
 }
 
 #address.hideAddr {

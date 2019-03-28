@@ -1298,18 +1298,7 @@ window.addEventListener("load", async () => {
                                     $('#cardTxList').removeClass('centered');
                                 }
                                 $('#txtableTab').append('<tr bgcolor=' + txBgColor + '><td style=align:right>' + txTime + '</td><td class="transValTab" style="text-align: right">' + txType + ' ' + (parseInt(transaction['value']) / 1e18).toFixed(18).replace(/\.?0+$/, '') + '</td><td>' + txTypeText + ' ' + currentFinalTxAddress + '</td></tr>');
-                                // $('#txtable tr td.transValTab').each(function(){
-                                //     var resss = $(this).text();
-                                //     var arrrs = resss.split('.');
-                                //     if(arrrs.length > 1) {
-                                //         var val1 = arrs[0];
-                                //         var val2 = arrs[1].substr(0,3);
-                                //         $(this).html(val1 + '.' + val2);
-                                //     } else {
-                                //         $(this).html(resss);
-                                //     }
-                                // });
-
+                                
                                 if ($('#txtableTab').children("[bgcolor='#FAF0EF']")) {
                                     $('#txtableTab').children("[bgcolor='#FAF0EF']").hover(function () {
                                         $('#txtableTab').children("[bgcolor='#FAF0EF']").css('background-color', '#FAF0EF');
@@ -1333,6 +1322,7 @@ window.addEventListener("load", async () => {
                     $('#txtableTab tr td.transValTab').each(function(){
                         var arr = $(this).text();
                         var arr = arr.split(' ');
+
                         var arrCount = arr[1].split('.');
                         if(arrCount.length > 1) {
                             var val1 = Math.floor(arrCount[0]);
@@ -1816,8 +1806,10 @@ window.addEventListener("load", async () => {
                 $('.transaction-footer').show();
             }
             $(window).resize(function () {
-                $('.hide-footer').hide();
-                $('.transaction-footer').show();
+                if (sessionStorage.getItem('width') <= 921) {
+                    $('.hide-footer').hide();
+                    $('.transaction-footer').show();
+                }
             })
             if ($('#networkName').val() != 'mainnet') {
                 apiNetworkName = '-' + $('#networkName').val();
@@ -1967,7 +1959,9 @@ window.addEventListener("load", async () => {
             }
             var res = $('#addressBalance').text();
             var arr = res.split('.');
-            $('#addressBalance').html(arr[0] + '.' + Math.floor(arr[1].substr(0, 3)));
+            if(arr.length > 1) {
+                $('#addressBalance').html(arr[0] + '.' + Math.floor(arr[1].substr(0, 3)));
+            }    
         })
     }
 
