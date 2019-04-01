@@ -2382,3 +2382,12 @@ sessionStorage.setItem('width', winWidth);
 if ($('#contract').hasClass('active')) {
     $('#tabTitle').html('text');
 }
+
+
+if(sessionStorage.getItem('width') <= 650) {
+    if ($('body').hasClass('ru-RU')) {
+        $('#walletTypeMetamask').html('Web3 провайдер')
+    } else {
+        $('#walletTypeMetamask').html('Web3 provider')
+    }
+}

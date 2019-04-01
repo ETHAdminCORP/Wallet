@@ -19,6 +19,13 @@ function getInitialLang(){
             img:'<img src="/assets/img/en.svg" alt="English" />'
 
         } ;
+        if(sessionStorage.getItem('width') <= 650) {
+            if ($('body').hasClass('ru-RU')) {
+                $('#walletTypeMetamask').html('Web3 провайдер')
+            } else {
+                $('#walletTypeMetamask').html('Web3 provider')
+            }
+        }
     document.querySelector('[data-dropdown-element = "current"]').innerHTML = '<span>' + chosen.img + chosen.label   + '</span>';
     document.querySelector('[data-dropdown-conponent]').dataset.value = chosen.val;
 }

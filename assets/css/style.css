@@ -606,6 +606,7 @@ input#cardSendEthAmount {
 #cardSendEthButtonSend {
     margin-top: 15px;
     align-self: center;
+    width: 133.6px;
 }
 
 #cardSendEthButtonOk {
@@ -1309,7 +1310,7 @@ footer {
 }
 @media(min-width: 922px) {
     main {
-        margin-bottom: 300px;
+        margin-bottom: 55px;
         transform: translateY(-10px);
     }
     #wallet {
