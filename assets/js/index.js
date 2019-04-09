@@ -2391,3 +2391,4 @@ if(sessionStorage.getItem('width') <= 650) {
         $('#walletTypeMetamask').html('Web3 provider')
     }
 }
+
