@@ -606,7 +606,7 @@ input#cardSendEthAmount {
 #cardSendEthButtonSend {
     margin-top: 15px;
     align-self: center;
-    width: 133px;
+    width: 140px;
 }
 
 #cardSendEthButtonOk {
@@ -616,10 +616,8 @@ input#cardSendEthAmount {
 }
 
 #cardSendEthButtonOk {
-    float: left;
     margin-top: 15px;
-    margin-left: calc(50%);
-    width: 133px;
+    width: 140px;
 }
 
 #contractAbiDiv textarea {
