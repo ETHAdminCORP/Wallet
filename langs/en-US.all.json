@@ -132,6 +132,22 @@
     "translation": "Keyfile has encrypted by password, which you entered in previous step, and was saved on your computer"
   },
   {
+    "id": "NewWalletModal",
+    "translation": "New wallet created!"
+  },
+  {
+    "id": "NewWalletModalTitle",
+    "translation": "A Keystore file has been saved to your computer. Remember the password specified in the previous step!"
+  },
+  {
+    "id": "NewWalletModalText",
+    "translation": "To enter your wallet next time, you need to select the type - Keystore file on the main page and enter the password you entered in the last step. This password is encrypted file. If the file is stolen, the attacker will not be able to enter your wallet without knowing the password."
+  },
+  {
+    "id": "NewWalletModalClose",
+    "translation": "Close"
+  },
+  {
     "id": "SendEthModalTitile",
     "translation": "Send ETH"
   },

@@ -262,7 +262,8 @@
                                 
                               <br>
                             <button id="cardSendEthButtonSend" type="button" class="btn btn-primary">{{ T "SendEthSendButton"}}</button>
-                            <button id="cardSendEthButtonOk" class="btn btn-success">{{ T "SendEthAccept"}}</button>
+                            <button id="cardSendEthButtonOk" type="button" class="btn btn-primary">{{ T "SendEthAccept"}}</button>
+                            <!-- <button id="cardSendEthButtonOk" class="btn btn-success">{{ T "SendEthAccept"}}</button> -->
 
 
 
@@ -571,6 +572,19 @@
     <iframe src=/counter.html width="1px" height="1px"></iframe>
     
 </div>
+    <div id="moda1">
+        <div class="modalShadow"></div>
+        <div class="modalContent">
+            <h1>{{ T "NewWalletModal" }}</h1>
+            <hr>
+            <h3>{{ T "NewWalletModalTitle" }}</h3>
+            <p>{{ T "NewWalletModalText" }}</p>
+            <div id="closeModa1">
+                    {{ T "NewWalletModalClose" }}
+            </div>
+        </div>
+    </div>
+
     {{ template "footer" . }}
     <style>
 

@@ -883,7 +883,7 @@ a.tx-more-link {
 
 .mb-120 {
     margin-bottom: 120px !important;
-} 
+}
 
 .wrapper {
     position: relative;
@@ -925,62 +925,78 @@ footer {
     main {
         margin-bottom: 130px;
     }
+
     #contractAbiDiv {
         display: flex !important;
     }
+
     .logo {
         display: flex;
         width: 100%;
         justify-content: space-around;
     }
+
     .wallet-address-container {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
     }
+
     .address-to {
         margin-bottom: 0;
         height: auto;
     }
+
     .fake-s9 {
         width: 100% !important;
     }
+
     #cardSendEthAddress {
         width: 100% !important;
     }
+
     .trans-amount {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
     }
+
     .colAfter {
         width: 100%;
     }
+
     #sendEthAddParamsLink2 {
         margin-bottom: 0;
     }
+
     .card.wallet-card {
         display: flex;
         flex-direction: column;
     }
+
     #cardSendEthButtonSend {
         margin-left: 0;
         align-self: center;
     }
+
     #contractAbiDiv {
         display: flex;
         flex-direction: column;
         align-items: center;
     }
+
     .col.s12.m12.l4.xl4 {
         margin-top: 30px;
     }
+
     #aboutAddress {
         position: relative;
     }
+
     #transactions {
         margin-bottom: 200px;
     }
+
     #wallet {
         padding: 0 15px;
     }
@@ -1017,7 +1033,7 @@ footer {
         height: 100% !important;
     }
 
-    
+
 
     .wallet-cart-content {
         display: flex;
@@ -1065,29 +1081,37 @@ footer {
     #privateKeyRAW {
         font-size: 20px;
     }
+
     #contract {
         display: flex;
         flex-direction: column;
         margin-left: 0 !important;
     }
+
     #contract .row {
         flex-direction: column;
     }
+
     .input-field {
         width: 100% !important;
     }
+
     #contract .col.s4.m5 {
         margin-left: 0;
     }
+
     #cardSendEthAddress {
         width: 90%;
     }
+
     #cardSendEthAmount {
         width: 1000%;
     }
+
     .wallet-address-container {
         display: flex;
     }
+
     .wallet-address-container .fake-s9 {
         width: 80%;
     }
@@ -1096,43 +1120,55 @@ footer {
         margin-left: 0;
         width: auto;
     }
+
     #useContractDiv {
         margin-left: 0 !important;
         width: 100%;
     }
+
     #callFunctionButtonDiv {
         margin-top: 20px;
     }
+
     #useContractCallFunction {
         width: 50%;
     }
+
     .flexwrapflex {
         display: flex;
         justify-content: space-around;
     }
+
     .contractAdditionalsChild {
         width: auto;
     }
+
     .contractAdditionalsChild:last-child {
         margin-left: 0;
     }
+
     input#smartContractNonceInput {
         width: 70px;
     }
-    #transactionsLis tr  {
+
+    #transactionsLis tr {
         align-items: center;
     }
+
     #transactionsLis tr td:nth-child(2) {
         justify-content: center;
         font-size: 17px;
     }
-    #txtableTab tr  {
+
+    #txtableTab tr {
         align-items: center;
     }
+
     #txtableTab tr td:nth-child(2) {
         justify-content: center;
         font-size: 17px;
     }
+
     #cardSendEthButtonSend {
         float: both !important;
     }
@@ -1206,10 +1242,99 @@ footer {
     margin-left: 5px;
 }
 
+
+
+/* modal */
+
+.modalShadow {
+    position: fixed;
+    top: 0;
+    min-height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    display: none;
+    left: 0;
+}
+
+#moda1 {
+    position: fixed;
+    top: 0;
+    min-height: 100%;
+    width: 100%;
+    z-index: 9;
+    display: none;
+    padding: 0 10px;
+    text-align: center;
+}
+
+#moda1 .modalContent {
+    background: #fff;
+    width: 900px;
+    margin: auto;
+    padding: 25px 25px;
+    box-sizing: border-box;
+    z-index: 11;
+}
+
+#closeModa1 {
+    display: block;
+    width: 133px;
+    height: 36px;
+    background: #2bbbad;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    color: #fff;
+    text-transform: uppercase;
+    border-radius: 2px;
+    cursor: pointer;
+    margin-top: 50px;
+}
+
+
+#moda1 h1 {
+    font-size: 25px;
+    margin: 0;
+    text-align: center;
+    text-transform: capitalize;
+    margin-bottom: 20px;
+}
+
+#moda1 h3 {
+    margin: 0;
+    font-size: 19px;
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 35px;
+}
+
+#moda1 hr {
+    margin: 0;
+    background: #01C3B6;
+    color: #01C3B6;
+    height: 2px;
+    border: 0;
+}
+
+@media(max-width: 380px) {
+    #moda1 h3 {
+        margin-top: 15px;
+        margin-bottom: 25px;
+    }
+    #closeModa1 {
+        margin-top: 30px;
+    }
+}
+
+
+
 @media(max-width: 861px) {
     #transactionsLis {
         margin: 0;
     }
+
     #txtable td a {
         margin-left: 10px;
     }
@@ -1308,11 +1433,13 @@ footer {
         font-size: 14px;
     }
 }
+
 @media(min-width: 922px) {
     main {
         margin-bottom: 55px;
         transform: translateY(-10px);
     }
+
     #wallet {
         margin-bottom: 80px;
     }
@@ -1323,9 +1450,11 @@ footer {
         display: flex;
         flex-direction: row;
     }
+
     .navigation .header-logo span {
         display: none;
     }
+
     .graph {
         margin-bottom: 0;
     }
@@ -1518,12 +1647,15 @@ footer {
     .balance-values {
         text-align: center;
     }
+
     .eth {
         display: none;
     }
+
     #addressBalance {
         padding-right: 0;
     }
+
     #addressBalance:after {
         content: 'ETH';
         font-weight: 500;
@@ -1537,6 +1669,7 @@ footer {
     #aboutAddress .tabMenu {
         margin-bottom: 0;
     }
+
     #aboutAddress .tabMenu ul.tabs {
         display: none;
         height: 100%;
@@ -1592,22 +1725,27 @@ footer {
         border-color: #000 transparent transparent transparent;
         margin-left: 5px;
     }
+
     #tabTitle.opened:after {
         transform: rotate(180deg);
     }
 }
+
 @media(max-width: 561px) {
     #contract button {
         width: 100%;
     }
 }
+
 @media(max-width: 380px) {
     #cardSendEthAmount {
         width: 140%;
     }
+
     #contract .btn {
         font-size: 13px;
     }
+
     #contractPublicInfo {
         font-size: 13px;
     }
@@ -1641,6 +1779,7 @@ body.mobile .ccc-widget canvas {
     .hidethis {
         display: none;
     }
+
     .page-footer .row {
         text-align: center;
     }
