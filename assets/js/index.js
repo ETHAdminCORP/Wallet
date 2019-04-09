@@ -2248,16 +2248,20 @@ window.addEventListener("load", async () => {
                 window.address = addressObj.address;
                 $('#buttonDownloadUTC').css('display', 'inline');
             } else if (accType == 4) {
-
-                setTimeout(showToastNewWallet, 1500);
                 addressObj = web3.eth.accounts.privateKeyToAccount(privKeyRAW)
                 window.privateKey = privKeyRAW;
                 window.address = addressObj.address;
                 window.connectType = 4;
-                $('#newWalletCreateAlert').show();
+                $('#moda1').css({
+                    display: 'flex'
+                });
+                $('.modalShadow').css({
+                    display: 'block'
+                });
+                $('body').css({
+                    overflow: 'hidden'
+                });
             }
-
-
             load()
         }
         setTimeout(function () {
@@ -2391,4 +2395,18 @@ if(sessionStorage.getItem('width') <= 650) {
         $('#walletTypeMetamask').html('Web3 provider')
     }
 }
+
+$('.modalShadow').on('click', function() {
+    $('#moda1').hide(1);
+    $('body').css({
+        overflow: 'auto'
+    })
+})
+
+$('#closeModa1').on('click', function() {
+    $('#moda1').hide(1);
+    $('body').css({
+        overflow: 'auto'
+    })
+})
 
