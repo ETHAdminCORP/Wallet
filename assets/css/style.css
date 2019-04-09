@@ -1293,14 +1293,6 @@ footer {
     margin-top: 50px;
 }
 
-#moda1 h1,
-h2,
-h3,
-h4,
-h5 {
-    margin: 0;
-    font-size: 20px;
-}
 
 #moda1 h1 {
     font-size: 25px;
@@ -1311,6 +1303,7 @@ h5 {
 }
 
 #moda1 h3 {
+    margin: 0;
     font-size: 19px;
     text-align: center;
     margin-top: 25px;
