@@ -1624,7 +1624,9 @@ window.addEventListener("load", async () => {
             $('#smartContractParamsDiv').hide();
         } else {
             var isView = false
-            $('#ParamsLinkSmartContract').show();
+            if(window.address != '0x0000000000000000000000000000000000000000') {
+              $('#ParamsLinkSmartContract').show();
+            }
             if (abiObj.payable == true) {
                 var isPayable = "need pay eth"
             } else {
@@ -1746,17 +1748,17 @@ window.addEventListener("load", async () => {
                     } else {
 
 
-                        $('#contractPublicFunctions').append('<a href="#useContractDiv"><button type="button" class="btn" onmousedown=window.showContractFunctionInterface(' + JSON.stringify(item) + ')>' + item.name + 'send</button></a><br>')
+                        $('#contractPublicFunctions').append('<a href="#useContractDiv"><button type="button" class="btn" onmousedown=window.showContractFunctionInterface(' + JSON.stringify(item) + ')>' + item.name + '</button></a><br>')
                     }
                 }
                 // writanle
                 else {
 
-                    $('#contractPayFunctions').append('<a href="#useContractDiv"><button type="button" class="btn" onmousedown=window.showContractFunctionInterface(' + JSON.stringify(item) + ')>' + item.name + 'send</button></a><br>')
+                    $('#contractPayFunctions').append('<a href="#useContractDiv"><button type="button" class="btn" onmousedown=window.showContractFunctionInterface(' + JSON.stringify(item) + ')>' + item.name + '</button></a><br>')
                 }
             } else if (item.type == 'fallback') {
 
-                $('#contractPayFunctions').append('<a href="#useContractDiv"><button type="button" class="btn" onmousedown=window.showContractFunctionInterface(' + JSON.stringify(item) + ')>Fallback function send</button></a><br>')
+                $('#contractPayFunctions').append('<a href="#useContractDiv"><button type="button" class="btn" onmousedown=window.showContractFunctionInterface(' + JSON.stringify(item) + ')>Fallback function </button></a><br>')
 
             }
         }
@@ -1788,71 +1790,7 @@ window.addEventListener("load", async () => {
 
     $('#contractAddress').on('input', (function () {
       changeContractInput();
-      /*
-        $('#contractAddress').val($('#contractAddress').val().replace(/\s/g, ''))
-        $('#contractPublicInfo').html('');
-        $('#contractPublicFunctions').html('');
-        $('#contractPayFunctions').html('');
-        $('#contractRefreshInfo').hide();
-        $('#useContractInputs').html('');
-        $('#useContractFunctionName').html('');
-        $('#callFunctionButtonDiv').html('');
-        $('#ParamsLinkSmartContract').hide();
-        $('#smartContractParamsDiv').hide();
-        $('#contractAbiDiv').hide();
-        $('#contractAbiUser').hide();
-        $('#contractAbiUser').val('');
-        $('#callFunctionResult').html('');
-        if (w3.utils.isAddress($('#contractAddress').val().replace(/\s/g, '')) == true) {
-            if (sessionStorage.getItem('width') <= 921) {
-                $('.hide-footer').hide();
-                $('.transaction-footer').show();
-            }
-            $(window).resize(function () {
-                if (sessionStorage.getItem('width') <= 921) {
-                    $('.hide-footer').hide();
-                    $('.transaction-footer').show();
-                }
-            })
-            if ($('#networkName').val() != 'mainnet') {
-                apiNetworkName = '-' + $('#networkName').val();
-            } else {
-                apiNetworkName = '';
-            }
 
-
-            $.getJSON('https://api' + apiNetworkName + '.etherscan.io/api?module=contract&action=getabi&address=' + $('#contractAddress').val().replace(/\s/g, '') + '&format=raw')
-                .done(function (data) {
-                    try {
-                      //  $.get("/stat/", {
-                      //      key: "contractLoad",
-                      //      value: '1',
-                      //      value2: '',
-                      //      address: MD5(window.address)
-                      //  });
-                        $('#contractAbiUser').val(data)
-                        loadContractInterface(data);
-                    } catch (err) {
-                        alert('Incorrect address' + err);
-                    }
-                })
-                .fail(function (jqxhr, textStatus, error) {
-                    $.get("/stat/", {
-                        key: "contractLoad",
-                        value: '2',
-                        value2: '',
-                        address: MD5(window.address)
-                    });
-                    $('#contractAbiDiv').show();
-                    $('#contractAbiUser').show();
-                    $('#contractAbiUser').val('');
-
-                    var err = textStatus + ", " + error;
-                    console.log("Request Failed: " + err);
-                });
-
-        }
-        */
     }))
 
 
@@ -1892,16 +1830,19 @@ window.addEventListener("load", async () => {
           $.getJSON('https://api' + apiNetworkName + '.etherscan.io/api?module=contract&action=getabi&address=' + $('#contractAddress').val().replace(/\s/g, '') + '&format=raw')
               .done(function (data) {
                   try {
+
                       $.get("/stat/", {
-                          key: "contractLoad",
+                          key: "contractLoadLink",
                           value: '1',
                           value2: '',
-                          address: MD5(window.address)
+                          address: ''
                       });
+
+
                       $('#contractAbiUser').val(data)
                       loadContractInterface(data);
                   } catch (err) {
-                      alert('Incorrect address' + err);
+                      alert('[JSON ETHERscan]Incorrect address' + err);
                   }
               })
               .fail(function (jqxhr, textStatus, error) {
@@ -1919,6 +1860,9 @@ window.addEventListener("load", async () => {
                   console.log("Request Failed: " + err);
               });
 
+      }
+      else {
+        console.log('fff')
       }
     }
 
@@ -2527,7 +2471,7 @@ else if(webLink[4] == 'contract') {
     });
     console.log('badResult - ' + badResult)
     if(!badResult) {
-       console.log('in if')
+
        window.web3 = new Web3(new Web3.providers.WebsocketProvider("wss://" + $("#networkName").val() + ".infura.io/ws/v3/96a551661d68428395068307f67dae53"))
 
         $('#start').hide();
@@ -2543,9 +2487,11 @@ else if(webLink[4] == 'contract') {
         $('#contractAddress').val(webLink[6]);
         //$('label[for="contractAddress"]').click();
 
-        window.changeContractInput();
-        //setTimeout(function(){          $('#contractAddress').trigger('input');         }, 200);
+        window.address = '0x0000000000000000000000000000000000000000'
 
+        //window.changeContractInput();
+        //setTimeout(function(){          $('#contractAddress').trigger('input');         }, 200);
+      
         $('.tabNav:not(.active)').on('click', function(e) {
             window.location.href = 'http://localhost:9123';
         })
