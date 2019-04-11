@@ -163,10 +163,10 @@
                     <span id="tabTitle">кошелек</span>
                 </div>
                 <ul class="tabs">
-                    <li class="tab col s3"><a id="infoTabLink" class="active" href="#wallet">{{T "TabName1"}}</a></li>
-                    <li class="tab col s3"><a id="contractTabLink" href="#contract">{{T "TabName2"}}</a></li>
-                    <li class="tab col s3"><a id="tokensTabLink" href="#tokens">{{T "TabName3"}}</a></li>
-                    <li class="tab col s3" id="transactionsTab"><a id="txTabLink" href="#transactions">{{T "TabName4"}}</a></li>
+                    <li class="tab col s3"><a id="infoTabLink" class="tabNav active" href="#wallet">{{T "TabName1"}}</a></li>
+                    <li class="tab col s3"><a id="contractTabLink" class="tabNav" href="#contract">{{T "TabName2"}}</a></li>
+                    <li class="tab col s3"><a id="tokensTabLink" class="tabNav" href="#tokens">{{T "TabName3"}}</a></li>
+                    <li class="tab col s3" id="transactionsTab"><a id="txTabLink" class="tabNav" href="#transactions">{{T "TabName4"}}</a></li>
                 </ul>
             </div>
             <div id="wallet" class="col s12">
@@ -581,6 +581,17 @@
             <p>{{ T "NewWalletModalText" }}</p>
             <div id="closeModa1">
                     {{ T "NewWalletModalClose" }}
+            </div>
+        </div>
+    </div>
+
+    <div id="modalBadNetwork">
+        <div class="modalShadow"></div>
+        <div class="modalContent">
+            <h1>{{ T "WarningModal" }}</h1>
+            <hr>
+            <div id="closeModa1">
+                {{ T "NewWalletModalClose" }}
             </div>
         </div>
     </div>

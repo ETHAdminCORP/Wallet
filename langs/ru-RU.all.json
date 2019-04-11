@@ -148,6 +148,10 @@
     "translation": "Закрыть"
   },
   {
+    "id": "WarningModal",
+    "translation": "Некорректно задана сеть!"
+  },
+  {
     "id": "SendEthModalTitile",
     "translation": "Перевести ETH"
   },

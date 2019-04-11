@@ -179,7 +179,8 @@ nav .brand-logo {
 .tabs .tab a.active {
     box-shadow: 4px 5px 8px 0 rgba(0, 0, 0, 0.2);
     background-color: rgba(54, 197, 171, 0.2);
-    color: black;
+    color: black; 
+    opacity: 1;
     font-weight: 500;
 }
 
@@ -1244,17 +1245,6 @@ footer {
 
 /* modal */
 
-.modalShadow {
-    position: fixed;
-    top: 0;
-    min-height: 100%;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 10;
-    display: none;
-    left: 0;
-}
-
 #moda1 {
     position: fixed;
     top: 0;
@@ -1266,7 +1256,17 @@ footer {
     text-align: center;
 }
 
-#moda1 .modalContent {
+.modalShadow {
+    position: fixed;
+    top: 0;
+    min-height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    left: 0;
+}
+
+.modalContent {
     background: #fff;
     width: 900px;
     margin: auto;
@@ -1291,7 +1291,6 @@ footer {
     margin-top: 50px;
 }
 
-
 #moda1 h1 {
     font-size: 25px;
     margin: 0;
@@ -1308,13 +1307,41 @@ footer {
     margin-bottom: 35px;
 }
 
-#moda1 hr {
+#moda1 hr, #modalBadNetwork hr {
     margin: 0;
     background: #01C3B6;
     color: #01C3B6;
     height: 2px;
     border: 0;
 }
+
+/* end modal style */
+
+
+#modalBadNetwork {
+    position: fixed;
+    top: 0;
+    min-height: 100%;
+    width: 100%;
+    z-index: 9;
+    display: none;
+    padding: 0 10px;
+    text-align: center;
+}
+
+#modalBadNetwork h1 {
+    font-size: 25px;
+    margin: 0;
+    text-align: center;
+    text-transform: capitalize;
+    margin-bottom: 20px;
+}
+
+#modalBadNetwork #closeModa1 {
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
 
 @media(max-width: 380px) {
     #moda1 h3 {
@@ -1753,7 +1780,7 @@ body.mobile .ccc-widget canvas {
     max-height: 168px !important;
 }
 
-@media(max-height: 670px) {
+@media(min-height: 520px) {
     main {
         margin-bottom: 130px;
     }

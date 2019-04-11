@@ -2410,3 +2410,75 @@ $('#closeModa1').on('click', function() {
     })
 })
 
+
+var webLink = window.location.href.split('/');
+
+function switchNetwork(f) {
+    switch(webLink[5]) {
+        case 'mainnet':
+            $('#networkName').formSelect();
+            $('#networkName').val('mainnet');
+            break;
+        case 'ropsten':
+            $('#networkName').formSelect();
+            $('#networkName').val('ropsten');
+            break;
+        case 'rinkeby':
+            $('#networkName').formSelect();
+            $('#networkName').val('rinkeby');
+            break;
+        case 'kovan':
+            $('#networkName').formSelect();
+            $('#networkName').val('kovan');
+            break;
+        default:
+            f();
+    }
+}
+
+if(webLink[4] == 'network') {
+    switchNetwork();
+}
+else if(webLink[4] == 'contract') {
+    var badResult;
+    switchNetwork(function() {
+        $('#modalBadNetwork').css({
+            display: 'flex'
+        });
+        $('body').css({
+            overflow: 'hidden'
+        });
+        $('#modalBadNetwork .modalShadow').on('click', function() {
+            window.location.href = 'http://localhost:9123'
+        });
+        $('#modalBadNetwork #closeModa1').on('click', function() {
+            window.location.href = 'http://localhost:9123'
+        });
+        return badResult = true;
+    });
+    if(!badResult) {
+        $('#start').hide();
+        $('#aboutAddress').show();
+        $('#wallet').hide();
+        $('#tokens').hide();
+        $('#transactions').hide();
+        
+
+        $('.tabNav').removeClass('active').css({opacity: '.3'}).attr('href', '');
+        $('#contractTabLink').attr('href', '#contract').addClass('active').css({opacity: '1'});
+        
+        $('#contractAddress').val(webLink[6]);
+        $('label[for="contractAddress"]').click();
+        $('#contractAddress').trigger("input");
+
+        $('.tabNav:not(.active)').on('click', function(e) {
+            window.location.href = 'http://localhost:9123';
+        })
+    }
+}
+
+
+
+ 
+
+
