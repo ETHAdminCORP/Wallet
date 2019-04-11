@@ -1298,7 +1298,7 @@ window.addEventListener("load", async () => {
                                     $('#cardTxList').removeClass('centered');
                                 }
                                 $('#txtableTab').append('<tr bgcolor=' + txBgColor + '><td style=align:right>' + txTime + '</td><td class="transValTab" style="text-align: right">' + txType + ' ' + (parseInt(transaction['value']) / 1e18).toFixed(18).replace(/\.?0+$/, '') + '</td><td>' + txTypeText + ' ' + currentFinalTxAddress + '</td></tr>');
-                                
+
                                 if ($('#txtableTab').children("[bgcolor='#FAF0EF']")) {
                                     $('#txtableTab').children("[bgcolor='#FAF0EF']").hover(function () {
                                         $('#txtableTab').children("[bgcolor='#FAF0EF']").css('background-color', '#FAF0EF');
@@ -1695,6 +1695,7 @@ window.addEventListener("load", async () => {
     }
 
     function loadContractInterface(abidata) {
+      console.log('load exec')
         if (typeof abidata == 'string') {
             abidata = JSON.parse(abidata)
 
@@ -1786,6 +1787,8 @@ window.addEventListener("load", async () => {
 
 
     $('#contractAddress').on('input', (function () {
+      changeContractInput();
+      /*
         $('#contractAddress').val($('#contractAddress').val().replace(/\s/g, ''))
         $('#contractPublicInfo').html('');
         $('#contractPublicFunctions').html('');
@@ -1821,16 +1824,16 @@ window.addEventListener("load", async () => {
             $.getJSON('https://api' + apiNetworkName + '.etherscan.io/api?module=contract&action=getabi&address=' + $('#contractAddress').val().replace(/\s/g, '') + '&format=raw')
                 .done(function (data) {
                     try {
-                        $.get("/stat/", {
-                            key: "contractLoad",
-                            value: '1',
-                            value2: '',
-                            address: MD5(window.address)
-                        });
+                      //  $.get("/stat/", {
+                      //      key: "contractLoad",
+                      //      value: '1',
+                      //      value2: '',
+                      //      address: MD5(window.address)
+                      //  });
                         $('#contractAbiUser').val(data)
                         loadContractInterface(data);
                     } catch (err) {
-                        alert('Incorrect address');
+                        alert('Incorrect address' + err);
                     }
                 })
                 .fail(function (jqxhr, textStatus, error) {
@@ -1848,10 +1851,76 @@ window.addEventListener("load", async () => {
                     console.log("Request Failed: " + err);
                 });
 
-        } else {
-
         }
+        */
     }))
+
+
+    window.changeContractInput = function() {
+      $('#contractAddress').val($('#contractAddress').val().replace(/\s/g, ''))
+      $('#contractPublicInfo').html('');
+      $('#contractPublicFunctions').html('');
+      $('#contractPayFunctions').html('');
+      $('#contractRefreshInfo').hide();
+      $('#useContractInputs').html('');
+      $('#useContractFunctionName').html('');
+      $('#callFunctionButtonDiv').html('');
+      $('#ParamsLinkSmartContract').hide();
+      $('#smartContractParamsDiv').hide();
+      $('#contractAbiDiv').hide();
+      $('#contractAbiUser').hide();
+      $('#contractAbiUser').val('');
+      $('#callFunctionResult').html('');
+      if (w3.utils.isAddress($('#contractAddress').val().replace(/\s/g, '')) == true) {
+          if (sessionStorage.getItem('width') <= 921) {
+              $('.hide-footer').hide();
+              $('.transaction-footer').show();
+          }
+          $(window).resize(function () {
+              if (sessionStorage.getItem('width') <= 921) {
+                  $('.hide-footer').hide();
+                  $('.transaction-footer').show();
+              }
+          })
+          if ($('#networkName').val() != 'mainnet') {
+              apiNetworkName = '-' + $('#networkName').val();
+          } else {
+              apiNetworkName = '';
+          }
+
+
+          $.getJSON('https://api' + apiNetworkName + '.etherscan.io/api?module=contract&action=getabi&address=' + $('#contractAddress').val().replace(/\s/g, '') + '&format=raw')
+              .done(function (data) {
+                  try {
+                      $.get("/stat/", {
+                          key: "contractLoad",
+                          value: '1',
+                          value2: '',
+                          address: MD5(window.address)
+                      });
+                      $('#contractAbiUser').val(data)
+                      loadContractInterface(data);
+                  } catch (err) {
+                      alert('Incorrect address' + err);
+                  }
+              })
+              .fail(function (jqxhr, textStatus, error) {
+                  $.get("/stat/", {
+                      key: "contractLoad",
+                      value: '2',
+                      value2: '',
+                      address: MD5(window.address)
+                  });
+                  $('#contractAbiDiv').show();
+                  $('#contractAbiUser').show();
+                  $('#contractAbiUser').val('');
+
+                  var err = textStatus + ", " + error;
+                  console.log("Request Failed: " + err);
+              });
+
+      }
+    }
 
 
     $('#sendEthButtonSend').mousedown(function () {
@@ -1961,7 +2030,7 @@ window.addEventListener("load", async () => {
             var arr = res.split('.');
             if(arr.length > 1) {
                 $('#addressBalance').html(arr[0] + '.' + Math.floor(arr[1].substr(0, 3)));
-            }    
+            }
         })
     }
 
@@ -2456,29 +2525,29 @@ else if(webLink[4] == 'contract') {
         });
         return badResult = true;
     });
+    console.log('badResult - ' + badResult)
     if(!badResult) {
+       console.log('in if')
+       window.web3 = new Web3(new Web3.providers.WebsocketProvider("wss://" + $("#networkName").val() + ".infura.io/ws/v3/96a551661d68428395068307f67dae53"))
+
         $('#start').hide();
         $('#aboutAddress').show();
         $('#wallet').hide();
         $('#tokens').hide();
         $('#transactions').hide();
-        
+
 
         $('.tabNav').removeClass('active').css({opacity: '.3'}).attr('href', '');
         $('#contractTabLink').attr('href', '#contract').addClass('active').css({opacity: '1'});
-        
+
         $('#contractAddress').val(webLink[6]);
-        $('label[for="contractAddress"]').click();
-        $('#contractAddress').trigger("input");
+        //$('label[for="contractAddress"]').click();
+
+        window.changeContractInput();
+        //setTimeout(function(){          $('#contractAddress').trigger('input');         }, 200);
 
         $('.tabNav:not(.active)').on('click', function(e) {
             window.location.href = 'http://localhost:9123';
         })
     }
 }
-
-
-
- 
-
-
