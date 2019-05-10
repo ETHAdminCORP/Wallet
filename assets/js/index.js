@@ -1,7 +1,6 @@
 $(document).ready(function () {
     $('.sidenav').sidenav();
     $('select').formSelect();
-
     $('body').addClass($('#langId').val());
 
     $('.modal').modal({
@@ -9,6 +8,7 @@ $(document).ready(function () {
         inDuration: 350
     });
 
+    // tab transactions -> vizualization
     let changeTab = () => {
         setTimeout(function () {
             if ($('#transactions').css('display') === 'block') {
@@ -17,47 +17,46 @@ $(document).ready(function () {
                     setTimeout(function () {
                         let integrationFrame = $('#integrationFrame');
                         if (integrationFrame.css('display') === 'block') {
-                            $.get("/stat/", {
-                                key: "txViz",
-                                value: '',
-                                value2: '',
-                                address: MD5(window.address)
-                            });
+                            $.get("/stat/", {key: "txViz", value: '', value2: '', address: MD5(window.address)});
                             let requestAddress = `https://www.ethtective.com/address/${window.address}`;
                             integrationFrame.append(`<iframe id="ethtectiveFrame" src="${requestAddress}" frameborder="0"></iframe>`);
-                        } else {
+                        }
+                        else {
                             $('#ethtectiveFrame').remove();
                         }
                     }, 100);
-                } else {
+                }
+                else {
                     $('#frameTab').addClass('disabled');
                     if ($.cookie('lang') === 'en-US') {
                         $('#frameTab a').html('Visualization - only available in mainnet');
-                    } else {
+                    }
+                    else {
                         $('#frameTab a').html('Визуализация - доступно только в mainnet');
                     }
                 }
-            } else {
+            }
+            else {
                 $('#ethtectiveFrame').remove();
             }
         }, 100);
     };
 
-    $('.tabs').tabs({
-        onShow: changeTab
-    });
-
-    $('#walletTypePrivateKey').on('click', function () {
+    $('.tabs').tabs({onShow: changeTab});
 
 
-        setTimeout(function () {
-            $('#unencryptPrivateKeyRaw').focus();
 
-        }, 100)
-
-    });
+// Delay before show border of input for unencrypted private key. Login -> Private key
+$('#walletTypePrivateKey').on('click', function () {
+    setTimeout(function () {
+        $('#unencryptPrivateKeyRaw').focus();
+    }, 100)
+  });
 });
 
+
+// If you click on contract's address in transaction list, it will open tab Contract
+// and you can start interact with this contract
 function contractMore(address) {
     let contact = $('#contractTabLink');
     contact[0].click();
@@ -67,7 +66,7 @@ function contractMore(address) {
 }
 
 
-// auto logout
+// Auto logout
 var idleTime;
 $(document).ready(function () {
     reloadPage();
@@ -86,18 +85,23 @@ function reloadPage() {
     }, 600000);
 }
 
+
+// Icon EYE in password's input. You can see this icon when you create new wallet
 $('#passEye').click(function () {
     let passwordInput = $("#passwordForNewUTC");
     if (passwordInput.attr("type") === "text") {
         passwordInput.attr("type", "password");
         $('#passEye').css('opacity', '1');
-    } else {
+    }
+    else {
         passwordInput.attr("type", "text");
         $('#passEye').css('opacity', '0.5');
     }
 });
 
 
+// When you open settings div in Token's tab for writting Amount,To (send tokens)
+// and click to other tab, all divs on token's tab will be closed.
 $(document).mouseup(function (e) {
     if ($("#tokens").css("display") === "block") {
         let container = $("#tokenTable");
@@ -114,6 +118,7 @@ $(document).mouseup(function (e) {
         }
     }
 });
+
 
 
 function MD5(str) {
@@ -200,9 +205,7 @@ function MD5(str) {
     };
 
     var WordToHex = function (lValue) {
-        var WordToHexValue = "",
-            WordToHexValue_temp = "",
-            lByte, lCount;
+        var WordToHexValue = "", WordToHexValue_temp = "", lByte, lCount;
         for (lCount = 0; lCount <= 3; lCount++) {
             lByte = (lValue >>> (lCount * 8)) & 255;
             WordToHexValue_temp = "0" + lByte.toString(16);
@@ -213,22 +216,10 @@ function MD5(str) {
 
     var x = Array();
     var k, AA, BB, CC, DD, a, b, c, d;
-    var S11 = 7,
-        S12 = 12,
-        S13 = 17,
-        S14 = 22;
-    var S21 = 5,
-        S22 = 9,
-        S23 = 14,
-        S24 = 20;
-    var S31 = 4,
-        S32 = 11,
-        S33 = 16,
-        S34 = 23;
-    var S41 = 6,
-        S42 = 10,
-        S43 = 15,
-        S44 = 21;
+    var S11 = 7, S12 = 12, S13 = 17, S14 = 22;
+    var S21 = 5, S22 = 9, S23 = 14, S24 = 20;
+    var S31 = 4, S32 = 11, S33 = 16, S34 = 23;
+    var S41 = 6, S42 = 10, S43 = 15, S44 = 21;
 
     //str = this.utf8_encode(str);
     x = ConvertToWordArray(str);
@@ -326,7 +317,6 @@ window.addEventListener("load", async () => {
     // If metamask found, set Metamask's div color - green
     if (window.ethereum || window.web3) {
         $("#walletTypeMetamask").css("background-color", "#08e2d4");
-        // $("#openWalletType .collection-item").css("border-color", "#08e2d4");
         $("#walletTypeMetamask").hover(function () {
             $(this).css("background-color", "#0FDCCF")
         }).mouseout(function () {
@@ -346,10 +336,13 @@ window.addEventListener("load", async () => {
     }
 
 
+    // If user has Metamask, so metamask inject web3 0.2 version.
+    // For generate Keystore file we use function of web3 1.0
+    // So we need web3 instance with 1.0 version or higher
     var w3 = new Web3();
 
 
-    //hover colors
+    // Hover colors in login page
     $("#walletTypePrivateKey").hover(function () {
         if ($("#unencryptPrivateKey").is(":visible") == false) {
             $(this).css("background-color", "#FAFAFA")
@@ -400,28 +393,22 @@ window.addEventListener("load", async () => {
     })
 
 
-    window.copyToClipboard = function (element, element2) {
+    window.copyToClipboard = function (element) {
         var $temp = $("<input>");
         $("body").append($temp);
         $temp.val($(element).text()).select();
         document.execCommand("copy");
         $temp.remove();
         $(element).css('background-color', '#08e2d4');
-        $(element2).css('background-color', '#08e2d4');
-        setTimeout(hideHighlight, 400, element, element2);
+        setTimeout(hideHighlight, 400, element);
+
     }
 
-    function hideHighlight(element, element2) {
+    function hideHighlight(element) {
         $(element).css('background-color', "rgba(0, 0, 0, 0)")
-        $(element2).css('background-color', "rgba(0, 0, 0, 0)")
     }
-
-
     $(this).attr('autocomplete', 'off');
 
-
-    //$('#walletLanguage').val($('#langId').val());
-    //$('#walletLanguage').formSelect();
 
     $('#walletLanguage').on('change', function () {
         $.cookie('lang', this.dataset.value, {
@@ -452,6 +439,8 @@ window.addEventListener("load", async () => {
     })
 
 
+    // Login -> Keystore file
+    // Try decrypt file
     $('#ButtonPrivateKeyUTCEnter').mousedown(function () {
         $('#privateKeyUTCPassword').val()
         try {
@@ -463,8 +452,8 @@ window.addEventListener("load", async () => {
         } catch (e) {
             $('#keystoreDecryptError').show();
         }
-
     })
+
 
     $('#passwordForNewUTC').focus(function () {
         $('#walletTypePrivateKeyUTCdiv').hide();
@@ -473,11 +462,10 @@ window.addEventListener("load", async () => {
         $('#metamaskBlockWarning').hide();
     })
 
-    // New wallet - generate UTC file
+
+    // New wallet - generate Keystore file
     $('#buttonNewAdddressGoStep2').mousedown(function () {
         if ($('#passwordForNewUTC').val().length > 5) {
-            //const accounts = new Accounts();
-            //const accountObject = accounts.new();
             accountObject = w3.eth.accounts.create()
             var j = w3.eth.accounts.encrypt(accountObject.privateKey, $('#passwordForNewUTC').val());
             var d = new Date();
@@ -494,6 +482,7 @@ window.addEventListener("load", async () => {
             $('#newAddressErr').show();
         }
     });
+
 
     $("#passwordForNewUTC").keydown(function (e) {
         if (e.keyCode == 13) {
@@ -516,6 +505,7 @@ window.addEventListener("load", async () => {
     })
 
 
+    // Login -> seed - not implemented now
     $('#walletTypeSeed').mousedown(function () {
         $('#walletTypePrivateKeyUTCdiv').hide();
         $('#unencryptPrivateKey').hide();
@@ -534,6 +524,7 @@ window.addEventListener("load", async () => {
             }
         }
     })
+
 
     $("#walletTypePrivateKeyUTCHeader").mousedown(function () {
         $('#unencryptPrivateKey').hide();
@@ -556,7 +547,6 @@ window.addEventListener("load", async () => {
             fr.onloadend = function () {
                 window.UTCFileSource = fr.result;
             };
-
             fr.readAsText(file);
         } else {
             // Handle errors here
@@ -569,8 +559,8 @@ window.addEventListener("load", async () => {
 
     $('#cardSendEthButtonSend').click(function () {
         checkSendEth('card')
-        //$('#sendEthButtonSend').trigger("mousedown");
     })
+
 
     $('#cardSendEthButtonOk').click(function () {
         $('#sendEthButtonOk').click()
@@ -584,10 +574,9 @@ window.addEventListener("load", async () => {
     }
 
 
+    // When user send ETH, we check address and Amount and gasAmount
     function checkSendEth(from) {
         from = from || 'modal';
-
-
         var inputAddressVal = $('#sendEthAddress').val();
         var inputEthVal = $('#sendEthAmount').val();
         var sendEthAddressErr = 0;
@@ -628,7 +617,6 @@ window.addEventListener("load", async () => {
 
 
         if (sendEthAmountErr > 0 || sendEthAddressErr > 0) {
-
             $('#sendEthButtonSend').show();
             $('#sendEthButtonOk').hide();
             $('#sendEthButtonSend').attr('disabled', 'disabled');
@@ -638,29 +626,21 @@ window.addEventListener("load", async () => {
         } else {
             if (from == 'modal') {
                 $('#sendEthButtonSend').removeAttr('disabled');
-            } else {
+            }
+            else {
                 $('#sendEthButtonSend').removeAttr('disabled');
                 $('#sendEthButtonSend').trigger('mousedown')
                 $('#cardSendEthButtonSend').hide();
                 $('#cardSendEthButtonOk').show();
-
             }
         }
-
     }
 
 
     $('#sendEthAddress').on('input', function () {
         $('#cardSendEthAddress').val($('#sendEthAddress').val())
-
         checkSendEth();
     })
-
-    //Card
-
-    /* var widthInput = $('#cardSendEthAmount').width();
-     $('#cardSendEthAddress').css("width" , widthInput);
-     alert(widthInput);*/
 
 
     $('#cardSendEthAddress').on('input', function () {
@@ -676,7 +656,6 @@ window.addEventListener("load", async () => {
 
     $('#sendEthAmount').on('input', function () {
         $('#cardSendEthAmount').val($('#sendEthAmount').val())
-
         $('#sendEthAmount').val($('#sendEthAmount').val().replace('/\,/', '/\./'))
         var sendEthAmountNumber = Number($('#sendEthAmount').val())
         if (sendEthAmountNumber > 0 && $('#networkName').val() == 'mainnet') {
@@ -686,7 +665,6 @@ window.addEventListener("load", async () => {
         } else {
             $('#sendEthAmountFiat').text('')
         }
-
         checkSendEth();
     })
 
@@ -705,6 +683,7 @@ window.addEventListener("load", async () => {
     })
 
 
+    // Login -> Private key
     $("#unencryptPrivateKeyRaw").on('input', function () {
         if ($("#unencryptPrivateKeyRaw").val().length == 64 || $("#unencryptPrivateKeyRaw").val().length == 66) {
             addressObj = w3.eth.accounts.privateKeyToAccount($('#unencryptPrivateKeyRaw').val())
@@ -713,23 +692,17 @@ window.addEventListener("load", async () => {
             $('.tabs').tabs('updateTabIndicator');
             addressInfo(3);
         }
-
     })
 
 
+    // Check data in inputs, when user interact with smart contract
     window.checkFunctInputs = function (abiObj) {
         $('#callFunctionResult').html('')
-
-        //abiObj = JSON.parse(JSON.stringify(abiObj));
-        //window.aabb = abiObj.name
-        //abiObj =  JSON.parse(abiObj)
         var emptyInput = 0;
-
-
         var myContract = new web3.eth.Contract(JSON.parse(JSON.stringify(JSON.parse($('#contractAbiUser').val()))), $('#contractAddress').val())
 
-
         // We don't check inputs, if function == fallback
+        // If input is empty..
         if (abiObj.type != 'fallback' && abiObj.inputs) {
             for (var i = 0; i < abiObj.inputs.length; i++) {
                 if (!$('#callFunctionParam_' + i).val()) {
@@ -738,26 +711,30 @@ window.addEventListener("load", async () => {
             }
         }
 
-
+        // If funciton is payable, we should check input of ETH's Amount
+        // And check if inputETHAmount < ETH balance
         if (abiObj.payable == true) {
             if (!$('#ethValueSmartContract').val()) {
                 emptyInput += 1;
             }
-            if (parseFloat($('#ethValueSmartContract').val()) > parseFloat($('#addressBalance').text())) {
+            else {
+              if (parseFloat($('#ethValueSmartContract').val()) > parseFloat($('#addressBalance').text())) {
                 $('#smartContractETHAmountError').show();
-            } else {
+              } else {
                 $('#smartContractETHAmountError').hide();
+                }
             }
         }
 
-
+        // if we don't have empty inputs, lets check type of data in inputs
         if (emptyInput == 0) {
-
             var params = []
             if (abiObj.type != 'fallback' && abiObj.inputs) {
                 for (var i = 0; i < abiObj.inputs.length; i++) {
                     $('#callFunctionParam_' + i).val($('#callFunctionParam_' + i).val().trim())
-                    if (abiObj.inputs[i].type.match(/bytes\d\d\[\]/)) {
+
+                    // bytes32[], bytesXX[]
+                    if (abiObj.inputs[i].type.match(/bytes\d*\d*\[\d*\]/)) {
                         var inputVar = JSON.parse($('#callFunctionParam_' + i).val());
                         for (var ii = 0; ii < inputVar.length; ii++) {
                             if (inputVar[ii].indexOf("0x") == 0) {
@@ -766,12 +743,33 @@ window.addEventListener("load", async () => {
                                 inputVar[ii] = web3.eth.abi.encodeParameter(abiObj.inputs[i].type.slice(0, -2), web3.utils.asciiToHex(inputVar[ii]))
                             }
                         }
+
+                    // bytes32, bytesXX
                     } else if (abiObj.inputs[i].type.match(/bytes\d\d/) || abiObj.inputs[i].type.match(/bytes\d/) || abiObj.inputs[i].type.match(/bytes/)) {
                         if ($('#callFunctionParam_' + i).val().indexOf("0x") == 0) {
                             var inputVar = web3.eth.abi.encodeParameter(abiObj.inputs[i].type, $('#callFunctionParam_' + i).val())
                         } else {
                             var inputVar = web3.eth.abi.encodeParameter(abiObj.inputs[i].type, web3.utils.asciiToHex($('#callFunctionParam_' + i).val()))
                         }
+
+
+                    // uint[] -> bigNUMBER
+                  } else if (abiObj.inputs[i].type.match(/u*int\d*\d*\d*\[\d*\]/)) {
+                    console.log('number array')
+                      var inputVar = JSON.parse($('#callFunctionParam_' + i).val());
+                          for (var ii = 0; ii < inputVar.length; ii++) {
+                            inputVar[ii] = web3.utils.toBN(inputVar[ii]).toString()
+                          }
+
+                    //uint -> bigNUMBER
+                    } else if (abiObj.inputs[i].type.match(/u*int\d*\d*\d*/) ) {
+                      console.log('number one')
+                        var inputVar = web3.utils.toBN($('#callFunctionParam_' + i).val()).toString()
+
+
+
+
+                    // string / address
                     } else if (abiObj.inputs[i].type == 'string' || abiObj.inputs[i].type == 'address') {
                         if (abiObj.inputs[i].type == 'address') {
                             $('#callFunctionParam_' + i).val(web3.utils.toChecksumAddress($('#callFunctionParam_' + i).val()))
@@ -809,7 +807,8 @@ window.addEventListener("load", async () => {
                                 result[i] = 'false';
                                 var resultUndefined = false;
 
-                            } else {
+                            }
+                            else {
                                 // typeof result == undefined
                                 $('#smartContractEmptyArraySpan').html('<br><font color=red>' + $('#smartContractEmptyArrayText').val() + '</font>');
                                 var resultUndefined = true;
@@ -823,7 +822,8 @@ window.addEventListener("load", async () => {
                         if (resultUndefined == false) {
                             if (abiObj.outputs.length > 1) {
                                 $('#callFunctionResult').append(outputName + '<input type=text value="' + result[i] + '">')
-                            } else {
+                            }
+                            else {
                                 $('#callFunctionResult').append(outputName + '<input id="test" type=text value="' + result + '">')
                             }
                         } else {
@@ -900,12 +900,7 @@ window.addEventListener("load", async () => {
             }
         }
 
-        $.get("/stat/", {
-            key: "tokenTransfer",
-            value: '',
-            value2: '',
-            address: MD5(window.address)
-        });
+        $.get("/stat/", {key: "tokenTransfer", value: '', value2: '', address: MD5(window.address)});
         if (connectType == 1) {
             let loaded = false;
             web3.eth.sendTransaction(tx, function (err, transactionHash) {
@@ -997,9 +992,7 @@ window.addEventListener("load", async () => {
             var tContract = new web3.eth.Contract(JSON.parse(tokenTransferConfirmABI), tokenContractAddress)
             var sendData = tContract.methods.transfer(to, tokenAmount).encodeABI()
 
-            tContract.methods.transfer(to, tokenAmount).estimateGas({
-                    from: window.address
-                })
+            tContract.methods.transfer(to, tokenAmount).estimateGas({from: window.address})
                 .then(function (gasAmount) {
                     $('#tokenTransferGasLimitExceedSpan-' + tokenContractAddress).hide()
                     $('#tokenTransferGasAmount-' + tokenContractAddress).val(gasAmount)
@@ -1043,8 +1036,8 @@ window.addEventListener("load", async () => {
                                 var tokenBalance = parseFloat(result) / parseInt('1' + '0'.repeat(parseInt(tokenData.tokenInfo.decimals)));
 
                                 if (err || isNaN(tokenBalance)) {
-                                    tokenBalance = parseFloat(tokenData.balance) /
-                                        parseInt('1' + '0'.repeat(parseInt(tokenData.tokenInfo.decimals)));
+                                    tokenBalance = parseFloat(tokenData.balance)
+                                        / parseInt('1' + '0'.repeat(parseInt(tokenData.tokenInfo.decimals)));
                                 }
 
                                 if (typeof (tokenData.tokenInfo.price) == 'object') {
@@ -1062,24 +1055,24 @@ window.addEventListener("load", async () => {
 
                                     '<input type=text oninput="estimateGasTokenTransfer(\'' + tokenData.tokenInfo.address + '\', ' + tokenData.tokenInfo.decimals + ')" id=tokenTransferInputTo-' + tokenData.tokenInfo.address + '></div><div class=" form-group">' + $('#tokensTableTransferAmountText').val() +
                                     ' <input type=number oninput="estimateGasTokenTransfer(\'' + tokenData.tokenInfo.address + '\', ' + tokenData.tokenInfo.decimals + ')" id=tokenTransferInputAmount-' + tokenData.tokenInfo.address + '>' +
-                                    '</div>  <div class="form-group flex-center">  <br><span style="display:none;color:red;" id=transferTokenErrorSpan-' +
-                                    tokenData.tokenInfo.address + '>' + $('#tokensTableTransferErrorText').val() + '</span>' +
-                                    '<span style="display:none;color:red;" id=tokenTransferGasLimitExceedSpan-' + tokenData.tokenInfo.address + '>' + $('#TokenTransferGasLimitExceedText').val() + '</span>' +
-                                    '<img onclick=showTokenTransferParams("' + tokenData.tokenInfo.address + '") style="width:30px; margin-right:10px;" ' +
+                                    '</div>  <div class="form-group flex-center">  <br><span style="display:none;color:red;" id=transferTokenErrorSpan-'
+                                    + tokenData.tokenInfo.address + '>' + $('#tokensTableTransferErrorText').val() + '</span>' +
+                                    '<span style="display:none;color:red;" id=tokenTransferGasLimitExceedSpan-' + tokenData.tokenInfo.address + '>' + $('#TokenTransferGasLimitExceedText').val() + '</span>'
+                                    + '<img onclick=showTokenTransferParams("' + tokenData.tokenInfo.address + '") style="width:30px; margin-right:10px;" ' +
                                     'src=/assets/img/settingsImg.png><button onclick="tokenTransferConfirmFunc(\'' + tokenData.tokenInfo.address + '\', ' + tokenData.tokenInfo.decimals + ')" ' +
-                                    'id=transferTokenConfirm-' + tokenData.tokenInfo.address + ' type="button" class="btn waves-effect waves-light">' +
-                                    $('#tokensTableTransferConfirmButtonText').val() + '</button></div> </div>      </div>  <button onclick=tokenShowTransferDiv("' +
-                                    tokenData.tokenInfo.address + '") id=transferTokenButton-' + tokenData.tokenInfo.address + ' type="button" ' +
+                                    'id=transferTokenConfirm-' + tokenData.tokenInfo.address + ' type="button" class="btn waves-effect waves-light">'
+                                    + $('#tokensTableTransferConfirmButtonText').val() + '</button></div> </div>      </div>  <button onclick=tokenShowTransferDiv("'
+                                    + tokenData.tokenInfo.address + '") id=transferTokenButton-' + tokenData.tokenInfo.address + ' type="button" ' +
                                     'class="btn waves-effect waves-light">' + $('#tokensTableButtonTransferText').val() + '</button>' +
-                                    '<a id=tokenExchangeLink-' + tokenData.tokenInfo.address + ' target=_blank href="https://etherdelta.com/#' + tokenData.tokenInfo.address +
-                                    '-ETH"><button type="button" class="btn waves-effect waves-purple">' + $('#tokensTableButtonExchangeText').val() + '</button></a>' +
-                                    '</td></tr>');
+                                    '<a id=tokenExchangeLink-' + tokenData.tokenInfo.address + ' target=_blank href="https://etherdelta.com/#' + tokenData.tokenInfo.address
+                                    + '-ETH"><button type="button" class="btn waves-effect waves-purple">' + $('#tokensTableButtonExchangeText').val() + '</button></a>'
+                                    + '</td></tr>');
 
 
                                 $('#transferTokenDiv-' + tokenData.tokenInfo.address).after('<div class="transferTokenDiv" id=tokenTransferParamsDiv-' + tokenData.tokenInfo.address + ' ' +
                                     'style="display:none" > <div class="transferTokenChild"> Gas Amount <br><input style="width: 86px;" id=tokenTransferGasAmount-' + tokenData.tokenInfo.address + ' ' +
-                                    'type=number value=60000></div> <div class="transferTokenChild">Gas Price (Gwei)<br><input style="width: 110px;" value=' + $('#inputGasPriceAverage').val() + ' id=tokenTransferGasPrice-' +
-                                    tokenData.tokenInfo.address + ' type=number></div> <div class="transferTokenChild">Nonce<br><input style="width: 50px;" id=tokenTransferNonce-' + tokenData.tokenInfo.address + '  ' +
+                                    'type=number value=60000></div> <div class="transferTokenChild">Gas Price (Gwei)<br><input style="width: 110px;" value=' + $('#inputGasPriceAverage').val() + ' id=tokenTransferGasPrice-'
+                                    + tokenData.tokenInfo.address + ' type=number></div> <div class="transferTokenChild">Nonce<br><input style="width: 50px;" id=tokenTransferNonce-' + tokenData.tokenInfo.address + '  ' +
                                     'value=' + window.nonce + ' type=number></div></div>');
 
                                 if (window.tokenShowStep == 0) {
@@ -1105,7 +1098,7 @@ window.addEventListener("load", async () => {
                         $('#mainTokenDiv').append('</tbody></table>')
                     } else {
                         $('#noTokensWarning').show();
-                        $('#noTokensWarning').css("display", "flex");
+                        $('#noTokensWarning').css( "display", "flex" );
                         //$('#cardTokenList').append('<br><center>' + $('#noTokensWarningCard').val() + '</center>')
                         $('#cardTokenList').append('<br><div class="f-item"><h6 class="noactive">' + $('#noTokensWarningCard').val() + '</h6></div>')
                         $('#cardTokenList').addClass('centered');
@@ -1136,18 +1129,14 @@ window.addEventListener("load", async () => {
                 var subdomainEtherscan;
                 var currentNetwork = $("#networkName").val();
                 switch (currentNetwork) {
-                    case 'mainnet':
-                        subdomainEtherscan = "";
-                        break;
-                    case 'ropsten':
-                        subdomainEtherscan = "ropsten.";
-                        break;
-                    case 'rinkeby':
-                        subdomainEtherscan = "rinkeby.";
-                        break;
-                    case 'kovan':
-                        subdomainEtherscan = "kovan.";
-                        break;
+                    case 'mainnet': subdomainEtherscan = "";
+                    break;
+                    case 'ropsten': subdomainEtherscan = "ropsten.";
+                    break;
+                    case 'rinkeby': subdomainEtherscan = "rinkeby.";
+                    break;
+                    case 'kovan': subdomainEtherscan = "kovan.";
+                    break;
                 }
 
 
@@ -1161,149 +1150,149 @@ window.addEventListener("load", async () => {
 
 
                     $('#transactionsLis').append('<table id=txtable class="highlight" style=margin-left:50px;margin-right:50px;><thead><tr><th>' + $('#txListCardLabelDate').val() + '</th><th style="text-align: right">' + $('#txListCardLabelAmount').val() + '</th><th>' + $('#txListCardLabelFrom').val() + '</th></thead>')
-                    var txC = 0;
+                    var txC=0;
                     var txarr = [];
 
                     for (let transaction of transactionsdata.result) {
 
-                        if (!txarr.includes(transaction['hash'])) {
-                            txarr.push(transaction['hash'])
+                      if(!txarr.includes(transaction['hash'])) {
+                        txarr.push(transaction['hash'])
 
-                            var txType = '';
-                            var txTypeText;
-                            var currentTxAddress;
-                            var currentFinalTxAddress;
-                            var txBgColor;
-                            if (transaction['isError'] != 0) {
-                                txBgColor = '#FAF0EF'
+                        var txType = '';
+                        var txTypeText;
+                        var currentTxAddress;
+                        var currentFinalTxAddress;
+                        var txBgColor;
+                        if (transaction['isError'] != 0) {
+                            txBgColor = '#FAF0EF'
+                        } else {
+                            txBgColor = '#ffffff'
+                        }
+                        if(parseInt(transaction['value']) > 0) {
+                          if (transaction['from'] == transaction['to']) {
+                              txType = '<img src="/assets/img/refresh.svg" width="16px" height="16px">';
+                              currentTxAddress = transaction['from'];
+                              currentFinalTxAddress = "";
+                              txTypeText = $('#sentToYourself').val();
+                            } else if (transaction['from'].toUpperCase() == window.address.toUpperCase()) {
+                              txType = '<font color=red><b>-</b></font>';
+                              currentTxAddress = transaction['to'];
+                              currentFinalTxAddress = '<a href="https://' + subdomainEtherscan + 'etherscan.io/address/' + currentTxAddress + '" target="_blank">' + currentTxAddress.slice(0,20) + '... </a>';
+                              txTypeText = $('#sentToAddress').val();
                             } else {
-                                txBgColor = '#ffffff'
+                              txType = '<font color=green><b>+</b></font>';
+                              currentTxAddress = transaction['from'];
+                              currentFinalTxAddress = '<a href="https://' + subdomainEtherscan + 'etherscan.io/address/' + currentTxAddress + '" target="_blank">' + currentTxAddress.slice(0,20) + '... </a>';
+                              txTypeText = $('#receivedFromAddress').val();
                             }
-                            if (parseInt(transaction['value']) > 0) {
-                                if (transaction['from'] == transaction['to']) {
-                                    txType = '<img src="/assets/img/refresh.svg" width="16px" height="16px">';
-                                    currentTxAddress = transaction['from'];
-                                    currentFinalTxAddress = "";
-                                    txTypeText = $('#sentToYourself').val();
-                                } else if (transaction['from'].toUpperCase() == window.address.toUpperCase()) {
-                                    txType = '<font color=red><b>-</b></font>';
-                                    currentTxAddress = transaction['to'];
-                                    currentFinalTxAddress = '<a href="https://' + subdomainEtherscan + 'etherscan.io/address/' + currentTxAddress + '" target="_blank">' + currentTxAddress.slice(0, 20) + '... </a>';
-                                    txTypeText = $('#sentToAddress').val();
-                                } else {
-                                    txType = '<font color=green><b>+</b></font>';
-                                    currentTxAddress = transaction['from'];
-                                    currentFinalTxAddress = '<a href="https://' + subdomainEtherscan + 'etherscan.io/address/' + currentTxAddress + '" target="_blank">' + currentTxAddress.slice(0, 20) + '... </a>';
-                                    txTypeText = $('#receivedFromAddress').val();
-                                }
-                            }
+                          }
 
                             if (time - transaction['timeStamp'] < 60) {
                                 var txTime = time - transaction['timeStamp'] + ' ' + $('#txListSec').val()
                             } else if (time - transaction['timeStamp'] < 3600) {
                                 var txTime = Math.round(parseInt(time - transaction['timeStamp']) / 60) + ' ' + $('#txListMins').val()
                             } else {
+                              var txminutes = Math.floor(parseInt(time - transaction['timeStamp']) / 60)
+                              var txhours = Math.floor(txminutes / 60)
+                              var txminutes2 = Math.floor((parseInt(time - transaction['timeStamp']) - (txhours * 3600)) / 60)
+                              //var txhours = Math.floor(txminutes / 60)
+                              if (txhours < 24) {
+                                  var txTime = txhours + ' ' + $('#txListHours2').val() + ' ' + txminutes2 + ' ' + $('#txListMins').val()
+                              } else {
+                                  var date = new Date(parseInt(transaction['timeStamp']) * 1000)
+                                  var mins = parseInt(date.getMinutes()) < 10 ? '0' + date.getMinutes() : date.getMinutes()
+                                  var hrsz = (date.getHours() < 10) ? '0'+ date.getHours() : date.getHours()
+                                  var dateDay = date.getDate();
+                                  var dateMonth = (date.getMonth() + 1);
+                                  if (dateDay < 10) dateDay = "0" + dateDay;
+                                  if (dateMonth < 10) dateMonth = "0" + dateMonth;
+                                  var txTime = hrsz + ':' + mins + ' &nbsp;&nbsp;&nbsp;' + dateDay + '.' + dateMonth + '.' + date.getFullYear().toString().slice(2, 4)
+                              }
+                          }
+
+                        var contractAddress = transaction['to'];
+
+
+                        if (transaction['contractAddress'] ) {
+                            let contractAddress = transaction["contractAddress"];
+                            var txTypeText = $('#txCreateContract').val();
+                            var currentTxAddress = contractAddress;
+
+                            var currentFinalTxAddress = '<a href="#"  title = "' + currentTxAddress + '"  onclick = "moveContractBlock(this)" > ' + currentTxAddress.slice(0,20) + '... </a>';
+
+
+
+
+                        } else if (transaction['input'] != '0x' && transaction['input'] != '0x00') {
+                            let contractAddress = transaction['to'];
+                            var currentTxAddress = contractAddress;
+                            var txTypeText = $('#txCallFunc').val();
+
+                            var currentFinalTxAddress = '<a href="#"  title = "' + currentTxAddress + '" onclick = "moveContractBlock(this)" > ' + currentTxAddress.slice(0,20) + '... </a>';
+                            /*var TxAdressHiddenInput = '<input  type="text" value="' + currentTxAddress + '">'
+                            $('body').append(TxAdressHiddenInput);
+                            $('.contractRed').hide();*/
+
+                        }
+
+
+
+                        /*
                                 var txminutes = Math.floor(parseInt(time - transaction['timeStamp']) / 60)
+
                                 var txhours = Math.floor(txminutes / 60)
+
                                 var txminutes2 = Math.floor((parseInt(time - transaction['timeStamp']) - (txhours * 3600)) / 60)
-                                //var txhours = Math.floor(txminutes / 60)
                                 if (txhours < 24) {
                                     var txTime = txhours + ' ' + $('#txListHours2').val() + ' ' + txminutes2 + ' ' + $('#txListMins').val()
                                 } else {
                                     var date = new Date(parseInt(transaction['timeStamp']) * 1000)
                                     var mins = parseInt(date.getMinutes()) < 10 ? '0' + date.getMinutes() : date.getMinutes()
                                     var hrsz = (date.getHours() < 10) ? '0' + date.getHours() : date.getHours()
-                                    var dateDay = date.getDate();
-                                    var dateMonth = (date.getMonth() + 1);
-                                    if (dateDay < 10) dateDay = "0" + dateDay;
-                                    if (dateMonth < 10) dateMonth = "0" + dateMonth;
-                                    var txTime = hrsz + ':' + mins + ' &nbsp;&nbsp;&nbsp;' + dateDay + '.' + dateMonth + '.' + date.getFullYear().toString().slice(2, 4)
+                                    var txTime = hrsz + ':' + mins + ' &nbsp;&nbsp;&nbsp;' + date.getDate() + '.' + (date.getMonth() + 1) + '.' + date.getFullYear().toString().slice(2, 4)
                                 }
-                            }
-
-                            var contractAddress = transaction['to'];
-
-
-                            if (transaction['contractAddress']) {
-                                let contractAddress = transaction["contractAddress"];
-                                var txTypeText = $('#txCreateContract').val();
-                                var currentTxAddress = contractAddress;
-
-                                var currentFinalTxAddress = '<a href="#"  title = "' + currentTxAddress + '"  onclick = "moveContractBlock(this)" > ' + currentTxAddress.slice(0, 20) + '... </a>';
-
-
-
-
-                            } else if (transaction['input'] != '0x' && transaction['input'] != '0x00') {
-                                let contractAddress = transaction['to'];
-                                var currentTxAddress = contractAddress;
-                                var txTypeText = $('#txCallFunc').val();
-
-                                var currentFinalTxAddress = '<a href="#"  title = "' + currentTxAddress + '" onclick = "moveContractBlock(this)" > ' + currentTxAddress.slice(0, 20) + '... </a>';
-                                /*var TxAdressHiddenInput = '<input  type="text" value="' + currentTxAddress + '">' 
-                                $('body').append(TxAdressHiddenInput);
-                                $('.contractRed').hide();*/
-
-                            }
-
-
-
-                            /*
-                                    var txminutes = Math.floor(parseInt(time - transaction['timeStamp']) / 60)
-
-                                    var txhours = Math.floor(txminutes / 60)
-
-                                    var txminutes2 = Math.floor((parseInt(time - transaction['timeStamp']) - (txhours * 3600)) / 60)
-                                    if (txhours < 24) {
-                                        var txTime = txhours + ' ' + $('#txListHours2').val() + ' ' + txminutes2 + ' ' + $('#txListMins').val()
-                                    } else {
-                                        var date = new Date(parseInt(transaction['timeStamp']) * 1000)
-                                        var mins = parseInt(date.getMinutes()) < 10 ? '0' + date.getMinutes() : date.getMinutes()
-                                        var hrsz = (date.getHours() < 10) ? '0' + date.getHours() : date.getHours()
-                                        var txTime = hrsz + ':' + mins + ' &nbsp;&nbsp;&nbsp;' + date.getDate() + '.' + (date.getMonth() + 1) + '.' + date.getFullYear().toString().slice(2, 4)
-                                    }
-                                }
-                                */
-                            //$('#txtable').append('<tr bgcolor=' + txBgcolor + '><td style=align:right>' + txTime + '</td><td>' + txType + ' ' + parseInt(transaction['value']) / 1e18 + ' ETH</td><td>' + transaction['from'] + '</td><td>' + transactionTo + '</td></tr>')
-
-                            //$('#txtableTab').append('<tr bgcolor=' + txBgcolor + '><td style=align:right>' + txTime + '</td><td>' + txType + ' ' + parseInt(transaction['value']) / 1e18 + ' ETH</td><td title="' + transaction['from'] + '">' + transaction['from'].substr(0, 17) + '...' + '</td><td title="' + transaction['to'] + transaction['contractAddress'] + '">' + transactionToInfoTab + '</td></tr>')
-
-
-
-                            //if (currentFinalTxAddress != undefined) { var cfta = currentFinalTxAddress }
-                            //$('#txtable').append('<tr bgcolor=' + txBgcolor + '><td style=align:right>' + txTime + '</td><td style="text-align: right">' + txType + ' ' + parseInt(transaction['value']) / 1e18 + ' ETH</td><td>' + txTypeText + ' ' + cfta + '</td></tr>')
-                            $('#txtable').append('<tr bgcolor=' + txBgColor + '><td style=align:right>' + txTime + '</td><td style="text-align: right">' + txType + ' ' + (parseInt(transaction['value']) / 1e18).toFixed(18).replace(/\.?0+$/, '') + ' ETH</td><td>' + txTypeText + ' ' + currentFinalTxAddress + '</td></tr>')
-
-                            if ($('#txtable').children("[bgcolor='#FAF0EF']")) {
-                                $('#txtable').children("[bgcolor='#FAF0EF']").hover(function () {
-                                    $('#txtable').children("[bgcolor='#FAF0EF']").css('background-color', '#FAF0EF');
-                                });
-                            }
-
-                            if (txC < 6) {
-
-                                if (txC == 0) {
-                                    $('#cardTxList').append('<a href=# style="text-decoration:none" onclick="moreTransactions()"><span style=color:#01c3b6><span style=font-size:20px;font-weight:500;>' + $('#txListCardLabel').val() + ':</span></a>')
-                                    $('#cardTxList').append('<table id=txtableTab class="highlight"><thead><tr><th align=right>' + $('#txListCardLabelDate').val() + '</th><th style="text-align: right">' + $('#txListCardLabelAmount').val() + '</th><th>' + $('#txListCardLabelFrom').val() + '</th></thead>')
-                                    $('#cardTxList').append('</table>')
-                                    $('#cardTxList').append('<a class="tx-more-link" href="#" style="text-decoration:none" onclick="moreTransactions()"><span style=color:#01c3b6>' + $('#txListCardLabelMore').val() + '</span></a>');
-                                    $('#cardTxList').removeClass('centered');
-                                }
-                                $('#txtableTab').append('<tr bgcolor=' + txBgColor + '><td style=align:right>' + txTime + '</td><td style="text-align: right">' + txType + ' ' + (parseInt(transaction['value']) / 1e18).toFixed(18).replace(/\.?0+$/, '') + ' ETH</td><td>' + txTypeText + ' ' + currentFinalTxAddress + '</td></tr>')
-
-                                if ($('#txtableTab').children("[bgcolor='#FAF0EF']")) {
-                                    $('#txtableTab').children("[bgcolor='#FAF0EF']").hover(function () {
-                                        $('#txtableTab').children("[bgcolor='#FAF0EF']").css('background-color', '#FAF0EF');
-                                    });
-                                }
-                            }
-                            /*
-                            if(txC == 0) {
-                              $('#cardTxList').append('</table>')
-                              $('#cardTxList').append('<a class="tx-more-link" href="#" style="text-decoration:none" onclick="moreTransactions()"><span style=color:#01c3b6>' + $('#txListCardLabelMore').val() + '</span></a>');
                             }
                             */
-                            txC++;
+                            //$('#txtable').append('<tr bgcolor=' + txBgcolor + '><td style=align:right>' + txTime + '</td><td>' + txType + ' ' + parseInt(transaction['value']) / 1e18 + ' ETH</td><td>' + transaction['from'] + '</td><td>' + transactionTo + '</td></tr>')
+
+                                //$('#txtableTab').append('<tr bgcolor=' + txBgcolor + '><td style=align:right>' + txTime + '</td><td>' + txType + ' ' + parseInt(transaction['value']) / 1e18 + ' ETH</td><td title="' + transaction['from'] + '">' + transaction['from'].substr(0, 17) + '...' + '</td><td title="' + transaction['to'] + transaction['contractAddress'] + '">' + transactionToInfoTab + '</td></tr>')
+
+
+
+                        //if (currentFinalTxAddress != undefined) { var cfta = currentFinalTxAddress }
+                        //$('#txtable').append('<tr bgcolor=' + txBgcolor + '><td style=align:right>' + txTime + '</td><td style="text-align: right">' + txType + ' ' + parseInt(transaction['value']) / 1e18 + ' ETH</td><td>' + txTypeText + ' ' + cfta + '</td></tr>')
+                        $('#txtable').append('<tr bgcolor=' + txBgColor + '><td style=align:right>' + txTime + '</td><td style="text-align: right">' + txType + ' ' + (parseInt(transaction['value']) / 1e18).toFixed(18).replace(/\.?0+$/,'') + ' ETH</td><td>' + txTypeText + ' ' + currentFinalTxAddress + '</td></tr>')
+
+                        if ($('#txtable').children("[bgcolor='#FAF0EF']")) {
+                            $('#txtable').children("[bgcolor='#FAF0EF']").hover(function(){
+                                $('#txtable').children("[bgcolor='#FAF0EF']").css('background-color' , '#FAF0EF');
+                            });
+                        }
+
+                        if(txC <6) {
+
+                            if(txC == 0) {
+                              $('#cardTxList').append('<a href=# style="text-decoration:none" onclick="moreTransactions()"><span style=color:#01c3b6><span style=font-size:20px;font-weight:500;>' + $('#txListCardLabel').val() +':</span></a>')
+                              $('#cardTxList').append('<table id=txtableTab class="highlight"><thead><tr><th align=right>' + $('#txListCardLabelDate').val() + '</th><th style="text-align: right">' + $('#txListCardLabelAmount').val() + '</th><th>' + $('#txListCardLabelFrom').val() + '</th></thead>')
+                              $('#cardTxList').append('</table>')
+                              $('#cardTxList').append('<a class="tx-more-link" href="#" style="text-decoration:none" onclick="moreTransactions()"><span style=color:#01c3b6>' + $('#txListCardLabelMore').val() + '</span></a>');
+                              $('#cardTxList').removeClass('centered');
+                            }
+                            $('#txtableTab').append('<tr bgcolor=' + txBgColor + '><td style=align:right>' + txTime + '</td><td style="text-align: right">' + txType + ' ' + (parseInt(transaction['value']) / 1e18).toFixed(18).replace(/\.?0+$/,'') + ' ETH</td><td>' + txTypeText + ' ' + currentFinalTxAddress + '</td></tr>')
+
+                            if ($('#txtableTab').children("[bgcolor='#FAF0EF']")) {
+                                $('#txtableTab').children("[bgcolor='#FAF0EF']").hover(function(){
+                                    $('#txtableTab').children("[bgcolor='#FAF0EF']").css('background-color' , '#FAF0EF');
+                                });
+                            }
+                          }
+                          /*
+                          if(txC == 0) {
+                            $('#cardTxList').append('</table>')
+                            $('#cardTxList').append('<a class="tx-more-link" href="#" style="text-decoration:none" onclick="moreTransactions()"><span style=color:#01c3b6>' + $('#txListCardLabelMore').val() + '</span></a>');
+                          }
+                          */
+                          txC++;
 
 
 
@@ -1316,8 +1305,8 @@ window.addEventListener("load", async () => {
                 }
 
 
-                //  })
-            })
+          //  })
+        })
             .fail(function (data) {
                 $('#transactionsLoading').hide()
                 $('#transactionsErrorDiv').show()
@@ -1347,7 +1336,7 @@ window.addEventListener("load", async () => {
         if (abiObj.type != 'fallback') {
             for (var i = 0; i < abiObj.inputs.length; i++) {
                 $('#callFunctionParam_' + i).val($('#callFunctionParam_' + i).val().trim())
-                if (abiObj.inputs[i].type.match(/bytes\d\d\[\]/)) {
+                if (abiObj.inputs[i].type.match(/bytes\d*\d*\[\d*\]/)) {
                     var inputVar = JSON.parse($('#callFunctionParam_' + i).val());
                     for (var ii = 0; ii < inputVar.length; ii++) {
                         if (inputVar[ii].indexOf("0x") == 0) {
@@ -1362,6 +1351,21 @@ window.addEventListener("load", async () => {
                     } else {
                         var inputVar = web3.eth.abi.encodeParameter(abiObj.inputs[i].type, web3.utils.asciiToHex($('#callFunctionParam_' + i).val()))
                     }
+
+
+
+                      // uint[] -> bigNUMBER
+                    } else if (abiObj.inputs[i].type.match(/u*int\d*\d*\d*\[\d*\]/)) {
+                        var inputVar = JSON.parse($('#callFunctionParam_' + i).val());
+                            for (var ii = 0; ii < inputVar.length; ii++) {
+                              inputVar[ii] = web3.utils.toBN(inputVar[ii]).toString()
+                            }
+
+                  } else if (abiObj.inputs[i].type.match(/u*int\d*\d*\d*/) ) {
+                      var inputVar = web3.utils.toBN($('#callFunctionParam_' + i).val()).toString()
+
+
+
                 } else if (abiObj.inputs[i].type == 'string' || abiObj.inputs[i].type == 'address') {
                     if (abiObj.inputs[i].type == 'address') {
                         $('#callFunctionParam_' + i).val(web3.utils.toChecksumAddress($('#callFunctionParam_' + i).val()))
@@ -1592,24 +1596,25 @@ window.addEventListener("load", async () => {
         if (!isView) {
 
             if (!abiObj.hasOwnProperty('inputs')) {
-                var myContract = new web3.eth.Contract(JSON.parse(JSON.stringify(JSON.parse($('#contractAbiUser').val()))), $('#contractAddress').val())
+              var myContract = new web3.eth.Contract(JSON.parse(JSON.stringify(JSON.parse($('#contractAbiUser').val()))), $('#contractAddress').val())
 
-                myContract.methods[abiObj.name]().estimateGas({
-                    from: window.address
-                }, function (error, gasAmount) {
-                    if (typeof gasAmount != 'undefined') {
-                        $('#smartContractGasAmountInput').val(gasAmount)
-                        $('#GasLimitExceedSpan').hide();
+              myContract.methods[abiObj.name]().estimateGas({
+                  from: window.address
+              }, function (error, gasAmount) {
+                  if (typeof gasAmount != 'undefined') {
+                      $('#smartContractGasAmountInput').val(gasAmount)
+                      $('#GasLimitExceedSpan').hide();
 
-                    } else {
-                        $('#smartContractGasAmountInput').val(23000)
-                        $('#GasLimitExceedSpan').show();
+                  } else {
+                      $('#smartContractGasAmountInput').val(23000)
+                      $('#GasLimitExceedSpan').show();
 
-                    }
-                })
+                  }
+              })
 
-            } else {
-                window.checkFunctInputs(abiObj);
+            }
+            else {
+          window.checkFunctInputs(abiObj);
             }
             $('#callFunctionButtonDiv').html('<button class="btn" id="useContractCallFunction" onmousedown=window.useContractCallFunction(' + JSON.stringify(abiObj) + ')>' + $('#CallSmartContractFuncText').val() + '</button>')
 
@@ -1669,17 +1674,17 @@ window.addEventListener("load", async () => {
                     } else {
 
 
-                        $('#contractPublicFunctions').append('<a href="#useContractDiv"><button type="button" class="btn" onmousedown=window.showContractFunctionInterface(' + JSON.stringify(item) + ')>' + item.name + 'send</button></a><br>')
+                        $('#contractPublicFunctions').append('<button type="button" class="btn" onmousedown=window.showContractFunctionInterface(' + JSON.stringify(item) + ')>' + item.name + '<i class="material-icons right">send</i></button><br>')
                     }
                 }
                 // writanle
                 else {
 
-                    $('#contractPayFunctions').append('<a href="#useContractDiv"><button type="button" class="btn" onmousedown=window.showContractFunctionInterface(' + JSON.stringify(item) + ')>' + item.name + 'send</button></a><br>')
+                    $('#contractPayFunctions').append('<button type="button" class="btn" onmousedown=window.showContractFunctionInterface(' + JSON.stringify(item) + ')>' + item.name + '<i class="material-icons right">send</i></button><br>')
                 }
             } else if (item.type == 'fallback') {
 
-                $('#contractPayFunctions').append('<a href="#useContractDiv"><button type="button" class="btn" onmousedown=window.showContractFunctionInterface(' + JSON.stringify(item) + ')>Fallback function send</button></a><br>')
+                $('#contractPayFunctions').append('<button type="button" class="btn" onmousedown=window.showContractFunctionInterface(' + JSON.stringify(item) + ')>Fallback function<i class="material-icons right">send</i></button><br>')
 
             }
         }
@@ -1710,10 +1715,11 @@ window.addEventListener("load", async () => {
 
 
     $('#contractAddress').on('input', (function () {
+        $('#contractViewSourceCode').hide();
         $('#contractAddress').val($('#contractAddress').val().replace(/\s/g, ''))
         $('#contractPublicInfo').html('');
-        $('#contractPublicFunctions').html('');
-        $('#contractPayFunctions').html('');
+        $('#contractPublicFunctions').html('')
+        $('#contractPayFunctions').html('')
         $('#contractRefreshInfo').hide();
         $('#useContractInputs').html('');
         $('#useContractFunctionName').html('');
@@ -1723,16 +1729,9 @@ window.addEventListener("load", async () => {
         $('#contractAbiDiv').hide();
         $('#contractAbiUser').hide();
         $('#contractAbiUser').val('');
-        $('#callFunctionResult').html('');
+        $('#callFunctionResult').html('')
         if (w3.utils.isAddress($('#contractAddress').val().replace(/\s/g, '')) == true) {
-            if (sessionStorage.getItem('width') <= 921) {
-                $('.hide-footer').hide();
-                $('.transaction-footer').show();
-            }
-            $(window).resize(function () {
-                $('.hide-footer').hide();
-                $('.transaction-footer').show();
-            })
+
             if ($('#networkName').val() != 'mainnet') {
                 apiNetworkName = '-' + $('#networkName').val();
             } else {
@@ -1743,25 +1742,18 @@ window.addEventListener("load", async () => {
             $.getJSON('https://api' + apiNetworkName + '.etherscan.io/api?module=contract&action=getabi&address=' + $('#contractAddress').val().replace(/\s/g, '') + '&format=raw')
                 .done(function (data) {
                     try {
-                        $.get("/stat/", {
-                            key: "contractLoad",
-                            value: '1',
-                            value2: '',
-                            address: MD5(window.address)
-                        });
+                        $.get("/stat/", {key: "contractLoad", value: '1', value2: '', address: MD5(window.address)});
                         $('#contractAbiUser').val(data)
+                        $('#contractViewSourceCode').show()
+                        $('#contractViewSourceCode').attr("href", 'https://' + $('#networkName').val() + '.etherscan.io/address/' + $('#contractAddress').val().replace(/\s/g, '') + '#code')
                         loadContractInterface(data);
                     } catch (err) {
+
                         alert('Incorrect address');
                     }
                 })
                 .fail(function (jqxhr, textStatus, error) {
-                    $.get("/stat/", {
-                        key: "contractLoad",
-                        value: '2',
-                        value2: '',
-                        address: MD5(window.address)
-                    });
+                    $.get("/stat/", {key: "contractLoad", value: '2', value2: '', address: MD5(window.address)});
                     $('#contractAbiDiv').show();
                     $('#contractAbiUser').show();
                     $('#contractAbiUser').val('');
@@ -1855,7 +1847,8 @@ window.addEventListener("load", async () => {
         web3.eth.getBalance($('#address').text(), function (error, balance) {
             if (balance === null) {
                 getBalancePeriod()
-            } else {
+            }
+            else {
 
                 $('#addressBalance').text(web3.utils.fromWei(balance.toString()));
                 if (Number($('#addressBalance').text()) > 0) {
@@ -1865,7 +1858,8 @@ window.addEventListener("load", async () => {
                     $('#cardSendEthAddress').removeAttr('disabled');
                     $('#cardSendEthAmount').removeAttr('disabled');
                     $('#cardSendEthButtonSend').removeAttr('disabled');
-                } else {
+                }
+                else {
                     $('#cardSendEthButtonSend').attr('disabled', 'disabled');
                     $('#cardSendEthAddress').attr('disabled', 'disabled');
                     $('#cardSendEthAmount').attr('disabled', 'disabled');
@@ -1873,7 +1867,8 @@ window.addEventListener("load", async () => {
                 }
                 if ($("#networkName").val() == 'mainnet') {
                     balanceFiatValue();
-                } else {
+                }
+                else {
                     $('#USDLabel').css('visibility', 'hidden');
                 }
                 $("#sendEthBalance").text($('#addressBalance').text() - $('#sendEthCommission').text());
@@ -1892,13 +1887,15 @@ window.addEventListener("load", async () => {
             }
             if ($('#sendEthNonceInput').val() < window.nonce) {
                 $('#sendEthNonceInput').val(window.nonce);
-            } else if ($('#sendEthNonceInput').val().length < 1) {
+            }
+            else if ($('#sendEthNonceInput').val().length < 1) {
                 $('#sendEthNonceInput').val(window.nonce);
             }
 
             if ($('#smartContractNonceInput').val() < window.nonce) {
                 $('#smartContractNonceInput').val(window.nonce);
-            } else if ($('#smartContractNonceInput').val().length < 1) {
+            }
+            else if ($('#smartContractNonceInput').val().length < 1) {
                 $('#smartContractNonceInput').val(window.nonce);
             }
 
@@ -1907,7 +1904,8 @@ window.addEventListener("load", async () => {
                 for (var i = 0; i < tokenAddressArray.length; i++) {
                     if ($('#tokenTransferNonce-' + tokenAddressArray[i]).val() < window.nonce) {
                         $('#tokenTransferNonce-' + tokenAddressArray[i]).val(window.nonce);
-                    } else if ($('#tokenTransferNonce-' + tokenAddressArray[i]).val().length < 1) {
+                    }
+                    else if ($('#tokenTransferNonce-' + tokenAddressArray[i]).val().length < 1) {
                         $('#tokenTransferNonce-' + tokenAddressArray[i]).val(window.nonce);
                     }
                 }
@@ -1917,9 +1915,9 @@ window.addEventListener("load", async () => {
 
 
     function loopGetTransactions() {
-        getTransactionsByAccount(); // change to a random image
-        var rand = Math.floor(Math.random() * (21000 - 15000)) + 15000 // get a number between 2 and 7 (5 + 2) seconds (you can change to whatever meets your need)
-        setTimeout(loopGetTransactions, rand); // call loop after that amount of time is passed
+        getTransactionsByAccount();                                        // change to a random image
+        var rand = Math.floor(Math.random() * (21000 - 15000)) + 15000  // get a number between 2 and 7 (5 + 2) seconds (you can change to whatever meets your need)
+        setTimeout(loopGetTransactions, rand);                               // call loop after that amount of time is passed
     }
 
 
@@ -1939,7 +1937,8 @@ window.addEventListener("load", async () => {
         if ($("#networkName").val() == 'mainnet') {
             $("#buttonMerchantServices").css('display', 'inline');
             $("#buttonPopUp").css('display', 'none');
-        } else {
+        }
+        else {
             $("#buttonMerchantServices").css('display', 'none');
             $("#buttonPopUp").css("display", "inline");
         }
@@ -1983,12 +1982,7 @@ window.addEventListener("load", async () => {
     })
 
     $('#sendEthButtonOk').click(function (e) {
-        $.get("/stat/", {
-            key: "sendETH",
-            value: '',
-            value2: '',
-            address: MD5(window.address)
-        });
+        $.get("/stat/", {key: "sendETH", value: '', value2: '', address: MD5(window.address)});
 
         var tx = {
             from: $('#address').text(),
@@ -2053,8 +2047,8 @@ window.addEventListener("load", async () => {
                         $('#txSendOkHash').text(hash);
                         loaded = true;
                     }).on('error', function (error) {
-                        showToast(error, 'red');
-                    });
+                    showToast(error, 'red');
+                });
             });
 
             var timerId = setInterval(function () {
@@ -2177,18 +2171,10 @@ window.addEventListener("load", async () => {
 
             load()
         }
+
         setTimeout(function () {
             $('#chartEth').attr('src', '/chart.html');
-        }, 1);
-        if (sessionStorage.getItem('width') <= 921) {
-            setTimeout(function () {
-                $('span.key-field').addClass('hideAddr')
-                var text = $("span.key-field").text();
-                var text1 = text.slice(0, 12);
-                var text2 = text.slice(-12);
-                $(".addr").html(text1 + "..." + text2);
-            }, 170);
-        }
+        }, 1000);
     }
 
 });
@@ -2197,13 +2183,11 @@ window.addEventListener("load", async () => {
 function moreTokens() {
     var itoken = $('#tokensTabLink');
     itoken[0].click();
-    $('#tabTitle').html('Токены');
 }
 
 function moreTransactions() {
     var itransaction = $('#txTabLink');
     itransaction[0].click();
-    $('#tabTitle').html('Транкзации');
 }
 
 
@@ -2214,7 +2198,6 @@ function moveContractBlock(a) {
     var contractRed = $(a).attr("title")
     $('#contractAddress').val(contractRed);
     $('#contractAddress').trigger("input");
-    $('#tabTitle').html('Контракт');
 }
 
 
@@ -2241,12 +2224,7 @@ $(window).on("click", function (event) {
 
 function showModalTestETH() {
     var out = '';
-    $.get("/stat/", {
-        key: "getTestETH",
-        value: '',
-        value2: '',
-        address: MD5(window.address)
-    });
+    $.get("/stat/", {key: "getTestETH", value: '', value2: '', address: MD5(window.address)});
     popUpModalTestETH.css("display", "flex");
     $('.modal-header-title').text($("#getTestETHPopUpHeader").val());
     if ($("#networkName").val() == 'ropsten') {
@@ -2259,42 +2237,4 @@ function showModalTestETH() {
         out = $("#getTestETHPopUpKovan").val();
     }
     $('.modal-content-test-eth').html(out);
-}
-
-var tabMenu = document.querySelector('#aboutAddress .row');
-
-
-tabMenu.classList.add('tabMenu');
-
-function openTabs() {
-    $('.tabMenu ul.tabs').slideToggle();
-    $('#tabTitle').toggleClass('opened');
-    var tabText = $('.tabMenu .tabs .tab');
-    tabText.on('click', function () {
-        var text = $(this).find('a').text();
-        $('#tabTitle').removeClass('opened');
-        $('#tabTitle').html(text);
-        $('.tabMenu ul.tabs').slideUp(1);
-    })
-}
-
-$('.burger').on('click', function () {
-    openTabs();
-})
-
-$('#tabTitle').on('click', function () {
-    openTabs();
-})
-
-var winWidth = $(window).width();
-
-$(window).resize(function () {
-    var winWidth = $(window).width();
-    sessionStorage.setItem('width', winWidth);
-})
-
-sessionStorage.setItem('width', winWidth);
-
-if($('#contract').hasClass('active')) {
-    $('#tabTitle').html('text');
 }
