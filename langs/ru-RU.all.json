@@ -152,6 +152,14 @@
     "translation": "Некорректно задана сеть!"
   },
   {
+    "id": "notLoginModal",
+    "translation": "Для вызовы функции необходмо авторизоваться"
+  },
+  {
+    "id": "authInModal",
+    "translation": "Авторизоваться"
+  },
+  {
     "id": "SendEthModalTitile",
     "translation": "Перевести ETH"
   },

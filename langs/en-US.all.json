@@ -152,6 +152,14 @@
     "translation": "The network is incorrectly set!"
   },
   {
+    "id": "notLoginModal",
+    "translation": "For function calls, you must log in."
+  },
+  {
+    "id": "authInModal",
+    "translation": "Log in"
+  },
+  {
     "id": "SendEthModalTitile",
     "translation": "Send ETH"
   },

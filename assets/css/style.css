@@ -179,7 +179,7 @@ nav .brand-logo {
 .tabs .tab a.active {
     box-shadow: 4px 5px 8px 0 rgba(0, 0, 0, 0.2);
     background-color: rgba(54, 197, 171, 0.2);
-    color: black; 
+    color: black;
     opacity: 1;
     font-weight: 500;
 }
@@ -1307,7 +1307,9 @@ footer {
     margin-bottom: 35px;
 }
 
-#moda1 hr, #modalBadNetwork hr {
+#moda1 hr,
+#modalBadNetwork hr,
+#NotLoginModal hr {
     margin: 0;
     background: #01C3B6;
     color: #01C3B6;
@@ -1342,12 +1344,83 @@ footer {
     margin-top: 50px;
 }
 
+/* end modal style */
+
+#NotLoginModal {
+    position: fixed;
+    top: 0;
+    min-height: 100%;
+    width: 100%;
+    z-index: 9;
+    display: none;
+    padding: 0 10px;
+    text-align: center;
+}
+
+#NotLoginModal h1 {
+    font-size: 25px;
+    margin: 0;
+    text-align: center;
+    text-transform: capitalize;
+    margin-bottom: 20px;
+}
+
+#NotLoginModal #closeModa1 {
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+
+#NotLoginModal #auth {
+    display: block;
+    width: 133px;
+    height: 36px;
+    background: #2bbbad;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    color: #fff;
+    text-transform: uppercase;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+#NotLoginModal .btns {
+    display: flex;
+    align-items: flex-end;
+    margin-top: 50px;
+    justify-content: center;
+}
+
+#NotLoginModal .btns .btn {
+    margin: 0 !important;
+    width: 190px !important;
+}
+
+#NotLoginModal .btns .btn:last-child {
+    margin-left: 30px !important;
+}
+
+@media(max-width: 500px) {
+    #NotLoginModal .btns {
+        flex-direction: column;
+        align-items: center;
+    }
+    #NotLoginModal .btns .btn:last-child {
+        margin-left: 0 !important;
+        margin-top: 30px !important;
+    }
+}
+
+
 
 @media(max-width: 380px) {
     #moda1 h3 {
         margin-top: 15px;
         margin-bottom: 25px;
     }
+
     #closeModa1 {
         margin-top: 30px;
     }
