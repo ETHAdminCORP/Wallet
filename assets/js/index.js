@@ -432,11 +432,13 @@ window.addEventListener("load", async () => {
             if (sessionStorage.getItem('width') <= 921) {
                 $('.hide-footer').hide();
                 $('.transaction-footer').show();
+                $('.text-link-contruct').hide();
             }
             $(window).resize(function () {
                 if (sessionStorage.getItem('width') <= 921) {
                     $('.hide-footer').hide();
                     $('.transaction-footer').show();
+                    $('.text-link-contruct').hide();
                 }
             })
             if ($('#networkName').val() != 'mainnet') {
