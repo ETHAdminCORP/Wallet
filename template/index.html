@@ -413,7 +413,7 @@
 
 
                 <div id="contract">
-
+                    <p class="text-link-contruct"></p>
                     <div class="row">
 
                         <div class="col s4 m5 ">
@@ -666,7 +666,23 @@
         <iframe src=/counter.html width="1px" height="1px"></iframe>
 
     </div>
-    <div id="NotLoginModal">
+    <div id="BadNetworkUsecontract" class='modal-style'>
+        <div class="disabledShadow"></div>
+        <div class="modalContent">
+            <h1>{{ T "BadNetworkUsecontract" }}</h1>
+            <hr>
+            <div class="btns">
+                <div class="btn changeNetwork">
+                    {{ T "BadNetworkUsecontractButton1" }}
+                </div>
+                <div class="btn loginWithout">
+                    {{ T "BadNetworkUsecontractButton2" }}
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div id="NotLoginModal" class='modal-style'>
         <div class="modalShadow"></div>
         <div class="modalContent">
             <h1>{{ T "notLoginModal" }}</h1>
@@ -682,7 +698,7 @@
 
         </div>
     </div>
-    <div id="moda1">
+    <div id="moda1" class='modal-style'>
         <div class="modalShadow"></div>
         <div class="modalContent">
             <h1>{{ T "NewWalletModal" }}</h1>
@@ -694,8 +710,7 @@
             </div>
         </div>
     </div>
-
-    <div id="modalBadNetwork">
+    <div id="modalBadNetwork" class='modal-style' >
         <div class="modalShadow"></div>
         <div class="modalContent">
             <h1>{{ T "WarningModal" }}</h1>

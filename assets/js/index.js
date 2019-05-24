@@ -27,6 +27,8 @@ $(document).ready(function () {
         window.location.href = 'http://localhost:9123/#/network/' + sessionStorage.getItem('network') + '/usecontract';
         switchNetwork(sessionStorage.getItem('network'));
         sessionStorage.setItem('login', ' ');
+        webLink = window.location.href;
+        webLink = webLink.split('/')
     }
     $('.sidenav').sidenav();
     $('select').formSelect();
@@ -85,6 +87,37 @@ $(document).ready(function () {
         }, 100)
 
     });
+
+    window.showModal = function (idModal) {
+        $(idModal).css({
+            display: 'flex'
+        })
+        $('body').css({
+            overflow: 'hidden'
+        })
+        $('#toast-container').css({
+            display: 'none'
+        });
+    }
+    window.hideModal = function (idModal) {
+        $(idModal).hide(1);
+        $('body').css({
+            overflow: 'auto'
+        })
+    }
+
+    $('.modal-style .modalShadow').on('click', function () {
+        $('.modal-style').hide(1);
+        $('body').css({
+            overflow: 'auto'
+        })
+    })
+    $('.modal-style #closeModa1').on('click', function () {
+        $('.modal-style').hide(1);
+        $('body').css({
+            overflow: 'auto'
+        })
+    })
 });
 
 function contractMore(address) {
@@ -125,35 +158,6 @@ $('#passEye').click(function () {
         $('#passEye').css('opacity', '0.5');
     }
 });
-
-$('.modalShadow').on('click', function () {
-    $('#moda1').hide(1);
-    $('body').css({
-        overflow: 'auto'
-    })
-});
-
-$('#moda1 #closeModa1').on('click', function () {
-    $('#moda1').hide(1);
-    $('body').css({
-        overflow: 'auto'
-    })
-});
-
-
-$('#NotLoginModal .modalShadow').on('click', function () {
-    $('#NotLoginModal').hide(1);
-    $('body').css({
-        overflow: 'auto'
-    })
-})
-
-$('#NotLoginModal #closeModa1').on('click', function () {
-    $('#NotLoginModal').hide(1);
-    $('body').css({
-        overflow: 'auto'
-    })
-})
 
 
 
@@ -379,7 +383,7 @@ function MD5(str) {
 
 
 window.addEventListener("load", async () => {
-    
+
 
 
 
@@ -424,7 +428,7 @@ window.addEventListener("load", async () => {
         $('#contractAbiUser').val('');
         $('#callFunctionResult').html('');
         if (w3.utils.isAddress($('#contractAddress').val().replace(/\s/g, '')) == true) {
-
+            $('.text-link-contruct').show(1).text('https://ethadmin.com/#/contract/' + $('#networkName').val() + '/' + $('#contractAddress').val());
             if (sessionStorage.getItem('width') <= 921) {
                 $('.hide-footer').hide();
                 $('.transaction-footer').show();
@@ -481,7 +485,8 @@ window.addEventListener("load", async () => {
                 });
         }
         else {
-            console.log('fff')
+            console.log('fff');
+            $('.text-link-contruct').hide(1);
         }
     }
     //hover colors
@@ -610,24 +615,47 @@ window.addEventListener("load", async () => {
 
     // New wallet - generate UTC file
     $('#buttonNewAdddressGoStep2').mousedown(function () {
-        if ($('#passwordForNewUTC').val().length > 5) {
-            //const accounts = new Accounts();
-            //const accountObject = accounts.new();
-            accountObject = w3.eth.accounts.create()
-            var j = w3.eth.accounts.encrypt(accountObject.privateKey, $('#passwordForNewUTC').val());
-            var d = new Date();
-            var element = document.createElement('a');
-            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(JSON.stringify(j)));
-            element.setAttribute('download', 'UTC--' + d.toISOString().replace(/:/g, '-') + '--' + accountObject.address);
-            element.style.display = 'none';
-            document.body.appendChild(element);
-            element.click();
-            document.body.removeChild(element);
-            $('#newAddressStep1').hide();
-            addressInfo(4, accountObject.privateKey);
+        if (sessionStorage.getItem('network') !== $('#networkName').val()) {
+            if ($('#passwordForNewUTC').val().length > 5) {
+                //const accounts = new Accounts();
+                //const accountObject = accounts.new();
+                accountObject = w3.eth.accounts.create()
+                var j = w3.eth.accounts.encrypt(accountObject.privateKey, $('#passwordForNewUTC').val());
+                var d = new Date();
+                var element = document.createElement('a');
+                element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(JSON.stringify(j)));
+                element.setAttribute('download', 'UTC--' + d.toISOString().replace(/:/g, '-') + '--' + accountObject.address);
+                element.style.display = 'none';
+                document.body.appendChild(element);
+                element.click();
+                document.body.removeChild(element);
+                $('#newAddressStep1').hide();
+                addressInfo(4, accountObject.privateKey);
+            } else {
+                $('#newAddressErr').show();
+            }
+            showModal('#BadNetworkUsecontract');
         } else {
-            $('#newAddressErr').show();
+            if ($('#passwordForNewUTC').val().length > 5) {
+                //const accounts = new Accounts();
+                //const accountObject = accounts.new();
+                accountObject = w3.eth.accounts.create()
+                var j = w3.eth.accounts.encrypt(accountObject.privateKey, $('#passwordForNewUTC').val());
+                var d = new Date();
+                var element = document.createElement('a');
+                element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(JSON.stringify(j)));
+                element.setAttribute('download', 'UTC--' + d.toISOString().replace(/:/g, '-') + '--' + accountObject.address);
+                element.style.display = 'none';
+                document.body.appendChild(element);
+                element.click();
+                document.body.removeChild(element);
+                $('#newAddressStep1').hide();
+                addressInfo(4, accountObject.privateKey);
+            } else {
+                $('#newAddressErr').show();
+            }
         }
+
     });
 
     $("#passwordForNewUTC").keydown(function (e) {
@@ -1824,7 +1852,7 @@ window.addEventListener("load", async () => {
                 window.checkFunctInputs(abiObj);
             }
             if ($('#aboutAddress').hasClass('notLogin')) {
-                $('#callFunctionButtonDiv').html('<button class="btn" id="useContractCallFunction" onclick="notLoginPopUp()">Вызвать функцию</button>')
+                $('#callFunctionButtonDiv').html('<button class="btn" id="useContractCallFunction" onclick="showModal(\'#NotLoginModal\')">Вызвать функцию</button>')
             } else {
                 $('#callFunctionButtonDiv').html('<button class="btn" id="useContractCallFunction" onmousedown=window.useContractCallFunction(' + JSON.stringify(abiObj) + ')>' + $('#CallSmartContractFuncText').val() + '</button>')
             }
@@ -2266,48 +2294,86 @@ window.addEventListener("load", async () => {
         $("#aboutAddress").show();
         $('.tabs').tabs('updateTabIndicator');
         if (accType == 1) {
-
             //window.web3old = window.web3.currentProvider;
             window.web3 = new Web3(window.web3.currentProvider);
             web3.eth.net.getId()
-                .then(function (netId) {
-                    $('#networkName').formSelect();
-                    switch (netId) {
-                        case 1:
-                            $("#networkName").val("mainnet");
-                            break
-                        case 3:
-                            $("#networkName").val("ropsten");
-                            break
-                        case 4:
-                            $("#networkName").val("rinkeby");
-                            break
-                        case 42:
-                            $("#networkName").val("kovan");
-                            break
-                        default:
-                            console.log('This is an unknown network!  NetId: ' + netId)
+            .then(function (netId) {
+                $('#networkName').formSelect();
+                switch (netId) {
+                    case 1:
+                        $("#networkName").val("mainnet");
+                        break
+                    case 3:
+                        $("#networkName").val("ropsten");
+                        break
+                    case 4:
+                        $("#networkName").val("rinkeby");
+                        break
+                    case 42:
+                        $("#networkName").val("kovan");
+                        break
+                    default:
+                        console.log('This is an unknown network!  NetId: ' + netId)
+                }
+                $('#networkName').formSelect();
+                web3.eth.getAccounts(function (err, res) {
+                    if (err) {
+                        console.log("Can't connet to metamask");
                     }
-                    $('#networkName').formSelect();
-                    web3.eth.getAccounts(function (err, res) {
-                        if (err) {
-                            console.log("Can't connet to metamask");
-                        }
-                        window.address = res[0];
-                        window.connectType = 1
-                        load()
-                    })
-                });
+                    window.address = res[0];
+                    window.connectType = 1
+                    load()
+                })
+            });
+            if (window.location.href.split('/')[6] == 'usecontract') {
+                if (sessionStorage.getItem('network') == $('#networkName').val()) {
+                    window.location.href = 'http://localhost:9123/#/network/mainnet/usecontract';
+                    setTimeout(() => {
+                        useContractFromLink();
+                    }, 700);
+                    
+                } else {
+                    $('.changeNetwork').on('click', function () {
+                        hideModal('#BadNetworkUsecontract');
+                        window.location.href = 'http://localhost:9123/#/network/mainnet/usecontract';
 
-
-        } else if (accType == 2) {
+                        $('#aboutAddress').hide(1);
+                        $('#start').show(1);
+                    });
+                    showModal('#BadNetworkUsecontract');
+                }
+            }
+        }
+        else if (accType == 2) {
             window.connectType = 2
             window.address = accAddress
             window.privateKey = privKeyRAW
-            window.web3 = new Web3(new Web3.providers.WebsocketProvider("wss://" + $("#networkName").val() + ".infura.io/ws/v3/96a551661d68428395068307f67dae53"))
-
-            load()
-        } else if (accType == 3 || accType == 4) {
+            window.web3 = new Web3(new Web3.providers.WebsocketProvider("wss://" + $("#networkName").val() + ".infura.io/ws/v3/96a551661d68428395068307f67dae53"));
+            load();
+            if (window.location.href.split('/')[6] == 'usecontract') {
+                if (sessionStorage.getItem('network') == $('#networkName').val()) {
+                    window.location.href = 'http://localhost:9123/#/contract/' + sessionStorage.getItem('network') + '/' + sessionStorage.getItem('address');
+                    addressInfo(2, accountObject.privateKey);
+                    useContractFromLink();
+                } else {
+                    $('.changeNetwork').on('click', function () {
+                        $('#networkName').val(sessionStorage.getItem('network'));
+                        $('#networkName').formSelect();
+                        window.location.href = 'http://localhost:9123/#/contract/' + sessionStorage.getItem('network') + '/' + sessionStorage.getItem('address');
+                        addressInfo(accType, accountObject.privateKey);
+                        hideModal('#BadNetworkUsecontract');
+                        useContractFromLink();
+                    });
+                    $('.loginWithout').on('click', function () {
+                        hideModal('#BadNetworkUsecontract');
+                        window.location.href = 'http://localhost:9123/#/network/mainnet/'
+                        addressInfo(2, accountObject.privateKey);
+                    });
+                    showModal('#BadNetworkUsecontract');
+                }
+            }
+        }
+        else if (accType == 3 || accType == 4) {
             window.web3 = new Web3(new Web3.providers.WebsocketProvider("wss://" + $("#networkName").val() + ".infura.io/ws/v3/96a551661d68428395068307f67dae53"))
             if (accType == 3) {
                 if ($('#unencryptPrivateKeyRaw').val().indexOf('0x') != 0) {
@@ -2321,19 +2387,62 @@ window.addEventListener("load", async () => {
                 window.connectType = 3;
                 window.address = addressObj.address;
                 $('#buttonDownloadUTC').css('display', 'inline');
-            } else if (accType == 4) {
-
-                setTimeout(showToastNewWallet, 1500);
+                if (window.location.href.split('/')[6] == 'usecontract') {
+                    if (sessionStorage.getItem('network') == $('#networkName').val()) {
+                        window.location.href = 'http://localhost:9123/#/contract/mainnet/' + sessionStorage.getItem('address');
+                        addressInfo(3, accountObject.privateKey);
+                        useContractFromLink();
+                    } else {
+                        $('.changeNetwork').on('click', function () {
+                            $('#networkName').val(sessionStorage.getItem('network'));
+                            $('#networkName').formSelect();
+                            window.location.href = 'http://localhost:9123/#/contract/mainnet/' + sessionStorage.getItem('address');
+                            addressInfo(accType, accountObject.privateKey);
+                            hideModal('#BadNetworkUsecontract');
+                            useContractFromLink();
+                        });
+                        $('.loginWithout').on('click', function () {
+                            hideModal('#BadNetworkUsecontract');
+                            window.location.href = 'http://localhost:9123/#/network/mainnet/'
+                            addressInfo(3, accountObject.privateKey);
+                        });
+                        showModal('#BadNetworkUsecontract');
+                    }
+                }
+            }
+            else if (accType == 4) {
                 addressObj = web3.eth.accounts.privateKeyToAccount(privKeyRAW)
                 window.privateKey = privKeyRAW;
                 window.address = addressObj.address;
                 window.connectType = 4;
-                $('#newWalletCreateAlert').show();
+                if (window.location.href.split('/')[6] == 'usecontract') {
+                    if (sessionStorage.getItem('network') == $('#networkName').val()) {
+                        window.location.href = 'http://localhost:9123/#/contract/mainnet/' + sessionStorage.getItem('address');
+                        addressInfo(4, accountObject.privateKey);
+                        useContractFromLink();
+                    } else {
+                        $('.changeNetwork').on('click', function () {
+                            $('#networkName').val(sessionStorage.getItem('network'));
+                            $('#networkName').formSelect();
+                            window.location.href = 'http://localhost:9123/#/contract/mainnet/' + sessionStorage.getItem('address');
+                            addressInfo(accType, accountObject.privateKey);
+                            hideModal('#BadNetworkUsecontract');
+                            useContractFromLink();
+                        });
+                        $('.loginWithout').on('click', function () {
+                            hideModal('#BadNetworkUsecontract');
+                            window.location.href = 'http://localhost:9123/#/network/mainnet/'
+                            addressInfo(4, accountObject.privateKey);
+                        });
+                        showModal('#BadNetworkUsecontract');
+                    }
+                } else {
+                    showModal('#moda1');
+                }
             }
-
-
             load()
         }
+
         setTimeout(function () {
             $('#chartEth').attr('src', '/chart.html');
         }, 1);
@@ -2347,19 +2456,28 @@ window.addEventListener("load", async () => {
             }, 170);
         }
     }
-
+    window.useContractFromLink = function () {
+        // $('.text-link-contruct').text(window.location.href);
+        window.web3 = new Web3(new Web3.providers.WebsocketProvider("wss://" + $("#networkName").val() + ".infura.io/ws/v3/96a551661d68428395068307f67dae53"))
+        $('#start').hide();
+        $('#aboutAddress').show();
+        $('#contract').show();
+        $('#wallet').hide();
+        $('#tokens').hide();
+        $('#transactions').hide();
+        $('.tabNav').removeClass('active')
+        document.querySelector('#contractTabLink').click()
+        $('#contractAddress').val(sessionStorage.getItem('address'));
+        $('label[for="contractAddress"]').click();
+        changeContractInput();
+    }
     if (webLink[4] == 'network') {
         switchNetwork(webLink[5]);
     }
     else if (webLink[4] == 'contract') {
         var badResult;
         switchNetwork(webLink[5], function () {
-            $('#modalBadNetwork').css({
-                display: 'flex'
-            });
-            $('body').css({
-                overflow: 'hidden'
-            });
+            showModal('#modalBadNetwork');
             $('#modalBadNetwork .modalShadow').on('click', function () {
                 window.location.href = 'http://localhost:9123'
             });
@@ -2394,23 +2512,12 @@ window.addEventListener("load", async () => {
             $('#NotLoginModal #auth').on('click', function () {
                 sessionStorage.setItem('network', webLink[5]);
                 sessionStorage.setItem('login', 'no');
+                sessionStorage.setItem('address', webLink[6]);
                 window.location.href = 'http://localhost:9123/';
             })
         }
     }
 });
-
-function notLoginPopUp() {
-    $('#NotLoginModal').css({
-        display: 'flex'
-    });
-    $('.modalShadow').css({
-        display: 'block'
-    });
-    $('body').css({
-        overflow: 'hidden'
-    });
-}
 
 function moreTokens() {
     var itoken = $('#tokensTabLink');

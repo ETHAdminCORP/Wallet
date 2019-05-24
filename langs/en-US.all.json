@@ -160,6 +160,18 @@
     "translation": "Log in"
   },
   {
+    "id": "BadNetworkUsecontract",
+    "translation": "You must log in using the network "
+  },
+  {
+    "id": "BadNetworkUsecontractButton1",
+    "translation": "Change network"
+  },
+  {
+    "id": "BadNetworkUsecontractButton2",
+    "translation": "Use this network"
+  },
+  {
     "id": "SendEthModalTitile",
     "translation": "Send ETH"
   },

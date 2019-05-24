@@ -1245,7 +1245,7 @@ footer {
 
 /* modal */
 
-#moda1 {
+.modal-style {
     position: fixed;
     top: 0;
     min-height: 100%;
@@ -1256,7 +1256,88 @@ footer {
     text-align: center;
 }
 
-.modalShadow {
+.modal-style h1 {
+    font-size: 25px;
+    margin: 0;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.modal-style h3 {
+    margin: 0;
+    font-size: 19px;
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 35px;
+}
+
+.modal-style #closeModa1 {
+    margin: 0 auto;
+    margin-top: 50px;
+    display: block;
+    width: 133px;
+    height: 36px;
+    background: #2bbbad;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    color: #fff;
+    text-transform: uppercase;
+    border-radius: 2px;
+    cursor: pointer;
+    margin-top: 50px;
+}
+
+.modal-style #auth {
+    display: block;
+    width: 133px;
+    height: 36px;
+    background: #2bbbad;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    color: #fff;
+    text-transform: uppercase;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.modal-style .btns {
+    display: flex;
+    align-items: flex-end;
+    margin-top: 50px;
+    justify-content: center;
+}
+
+.modal-style .btns .btn {
+    margin: 0 !important;
+    width: 190px !important;
+}
+
+.modal-style .btns .btn:last-child {
+    margin-left: 30px !important;
+}
+
+.modal-style hr {
+    margin: 0;
+    background: #01C3B6;
+    color: #01C3B6;
+    height: 2px;
+    border: 0;
+}
+
+.modal-style .modalContent {
+    background: #fff;
+    width: 900px;
+    margin: auto;
+    padding: 25px 25px;
+    box-sizing: border-box;
+    z-index: 11;
+}
+
+.modal-style .modalShadow {
     position: fixed;
     top: 0;
     min-height: 100%;
@@ -1266,140 +1347,23 @@ footer {
     left: 0;
 }
 
-.modalContent {
-    background: #fff;
-    width: 900px;
-    margin: auto;
-    padding: 25px 25px;
-    box-sizing: border-box;
-    z-index: 11;
+.modal-style .disabledShadow {
+    position: fixed;
+    top: 0;
+    min-height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    left: 0;
 }
 
-#closeModa1 {
-    display: block;
-    width: 133px;
-    height: 36px;
-    background: #2bbbad;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: auto;
-    color: #fff;
-    text-transform: uppercase;
-    border-radius: 2px;
-    cursor: pointer;
-    margin-top: 50px;
-}
+/* end modal style */
 
-#moda1 h1 {
-    font-size: 25px;
-    margin: 0;
+.text-link-contruct {
     text-align: center;
-    text-transform: capitalize;
-    margin-bottom: 20px;
-}
-
-#moda1 h3 {
-    margin: 0;
-    font-size: 19px;
-    text-align: center;
-    margin-top: 25px;
-    margin-bottom: 35px;
-}
-
-#moda1 hr,
-#modalBadNetwork hr,
-#NotLoginModal hr {
-    margin: 0;
+    font-size: 17px;
     background: #01C3B6;
-    color: #01C3B6;
-    height: 2px;
-    border: 0;
-}
-
-/* end modal style */
-
-
-#modalBadNetwork {
-    position: fixed;
-    top: 0;
-    min-height: 100%;
-    width: 100%;
-    z-index: 9;
-    display: none;
-    padding: 0 10px;
-    text-align: center;
-}
-
-#modalBadNetwork h1 {
-    font-size: 25px;
-    margin: 0;
-    text-align: center;
-    text-transform: capitalize;
-    margin-bottom: 20px;
-}
-
-#modalBadNetwork #closeModa1 {
-    margin: 0 auto;
-    margin-top: 50px;
-}
-
-/* end modal style */
-
-#NotLoginModal {
-    position: fixed;
-    top: 0;
-    min-height: 100%;
-    width: 100%;
-    z-index: 9;
-    display: none;
-    padding: 0 10px;
-    text-align: center;
-}
-
-#NotLoginModal h1 {
-    font-size: 25px;
-    margin: 0;
-    text-align: center;
-    text-transform: capitalize;
-    margin-bottom: 20px;
-}
-
-#NotLoginModal #closeModa1 {
-    margin: 0 auto;
-    margin-top: 50px;
-}
-
-
-#NotLoginModal #auth {
-    display: block;
-    width: 133px;
-    height: 36px;
-    background: #2bbbad;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: auto;
     color: #fff;
-    text-transform: uppercase;
-    border-radius: 2px;
-    cursor: pointer;
-}
-
-#NotLoginModal .btns {
-    display: flex;
-    align-items: flex-end;
-    margin-top: 50px;
-    justify-content: center;
-}
-
-#NotLoginModal .btns .btn {
-    margin: 0 !important;
-    width: 190px !important;
-}
-
-#NotLoginModal .btns .btn:last-child {
-    margin-left: 30px !important;
 }
 
 @media(max-width: 500px) {
