@@ -2332,7 +2332,7 @@ window.addEventListener("load", async () => {
                     window.location.href = 'http://localhost:9123/#/network/mainnet/usecontract';
                     setTimeout(() => {
                         useContractFromLink();
-                    }, 700);
+                    }, 1500);
                     
                 } else {
                     $('.changeNetwork').on('click', function () {
@@ -2356,7 +2356,9 @@ window.addEventListener("load", async () => {
                 if (sessionStorage.getItem('network') == $('#networkName').val()) {
                     window.location.href = 'http://localhost:9123/#/contract/' + sessionStorage.getItem('network') + '/' + sessionStorage.getItem('address');
                     addressInfo(2, accountObject.privateKey);
-                    useContractFromLink();
+                    setTimeout(() => {
+                        useContractFromLink();
+                    }, 1500);
                 } else {
                     $('.changeNetwork').on('click', function () {
                         $('#networkName').val(sessionStorage.getItem('network'));
@@ -2393,7 +2395,9 @@ window.addEventListener("load", async () => {
                     if (sessionStorage.getItem('network') == $('#networkName').val()) {
                         window.location.href = 'http://localhost:9123/#/contract/mainnet/' + sessionStorage.getItem('address');
                         addressInfo(3, accountObject.privateKey);
-                        useContractFromLink();
+                        setTimeout(() => {
+                            useContractFromLink();
+                        }, 1500);
                     } else {
                         $('.changeNetwork').on('click', function () {
                             $('#networkName').val(sessionStorage.getItem('network'));
@@ -2421,7 +2425,9 @@ window.addEventListener("load", async () => {
                     if (sessionStorage.getItem('network') == $('#networkName').val()) {
                         window.location.href = 'http://localhost:9123/#/contract/mainnet/' + sessionStorage.getItem('address');
                         addressInfo(4, accountObject.privateKey);
-                        useContractFromLink();
+                        setTimeout(() => {
+                            useContractFromLink();
+                        }, 1500);
                     } else {
                         $('.changeNetwork').on('click', function () {
                             $('#networkName').val(sessionStorage.getItem('network'));
