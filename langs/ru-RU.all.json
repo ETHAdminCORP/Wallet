@@ -148,6 +148,30 @@
     "translation": "Закрыть"
   },
   {
+    "id": "WarningModal",
+    "translation": "Некорректно задана сеть!"
+  },
+  {
+    "id": "notLoginModal",
+    "translation": "Для вызовы функции необходмо авторизоваться"
+  },
+  {
+    "id": "authInModal",
+    "translation": "Авторизоваться"
+  },
+  {
+    "id": "BadNetworkUsecontract",
+    "translation": "Необходимо авторизоваться, используя сеть "
+  },
+  {
+    "id": "BadNetworkUsecontractButton1",
+    "translation": "Сменить сеть"
+  },
+  {
+    "id": "BadNetworkUsecontractButton2",
+    "translation": "Использовать эту сеть"
+  },
+  {
     "id": "SendEthModalTitile",
     "translation": "Перевести ETH"
   },

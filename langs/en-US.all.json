@@ -148,6 +148,30 @@
     "translation": "Close"
   },
   {
+    "id": "WarningModal",
+    "translation": "The network is incorrectly set!"
+  },
+  {
+    "id": "notLoginModal",
+    "translation": "For function calls, you must log in."
+  },
+  {
+    "id": "authInModal",
+    "translation": "Log in"
+  },
+  {
+    "id": "BadNetworkUsecontract",
+    "translation": "You must log in using the network "
+  },
+  {
+    "id": "BadNetworkUsecontractButton1",
+    "translation": "Change network"
+  },
+  {
+    "id": "BadNetworkUsecontractButton2",
+    "translation": "Use this network"
+  },
+  {
     "id": "SendEthModalTitile",
     "translation": "Send ETH"
   },

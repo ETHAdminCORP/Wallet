@@ -180,6 +180,7 @@ nav .brand-logo {
     box-shadow: 4px 5px 8px 0 rgba(0, 0, 0, 0.2);
     background-color: rgba(54, 197, 171, 0.2);
     color: black;
+    opacity: 1;
     font-weight: 500;
 }
 
@@ -1244,18 +1245,7 @@ footer {
 
 /* modal */
 
-.modalShadow {
-    position: fixed;
-    top: 0;
-    min-height: 100%;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 10;
-    display: none;
-    left: 0;
-}
-
-#moda1 {
+.modal-style {
     position: fixed;
     top: 0;
     min-height: 100%;
@@ -1266,16 +1256,24 @@ footer {
     text-align: center;
 }
 
-#moda1 .modalContent {
-    background: #fff;
-    width: 900px;
-    margin: auto;
-    padding: 25px 25px;
-    box-sizing: border-box;
-    z-index: 11;
+.modal-style h1 {
+    font-size: 25px;
+    margin: 0;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-#closeModa1 {
+.modal-style h3 {
+    margin: 0;
+    font-size: 19px;
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 35px;
+}
+
+.modal-style #closeModa1 {
+    margin: 0 auto;
+    margin-top: 50px;
     display: block;
     width: 133px;
     height: 36px;
@@ -1291,24 +1289,38 @@ footer {
     margin-top: 50px;
 }
 
-
-#moda1 h1 {
-    font-size: 25px;
-    margin: 0;
-    text-align: center;
-    text-transform: capitalize;
-    margin-bottom: 20px;
+.modal-style #auth {
+    display: block;
+    width: 133px;
+    height: 36px;
+    background: #2bbbad;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    color: #fff;
+    text-transform: uppercase;
+    border-radius: 2px;
+    cursor: pointer;
 }
 
-#moda1 h3 {
-    margin: 0;
-    font-size: 19px;
-    text-align: center;
-    margin-top: 25px;
-    margin-bottom: 35px;
+.modal-style .btns {
+    display: flex;
+    align-items: flex-end;
+    margin-top: 50px;
+    justify-content: center;
 }
 
-#moda1 hr {
+.modal-style .btns .btn {
+    margin: 0 !important;
+    width: 190px !important;
+}
+
+.modal-style .btns .btn:last-child {
+    margin-left: 30px !important;
+}
+
+.modal-style hr {
     margin: 0;
     background: #01C3B6;
     color: #01C3B6;
@@ -1316,11 +1328,71 @@ footer {
     border: 0;
 }
 
+.modal-style .modalContent {
+    background: #fff;
+    width: 900px;
+    margin: auto;
+    padding: 25px 25px;
+    box-sizing: border-box;
+    z-index: 11;
+}
+
+.modal-style .modalShadow {
+    position: fixed;
+    top: 0;
+    min-height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    left: 0;
+}
+
+.modal-style .disabledShadow {
+    position: fixed;
+    top: 0;
+    min-height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    left: 0;
+}
+
+/* end modal style */
+
+.text-link-contruct {
+    text-align: center;
+    font-size: 17px;
+    background: #01C3B6;
+    color: #fff;
+    display: inline;
+    padding: 0 15px;
+    cursor: pointer;
+}
+
+.text-link-contruct-wrap {
+    display: flex;
+    justify-content: center;
+}
+
+@media(max-width: 500px) {
+    #NotLoginModal .btns {
+        flex-direction: column;
+        align-items: center;
+    }
+    #NotLoginModal .btns .btn:last-child {
+        margin-left: 0 !important;
+        margin-top: 30px !important;
+    }
+}
+
+
+
 @media(max-width: 380px) {
     #moda1 h3 {
         margin-top: 15px;
         margin-bottom: 25px;
     }
+
     #closeModa1 {
         margin-top: 30px;
     }
@@ -1753,7 +1825,7 @@ body.mobile .ccc-widget canvas {
     max-height: 168px !important;
 }
 
-@media(max-height: 670px) {
+@media(min-height: 520px) {
     main {
         margin-bottom: 130px;
     }
