@@ -1364,6 +1364,14 @@ footer {
     font-size: 17px;
     background: #01C3B6;
     color: #fff;
+    display: inline;
+    padding: 0 15px;
+    cursor: pointer;
+}
+
+.text-link-contruct-wrap {
+    display: flex;
+    justify-content: center;
 }
 
 @media(max-width: 500px) {

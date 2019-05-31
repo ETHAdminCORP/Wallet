@@ -429,6 +429,9 @@ window.addEventListener("load", async () => {
         $('#callFunctionResult').html('');
         if (w3.utils.isAddress($('#contractAddress').val().replace(/\s/g, '')) == true) {
             $('.text-link-contruct').show(1).text('https://ethadmin.com/#/contract/' + $('#networkName').val() + '/' + $('#contractAddress').val());
+            $('.text-link-contruct').on('click', function(){
+                window.location.href = $('.text-link-contruct').html();
+            })
             if (sessionStorage.getItem('width') <= 921) {
                 $('.hide-footer').hide();
                 $('.transaction-footer').show();
@@ -2465,7 +2468,6 @@ window.addEventListener("load", async () => {
         }
     }
     window.useContractFromLink = function () {
-        // $('.text-link-contruct').text(window.location.href);
         window.web3 = new Web3(new Web3.providers.WebsocketProvider("wss://" + $("#networkName").val() + ".infura.io/ws/v3/96a551661d68428395068307f67dae53"))
         $('#start').hide();
         $('#aboutAddress').show();
