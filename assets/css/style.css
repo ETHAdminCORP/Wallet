@@ -1374,6 +1374,32 @@ footer {
     justify-content: center;
 }
 
+
+#tokens #tokenTable tr td {
+    padding: 7px 5px;
+}
+
+#tokens #tokenTable tr th {
+    padding-bottom: 5px;
+}
+
+#tokens #mainTokenDiv {
+    width: 80%;
+}
+
+#tokens #mainTokenDiv tbody tr td:last-child {
+    width: 260px;
+}
+
+#tokens .row {
+    display: flex;
+    justify-content: center;
+}
+
+#tokens .row #mainTokenDiv {
+    margin-left: 0;
+}
+
 @media(max-width: 500px) {
     #NotLoginModal .btns {
         flex-direction: column;
