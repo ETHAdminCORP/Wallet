@@ -1410,6 +1410,11 @@ footer {
     align-items: center;
 }
 
+#start .main-wrap-images h5 {
+    font-size: 30px;
+    margin-bottom: 35px;
+}
+
 #start .main-wrap-images .image-container {
     display: flex;
     justify-content: space-between;
@@ -1420,7 +1425,7 @@ footer {
     flex-direction: column;
     align-items: center;
     width: 225px;
-    margin-right: 15px;
+    margin-right: 40px;
     text-align: center;
 }
 
@@ -1450,6 +1455,7 @@ footer {
 #start .main-wrap-images .image-container .item.telegram img {
     width: 80px;
     z-index: 1;
+    border: none;
 }
 
 #start .main-wrap-images .image-container .item.telegram .img-wrap:hover img {
@@ -1462,9 +1468,10 @@ footer {
 #start .main-wrap-images .image-container .item  img{
     max-width: 100%;
     transition: .5s;
+    border: 1px solid #000;
 }
 
-@media(max-width: 1200px) {
+@media(max-width: 1300px) {
     #start .main-wrap-images {
         display: none;
     }

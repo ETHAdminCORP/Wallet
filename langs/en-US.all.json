@@ -168,6 +168,30 @@
     "translation": "Change network"
   },
   {
+    "id": "webWallet",
+    "translation": "Ethereum web wallet"
+  },
+  {
+    "id": "mainFeature1",
+    "translation": "All the most important on one screen. Quick access to all functions. Convenient and simple interface"
+  },
+  {
+    "id": "mainFeature2",
+    "translation": "Visualize your transactions"
+  },
+  {
+    "id": "mainFeature3",
+    "translation": "Be the first to know ETHAdmin news and quickly get help in our telegram group"
+  },
+  {
+    "id": "mainFeature4",
+    "translation": "Interaction with verified smart contracts without ABI input"
+  },
+  {
+    "id": "mainFeature5",
+    "translation": "Fast forwarding tokens."
+  },
+  {
     "id": "BadNetworkUsecontractButton2",
     "translation": "Use this network"
   },
