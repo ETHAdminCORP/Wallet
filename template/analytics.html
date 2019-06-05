@@ -39,7 +39,7 @@ if(urlParams.get('event') == 'property') {
 }
 else {
 if(urlParams.has('eventData')) {
-  amplitude.getInstance().logEvent(urlParams.get('event'), atob(JSON.parse(urlParams.get('eventData'))));
+  amplitude.getInstance().logEvent(urlParams.get('event'), JSON.parse(atob(urlParams.get('eventData'))));
 }
 else {
     amplitude.getInstance().logEvent(urlParams.get('event'))
