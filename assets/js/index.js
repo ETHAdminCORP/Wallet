@@ -2112,14 +2112,32 @@ window.addEventListener("load", async () => {
         setTimeout(loopGetTransactions, rand); // call loop after that amount of time is passed
     }
 
-
+    function sleep (time) {
+      return new Promise((resolve) => setTimeout(resolve, time));
+    }
+    
     function load() {
-        $.get("/stat/", {
-            key: "authType",
-            value: window.connectType,
-            value2: $("#networkName").val(),
-            address: MD5(window.address)
+      switch(window.connectType) {
+        case 1:
+          connectTypeName = 'Metamask'
+          break;
+        case 2:
+          connectTypeName = 'KeystoreFile'
+          break;
+        case 3:
+          connectTypeName = 'RawPrivateKey'
+          break;
+        case 4:
+            connectTypeName = 'NewWallet'
+          break;
+        }
+        var analyticsData = {'LoginType': connectTypeName,
+                             'NetworkName': $("#networkName").val()}
+        $('#analyticsIframe').prop("src", "/analytics.html?event=" + 'LOGIN' + '&eventData=' + JSON.stringify(analyticsData));
+        sleep(100).then(() => {
+    $('#analyticsIframe').prop("src", "/analytics.html?event=" + 'property' + '&propName=' + 'networkName' + '&propValue=' + $("#networkName").val());
         });
+      //  $('#analyticsIframe').prop("src", "/analytics.html?event=" + 'property' + '&propName=' + 'networkName' + '&propValue=' + $("#networkName").val());
         setInterval(getBalancePeriod, 15000);
         setInterval(getNoncePeriod, 5000);
         loopGetTransactions();
@@ -2336,7 +2354,7 @@ window.addEventListener("load", async () => {
                     setTimeout(() => {
                         useContractFromLink();
                     }, 1500);
-                    
+
                 } else {
                     $('.changeNetwork').on('click', function () {
                         hideModal('#BadNetworkUsecontract');
@@ -2642,4 +2660,3 @@ if (sessionStorage.getItem('width') <= 650) {
         $('#walletTypeMetamask').html('Web3 provider')
     }
 }
-
