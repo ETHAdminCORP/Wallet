@@ -123,6 +123,12 @@ func chart(w http.ResponseWriter, r *http.Request) {
 
 
 
+func analytics(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "text/html")
+	t, _ := template.ParseFiles("template/analytics.html")
+	t.Execute(w, nil)
+}
+
 func errorHandler404(w http.ResponseWriter, r *http.Request, status int) {
 	w.WriteHeader(status)
 	if status == http.StatusNotFound {
@@ -237,6 +243,7 @@ func main() {
 
 	http.HandleFunc("/counter.html", counter)
 	http.HandleFunc("/chart.html", chart)
+	http.HandleFunc("/analytics.html", analytics)
 	http.HandleFunc("/stat/", func(w http.ResponseWriter, r *http.Request) {
 		currentTime := time.Now()
 		w.Header().Set("Access-Control-Allow-Origin", "*")
