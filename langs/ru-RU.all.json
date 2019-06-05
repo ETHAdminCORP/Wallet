@@ -168,6 +168,30 @@
     "translation": "Сменить сеть"
   },
   {
+    "id": "webWallet",
+    "translation": "Ethereum web wallet"
+  },
+  {
+    "id": "mainFeature1",
+    "translation": "Все самое важное на одном экране. Быстрый доступ ко всем функциям. Удобный и простой интерфейс"
+  },
+  {
+    "id": "mainFeature2",
+    "translation": "Визуализация ваших транзакций"
+  },
+  {
+    "id": "mainFeature3",
+    "translation": "Узнавайте первыми новости ETHAdmin и оперативно получайте помощь в нашей телеграм группе"
+  },
+  {
+    "id": "mainFeature4",
+    "translation": "Взаимодействие с верифицированными смарт контрактами без ввода ABI"
+  },
+  {
+    "id": "mainFeature5",
+    "translation": "Быстрая пересылка токенов"
+  },
+  {
     "id": "BadNetworkUsecontractButton2",
     "translation": "Использовать эту сеть"
   },
