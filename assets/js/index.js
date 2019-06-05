@@ -2115,7 +2115,7 @@ window.addEventListener("load", async () => {
     function sleep (time) {
       return new Promise((resolve) => setTimeout(resolve, time));
     }
-    
+
     function load() {
       switch(window.connectType) {
         case 1:
@@ -2133,11 +2133,11 @@ window.addEventListener("load", async () => {
         }
         var analyticsData = {'LoginType': connectTypeName,
                              'NetworkName': $("#networkName").val()}
-        $('#analyticsIframe').prop("src", "/analytics.html?event=" + 'LOGIN' + '&eventData=' + JSON.stringify(analyticsData));
-        sleep(100).then(() => {
-    $('#analyticsIframe').prop("src", "/analytics.html?event=" + 'property' + '&propName=' + 'networkName' + '&propValue=' + $("#networkName").val());
-        });
-      //  $('#analyticsIframe').prop("src", "/analytics.html?event=" + 'property' + '&propName=' + 'networkName' + '&propValue=' + $("#networkName").val());
+        $('#analyticsIframe').prop("src", "/analytics.html?event=" + 'LOGIN' + '&eventData=' + btoa(JSON.stringify(analyticsData)));
+  //      sleep(100).then(() => {
+  //  $('#analyticsIframe').prop("src", "/analytics.html?event=" + 'property' + '&propName=' + 'networkName' + '&propValue=' + $("#networkName").val());
+  //      });
+
         setInterval(getBalancePeriod, 15000);
         setInterval(getNoncePeriod, 5000);
         loopGetTransactions();
