@@ -48,13 +48,9 @@ $(document).ready(function () {
                     setTimeout(function () {
                         let integrationFrame = $('#integrationFrame');
                         if (integrationFrame.css('display') === 'block') {
-                            $.get("/stat/", {
-                                key: "txViz",
-                                value: '',
-                                value2: '',
-                                address: MD5(window.address)
-                            });
-                            let requestAddress = `https://www.ethtective.com/address/${window.address}`;
+
+                            $('#analyticsIframe').prop("src", "/analytics.html?event=" + 'TxViz');
+                            let requestAddress = `https:/canary.ethtective.com/address/${window.address}`;
                             integrationFrame.append(`<iframe id="ethtectiveFrame" src="${requestAddress}" frameborder="0"></iframe>`);
                         } else {
                             $('#ethtectiveFrame').remove();
@@ -453,13 +449,8 @@ window.addEventListener("load", async () => {
             $.getJSON('https://api' + apiNetworkName + '.etherscan.io/api?module=contract&action=getabi&address=' + $('#contractAddress').val().replace(/\s/g, '') + '&format=raw')
                 .done(function (data) {
                     try {
-                        $.get("/stat/", {
-                            key: "contractLoadLink",
-                            value: '1',
-                            value2: '',
-                            address: ''
-                        });
 
+                        $('#analyticsIframe').prop("src", "/analytics.html?event=" + 'ContractLoad');
                         $('#contractAbiUser').val(data);
                         loadContractInterface(data);
                     } catch (err) {
@@ -475,12 +466,7 @@ window.addEventListener("load", async () => {
                     }
                 })
                 .fail(function (jqxhr, textStatus, error) {
-                    $.get("/stat/", {
-                        key: "contractLoad",
-                        value: '2',
-                        value2: '',
-                        address: MD5(window.address)
-                    });
+
                     $('#contractAbiDiv').show();
                     $('#contractAbiUser').show();
                     $('#contractAbiUser').val('');
@@ -1078,12 +1064,8 @@ window.addEventListener("load", async () => {
             }
         }
 
-        $.get("/stat/", {
-            key: "tokenTransfer",
-            value: '',
-            value2: '',
-            address: MD5(window.address)
-        });
+
+          $('#analyticsIframe').prop("src", "/analytics.html?event=" + 'TokenTransfer');
         if (connectType == 1) {
             let loaded = false;
             web3.eth.sendTransaction(tx, function (err, transactionHash) {
@@ -2190,13 +2172,9 @@ window.addEventListener("load", async () => {
         document.body.removeChild(element);
     })
 
-    $('#sendEthButtonOk').click(function (e) {
-        $.get("/stat/", {
-            key: "sendETH",
-            value: '',
-            value2: '',
-            address: MD5(window.address)
-        });
+  $('#sendEthButtonOk').click(function (e) {
+        $('#analyticsIframe').prop("src", "/analytics.html?event=" + 'SendETH');
+
 
         var tx = {
             from: $('#address').text(),
@@ -2594,12 +2572,9 @@ $(window).on("click", function (event) {
 
 function showModalTestETH() {
     var out = '';
-    $.get("/stat/", {
-        key: "getTestETH",
-        value: '',
-        value2: '',
-        address: MD5(window.address)
-    });
+
+     $('#analyticsIframe').prop("src", "/analytics.html?event=" + 'GetTestETH');
+
     popUpModalTestETH.css("display", "flex");
     $('.modal-header-title').text($("#getTestETHPopUpHeader").val());
     if ($("#networkName").val() == 'ropsten') {
