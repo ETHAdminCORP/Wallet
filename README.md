@@ -7,8 +7,3 @@ Support and other questions: eth@ethadmin.com
 Our news - https://twitter.com/ETHAdmin/
 
 
-<b>Project members:</b>
-
-Founder/developer - @SovaSlava (Telegram)
-
-Lead frontend developer - @Timon1507 (Telegram)
